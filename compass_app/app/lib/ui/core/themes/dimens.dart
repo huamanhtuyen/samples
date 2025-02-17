@@ -1,31 +1,31 @@
-// Copyright 2024 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// Bản quyền 2024 thuộc về nhóm Flutter. Bảo lưu mọi quyền.
+// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD có trong tệp LICENSE.
 
 import 'package:flutter/material.dart';
 
+// Lớp trừu tượng chứa các kích thước
 abstract final class Dimens {
   const Dimens();
 
-  /// General horizontal padding used to separate UI items
+  /// Khoảng cách ngang chung dùng để tách các mục UI
   static const paddingHorizontal = 20.0;
 
-  /// General vertical padding used to separate UI items
+  /// Khoảng cách dọc chung dùng để tách các mục UI
   static const paddingVertical = 24.0;
 
-  /// Horizontal padding for screen edges
+  /// Khoảng cách ngang cho các cạnh màn hình
   double get paddingScreenHorizontal;
 
-  /// Vertical padding for screen edges
+  /// Khoảng cách dọc cho các cạnh màn hình
   double get paddingScreenVertical;
 
   double get profilePictureSize;
 
-  /// Horizontal symmetric padding for screen edges
+  /// Khoảng cách ngang đối xứng cho các cạnh màn hình
   EdgeInsets get edgeInsetsScreenHorizontal =>
       EdgeInsets.symmetric(horizontal: paddingScreenHorizontal);
 
-  /// Symmetric padding for screen edges
+  /// Khoảng cách đối xứng cho các cạnh màn hình
   EdgeInsets get edgeInsetsScreenSymmetric => EdgeInsets.symmetric(
     horizontal: paddingScreenHorizontal,
     vertical: paddingScreenVertical,
@@ -34,7 +34,7 @@ abstract final class Dimens {
   static const Dimens desktop = _DimensDesktop();
   static const Dimens mobile = _DimensMobile();
 
-  /// Get dimensions definition based on screen size
+  /// Lấy định nghĩa kích thước dựa trên kích thước màn hình
   factory Dimens.of(BuildContext context) => switch (MediaQuery.sizeOf(
     context,
   ).width) {
@@ -43,7 +43,7 @@ abstract final class Dimens {
   };
 }
 
-/// Mobile dimensions
+// Kích thước cho thiết bị di động
 final class _DimensMobile extends Dimens {
   @override
   final double paddingScreenHorizontal = Dimens.paddingHorizontal;
@@ -57,7 +57,7 @@ final class _DimensMobile extends Dimens {
   const _DimensMobile();
 }
 
-/// Desktop/Web dimensions
+// Kích thước cho thiết bị Desktop/Web
 final class _DimensDesktop extends Dimens {
   @override
   final double paddingScreenHorizontal = 100.0;

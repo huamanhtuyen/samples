@@ -1,6 +1,5 @@
-// Copyright 2024 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// Bản quyền 2024 của nhóm Flutter. Bảo lưu mọi quyền.
+// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD có thể tìm thấy trong tệp LICENSE.
 
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
@@ -32,116 +31,133 @@ import '../data/services/shared_preferences_service.dart';
 import '../domain/use_cases/booking/booking_create_use_case.dart';
 import '../domain/use_cases/booking/booking_share_use_case.dart';
 
-/// Shared providers for all configurations.
+/// Các provider dùng chung cho tất cả các cấu hình.
 List<SingleChildWidget> _sharedProviders = [
   Provider(
-    lazy: true,
+    lazy: true, // Tạo provider một cách lười biếng (chỉ khi cần thiết)
     create:
         (context) => BookingCreateUseCase(
-          destinationRepository: context.read(),
-          activityRepository: context.read(),
-          bookingRepository: context.read(),
+          destinationRepository:
+              context.read(), // Đọc repository đích từ context
+          activityRepository:
+              context.read(), // Đọc repository hoạt động từ context
+          bookingRepository:
+              context.read(), // Đọc repository đặt chỗ từ context
         ),
   ),
   Provider(
-    lazy: true,
-    create: (context) => BookingShareUseCase.withSharePlus(),
+    lazy: true, // Tạo provider một cách lười biếng (chỉ khi cần thiết)
+    create:
+        (context) =>
+            BookingShareUseCase.withSharePlus(), // Tạo use case chia sẻ đặt chỗ
   ),
 ];
 
-/// Configure dependencies for remote data.
-/// This dependency list uses repositories that connect to a remote server.
+/// Cấu hình các phụ thuộc cho dữ liệu từ xa.
+/// Danh sách phụ thuộc này sử dụng các repository kết nối với máy chủ từ xa.
 List<SingleChildWidget> get providersRemote {
   return [
-    Provider(create: (context) => AuthApiClient()),
-    Provider(create: (context) => ApiClient()),
-    Provider(create: (context) => SharedPreferencesService()),
+    Provider(create: (context) => AuthApiClient()), // Tạo AuthApiClient
+    Provider(create: (context) => ApiClient()), // Tạo ApiClient
+    Provider(
+      create: (context) => SharedPreferencesService(),
+    ), // Tạo SharedPreferencesService
     ChangeNotifierProvider(
       create:
           (context) =>
               AuthRepositoryRemote(
-                    authApiClient: context.read(),
-                    apiClient: context.read(),
-                    sharedPreferencesService: context.read(),
+                    authApiClient:
+                        context.read(), // Đọc AuthApiClient từ context
+                    apiClient: context.read(), // Đọc ApiClient từ context
+                    sharedPreferencesService:
+                        context
+                            .read(), // Đọc SharedPreferencesService từ context
                   )
-                  as AuthRepository,
+                  as AuthRepository, // Ép kiểu về AuthRepository
     ),
     Provider(
       create:
           (context) =>
               DestinationRepositoryRemote(apiClient: context.read())
-                  as DestinationRepository,
+                  as DestinationRepository, // Ép kiểu về DestinationRepository
     ),
     Provider(
       create:
           (context) =>
               ContinentRepositoryRemote(apiClient: context.read())
-                  as ContinentRepository,
+                  as ContinentRepository, // Ép kiểu về ContinentRepository
     ),
     Provider(
       create:
           (context) =>
               ActivityRepositoryRemote(apiClient: context.read())
-                  as ActivityRepository,
+                  as ActivityRepository, // Ép kiểu về ActivityRepository
     ),
     Provider.value(
-      value: ItineraryConfigRepositoryMemory() as ItineraryConfigRepository,
+      value:
+          ItineraryConfigRepositoryMemory()
+              as ItineraryConfigRepository, // Ép kiểu về ItineraryConfigRepository
     ),
     Provider(
       create:
           (context) =>
               BookingRepositoryRemote(apiClient: context.read())
-                  as BookingRepository,
+                  as BookingRepository, // Ép kiểu về BookingRepository
     ),
     Provider(
       create:
           (context) =>
-              UserRepositoryRemote(apiClient: context.read()) as UserRepository,
+              UserRepositoryRemote(apiClient: context.read())
+                  as UserRepository, // Ép kiểu về UserRepository
     ),
-    ..._sharedProviders,
+    ..._sharedProviders, // Thêm các provider dùng chung
   ];
 }
 
-/// Configure dependencies for local data.
-/// This dependency list uses repositories that provide local data.
-/// The user is always logged in.
+/// Cấu hình các phụ thuộc cho dữ liệu cục bộ.
+/// Danh sách phụ thuộc này sử dụng các repository cung cấp dữ liệu cục bộ.
+/// Người dùng luôn được đăng nhập.
 List<SingleChildWidget> get providersLocal {
   return [
-    ChangeNotifierProvider.value(value: AuthRepositoryDev() as AuthRepository),
-    Provider.value(value: LocalDataService()),
+    ChangeNotifierProvider.value(
+      value: AuthRepositoryDev() as AuthRepository,
+    ), // Ép kiểu về AuthRepository
+    Provider.value(value: LocalDataService()), // Tạo LocalDataService
     Provider(
       create:
           (context) =>
               DestinationRepositoryLocal(localDataService: context.read())
-                  as DestinationRepository,
+                  as DestinationRepository, // Ép kiểu về DestinationRepository
     ),
     Provider(
       create:
           (context) =>
               ContinentRepositoryLocal(localDataService: context.read())
-                  as ContinentRepository,
+                  as ContinentRepository, // Ép kiểu về ContinentRepository
     ),
     Provider(
       create:
           (context) =>
               ActivityRepositoryLocal(localDataService: context.read())
-                  as ActivityRepository,
+                  as ActivityRepository, // Ép kiểu về ActivityRepository
     ),
     Provider(
       create:
           (context) =>
               BookingRepositoryLocal(localDataService: context.read())
-                  as BookingRepository,
+                  as BookingRepository, // Ép kiểu về BookingRepository
     ),
     Provider.value(
-      value: ItineraryConfigRepositoryMemory() as ItineraryConfigRepository,
+      value:
+          ItineraryConfigRepositoryMemory()
+              as ItineraryConfigRepository, // Ép kiểu về ItineraryConfigRepository
     ),
     Provider(
       create:
           (context) =>
               UserRepositoryLocal(localDataService: context.read())
-                  as UserRepository,
+                  as UserRepository, // Ép kiểu về UserRepository
     ),
-    ..._sharedProviders,
+    ..._sharedProviders, // Thêm các provider dùng chung
   ];
 }

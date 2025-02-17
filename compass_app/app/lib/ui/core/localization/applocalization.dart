@@ -5,11 +5,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+// Lớp AppLocalization để quản lý các chuỗi văn bản đa ngôn ngữ
 class AppLocalization {
+  // Phương thức tĩnh để lấy đối tượng AppLocalization từ context
   static AppLocalization of(BuildContext context) {
     return Localizations.of(context, AppLocalization);
   }
 
+  // Từ điển chứa các chuỗi văn bản
   static const _strings = <String, String>{
     'activities': 'Activities',
     'addDates': 'Add Dates',
@@ -41,10 +44,11 @@ class AppLocalization {
     'when': 'When',
   };
 
-  // If string for "label" does not exist, will show "[LABEL]"
+  // Nếu chuỗi cho "label" không tồn tại, sẽ hiển thị "[LABEL]"
   static String _get(String label) =>
       _strings[label] ?? '[${label.toUpperCase()}]';
 
+  // Các phương thức getter để lấy chuỗi văn bản tương ứng
   String get activities => _get('activities');
 
   String get addDates => _get('addDates');
@@ -98,12 +102,14 @@ class AppLocalization {
 
   String get errorWhileDeletingBooking => _get('errorWhileDeletingBooking');
 
+  // Phương thức để lấy chuỗi văn bản với tham số
   String nameTrips(String name) => _get('nameTrips').replaceAll('{name}', name);
 
   String selected(int value) =>
       _get('selected').replaceAll('{1}', value.toString());
 }
 
+// Lớp AppLocalizationDelegate để quản lý việc tải và hỗ trợ ngôn ngữ
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {
   @override
   bool isSupported(Locale locale) => locale.languageCode == 'en';

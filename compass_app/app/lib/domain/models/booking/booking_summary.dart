@@ -1,34 +1,36 @@
-// Copyright 2024 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// Bản quyền 2024 Nhóm Flutter. Bảo lưu mọi quyền.
+// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD có thể được
+// tìm thấy trong tệp LICENSE.
 
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart'; // Nhập gói freezed_annotation
 
-part 'booking_summary.freezed.dart';
-part 'booking_summary.g.dart';
+part 'booking_summary.freezed.dart'; // Phần freezed của tệp booking_summary
+part 'booking_summary.g.dart'; // Phần g.dart của tệp booking_summary
 
-/// BookingSummary contains the necessary data to display a booking
-/// in the user home screen, but lacks the rest of the booking data
-/// like activitities or destination.
+/// BookingSummary chứa dữ liệu cần thiết để hiển thị một đặt chỗ
+/// trên màn hình chính của người dùng, nhưng thiếu các dữ liệu đặt chỗ khác
+/// như các hoạt động hoặc điểm đến.
 ///
-/// Use the [BookingRepository] to obtain a full [Booking]
-/// using the [BookingSummary.id].
+/// Sử dụng [BookingRepository] để lấy một [Booking] đầy đủ
+/// bằng cách sử dụng [BookingSummary.id].
 @freezed
 class BookingSummary with _$BookingSummary {
+  // Định nghĩa một factory constructor cho BookingSummary
   const factory BookingSummary({
-    /// Booking id
+    /// ID của đặt chỗ
     required int id,
 
-    /// Name to be displayed
+    /// Tên sẽ được hiển thị
     required String name,
 
-    /// Start date of the booking
+    /// Ngày bắt đầu của đặt chỗ
     required DateTime startDate,
 
-    /// End date of the booking
+    /// Ngày kết thúc của đặt chỗ
     required DateTime endDate,
   }) = _BookingSummary;
 
+  // Phương thức để tạo một BookingSummary từ JSON
   factory BookingSummary.fromJson(Map<String, Object?> json) =>
       _$BookingSummaryFromJson(json);
 }

@@ -12,7 +12,7 @@ part of 'user_api_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+  'Có vẻ như bạn đã tạo lớp của mình bằng cách sử dụng `MyClass._()`. Constructor này chỉ được sử dụng bởi freezed và bạn không cần phải sử dụng nó.\nVui lòng kiểm tra tài liệu tại đây để biết thêm thông tin: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
 );
 
 UserApiModel _$UserApiModelFromJson(Map<String, dynamic> json) {
@@ -21,23 +21,23 @@ UserApiModel _$UserApiModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserApiModel {
-  /// The user's ID.
+  /// ID của người dùng.
   String get id => throw _privateConstructorUsedError;
 
-  /// The user's name.
+  /// Tên của người dùng.
   String get name => throw _privateConstructorUsedError;
 
-  /// The user's email.
+  /// Email của người dùng.
   String get email => throw _privateConstructorUsedError;
 
-  /// The user's picture URL.
+  /// URL hình ảnh của người dùng.
   String get picture => throw _privateConstructorUsedError;
 
-  /// Serializes this UserApiModel to a JSON map.
+  /// Chuyển đổi UserApiModel này thành một bản đồ JSON.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of UserApiModel
-  /// with the given fields replaced by the non-null parameter values.
+  /// Tạo một bản sao của UserApiModel
+  /// với các trường được thay thế bởi các giá trị tham số không null.
   @JsonKey(includeFromJson: false, includeToJson: false)
   $UserApiModelCopyWith<UserApiModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -63,8 +63,8 @@ class _$UserApiModelCopyWithImpl<$Res, $Val extends UserApiModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of UserApiModel
-  /// with the given fields replaced by the non-null parameter values.
+  /// Tạo một bản sao của UserApiModel
+  /// với các trường được thay thế bởi các giá trị tham số không null.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -122,8 +122,8 @@ class __$$UserApiModelImplCopyWithImpl<$Res>
     $Res Function(_$UserApiModelImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of UserApiModel
-  /// with the given fields replaced by the non-null parameter values.
+  /// Tạo một bản sao của UserApiModel
+  /// với các trường được thay thế bởi các giá trị tham số không null.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -172,19 +172,19 @@ class _$UserApiModelImpl implements _UserApiModel {
   factory _$UserApiModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserApiModelImplFromJson(json);
 
-  /// The user's ID.
+  /// ID của người dùng.
   @override
   final String id;
 
-  /// The user's name.
+  /// Tên của người dùng.
   @override
   final String name;
 
-  /// The user's email.
+  /// Email của người dùng.
   @override
   final String email;
 
-  /// The user's picture URL.
+  /// URL hình ảnh của người dùng.
   @override
   final String picture;
 
@@ -208,8 +208,8 @@ class _$UserApiModelImpl implements _UserApiModel {
   @override
   int get hashCode => Object.hash(runtimeType, id, name, email, picture);
 
-  /// Create a copy of UserApiModel
-  /// with the given fields replaced by the non-null parameter values.
+  /// Tạo một bản sao của UserApiModel
+  /// với các trường được thay thế bởi các giá trị tham số không null.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
@@ -233,24 +233,24 @@ abstract class _UserApiModel implements UserApiModel {
   factory _UserApiModel.fromJson(Map<String, dynamic> json) =
       _$UserApiModelImpl.fromJson;
 
-  /// The user's ID.
+  /// ID của người dùng.
   @override
   String get id;
 
-  /// The user's name.
+  /// Tên của người dùng.
   @override
   String get name;
 
-  /// The user's email.
+  /// Email của người dùng.
   @override
   String get email;
 
-  /// The user's picture URL.
+  /// URL hình ảnh của người dùng.
   @override
   String get picture;
 
-  /// Create a copy of UserApiModel
-  /// with the given fields replaced by the non-null parameter values.
+  /// Tạo một bản sao của UserApiModel
+  /// với các trường được thay thế bởi các giá trị tham số không null.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserApiModelImplCopyWith<_$UserApiModelImpl> get copyWith =>

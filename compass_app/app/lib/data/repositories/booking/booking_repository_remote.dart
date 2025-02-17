@@ -1,6 +1,6 @@
-// Copyright 2024 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// Bản quyền 2024 Nhóm Flutter. Đã đăng ký bản quyền.
+// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD có thể được
+// tìm thấy trong tệp LICENSE.
 
 import '../../../domain/models/activity/activity.dart';
 import '../../../domain/models/booking/booking.dart';
@@ -12,16 +12,19 @@ import '../../services/api/model/booking/booking_api_model.dart';
 import 'booking_repository.dart';
 
 class BookingRepositoryRemote implements BookingRepository {
+  // Hàm khởi tạo với tham số bắt buộc là apiClient
   BookingRepositoryRemote({required ApiClient apiClient})
     : _apiClient = apiClient;
 
-  final ApiClient _apiClient;
+  final ApiClient _apiClient; // Khai báo biến _apiClient
 
-  List<Destination>? _cachedDestinations;
+  List<Destination>?
+  _cachedDestinations; // Biến lưu trữ danh sách điểm đến đã được cache
 
   @override
   Future<Result<void>> createBooking(Booking booking) async {
     try {
+      // Chuyển đổi đối tượng Booking thành BookingApiModel
       final bookingApiModel = BookingApiModel(
         startDate: booking.startDate,
         endDate: booking.endDate,
@@ -30,8 +33,10 @@ class BookingRepositoryRemote implements BookingRepository {
         activitiesRef:
             booking.activity.map((activity) => activity.ref).toList(),
       );
+      // Gửi yêu cầu tạo booking tới server
       return _apiClient.postBooking(bookingApiModel);
     } on Exception catch (e) {
+      // Trả về lỗi nếu có ngoại lệ
       return Result.error(e);
     }
   }
@@ -39,7 +44,7 @@ class BookingRepositoryRemote implements BookingRepository {
   @override
   Future<Result<Booking>> getBooking(int id) async {
     try {
-      // Get booking by ID from server
+      // Lấy thông tin booking theo ID từ server
       final resultBooking = await _apiClient.getBooking(id);
       switch (resultBooking) {
         case Error<BookingApiModel>():
@@ -48,7 +53,7 @@ class BookingRepositoryRemote implements BookingRepository {
       }
       final booking = resultBooking.value;
 
-      // Load destinations if not loaded yet
+      // Tải danh sách điểm đến nếu chưa được tải
       if (_cachedDestinations == null) {
         final resultDestination = await _apiClient.getDestinations();
         switch (resultDestination) {
@@ -59,11 +64,12 @@ class BookingRepositoryRemote implements BookingRepository {
         _cachedDestinations = resultDestination.value;
       }
 
-      // Get destination for booking
+      // Lấy điểm đến cho booking
       final destination = _cachedDestinations!.firstWhere(
         (destination) => destination.ref == booking.destinationRef,
       );
 
+      // Lấy danh sách hoạt động theo điểm đến
       final resultActivities = await _apiClient.getActivityByDestination(
         destination.ref,
       );
@@ -77,6 +83,7 @@ class BookingRepositoryRemote implements BookingRepository {
               .where((activity) => booking.activitiesRef.contains(activity.ref))
               .toList();
 
+      // Trả về đối tượng Booking
       return Result.ok(
         Booking(
           id: booking.id,
@@ -87,6 +94,7 @@ class BookingRepositoryRemote implements BookingRepository {
         ),
       );
     } on Exception catch (e) {
+      // Trả về lỗi nếu có ngoại lệ
       return Result.error(e);
     }
   }
@@ -94,10 +102,12 @@ class BookingRepositoryRemote implements BookingRepository {
   @override
   Future<Result<List<BookingSummary>>> getBookingsList() async {
     try {
+      // Lấy danh sách booking từ server
       final result = await _apiClient.getBookings();
       switch (result) {
         case Ok<List<BookingApiModel>>():
           final bookingsApi = result.value;
+          // Chuyển đổi danh sách BookingApiModel thành BookingSummary
           return Result.ok(
             bookingsApi
                 .map(
@@ -114,6 +124,7 @@ class BookingRepositoryRemote implements BookingRepository {
           return Result.error(result.error);
       }
     } on Exception catch (e) {
+      // Trả về lỗi nếu có ngoại lệ
       return Result.error(e);
     }
   }
@@ -121,8 +132,10 @@ class BookingRepositoryRemote implements BookingRepository {
   @override
   Future<Result<void>> delete(int id) async {
     try {
+      // Gửi yêu cầu xóa booking tới server
       return _apiClient.deleteBooking(id);
     } on Exception catch (e) {
+      // Trả về lỗi nếu có ngoại lệ
       return Result.error(e);
     }
   }

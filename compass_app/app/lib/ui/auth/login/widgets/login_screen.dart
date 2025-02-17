@@ -22,28 +22,28 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _email = TextEditingController(
-    text: 'email@example.com',
+    text: 'email@example.com', // Đặt giá trị mặc định cho email
   );
   final TextEditingController _password = TextEditingController(
-    text: 'password',
+    text: 'password', // Đặt giá trị mặc định cho mật khẩu
   );
 
   @override
   void initState() {
     super.initState();
-    widget.viewModel.login.addListener(_onResult);
+    widget.viewModel.login.addListener(_onResult); // Thêm listener cho login
   }
 
   @override
   void didUpdateWidget(covariant LoginScreen oldWidget) {
     super.didUpdateWidget(oldWidget);
-    oldWidget.viewModel.login.removeListener(_onResult);
-    widget.viewModel.login.addListener(_onResult);
+    oldWidget.viewModel.login.removeListener(_onResult); // Gỡ listener cũ
+    widget.viewModel.login.addListener(_onResult); // Thêm listener mới
   }
 
   @override
   void dispose() {
-    widget.viewModel.login.removeListener(_onResult);
+    widget.viewModel.login.removeListener(_onResult); // Gỡ listener khi dispose
     super.dispose();
   }
 
@@ -54,15 +54,18 @@ class _LoginScreenState extends State<LoginScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          const TiltedCards(),
+          const TiltedCards(), // Hiển thị các thẻ nghiêng
           Padding(
             padding: Dimens.of(context).edgeInsetsScreenSymmetric,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                TextField(controller: _email),
+                TextField(controller: _email), // Trường nhập email
                 const SizedBox(height: Dimens.paddingVertical),
-                TextField(controller: _password, obscureText: true),
+                TextField(
+                  controller: _password,
+                  obscureText: true,
+                ), // Trường nhập mật khẩu
                 const SizedBox(height: Dimens.paddingVertical),
                 ListenableBuilder(
                   listenable: widget.viewModel.login,
@@ -72,9 +75,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         widget.viewModel.login.execute((
                           _email.value.text,
                           _password.value.text,
-                        ));
+                        )); // Thực hiện login
                       },
-                      child: Text(AppLocalization.of(context).login),
+                      child: Text(
+                        AppLocalization.of(context).login,
+                      ), // Nút đăng nhập
                     );
                   },
                 ),
@@ -88,22 +93,24 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _onResult() {
     if (widget.viewModel.login.completed) {
-      widget.viewModel.login.clearResult();
-      context.go(Routes.home);
+      widget.viewModel.login.clearResult(); // Xóa kết quả sau khi hoàn thành
+      context.go(Routes.home); // Điều hướng đến trang chủ
     }
 
     if (widget.viewModel.login.error) {
-      widget.viewModel.login.clearResult();
+      widget.viewModel.login.clearResult(); // Xóa kết quả sau khi có lỗi
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(AppLocalization.of(context).errorWhileLogin),
+          content: Text(
+            AppLocalization.of(context).errorWhileLogin,
+          ), // Hiển thị thông báo lỗi
           action: SnackBarAction(
             label: AppLocalization.of(context).tryAgain,
             onPressed:
                 () => widget.viewModel.login.execute((
                   _email.value.text,
                   _password.value.text,
-                )),
+                )), // Thử lại đăng nhập
           ),
         ),
       );

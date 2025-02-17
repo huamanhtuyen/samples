@@ -21,30 +21,30 @@ BookingApiModel _$BookingApiModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BookingApiModel {
-  /// Booking ID. Generated when stored in server.
+  /// ID của Booking. Được tạo khi lưu trữ trên server.
   int? get id => throw _privateConstructorUsedError;
 
-  /// Start date of the trip
+  /// Ngày bắt đầu của chuyến đi
   DateTime get startDate => throw _privateConstructorUsedError;
 
-  /// End date of the trip
+  /// Ngày kết thúc của chuyến đi
   DateTime get endDate => throw _privateConstructorUsedError;
 
-  /// Booking name
-  /// Should be "Destination, Continent"
+  /// Tên của Booking
+  /// Nên là "Điểm đến, Châu lục"
   String get name => throw _privateConstructorUsedError;
 
-  /// Destination of the trip
+  /// Điểm đến của chuyến đi
   String get destinationRef => throw _privateConstructorUsedError;
 
-  /// List of chosen activities
+  /// Danh sách các hoạt động đã chọn
   List<String> get activitiesRef => throw _privateConstructorUsedError;
 
-  /// Serializes this BookingApiModel to a JSON map.
+  /// Chuyển đổi BookingApiModel này thành một bản đồ JSON.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of BookingApiModel
-  /// with the given fields replaced by the non-null parameter values.
+  /// Tạo một bản sao của BookingApiModel
+  /// với các trường được thay thế bởi các giá trị tham số không null.
   @JsonKey(includeFromJson: false, includeToJson: false)
   $BookingApiModelCopyWith<BookingApiModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -77,8 +77,8 @@ class _$BookingApiModelCopyWithImpl<$Res, $Val extends BookingApiModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of BookingApiModel
-  /// with the given fields replaced by the non-null parameter values.
+  /// Tạo một bản sao của BookingApiModel
+  /// với các trường được thay thế bởi các giá trị tham số không null.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -155,8 +155,8 @@ class __$$BookingApiModelImplCopyWithImpl<$Res>
     $Res Function(_$BookingApiModelImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of BookingApiModel
-  /// with the given fields replaced by the non-null parameter values.
+  /// Tạo một bản sao của BookingApiModel
+  /// với các trường được thay thế bởi các giá trị tham số không null.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -219,31 +219,31 @@ class _$BookingApiModelImpl implements _BookingApiModel {
   factory _$BookingApiModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$BookingApiModelImplFromJson(json);
 
-  /// Booking ID. Generated when stored in server.
+  /// ID của Booking. Được tạo khi lưu trữ trên server.
   @override
   final int? id;
 
-  /// Start date of the trip
+  /// Ngày bắt đầu của chuyến đi
   @override
   final DateTime startDate;
 
-  /// End date of the trip
+  /// Ngày kết thúc của chuyến đi
   @override
   final DateTime endDate;
 
-  /// Booking name
-  /// Should be "Destination, Continent"
+  /// Tên của Booking
+  /// Nên là "Điểm đến, Châu lục"
   @override
   final String name;
 
-  /// Destination of the trip
+  /// Điểm đến của chuyến đi
   @override
   final String destinationRef;
 
-  /// List of chosen activities
+  /// Danh sách các hoạt động đã chọn
   final List<String> _activitiesRef;
 
-  /// List of chosen activities
+  /// Danh sách các hoạt động đã chọn
   @override
   List<String> get activitiesRef {
     if (_activitiesRef is EqualUnmodifiableListView) return _activitiesRef;
@@ -286,8 +286,8 @@ class _$BookingApiModelImpl implements _BookingApiModel {
     const DeepCollectionEquality().hash(_activitiesRef),
   );
 
-  /// Create a copy of BookingApiModel
-  /// with the given fields replaced by the non-null parameter values.
+  /// Tạo một bản sao của BookingApiModel
+  /// với các trường được thay thế bởi các giá trị tham số không null.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
@@ -316,33 +316,33 @@ abstract class _BookingApiModel implements BookingApiModel {
   factory _BookingApiModel.fromJson(Map<String, dynamic> json) =
       _$BookingApiModelImpl.fromJson;
 
-  /// Booking ID. Generated when stored in server.
+  /// ID của Booking. Được tạo khi lưu trữ trên server.
   @override
   int? get id;
 
-  /// Start date of the trip
+  /// Ngày bắt đầu của chuyến đi
   @override
   DateTime get startDate;
 
-  /// End date of the trip
+  /// Ngày kết thúc của chuyến đi
   @override
   DateTime get endDate;
 
-  /// Booking name
-  /// Should be "Destination, Continent"
+  /// Tên của Booking
+  /// Nên là "Điểm đến, Châu lục"
   @override
   String get name;
 
-  /// Destination of the trip
+  /// Điểm đến của chuyến đi
   @override
   String get destinationRef;
 
-  /// List of chosen activities
+  /// Danh sách các hoạt động đã chọn
   @override
   List<String> get activitiesRef;
 
-  /// Create a copy of BookingApiModel
-  /// with the given fields replaced by the non-null parameter values.
+  /// Tạo một bản sao của BookingApiModel
+  /// với các trường được thay thế bởi các giá trị tham số không null.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BookingApiModelImplCopyWith<_$BookingApiModelImpl> get copyWith =>

@@ -1,0 +1,2 @@
+- file routes.dart định nghĩa các routes
+- file router.dart (dùng file routes.dart) định nghĩa, lắng nghe, ràng buộc và phân luồng các route

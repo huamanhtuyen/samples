@@ -1,6 +1,6 @@
-// Copyright 2024 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// Bản quyền 2024 Nhóm Flutter. Bảo lưu mọi quyền.
+// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD có thể được
+// tìm thấy trong tệp LICENSE.
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -15,12 +15,12 @@ import 'activities_list.dart';
 import 'activities_title.dart';
 import 'activity_time_of_day.dart';
 
-const String confirmButtonKey = 'confirm-button';
+const String confirmButtonKey = 'confirm-button'; // Khóa cho nút xác nhận
 
 class ActivitiesScreen extends StatefulWidget {
   const ActivitiesScreen({super.key, required this.viewModel});
 
-  final ActivitiesViewModel viewModel;
+  final ActivitiesViewModel viewModel; // ViewModel cho màn hình hoạt động
 
   @override
   State<ActivitiesScreen> createState() => _ActivitiesScreenState();
@@ -30,42 +30,54 @@ class _ActivitiesScreenState extends State<ActivitiesScreen> {
   @override
   void initState() {
     super.initState();
-    widget.viewModel.saveActivities.addListener(_onResult);
+    widget.viewModel.saveActivities.addListener(
+      _onResult,
+    ); // Thêm listener cho saveActivities
   }
 
   @override
   void didUpdateWidget(covariant ActivitiesScreen oldWidget) {
     super.didUpdateWidget(oldWidget);
-    oldWidget.viewModel.saveActivities.removeListener(_onResult);
-    widget.viewModel.saveActivities.addListener(_onResult);
+    oldWidget.viewModel.saveActivities.removeListener(
+      _onResult,
+    ); // Xóa listener cũ
+    widget.viewModel.saveActivities.addListener(_onResult); // Thêm listener mới
   }
 
   @override
   void dispose() {
-    widget.viewModel.saveActivities.removeListener(_onResult);
+    widget.viewModel.saveActivities.removeListener(
+      _onResult,
+    ); // Xóa listener khi dispose
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      canPop: false,
+      canPop: false, // Không cho phép pop
       onPopInvokedWithResult: (didPop, r) {
-        if (!didPop) context.go(Routes.results);
+        if (!didPop)
+          context.go(
+            Routes.results,
+          ); // Điều hướng đến kết quả nếu không pop được
       },
       child: Scaffold(
         body: ListenableBuilder(
-          listenable: widget.viewModel.loadActivities,
+          listenable:
+              widget.viewModel.loadActivities, // Lắng nghe loadActivities
           builder: (context, child) {
             if (widget.viewModel.loadActivities.completed) {
-              return child!;
+              return child!; // Trả về child nếu loadActivities hoàn thành
             }
             return Column(
               children: [
-                const ActivitiesHeader(),
+                const ActivitiesHeader(), // Header của hoạt động
                 if (widget.viewModel.loadActivities.running)
                   const Expanded(
-                    child: Center(child: CircularProgressIndicator()),
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ), // Hiển thị vòng tròn tiến trình nếu đang chạy
                   ),
                 if (widget.viewModel.loadActivities.error)
                   Expanded(
@@ -74,9 +86,16 @@ class _ActivitiesScreenState extends State<ActivitiesScreen> {
                         title:
                             AppLocalization.of(
                               context,
-                            ).errorWhileLoadingActivities,
-                        label: AppLocalization.of(context).tryAgain,
-                        onPressed: widget.viewModel.loadActivities.execute,
+                            ).errorWhileLoadingActivities, // Tiêu đề lỗi
+                        label:
+                            AppLocalization.of(
+                              context,
+                            ).tryAgain, // Nhãn thử lại
+                        onPressed:
+                            widget
+                                .viewModel
+                                .loadActivities
+                                .execute, // Hành động khi nhấn thử lại
                       ),
                     ),
                   ),
@@ -84,34 +103,44 @@ class _ActivitiesScreenState extends State<ActivitiesScreen> {
             );
           },
           child: ListenableBuilder(
-            listenable: widget.viewModel,
+            listenable: widget.viewModel, // Lắng nghe viewModel
             builder: (context, child) {
               return Column(
                 children: [
                   Expanded(
                     child: CustomScrollView(
                       slivers: [
-                        const SliverToBoxAdapter(child: ActivitiesHeader()),
+                        const SliverToBoxAdapter(
+                          child: ActivitiesHeader(),
+                        ), // Header của hoạt động
                         ActivitiesTitle(
                           viewModel: widget.viewModel,
-                          activityTimeOfDay: ActivityTimeOfDay.daytime,
+                          activityTimeOfDay:
+                              ActivityTimeOfDay
+                                  .daytime, // Tiêu đề hoạt động ban ngày
                         ),
                         ActivitiesList(
                           viewModel: widget.viewModel,
-                          activityTimeOfDay: ActivityTimeOfDay.daytime,
+                          activityTimeOfDay:
+                              ActivityTimeOfDay
+                                  .daytime, // Danh sách hoạt động ban ngày
                         ),
                         ActivitiesTitle(
                           viewModel: widget.viewModel,
-                          activityTimeOfDay: ActivityTimeOfDay.evening,
+                          activityTimeOfDay:
+                              ActivityTimeOfDay
+                                  .evening, // Tiêu đề hoạt động buổi tối
                         ),
                         ActivitiesList(
                           viewModel: widget.viewModel,
-                          activityTimeOfDay: ActivityTimeOfDay.evening,
+                          activityTimeOfDay:
+                              ActivityTimeOfDay
+                                  .evening, // Danh sách hoạt động buổi tối
                         ),
                       ],
                     ),
                   ),
-                  _BottomArea(viewModel: widget.viewModel),
+                  _BottomArea(viewModel: widget.viewModel), // Khu vực dưới cùng
                 ],
               );
             },
@@ -123,18 +152,26 @@ class _ActivitiesScreenState extends State<ActivitiesScreen> {
 
   void _onResult() {
     if (widget.viewModel.saveActivities.completed) {
-      widget.viewModel.saveActivities.clearResult();
-      context.go(Routes.booking);
+      widget.viewModel.saveActivities
+          .clearResult(); // Xóa kết quả nếu saveActivities hoàn thành
+      context.go(Routes.booking); // Điều hướng đến booking
     }
 
     if (widget.viewModel.saveActivities.error) {
-      widget.viewModel.saveActivities.clearResult();
+      widget.viewModel.saveActivities
+          .clearResult(); // Xóa kết quả nếu saveActivities lỗi
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(AppLocalization.of(context).errorWhileSavingActivities),
+          content: Text(
+            AppLocalization.of(context).errorWhileSavingActivities,
+          ), // Nội dung lỗi
           action: SnackBarAction(
-            label: AppLocalization.of(context).tryAgain,
-            onPressed: widget.viewModel.saveActivities.execute,
+            label: AppLocalization.of(context).tryAgain, // Nhãn thử lại
+            onPressed:
+                widget
+                    .viewModel
+                    .saveActivities
+                    .execute, // Hành động khi nhấn thử lại
           ),
         ),
       );
@@ -145,37 +182,43 @@ class _ActivitiesScreenState extends State<ActivitiesScreen> {
 class _BottomArea extends StatelessWidget {
   const _BottomArea({required this.viewModel});
 
-  final ActivitiesViewModel viewModel;
+  final ActivitiesViewModel viewModel; // ViewModel cho khu vực dưới cùng
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      bottom: true,
+      bottom: true, // Đảm bảo an toàn cho khu vực dưới cùng
       child: Material(
-        elevation: 8,
+        elevation: 8, // Độ cao của Material
         child: Padding(
           padding: EdgeInsets.only(
-            left: Dimens.of(context).paddingScreenHorizontal,
-            right: Dimens.of(context).paddingScreenVertical,
-            top: Dimens.paddingVertical,
-            bottom: Dimens.of(context).paddingScreenVertical,
+            left: Dimens.of(context).paddingScreenHorizontal, // Đệm trái
+            right: Dimens.of(context).paddingScreenVertical, // Đệm phải
+            top: Dimens.paddingVertical, // Đệm trên
+            bottom: Dimens.of(context).paddingScreenVertical, // Đệm dưới
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment:
+                MainAxisAlignment
+                    .spaceBetween, // Căn giữa các phần tử theo chiều ngang
             children: [
               Text(
-                AppLocalization.of(
-                  context,
-                ).selected(viewModel.selectedActivities.length),
-                style: Theme.of(context).textTheme.labelLarge,
+                AppLocalization.of(context).selected(
+                  viewModel.selectedActivities.length,
+                ), // Hiển thị số lượng hoạt động đã chọn
+                style: Theme.of(context).textTheme.labelLarge, // Kiểu chữ
               ),
               FilledButton(
-                key: const Key(confirmButtonKey),
+                key: const Key(confirmButtonKey), // Khóa cho nút xác nhận
                 onPressed:
                     viewModel.selectedActivities.isNotEmpty
-                        ? viewModel.saveActivities.execute
+                        ? viewModel
+                            .saveActivities
+                            .execute // Hành động khi nhấn nút xác nhận
                         : null,
-                child: Text(AppLocalization.of(context).confirm),
+                child: Text(
+                  AppLocalization.of(context).confirm,
+                ), // Nhãn nút xác nhận
               ),
             ],
           ),

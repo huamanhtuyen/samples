@@ -1,6 +1,6 @@
-// Copyright 2024 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// Bản quyền 2024 Đội Flutter. Bảo lưu mọi quyền.
+// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD có thể được
+// tìm thấy trong tệp LICENSE.
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -11,6 +11,7 @@ import '../../core/ui/error_indicator.dart';
 import '../view_models/booking_viewmodel.dart';
 import 'booking_body.dart';
 
+// Định nghĩa một widget có trạng thái BookingScreen
 class BookingScreen extends StatefulWidget {
   const BookingScreen({super.key, required this.viewModel});
 
@@ -24,11 +25,13 @@ class _BookingScreenState extends State<BookingScreen> {
   @override
   void initState() {
     super.initState();
+    // Thêm listener cho shareBooking khi widget được khởi tạo
     widget.viewModel.shareBooking.addListener(_listener);
   }
 
   @override
   void dispose() {
+    // Loại bỏ listener cho shareBooking khi widget bị hủy
     widget.viewModel.shareBooking.removeListener(_listener);
     super.dispose();
   }
@@ -38,7 +41,7 @@ class _BookingScreenState extends State<BookingScreen> {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, r) {
-        // Back navigation always goes to home
+        // Điều hướng quay lại luôn về trang chủ
         if (!didPop) context.go(Routes.home);
       },
       child: Scaffold(
@@ -46,7 +49,7 @@ class _BookingScreenState extends State<BookingScreen> {
           listenable: widget.viewModel,
           builder:
               (context, _) => FloatingActionButton.extended(
-                // Workaround for https://github.com/flutter/flutter/issues/115358#issuecomment-2117157419
+                // Giải pháp tạm thời cho vấn đề https://github.com/flutter/flutter/issues/115358#issuecomment-2117157419
                 heroTag: null,
                 key: const ValueKey('share-button'),
                 onPressed:
@@ -58,18 +61,18 @@ class _BookingScreenState extends State<BookingScreen> {
               ),
         ),
         body: ListenableBuilder(
-          // Listen to changes in both commands
+          // Lắng nghe sự thay đổi của cả hai lệnh
           listenable: Listenable.merge([
             widget.viewModel.createBooking,
             widget.viewModel.loadBooking,
           ]),
           builder: (context, child) {
-            // If either command is running, show progress indicator
+            // Nếu một trong hai lệnh đang chạy, hiển thị chỉ báo tiến trình
             if (widget.viewModel.createBooking.running ||
                 widget.viewModel.loadBooking.running) {
               return const Center(child: CircularProgressIndicator());
             }
-            // If fails to create booking, tap to try again
+            // Nếu tạo booking thất bại, nhấn để thử lại
             if (widget.viewModel.createBooking.error) {
               return Center(
                 child: ErrorIndicator(
@@ -79,7 +82,7 @@ class _BookingScreenState extends State<BookingScreen> {
                 ),
               );
             }
-            // If existing booking fails to load, tap to go /home
+            // Nếu tải booking hiện có thất bại, nhấn để quay về /home
             if (widget.viewModel.loadBooking.error) {
               return Center(
                 child: ErrorIndicator(
@@ -98,6 +101,7 @@ class _BookingScreenState extends State<BookingScreen> {
   }
 
   void _listener() {
+    // Nếu shareBooking gặp lỗi, hiển thị thông báo lỗi
     if (widget.viewModel.shareBooking.error) {
       widget.viewModel.shareBooking.clearResult();
       ScaffoldMessenger.of(context).showSnackBar(

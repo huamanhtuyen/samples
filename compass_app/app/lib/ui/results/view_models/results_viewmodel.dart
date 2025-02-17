@@ -1,6 +1,6 @@
-// Copyright 2024 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// Bản quyền 2024 của nhóm Flutter. Bảo lưu mọi quyền.
+// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép BSD-style có thể
+// tìm thấy trong tệp LICENSE.
 
 import 'package:flutter/cupertino.dart';
 import 'package:logging/logging.dart';
@@ -12,48 +12,54 @@ import '../../../domain/models/itinerary_config/itinerary_config.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
 
-/// Results screen view model
-/// Based on https://docs.flutter.dev/get-started/fwe/state-management#using-mvvm-for-your-applications-architecture
+/// ViewModel cho màn hình kết quả
+/// Dựa trên https://docs.flutter.dev/get-started/fwe/state-management#using-mvvm-for-your-applications-architecture
 class ResultsViewModel extends ChangeNotifier {
   ResultsViewModel({
     required DestinationRepository destinationRepository,
     required ItineraryConfigRepository itineraryConfigRepository,
   }) : _destinationRepository = destinationRepository,
        _itineraryConfigRepository = itineraryConfigRepository {
+    // Khởi tạo lệnh cập nhật cấu hình hành trình
     updateItineraryConfig = Command1<void, String>(_updateItineraryConfig);
+    // Khởi tạo lệnh tìm kiếm và thực thi ngay lập tức
     search = Command0(_search)..execute();
   }
 
+  // Logger để ghi lại các thông tin log
   final _log = Logger('ResultsViewModel');
 
+  // Repository cho điểm đến
   final DestinationRepository _destinationRepository;
 
+  // Repository cho cấu hình hành trình
   final ItineraryConfigRepository _itineraryConfigRepository;
 
-  // Setters are private
+  // Danh sách điểm đến, chỉ có thể được thay đổi trong lớp này
   List<Destination> _destinations = [];
 
-  /// List of destinations, may be empty but never null
+  /// Danh sách điểm đến, có thể rỗng nhưng không bao giờ null
   List<Destination> get destinations => _destinations;
 
+  // Cấu hình hành trình, có thể null
   ItineraryConfig? _itineraryConfig;
 
-  /// Filter options to display on search bar
+  /// Tùy chọn lọc để hiển thị trên thanh tìm kiếm
   ItineraryConfig get config => _itineraryConfig ?? const ItineraryConfig();
 
-  /// Perform search
+  /// Thực hiện tìm kiếm
   late final Command0 search;
 
-  /// Store ViewModel data into [ItineraryConfigRepository] before navigating.
+  /// Lưu dữ liệu ViewModel vào [ItineraryConfigRepository] trước khi điều hướng.
   late final Command1<void, String> updateItineraryConfig;
 
   Future<Result<void>> _search() async {
-    // Load current itinerary config
+    // Tải cấu hình hành trình hiện tại
     final resultConfig = await _itineraryConfigRepository.getItineraryConfig();
     switch (resultConfig) {
       case Error<ItineraryConfig>():
         _log.warning(
-          'Failed to load stored ItineraryConfig',
+          'Không thể tải cấu hình hành trình đã lưu',
           resultConfig.error,
         );
         return resultConfig;
@@ -66,7 +72,7 @@ class ResultsViewModel extends ChangeNotifier {
     switch (result) {
       case Ok():
         {
-          // If the result is Ok, update the list of destinations
+          // Nếu kết quả là Ok, cập nhật danh sách điểm đến
           _destinations =
               result.value
                   .where(
@@ -74,27 +80,27 @@ class ResultsViewModel extends ChangeNotifier {
                         destination.continent == _itineraryConfig!.continent,
                   )
                   .toList();
-          _log.fine('Destinations (${_destinations.length}) loaded');
+          _log.fine('Đã tải ${_destinations.length} điểm đến');
         }
       case Error():
         {
-          _log.warning('Failed to load destinations', result.error);
+          _log.warning('Không thể tải điểm đến', result.error);
         }
     }
 
-    // After finish loading results, notify the view
+    // Sau khi hoàn thành tải kết quả, thông báo cho view
     notifyListeners();
     return result;
   }
 
   Future<Result<void>> _updateItineraryConfig(String destinationRef) async {
-    assert(destinationRef.isNotEmpty, "destinationRef should not be empty");
+    assert(destinationRef.isNotEmpty, "destinationRef không được rỗng");
 
     final resultConfig = await _itineraryConfigRepository.getItineraryConfig();
     switch (resultConfig) {
       case Error<ItineraryConfig>():
         _log.warning(
-          'Failed to load stored ItineraryConfig',
+          'Không thể tải cấu hình hành trình đã lưu',
           resultConfig.error,
         );
         return resultConfig;
@@ -106,7 +112,7 @@ class ResultsViewModel extends ChangeNotifier {
       itineraryConfig.copyWith(destination: destinationRef, activities: []),
     );
     if (result is Error) {
-      _log.warning('Failed to store ItineraryConfig', result.error);
+      _log.warning('Không thể lưu cấu hình hành trình', result.error);
     }
     return result;
   }

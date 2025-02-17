@@ -1,10 +1,10 @@
-// Copyright 2024 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// Bản quyền 2024 thuộc về nhóm Flutter. Bảo lưu mọi quyền.
+// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD có thể được
+// tìm thấy trong tệp LICENSE.
 
-/// Utility class to wrap result data
+/// Lớp tiện ích để bao bọc dữ liệu kết quả
 ///
-/// Evaluate the result using a switch statement:
+/// Đánh giá kết quả bằng cách sử dụng câu lệnh switch:
 /// ```dart
 /// switch (result) {
 ///   case Ok(): {
@@ -18,29 +18,32 @@
 sealed class Result<T> {
   const Result();
 
-  /// Creates a successful [Result], completed with the specified [value].
+  /// Tạo một [Result] thành công, hoàn thành với [value] được chỉ định.
+  //Trong trường hợp này, Ok._ là một constructor riêng tư của lớp Ok, và nó chỉ có thể được gọi từ bên trong thư viện chứa lớp Ok. Điều này giúp kiểm soát việc khởi tạo các đối tượng Ok và Error chỉ thông qua các factory constructor Result.ok và Result.error.
+  //Điều này có nghĩa là khi bạn gọi Result.ok(value), nó sẽ tạo ra một đối tượng Ok bằng cách sử dụng constructor riêng tư Ok._.
   const factory Result.ok(T value) = Ok._;
 
-  /// Creates an error [Result], completed with the specified [error].
+  /// Tạo một [Result] lỗi, hoàn thành với [error] được chỉ định.
   const factory Result.error(Exception error) = Error._;
 }
 
-/// Subclass of Result for values
+/// Lớp con của Result cho các giá trị
 final class Ok<T> extends Result<T> {
+  //Dấu _ trong Ok._ biểu thị rằng constructor này là riêng tư và chỉ có thể được truy cập từ bên trong thư viện chứa lớp Ok.
   const Ok._(this.value);
 
-  /// Returned value in result
+  /// Giá trị được trả về trong kết quả
   final T value;
 
   @override
   String toString() => 'Result<$T>.ok($value)';
 }
 
-/// Subclass of Result for errors
+/// Lớp con của Result cho các lỗi
 final class Error<T> extends Result<T> {
   const Error._(this.error);
 
-  /// Returned error in result
+  /// Lỗi được trả về trong kết quả
   final Exception error;
 
   @override

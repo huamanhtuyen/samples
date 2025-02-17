@@ -1,24 +1,25 @@
-// Copyright 2024 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// Bản quyền 2024 Nhóm Flutter. Bảo lưu mọi quyền.
+// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD có thể được
+// tìm thấy trong tệp LICENSE.
 
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart'; // Nhập gói freezed_annotation.
 
-part 'login_response.freezed.dart';
+part 'login_response.freezed.dart'; // Phần freezed của tệp login_response.
+part 'login_response.g.dart'; // Phần json_serializable của tệp login_response.
 
-part 'login_response.g.dart';
-
-/// LoginResponse model.
+/// Mô hình LoginResponse.
 @freezed
 class LoginResponse with _$LoginResponse {
+  // Hàm khởi tạo của LoginResponse.
   const factory LoginResponse({
-    /// The token to be used for authentication.
+    /// Token được sử dụng để xác thực.
     required String token,
 
-    /// The user id.
+    /// ID người dùng.
     required String userId,
   }) = _LoginResponse;
 
+  // Phương thức để tạo đối tượng LoginResponse từ JSON.
   factory LoginResponse.fromJson(Map<String, Object?> json) =>
       _$LoginResponseFromJson(json);
 }

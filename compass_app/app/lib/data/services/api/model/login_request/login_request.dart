@@ -1,24 +1,26 @@
-// Copyright 2024 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// Bản quyền 2024 Nhóm Flutter. Bảo lưu mọi quyền.
+// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD có thể được
+// tìm thấy trong tệp LICENSE.
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+// Phần này để tạo các tệp bổ sung cho lớp LoginRequest.
 part 'login_request.freezed.dart';
-
 part 'login_request.g.dart';
 
-/// Simple data class to hold login request data.
+// Lớp dữ liệu đơn giản để chứa dữ liệu yêu cầu đăng nhập.
 @freezed
 class LoginRequest with _$LoginRequest {
+  // Hàm khởi tạo cho lớp LoginRequest.
   const factory LoginRequest({
-    /// Email address.
+    // Địa chỉ email.
     required String email,
 
-    /// Plain text password.
+    // Mật khẩu dạng văn bản thuần túy.
     required String password,
   }) = _LoginRequest;
 
+  // Phương thức để tạo đối tượng LoginRequest từ JSON.
   factory LoginRequest.fromJson(Map<String, Object?> json) =>
       _$LoginRequestFromJson(json);
 }

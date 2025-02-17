@@ -9,35 +9,40 @@ part of 'login_request.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// Hàm này trả về giá trị đầu vào mà không thay đổi gì
 T _$identity<T>(T value) => value;
 
+// Tạo một lỗi không hỗ trợ cho constructor riêng tư
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+  'Có vẻ như bạn đã tạo lớp của mình bằng cách sử dụng `MyClass._()`. Constructor này chỉ được sử dụng bởi freezed và bạn không cần phải sử dụng nó.\nVui lòng kiểm tra tài liệu tại đây để biết thêm thông tin: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
 );
 
+// Hàm này chuyển đổi JSON thành đối tượng LoginRequest
 LoginRequest _$LoginRequestFromJson(Map<String, dynamic> json) {
   return _LoginRequest.fromJson(json);
 }
 
 /// @nodoc
+// Mixin này định nghĩa các thuộc tính và phương thức cho LoginRequest
 mixin _$LoginRequest {
-  /// Email address.
+  /// Địa chỉ email.
   String get email => throw _privateConstructorUsedError;
 
-  /// Plain text password.
+  /// Mật khẩu dạng văn bản thuần túy.
   String get password => throw _privateConstructorUsedError;
 
-  /// Serializes this LoginRequest to a JSON map.
+  /// Chuyển đổi LoginRequest thành một bản đồ JSON.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of LoginRequest
-  /// with the given fields replaced by the non-null parameter values.
+  /// Tạo một bản sao của LoginRequest
+  /// với các trường được thay thế bởi các giá trị tham số không null.
   @JsonKey(includeFromJson: false, includeToJson: false)
   $LoginRequestCopyWith<LoginRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
+// Định nghĩa một interface để sao chép LoginRequest với các giá trị mới
 abstract class $LoginRequestCopyWith<$Res> {
   factory $LoginRequestCopyWith(
     LoginRequest value,
@@ -48,6 +53,7 @@ abstract class $LoginRequestCopyWith<$Res> {
 }
 
 /// @nodoc
+// Triển khai interface sao chép LoginRequest
 class _$LoginRequestCopyWithImpl<$Res, $Val extends LoginRequest>
     implements $LoginRequestCopyWith<$Res> {
   _$LoginRequestCopyWithImpl(this._value, this._then);
@@ -57,8 +63,8 @@ class _$LoginRequestCopyWithImpl<$Res, $Val extends LoginRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of LoginRequest
-  /// with the given fields replaced by the non-null parameter values.
+  /// Tạo một bản sao của LoginRequest
+  /// với các trường được thay thế bởi các giá trị tham số không null.
   @pragma('vm:prefer-inline')
   @override
   $Res call({Object? email = null, Object? password = null}) {
@@ -81,6 +87,7 @@ class _$LoginRequestCopyWithImpl<$Res, $Val extends LoginRequest>
 }
 
 /// @nodoc
+// Định nghĩa một interface để sao chép _LoginRequest với các giá trị mới
 abstract class _$$LoginRequestImplCopyWith<$Res>
     implements $LoginRequestCopyWith<$Res> {
   factory _$$LoginRequestImplCopyWith(
@@ -93,6 +100,7 @@ abstract class _$$LoginRequestImplCopyWith<$Res>
 }
 
 /// @nodoc
+// Triển khai interface sao chép _LoginRequest
 class __$$LoginRequestImplCopyWithImpl<$Res>
     extends _$LoginRequestCopyWithImpl<$Res, _$LoginRequestImpl>
     implements _$$LoginRequestImplCopyWith<$Res> {
@@ -101,8 +109,8 @@ class __$$LoginRequestImplCopyWithImpl<$Res>
     $Res Function(_$LoginRequestImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of LoginRequest
-  /// with the given fields replaced by the non-null parameter values.
+  /// Tạo một bản sao của _LoginRequest
+  /// với các trường được thay thế bởi các giá trị tham số không null.
   @pragma('vm:prefer-inline')
   @override
   $Res call({Object? email = null, Object? password = null}) {
@@ -124,18 +132,21 @@ class __$$LoginRequestImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
+// Đánh dấu lớp này là có thể chuyển đổi thành JSON
 @JsonSerializable()
+// Triển khai lớp _LoginRequest
 class _$LoginRequestImpl implements _LoginRequest {
   const _$LoginRequestImpl({required this.email, required this.password});
 
+  // Hàm tạo từ JSON
   factory _$LoginRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$LoginRequestImplFromJson(json);
 
-  /// Email address.
+  /// Địa chỉ email.
   @override
   final String email;
 
-  /// Plain text password.
+  /// Mật khẩu dạng văn bản thuần túy.
   @override
   final String password;
 
@@ -158,8 +169,8 @@ class _$LoginRequestImpl implements _LoginRequest {
   @override
   int get hashCode => Object.hash(runtimeType, email, password);
 
-  /// Create a copy of LoginRequest
-  /// with the given fields replaced by the non-null parameter values.
+  /// Tạo một bản sao của _LoginRequest
+  /// với các trường được thay thế bởi các giá trị tham số không null.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
@@ -172,6 +183,7 @@ class _$LoginRequestImpl implements _LoginRequest {
   }
 }
 
+// Định nghĩa lớp trừu tượng _LoginRequest
 abstract class _LoginRequest implements LoginRequest {
   const factory _LoginRequest({
     required final String email,
@@ -181,16 +193,16 @@ abstract class _LoginRequest implements LoginRequest {
   factory _LoginRequest.fromJson(Map<String, dynamic> json) =
       _$LoginRequestImpl.fromJson;
 
-  /// Email address.
+  /// Địa chỉ email.
   @override
   String get email;
 
-  /// Plain text password.
+  /// Mật khẩu dạng văn bản thuần túy.
   @override
   String get password;
 
-  /// Create a copy of LoginRequest
-  /// with the given fields replaced by the non-null parameter values.
+  /// Tạo một bản sao của _LoginRequest
+  /// với các trường được thay thế bởi các giá trị tham số không null.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoginRequestImplCopyWith<_$LoginRequestImpl> get copyWith =>

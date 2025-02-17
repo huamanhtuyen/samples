@@ -1,21 +1,23 @@
-// Copyright 2024 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// Bản quyền 2024 Nhóm Flutter. Tất cả các quyền được bảo lưu.
+// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD
+// có thể được tìm thấy trong tệp LICENSE.
 
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart'; // Nhập gói freezed_annotation
 
-part 'user.freezed.dart';
-part 'user.g.dart';
+part 'user.freezed.dart'; // Phần của freezed
+part 'user.g.dart'; // Phần của json_serializable
 
 @freezed
 abstract class User with _$User {
+  // Định nghĩa lớp User sử dụng freezed
   const factory User({
-    /// The user's name.
+    /// Tên của người dùng.
     required String name,
 
-    /// The user's picture URL.
+    /// URL hình ảnh của người dùng.
     required String picture,
   }) = _User;
 
+  // Phương thức tạo đối tượng User từ JSON
   factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
 }

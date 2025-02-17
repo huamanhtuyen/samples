@@ -12,7 +12,7 @@ part of 'login_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+  'Có vẻ như bạn đã tạo lớp của mình bằng cách sử dụng `MyClass._()`. Constructor này chỉ được sử dụng bởi freezed và bạn không cần phải sử dụng nó.\nVui lòng kiểm tra tài liệu tại đây để biết thêm thông tin: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
 );
 
 LoginResponse _$LoginResponseFromJson(Map<String, dynamic> json) {
@@ -21,17 +21,17 @@ LoginResponse _$LoginResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LoginResponse {
-  /// The token to be used for authentication.
+  /// Token để sử dụng cho xác thực.
   String get token => throw _privateConstructorUsedError;
 
-  /// The user id.
+  /// ID của người dùng.
   String get userId => throw _privateConstructorUsedError;
 
-  /// Serializes this LoginResponse to a JSON map.
+  /// Chuyển đổi LoginResponse này thành một bản đồ JSON.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of LoginResponse
-  /// with the given fields replaced by the non-null parameter values.
+  /// Tạo một bản sao của LoginResponse
+  /// với các trường được thay thế bởi các giá trị tham số không null.
   @JsonKey(includeFromJson: false, includeToJson: false)
   $LoginResponseCopyWith<LoginResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -57,8 +57,8 @@ class _$LoginResponseCopyWithImpl<$Res, $Val extends LoginResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of LoginResponse
-  /// with the given fields replaced by the non-null parameter values.
+  /// Tạo một bản sao của LoginResponse
+  /// với các trường được thay thế bởi các giá trị tham số không null.
   @pragma('vm:prefer-inline')
   @override
   $Res call({Object? token = null, Object? userId = null}) {
@@ -101,8 +101,8 @@ class __$$LoginResponseImplCopyWithImpl<$Res>
     $Res Function(_$LoginResponseImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of LoginResponse
-  /// with the given fields replaced by the non-null parameter values.
+  /// Tạo một bản sao của LoginResponse
+  /// với các trường được thay thế bởi các giá trị tham số không null.
   @pragma('vm:prefer-inline')
   @override
   $Res call({Object? token = null, Object? userId = null}) {
@@ -131,11 +131,11 @@ class _$LoginResponseImpl implements _LoginResponse {
   factory _$LoginResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$LoginResponseImplFromJson(json);
 
-  /// The token to be used for authentication.
+  /// Token để sử dụng cho xác thực.
   @override
   final String token;
 
-  /// The user id.
+  /// ID của người dùng.
   @override
   final String userId;
 
@@ -157,8 +157,8 @@ class _$LoginResponseImpl implements _LoginResponse {
   @override
   int get hashCode => Object.hash(runtimeType, token, userId);
 
-  /// Create a copy of LoginResponse
-  /// with the given fields replaced by the non-null parameter values.
+  /// Tạo một bản sao của LoginResponse
+  /// với các trường được thay thế bởi các giá trị tham số không null.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
@@ -180,16 +180,16 @@ abstract class _LoginResponse implements LoginResponse {
   factory _LoginResponse.fromJson(Map<String, dynamic> json) =
       _$LoginResponseImpl.fromJson;
 
-  /// The token to be used for authentication.
+  /// Token để sử dụng cho xác thực.
   @override
   String get token;
 
-  /// The user id.
+  /// ID của người dùng.
   @override
   String get userId;
 
-  /// Create a copy of LoginResponse
-  /// with the given fields replaced by the non-null parameter values.
+  /// Tạo một bản sao của LoginResponse
+  /// với các trường được thay thế bởi các giá trị tham số không null.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoginResponseImplCopyWith<_$LoginResponseImpl> get copyWith =>

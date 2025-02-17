@@ -1,35 +1,36 @@
-// Copyright 2024 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// Bản quyền 2024 Đội Flutter. Bảo lưu mọi quyền.
+// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD có thể được
+// tìm thấy trong tệp LICENSE.
+//continent=châu lục
+import '../../../domain/models/continent/continent.dart'; // Import mô hình Continent
+import '../../../utils/result.dart'; // Import lớp Result để xử lý kết quả
+import '../../services/api/api_client.dart'; // Import lớp ApiClient để gọi API
+import 'continent_repository.dart'; // Import giao diện ContinentRepository
 
-import '../../../domain/models/continent/continent.dart';
-import '../../../utils/result.dart';
-import '../../services/api/api_client.dart';
-import 'continent_repository.dart';
-
-/// Remote data source for [Continent].
-/// Implements basic local caching.
-/// See: https://docs.flutter.dev/get-started/fwe/local-caching
+/// Nguồn dữ liệu từ xa cho [Continent].
+/// Thực hiện bộ nhớ đệm cục bộ cơ bản.
+/// Xem: https://docs.flutter.dev/get-started/fwe/local-caching
 class ContinentRepositoryRemote implements ContinentRepository {
+  // Hàm khởi tạo với đối tượng ApiClient bắt buộc
   ContinentRepositoryRemote({required ApiClient apiClient})
     : _apiClient = apiClient;
 
-  final ApiClient _apiClient;
+  final ApiClient _apiClient; // Đối tượng ApiClient để gọi API
 
-  List<Continent>? _cachedData;
+  List<Continent>? _cachedData; // Biến lưu trữ dữ liệu đã được bộ nhớ đệm
 
   @override
   Future<Result<List<Continent>>> getContinents() async {
     if (_cachedData == null) {
-      // No cached data, request continents
+      // Nếu không có dữ liệu trong bộ nhớ đệm, yêu cầu dữ liệu từ API
       final result = await _apiClient.getContinents();
       if (result is Ok<List<Continent>>) {
-        // Store value if result Ok
+        // Lưu trữ giá trị nếu kết quả là Ok
         _cachedData = result.value;
       }
-      return result;
+      return result; // Trả về kết quả từ API
     } else {
-      // Return cached data if available
+      // Trả về dữ liệu từ bộ nhớ đệm nếu có
       return Result.ok(_cachedData!);
     }
   }

@@ -1,6 +1,6 @@
-// Copyright 2024 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// Bản quyền 2024 của nhóm Flutter. Bảo lưu mọi quyền.
+// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD có thể được
+// tìm thấy trong tệp LICENSE.
 
 import 'package:logging/logging.dart';
 
@@ -23,36 +23,36 @@ class AuthRepositoryRemote extends AuthRepository {
     _apiClient.authHeaderProvider = _authHeaderProvider;
   }
 
-  final AuthApiClient _authApiClient;
-  final ApiClient _apiClient;
-  final SharedPreferencesService _sharedPreferencesService;
+  final AuthApiClient _authApiClient; // Khai báo biến AuthApiClient
+  final ApiClient _apiClient; // Khai báo biến ApiClient
+  final SharedPreferencesService
+  _sharedPreferencesService; // Khai báo biến SharedPreferencesService
 
-  bool? _isAuthenticated;
-  String? _authToken;
-  final _log = Logger('AuthRepositoryRemote');
+  bool? _isAuthenticated; // Biến lưu trạng thái xác thực
+  String? _authToken; // Biến lưu token xác thực
+  final _log = Logger('AuthRepositoryRemote'); // Biến ghi log
 
-  /// Fetch token from shared preferences
+  /// Lấy token từ SharedPreferences
   Future<void> _fetch() async {
-    final result = await _sharedPreferencesService.fetchToken();
+    final result =
+        await _sharedPreferencesService
+            .fetchToken(); // Lấy token từ SharedPreferences
     switch (result) {
       case Ok<String?>():
-        _authToken = result.value;
-        _isAuthenticated = result.value != null;
+        _authToken = result.value; // Gán giá trị token
+        _isAuthenticated = result.value != null; // Cập nhật trạng thái xác thực
       case Error<String?>():
-        _log.severe(
-          'Failed to fech Token from SharedPreferences',
-          result.error,
-        );
+        _log.severe('Không thể lấy token từ SharedPreferences', result.error);
     }
   }
 
   @override
   Future<bool> get isAuthenticated async {
-    // Status is cached
+    // Trạng thái đã được lưu trữ
     if (_isAuthenticated != null) {
       return _isAuthenticated!;
     }
-    // No status cached, fetch from storage
+    // Nếu chưa có trạng thái, lấy từ bộ nhớ
     await _fetch();
     return _isAuthenticated ?? false;
   }
@@ -64,46 +64,48 @@ class AuthRepositoryRemote extends AuthRepository {
   }) async {
     try {
       final result = await _authApiClient.login(
-        LoginRequest(email: email, password: password),
+        LoginRequest(email: email, password: password), // Gửi yêu cầu đăng nhập
       );
       switch (result) {
         case Ok<LoginResponse>():
-          _log.info('User logged int');
-          // Set auth status
+          _log.info('Người dùng đã đăng nhập');
+          // Cập nhật trạng thái xác thực
           _isAuthenticated = true;
-          _authToken = result.value.token;
-          // Store in Shared preferences
+          _authToken = result.value.token; // Lưu token
+          // Lưu token vào SharedPreferences
           return await _sharedPreferencesService.saveToken(result.value.token);
         case Error<LoginResponse>():
-          _log.warning('Error logging in: ${result.error}');
+          _log.warning('Lỗi khi đăng nhập: ${result.error}');
           return Result.error(result.error);
       }
     } finally {
-      notifyListeners();
+      notifyListeners(); // Thông báo cho các listeners
     }
   }
 
   @override
   Future<Result<void>> logout() async {
-    _log.info('User logged out');
+    _log.info('Người dùng đã đăng xuất');
     try {
-      // Clear stored auth token
+      // Xóa token đã lưu
       final result = await _sharedPreferencesService.saveToken(null);
       if (result is Error<void>) {
-        _log.severe('Failed to clear stored auth token');
+        _log.severe('Không thể xóa token đã lưu');
       }
 
-      // Clear token in ApiClient
+      // Xóa token trong ApiClient
       _authToken = null;
 
-      // Clear authenticated status
+      // Cập nhật trạng thái xác thực
       _isAuthenticated = false;
       return result;
     } finally {
-      notifyListeners();
+      notifyListeners(); // Thông báo cho các listeners
     }
   }
 
   String? _authHeaderProvider() =>
-      _authToken != null ? 'Bearer $_authToken' : null;
+      _authToken != null
+          ? 'Bearer $_authToken'
+          : null; // Cung cấp header xác thực
 }

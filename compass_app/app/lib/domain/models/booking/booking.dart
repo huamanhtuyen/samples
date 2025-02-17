@@ -1,35 +1,33 @@
-// Copyright 2024 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// Bản quyền 2024 Nhóm Flutter. Bảo lưu mọi quyền.
+// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD có trong tệp LICENSE.
 
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart'; // Nhập gói freezed_annotation
 
-import '../activity/activity.dart';
-import '../destination/destination.dart';
+import '../activity/activity.dart'; // Nhập mô-đun activity
+import '../destination/destination.dart'; // Nhập mô-đun destination
 
-part 'booking.freezed.dart';
-part 'booking.g.dart';
+part 'booking.freezed.dart'; // Phần freezed của tệp booking
+part 'booking.g.dart'; // Phần g.dart của tệp booking
 
-@freezed
+@freezed // Sử dụng annotation freezed để tạo các lớp bất biến
 class Booking with _$Booking {
+  // Định nghĩa lớp Booking với mixin _$Booking
   const factory Booking({
-    /// Optional ID of the booking.
-    /// May be null if the booking is not yet stored.
-    int? id,
+    // Định nghĩa một factory constructor cho lớp Booking
+    /// ID tùy chọn của booking.
+    /// Có thể là null nếu booking chưa được lưu trữ.
+    int? id, // ID của booking, có thể null
+    /// Ngày bắt đầu của chuyến đi
+    required DateTime startDate, // Ngày bắt đầu, bắt buộc
+    /// Ngày kết thúc của chuyến đi
+    required DateTime endDate, // Ngày kết thúc, bắt buộc
+    /// Điểm đến của chuyến đi
+    required Destination destination, // Điểm đến, bắt buộc
+    /// Danh sách các hoạt động đã chọn
+    required List<Activity> activity, // Danh sách hoạt động, bắt buộc
+  }) = _Booking; // Gán giá trị cho lớp _Booking
 
-    /// Start date of the trip
-    required DateTime startDate,
-
-    /// End date of the trip
-    required DateTime endDate,
-
-    /// Destination of the trip
-    required Destination destination,
-
-    /// List of chosen activities
-    required List<Activity> activity,
-  }) = _Booking;
-
+  // Phương thức factory để tạo đối tượng Booking từ JSON
   factory Booking.fromJson(Map<String, Object?> json) =>
-      _$BookingFromJson(json);
+      _$BookingFromJson(json); // Tạo đối tượng Booking từ JSON
 }

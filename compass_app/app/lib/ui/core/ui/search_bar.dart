@@ -1,6 +1,5 @@
-// Copyright 2024 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// Bản quyền 2024 Nhóm Flutter. Bảo lưu mọi quyền.
+// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD có trong tệp LICENSE.
 
 import 'package:flutter/material.dart';
 
@@ -11,15 +10,14 @@ import '../themes/dimens.dart';
 import 'date_format_start_end.dart';
 import 'home_button.dart';
 
-/// Application top search bar.
-///
-/// Displays a search bar with the current configuration.
-/// Includes [HomeButton] to navigate back to the '/' path.
+/// Thanh tìm kiếm trên cùng của ứng dụng.
+/// Hiển thị thanh tìm kiếm với cấu hình hiện tại.
+/// Bao gồm [HomeButton] để điều hướng trở lại đường dẫn '/'.
 class AppSearchBar extends StatelessWidget {
   const AppSearchBar({super.key, this.config, this.onTap});
 
-  final ItineraryConfig? config;
-  final GestureTapCallback? onTap;
+  final ItineraryConfig? config; // Cấu hình hành trình
+  final GestureTapCallback? onTap; // Callback khi nhấn vào thanh tìm kiếm
 
   @override
   Widget build(BuildContext context) {
@@ -27,28 +25,33 @@ class AppSearchBar extends StatelessWidget {
       children: [
         Expanded(
           child: InkWell(
-            borderRadius: BorderRadius.circular(16.0),
-            onTap: onTap,
+            borderRadius: BorderRadius.circular(16.0), // Bán kính bo tròn
+            onTap: onTap, // Gọi callback khi nhấn
             child: Container(
-              height: 64,
+              height: 64, // Chiều cao của thanh tìm kiếm
               decoration: BoxDecoration(
-                border: Border.all(color: AppColors.grey1),
-                borderRadius: BorderRadius.circular(16.0),
+                border: Border.all(color: AppColors.grey1), // Viền màu xám
+                borderRadius: BorderRadius.circular(16.0), // Bán kính bo tròn
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: Dimens.paddingHorizontal,
+                  horizontal: Dimens.paddingHorizontal, // Khoảng cách ngang
                 ),
                 child: Align(
-                  alignment: AlignmentDirectional.centerStart,
-                  child: _QueryText(config: config),
+                  alignment:
+                      AlignmentDirectional.centerStart, // Căn chỉnh bắt đầu
+                  child: _QueryText(
+                    config: config,
+                  ), // Hiển thị văn bản tìm kiếm
                 ),
               ),
             ),
           ),
         ),
-        const SizedBox(width: 10),
-        const HomeButton(),
+        const SizedBox(
+          width: 10,
+        ), // Khoảng cách giữa thanh tìm kiếm và nút home
+        const HomeButton(), // Nút home
       ],
     );
   }
@@ -57,12 +60,12 @@ class AppSearchBar extends StatelessWidget {
 class _QueryText extends StatelessWidget {
   const _QueryText({required this.config});
 
-  final ItineraryConfig? config;
+  final ItineraryConfig? config; // Cấu hình hành trình
 
   @override
   Widget build(BuildContext context) {
     if (config == null) {
-      return const _EmptySearch();
+      return const _EmptySearch(); // Hiển thị tìm kiếm trống nếu không có cấu hình
     }
 
     final ItineraryConfig(:continent, :startDate, :endDate, :guests) = config!;
@@ -70,15 +73,15 @@ class _QueryText extends StatelessWidget {
         endDate == null ||
         guests == null ||
         continent == null) {
-      return const _EmptySearch();
+      return const _EmptySearch(); // Hiển thị tìm kiếm trống nếu thiếu thông tin
     }
 
     return Text(
       '$continent - '
       '${dateFormatStartEnd(DateTimeRange(start: startDate, end: endDate))} - '
-      'Guests: $guests',
+      'Guests: $guests', // Hiển thị thông tin tìm kiếm
       textAlign: TextAlign.center,
-      style: Theme.of(context).textTheme.bodyLarge,
+      style: Theme.of(context).textTheme.bodyLarge, // Kiểu chữ
     );
   }
 }
@@ -89,16 +92,19 @@ class _EmptySearch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center, // Căn giữa theo trục chéo
+      mainAxisAlignment: MainAxisAlignment.start, // Căn bắt đầu theo trục chính
       children: [
-        const Icon(Icons.search),
-        const SizedBox(width: 12),
+        const Icon(Icons.search), // Biểu tượng tìm kiếm
+        const SizedBox(width: 12), // Khoảng cách giữa biểu tượng và văn bản
         Expanded(
           child: Text(
-            AppLocalization.of(context).searchDestination,
-            textAlign: TextAlign.start,
-            style: Theme.of(context).inputDecorationTheme.hintStyle,
+            AppLocalization.of(context).searchDestination, // Văn bản tìm kiếm
+            textAlign: TextAlign.start, // Căn bắt đầu
+            style:
+                Theme.of(
+                  context,
+                ).inputDecorationTheme.hintStyle, // Kiểu chữ gợi ý
           ),
         ),
       ],

@@ -1,6 +1,6 @@
-// Copyright 2024 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// Bản quyền 2024 Đội Flutter. Bảo lưu mọi quyền.
+// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD có thể được
+// tìm thấy trong tệp LICENSE.
 
 import 'package:flutter/foundation.dart';
 import 'package:logging/logging.dart';
@@ -16,74 +16,93 @@ import '../../../utils/result.dart';
 
 class BookingViewModel extends ChangeNotifier {
   BookingViewModel({
-    required BookingCreateUseCase createBookingUseCase,
-    required BookingShareUseCase shareBookingUseCase,
-    required ItineraryConfigRepository itineraryConfigRepository,
-    required BookingRepository bookingRepository,
+    required BookingCreateUseCase
+    createBookingUseCase, // Sử dụng case tạo booking
+    required BookingShareUseCase
+    shareBookingUseCase, // Sử dụng case chia sẻ booking
+    required ItineraryConfigRepository
+    itineraryConfigRepository, // Repository cấu hình hành trình
+    required BookingRepository bookingRepository, // Repository booking
   }) : _createUseCase = createBookingUseCase,
        _shareUseCase = shareBookingUseCase,
        _itineraryConfigRepository = itineraryConfigRepository,
        _bookingRepository = bookingRepository {
-    createBooking = Command0(_createBooking);
-    shareBooking = Command0(() => _shareUseCase.shareBooking(_booking!));
-    loadBooking = Command1(_load);
+    createBooking = Command0(_createBooking); // Lệnh tạo booking
+    shareBooking = Command0(
+      () => _shareUseCase.shareBooking(_booking!),
+    ); // Lệnh chia sẻ booking
+    loadBooking = Command1(_load); // Lệnh tải booking
   }
 
-  final BookingCreateUseCase _createUseCase;
-  final BookingShareUseCase _shareUseCase;
-  final ItineraryConfigRepository _itineraryConfigRepository;
-  final BookingRepository _bookingRepository;
-  final _log = Logger('BookingViewModel');
-  Booking? _booking;
+  final BookingCreateUseCase _createUseCase; // Biến lưu trữ case tạo booking
+  final BookingShareUseCase _shareUseCase; // Biến lưu trữ case chia sẻ booking
+  final ItineraryConfigRepository
+  _itineraryConfigRepository; // Biến lưu trữ repository cấu hình hành trình
+  final BookingRepository _bookingRepository; // Biến lưu trữ repository booking
+  final _log = Logger('BookingViewModel'); // Logger cho BookingViewModel
+  Booking? _booking; // Biến lưu trữ booking hiện tại
 
-  Booking? get booking => _booking;
+  Booking? get booking => _booking; // Getter cho booking
 
-  /// Creates a booking from the ItineraryConfig
-  /// and saves it to the user bookins
-  late final Command0 createBooking;
+  /// Tạo một booking từ ItineraryConfig
+  /// và lưu nó vào danh sách booking của người dùng
+  late final Command0 createBooking; // Lệnh tạo booking
 
-  /// Loads booking by id
-  late final Command1<void, int> loadBooking;
+  /// Tải booking theo id
+  late final Command1<void, int> loadBooking; // Lệnh tải booking
 
-  /// Share the current booking using the OS share dialog.
-  late final Command0 shareBooking;
+  /// Chia sẻ booking hiện tại bằng hộp thoại chia sẻ của hệ điều hành.
+  late final Command0 shareBooking; // Lệnh chia sẻ booking
 
   Future<Result<void>> _createBooking() async {
-    _log.fine('Loading booking');
+    _log.fine('Đang tải booking'); // Ghi log khi bắt đầu tải booking
     final itineraryConfig =
-        await _itineraryConfigRepository.getItineraryConfig();
+        await _itineraryConfigRepository
+            .getItineraryConfig(); // Lấy cấu hình hành trình
     switch (itineraryConfig) {
       case Ok<ItineraryConfig>():
-        _log.fine('Loaded stored ItineraryConfig');
-        final result = await _createUseCase.createFrom(itineraryConfig.value);
+        _log.fine(
+          'Đã tải cấu hình hành trình',
+        ); // Ghi log khi đã tải cấu hình hành trình
+        final result = await _createUseCase.createFrom(
+          itineraryConfig.value,
+        ); // Tạo booking từ cấu hình hành trình
         switch (result) {
           case Ok<Booking>():
-            _log.fine('Created Booking');
-            _booking = result.value;
-            notifyListeners();
-            return const Result.ok(null);
+            _log.fine('Đã tạo booking'); // Ghi log khi đã tạo booking
+            _booking = result.value; // Lưu booking vào biến
+            notifyListeners(); // Thông báo cho các listener
+            return const Result.ok(null); // Trả về kết quả thành công
           case Error<Booking>():
-            _log.warning('Booking error: ${result.error}');
-            notifyListeners();
-            return Result.error(result.error);
+            _log.warning(
+              'Lỗi booking: ${result.error}',
+            ); // Ghi log khi có lỗi booking
+            notifyListeners(); // Thông báo cho các listener
+            return Result.error(result.error); // Trả về kết quả lỗi
         }
       case Error<ItineraryConfig>():
-        _log.warning('ItineraryConfig error: ${itineraryConfig.error}');
-        notifyListeners();
-        return Result.error(itineraryConfig.error);
+        _log.warning(
+          'Lỗi cấu hình hành trình: ${itineraryConfig.error}',
+        ); // Ghi log khi có lỗi cấu hình hành trình
+        notifyListeners(); // Thông báo cho các listener
+        return Result.error(itineraryConfig.error); // Trả về kết quả lỗi
     }
   }
 
   Future<Result<void>> _load(int id) async {
-    final result = await _bookingRepository.getBooking(id);
+    final result = await _bookingRepository.getBooking(
+      id,
+    ); // Lấy booking theo id
     switch (result) {
       case Ok<Booking>():
-        _log.fine('Loaded booking $id');
-        _booking = result.value;
-        notifyListeners();
+        _log.fine('Đã tải booking $id'); // Ghi log khi đã tải booking
+        _booking = result.value; // Lưu booking vào biến
+        notifyListeners(); // Thông báo cho các listener
       case Error<Booking>():
-        _log.warning('Failed to load booking $id');
+        _log.warning(
+          'Không thể tải booking $id',
+        ); // Ghi log khi không thể tải booking
     }
-    return result;
+    return result; // Trả về kết quả
   }
 }

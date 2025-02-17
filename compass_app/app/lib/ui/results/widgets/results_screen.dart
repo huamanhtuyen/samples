@@ -1,6 +1,6 @@
-// Copyright 2024 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// Bản quyền 2024 của nhóm Flutter. Bảo lưu mọi quyền.
+// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD có thể được
+// tìm thấy trong tệp LICENSE.
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -13,6 +13,7 @@ import '../../core/ui/search_bar.dart';
 import '../view_models/results_viewmodel.dart';
 import 'result_card.dart';
 
+// Định nghĩa một màn hình kết quả dưới dạng StatefulWidget
 class ResultsScreen extends StatefulWidget {
   const ResultsScreen({super.key, required this.viewModel});
 
@@ -22,22 +23,26 @@ class ResultsScreen extends StatefulWidget {
   State<ResultsScreen> createState() => _ResultsScreenState();
 }
 
+// Định nghĩa trạng thái của màn hình kết quả
 class _ResultsScreenState extends State<ResultsScreen> {
   @override
   void initState() {
     super.initState();
+    // Thêm listener cho updateItineraryConfig khi khởi tạo
     widget.viewModel.updateItineraryConfig.addListener(_onResult);
   }
 
   @override
   void didUpdateWidget(covariant ResultsScreen oldWidget) {
     super.didUpdateWidget(oldWidget);
+    // Loại bỏ listener cũ và thêm listener mới khi widget được cập nhật
     oldWidget.viewModel.updateItineraryConfig.removeListener(_onResult);
     widget.viewModel.updateItineraryConfig.addListener(_onResult);
   }
 
   @override
   void dispose() {
+    // Loại bỏ listener khi widget bị hủy
     widget.viewModel.updateItineraryConfig.removeListener(_onResult);
     super.dispose();
   }
@@ -98,6 +103,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
     );
   }
 
+  // Hàm xử lý kết quả khi updateItineraryConfig hoàn thành hoặc gặp lỗi
   void _onResult() {
     if (widget.viewModel.updateItineraryConfig.completed) {
       widget.viewModel.updateItineraryConfig.clearResult();
@@ -115,6 +121,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
   }
 }
 
+// Định nghĩa một widget tìm kiếm
 class _AppSearchBar extends StatelessWidget {
   const _AppSearchBar({required this.widget});
 
@@ -133,7 +140,7 @@ class _AppSearchBar extends StatelessWidget {
         child: AppSearchBar(
           config: widget.viewModel.config,
           onTap: () {
-            // Navigate to SearchFormScreen and edit search
+            // Điều hướng đến SearchFormScreen và chỉnh sửa tìm kiếm
             context.pop();
           },
         ),
@@ -142,6 +149,7 @@ class _AppSearchBar extends StatelessWidget {
   }
 }
 
+// Định nghĩa một widget lưới hiển thị kết quả
 class _Grid extends StatelessWidget {
   const _Grid({required this.viewModel});
 

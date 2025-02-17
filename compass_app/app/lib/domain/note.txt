@@ -1,0 +1,1 @@
+thư mục domain là kiểu chứa các model và use case dùng chung cho toàn bộ dự án

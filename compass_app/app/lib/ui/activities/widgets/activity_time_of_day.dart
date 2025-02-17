@@ -1,5 +1,9 @@
-// Copyright 2024 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// Bản quyền 2024 của nhóm Flutter. Đã đăng ký bản quyền.
+// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD có thể được
+// tìm thấy trong tệp LICENSE.
 
-enum ActivityTimeOfDay { daytime, evening }
+// Định nghĩa một enum để biểu thị thời gian trong ngày của hoạt động
+enum ActivityTimeOfDay {
+  daytime, // Ban ngày
+  evening, // Buổi tối
+}

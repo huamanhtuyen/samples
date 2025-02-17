@@ -1,50 +1,53 @@
-// Copyright 2024 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// Bản quyền 2024 thuộc về nhóm Flutter. Bảo lưu mọi quyền.
+// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD có thể được
+// tìm thấy trong tệp LICENSE.
 
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart'; // Nhập gói freezed_annotation
 
-part 'activity.freezed.dart';
+part 'activity.freezed.dart'; // Phần freezed của tệp activity
 
-part 'activity.g.dart';
+part 'activity.g.dart'; // Phần g.dart của tệp activity
 
+// Định nghĩa enum TimeOfDay với các giá trị: any, morning, afternoon, evening, night
 enum TimeOfDay { any, morning, afternoon, evening, night }
 
 @freezed
+// Định nghĩa lớp Activity với mixin _$Activity
 class Activity with _$Activity {
+  // Định nghĩa factory constructor cho Activity
   const factory Activity({
-    /// e.g. 'Glacier Trekking and Ice Climbing'
+    // Tên hoạt động, ví dụ: 'Glacier Trekking and Ice Climbing'
     required String name,
 
-    /// e.g. 'Embark on a thrilling adventure exploring the awe-inspiring glaciers of Alaska. Hike across the icy terrain, marvel at the deep blue crevasses, and even try your hand at ice climbing for an unforgettable experience.'
+    // Mô tả hoạt động, ví dụ: 'Embark on a thrilling adventure exploring the awe-inspiring glaciers of Alaska...'
     required String description,
 
-    /// e.g. 'Matanuska Glacier or Mendenhall Glacier'
+    // Tên địa điểm, ví dụ: 'Matanuska Glacier or Mendenhall Glacier'
     required String locationName,
 
-    /// Duration in days.
-    /// e.g. 8
+    // Thời gian hoạt động tính bằng ngày, ví dụ: 8
     required int duration,
 
-    /// e.g. 'morning'
+    // Thời gian trong ngày, ví dụ: 'morning'
     required TimeOfDay timeOfDay,
 
-    /// e.g. false
+    // Hoạt động có phù hợp cho gia đình hay không, ví dụ: false
     required bool familyFriendly,
 
-    /// e.g. 4
+    // Giá của hoạt động, ví dụ: 4
     required int price,
 
-    /// e.g. 'alaska'
+    // Tham chiếu đến điểm đến, ví dụ: 'alaska'
     required String destinationRef,
 
-    /// e.g. 'glacier-trekking-and-ice-climbing'
+    // Tham chiếu đến hoạt động, ví dụ: 'glacier-trekking-and-ice-climbing'
     required String ref,
 
-    /// e.g. 'https://storage.googleapis.com/tripedia-images/activities/alaska_glacier-trekking-and-ice-climbing.jpg'
+    // URL hình ảnh của hoạt động, ví dụ: 'https://storage.googleapis.com/tripedia-images/activities/alaska_glacier-trekking-and-ice-climbing.jpg'
     required String imageUrl,
   }) = _Activity;
 
+  // Phương thức factory để tạo đối tượng Activity từ JSON
   factory Activity.fromJson(Map<String, Object?> json) =>
       _$ActivityFromJson(json);
 }
