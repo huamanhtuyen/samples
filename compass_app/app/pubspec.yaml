@@ -1,45 +1,47 @@
-name: compass_app
-description: >-
-  Kết nối vận chuyển
-publish_to: none
-version: 0.1.0
+name: compass_app # Tên của ứng dụng
+description: >- # Mô tả ngắn gọn về ứng dụng
+  Kết nối vận chuyển # Mô tả chi tiết về ứng dụng
+publish_to: none # Không xuất bản ứng dụng này lên pub.dev
+version: 0.1.0 # Phiên bản hiện tại của ứng dụng
 
 environment:
-  sdk: ^3.7.0-0
+  sdk: ^3.7.0-0 # Phiên bản SDK Dart yêu cầu
 
 dependencies:
-  cached_network_image: ^3.4.1
+  cached_network_image: ^3.4.1 # Thư viện để tải và cache hình ảnh từ mạng
   flutter:
-    sdk: flutter
+    sdk: flutter # SDK Flutter
   flutter_localizations:
-    sdk: flutter
-  flutter_svg: ^2.0.16
-  freezed_annotation: ^2.4.4
-  go_router: ^14.6.2
-  google_fonts: ^6.2.1
-  intl: any
-  json_annotation: ^4.9.0
-  logging: ^1.3.0
-  provider: ^6.1.2
-  share_plus: ^10.1.3
-  shared_preferences: ^2.3.5
+    sdk: flutter # SDK Flutter cho việc hỗ trợ đa ngôn ngữ
+  flutter_svg: ^2.0.16 # Thư viện để hiển thị hình ảnh SVG
+  freezed_annotation: ^2.4.4 # Thư viện để hỗ trợ code generation cho các class bất biến
+  go_router: ^14.6.2 # Thư viện để điều hướng trong ứng dụng
+  google_fonts: ^6.2.1 # Thư viện để sử dụng các font chữ của Google
+  intl: any # Thư viện để hỗ trợ quốc tế hóa
+  json_annotation: ^4.9.0 # Thư viện để hỗ trợ code generation cho JSON serialization
+  logging: ^1.3.0 # Thư viện để ghi log
+  provider: ^6.1.2 # Thư viện để quản lý trạng thái
+  share_plus: ^10.1.3 # Thư viện để chia sẻ nội dung
+  shared_preferences: ^2.3.5 # Thư viện để lưu trữ dữ liệu đơn giản
+  supabase_flutter: ^2.8.3 # Thư viện để làm việc với Supabase
+  mockito: ^5.0.0 # Thư viện để mock trong kiểm thử
 
 dev_dependencies:
   flutter_test:
-    sdk: flutter
-  flutter_lints: ^5.0.0
-  mocktail_image_network: ^1.2.0
-  mocktail: ^1.0.4
+    sdk: flutter # SDK Flutter cho việc kiểm thử
+  flutter_lints: ^5.0.0 # Bộ quy tắc linting cho Flutter
+  mocktail_image_network: ^1.2.0 # Thư viện để mock hình ảnh mạng trong kiểm thử
+  mocktail: ^1.0.4 # Thư viện để mock trong kiểm thử
   integration_test:
-    sdk: flutter
-  build_runner: ^2.4.14
-  freezed: ^2.5.7
-  json_serializable: ^6.9.0
+    sdk: flutter # SDK Flutter cho kiểm thử tích hợp
+  build_runner: ^2.4.14 # Công cụ để chạy code generation
+  freezed: ^2.5.7 # Thư viện để hỗ trợ code generation cho các class bất biến
+  json_serializable: ^6.9.0 # Thư viện để hỗ trợ code generation cho JSON serialization
 
 flutter:
-  uses-material-design: true
+  uses-material-design: true # Sử dụng thiết kế Material
   assets:
-    - assets/activities.json
-    - assets/destinations.json
-    - assets/logo.svg
-    - assets/user.jpg
+    - assets/activities.json # Đường dẫn đến file JSON chứa dữ liệu hoạt động
+    - assets/destinations.json # Đường dẫn đến file JSON chứa dữ liệu điểm đến
+    - assets/logo.svg # Đường dẫn đến file SVG chứa logo
+    - assets/user.jpg # Đường dẫn đến file hình ảnh người dùng

@@ -4,6 +4,7 @@
 
 import 'dart:convert';
 import 'dart:io';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../domain/models/activity/activity.dart';
 import '../../../domain/models/continent/continent.dart';
@@ -49,6 +50,8 @@ class ApiClient {
       ); // Thêm header Authentication vào headers
     }
   }
+
+  final SupabaseClient _supabaseClient = Supabase.instance.client;
 
   Future<Result<List<Continent>>> getContinents() async {
     final client = _clientFactory(); // Tạo HttpClient
@@ -162,39 +165,21 @@ class ApiClient {
   }
 
   Future<Result<List<BookingApiModel>>> getBookings() async {
-    final client = _clientFactory(); // Tạo HttpClient
     try {
-      final request = await client.get(
-        _host,
-        _port,
-        '/booking',
-      ); // Gửi yêu cầu GET tới endpoint '/booking'
-      await _authHeader(
-        request.headers,
-      ); // Thêm header Authentication vào yêu cầu
-      final response = await request.close(); // Đóng yêu cầu và nhận phản hồi
-      if (response.statusCode == 200) {
-        final stringData =
-            await response
-                .transform(utf8.decoder)
-                .join(); // Chuyển đổi phản hồi thành chuỗi
-        final json =
-            jsonDecode(stringData)
-                as List<dynamic>; // Giải mã chuỗi JSON thành danh sách động
-        final bookings =
-            json
-                .map((element) => BookingApiModel.fromJson(element))
-                .toList(); // Chuyển đổi danh sách động thành danh sách BookingApiModel
-        return Result.ok(bookings);
-      } else {
-        return const Result.error(
-          HttpException("Invalid response"),
-        ); // Trả về lỗi nếu phản hồi không hợp lệ
-      }
+      final response =
+          await _supabaseClient
+              .from('booking')
+              .select(); // Fetch data from Supabase
+
+      final bookings =
+          response
+              .map<BookingApiModel>(
+                (element) => BookingApiModel.fromJson(element),
+              )
+              .toList(); // Convert data to list of BookingApiModel
+      return Result.ok(bookings);
     } on Exception catch (error) {
-      return Result.error(error); // Trả về lỗi nếu có ngoại lệ
-    } finally {
-      client.close(); // Đóng HttpClient
+      return Result.error(error); // Return error if there is an exception
     }
   }
 
@@ -266,35 +251,18 @@ class ApiClient {
   }
 
   Future<Result<UserApiModel>> getUser() async {
-    final client = _clientFactory(); // Tạo HttpClient
     try {
-      final request = await client.get(
-        _host,
-        _port,
-        '/user',
-      ); // Gửi yêu cầu GET tới endpoint '/user'
-      await _authHeader(
-        request.headers,
-      ); // Thêm header Authentication vào yêu cầu
-      final response = await request.close(); // Đóng yêu cầu và nhận phản hồi
-      if (response.statusCode == 200) {
-        final stringData =
-            await response
-                .transform(utf8.decoder)
-                .join(); // Chuyển đổi phản hồi thành chuỗi
-        final user = UserApiModel.fromJson(
-          jsonDecode(stringData),
-        ); // Giải mã chuỗi JSON thành đối tượng UserApiModel
-        return Result.ok(user);
-      } else {
-        return const Result.error(
-          HttpException("Invalid response"),
-        ); // Trả về lỗi nếu phản hồi không hợp lệ
-      }
+      final u = _supabaseClient.auth.currentUser; // Get current user
+      final user = UserApiModel(
+        email: u?.email ?? '',
+        id: u?.id ?? '',
+        name: u?.email ?? '',
+        picture: '',
+      );
+
+      return Result.ok(user);
     } on Exception catch (error) {
-      return Result.error(error); // Trả về lỗi nếu có ngoại lệ
-    } finally {
-      client.close(); // Đóng HttpClient
+      return Result.error(error); // Return error if there is an exception
     }
   }
 

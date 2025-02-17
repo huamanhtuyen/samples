@@ -22,10 +22,10 @@ _$BookingApiModelImpl _$$BookingApiModelImplFromJson(
   destinationRef:
       json['destinationRef']
           as String, // Chuyển đổi 'destinationRef' từ JSON sang chuỗi
-  activitiesRef:
-      (json['activitiesRef'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(), // Chuyển đổi 'activitiesRef' từ JSON sang danh sách chuỗi
+  activitiesRef: ['111', '222', '333'],
+  // (json['activitiesRef'] as List<dynamic>)
+  //     .map((e) => e as String)
+  //     .toList(), // Chuyển đổi 'activitiesRef' từ JSON sang danh sách chuỗi
 );
 
 // Hàm chuyển đổi từ đối tượng _$BookingApiModelImpl sang JSON
