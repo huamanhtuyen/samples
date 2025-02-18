@@ -6,8 +6,8 @@ import 'package:compass_app/domain/models/itinerary_config/itinerary_config.dart
 import 'package:compass_app/ui/results/view_models/results_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../testing/fakes/repositories/fake_destination_repository.dart';
-import '../../../testing/fakes/repositories/fake_itinerary_config_repository.dart';
+import '../../../testing/fakes/repositories/fake_destination_repository.dart.bak';
+import '../../../testing/fakes/repositories/fake_itinerary_config_repository.dart.bak';
 
 void main() {
   group('ResultsViewModel tests', () {

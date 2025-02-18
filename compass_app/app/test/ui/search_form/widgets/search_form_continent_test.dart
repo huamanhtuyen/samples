@@ -7,8 +7,8 @@ import 'package:compass_app/ui/search_form/widgets/search_form_continent.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../testing/app.dart';
-import '../../../../testing/fakes/repositories/fake_continent_repository.dart';
-import '../../../../testing/fakes/repositories/fake_itinerary_config_repository.dart';
+import '../../../../testing/fakes/repositories/fake_continent_repository.dart.bak';
+import '../../../../testing/fakes/repositories/fake_itinerary_config_repository.dart.bak';
 
 void main() {
   group('SearchFormContinent widget tests', () {

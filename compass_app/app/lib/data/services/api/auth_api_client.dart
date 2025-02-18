@@ -21,10 +21,35 @@ class AuthApiClient {
       print(response);
 
       final user = response.user;
+      final token_ = response.session!.accessToken;
       if (user != null) {
-        return Result.ok(LoginResponse(token: user.id, userId: user.email!));
+        return Result.ok(LoginResponse(token: token_, userId: user.id));
       } else {
         return Result.error(Exception('Login failed'));
+      }
+    } on Exception catch (error) {
+      return Result.error(error);
+    }
+  }
+
+  // Phương thức register, trả về một đối tượng Result chứa LoginResponse
+  Future<Result<LoginResponse>> register(LoginRequest loginRequest) async {
+    try {
+      final supabaseClient = Supabase.instance.client;
+      final response = await supabaseClient.auth.signUp(
+        email: loginRequest.email,
+        password: loginRequest.password,
+      );
+
+      print('response=');
+      print(response);
+
+      final user = response.user;
+      final token_ = response.session!.accessToken;
+      if (user != null) {
+        return Result.ok(LoginResponse(token: token_, userId: user.id));
+      } else {
+        return Result.error(Exception('Registration failed'));
       }
     } on Exception catch (error) {
       return Result.error(error);

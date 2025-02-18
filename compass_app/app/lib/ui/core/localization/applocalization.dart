@@ -34,6 +34,7 @@ class AppLocalization {
     'errorWhileSharing': 'Error while sharing booking',
     'evening': 'Evening',
     'login': 'Login',
+    'register': 'Register',
     'nameTrips': '{name}\'s Trips',
     'search': 'Search',
     'searchDestination': 'Search destination',
@@ -87,6 +88,8 @@ class AppLocalization {
   String get errorWhileLogin => _get('errorWhileLogin');
 
   String get login => _get('login');
+
+  String get register => _get('register');
 
   String get errorWhileLogout => _get('errorWhileLogout');
 

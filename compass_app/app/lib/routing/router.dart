@@ -11,6 +11,8 @@ import '../ui/activities/view_models/activities_viewmodel.dart';
 import '../ui/activities/widgets/activities_screen.dart';
 import '../ui/auth/login/view_models/login_viewmodel.dart';
 import '../ui/auth/login/widgets/login_screen.dart';
+import '../ui/auth/register/view_models/register_viewmodel.dart';
+import '../ui/auth/register/widgets/register_screen.dart';
 import '../ui/booking/view_models/booking_viewmodel.dart';
 import '../ui/booking/widgets/booking_screen.dart';
 import '../ui/home/view_models/home_viewmodel.dart';
@@ -38,6 +40,16 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
           viewModel: LoginViewModel(
             authRepository: context.read(),
           ), // Tạo viewModel cho màn hình đăng nhập
+        );
+      },
+    ),
+    GoRoute(
+      path: Routes.register, // Đường dẫn đến trang đăng ký
+      builder: (context, state) {
+        return RegisterScreen(
+          viewModel: RegisterViewModel(
+            authRepository: context.read(),
+          ), // Tạo viewModel cho màn hình đăng ký
         );
       },
     ),
@@ -154,17 +166,17 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
 
 // Từ https://github.com/flutter/packages/blob/main/packages/go_router/example/lib/redirection.dart
 Future<String?> _redirect(BuildContext context, GoRouterState state) async {
-  // nếu người dùng chưa đăng nhập, họ cần đăng nhập
   final loggedIn = await context.read<AuthRepository>().isAuthenticated;
   final loggingIn = state.matchedLocation == Routes.login;
-  if (!loggedIn) {
-    return Routes.login; // Chuyển hướng đến trang đăng nhập
+  final registering = state.matchedLocation == Routes.register;
+
+  if (!loggedIn && !loggingIn && !registering) {
+    return Routes
+        .login; // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập và không phải trang đăng nhập hoặc đăng ký
   }
 
-  // nếu người dùng đã đăng nhập nhưng vẫn ở trang đăng nhập, chuyển họ đến
-  // trang chủ
-  if (loggingIn) {
-    return Routes.home; // Chuyển hướng đến trang chủ
+  if (loggedIn) {
+    return Routes.home; // Chuyển hướng đến trang chủ nếu đã đăng nhập
   }
 
   // không cần chuyển hướng

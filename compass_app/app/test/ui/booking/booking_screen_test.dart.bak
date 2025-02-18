@@ -11,10 +11,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../testing/app.dart';
-import '../../../testing/fakes/repositories/fake_activities_repository.dart';
-import '../../../testing/fakes/repositories/fake_booking_repository.dart';
-import '../../../testing/fakes/repositories/fake_destination_repository.dart';
-import '../../../testing/fakes/repositories/fake_itinerary_config_repository.dart';
+import '../../../testing/fakes/repositories/fake_activities_repository.dart.bâk';
+import '../../../testing/fakes/repositories/fake_booking_repository.dart.bak';
+import '../../../testing/fakes/repositories/fake_destination_repository.dart.bak';
+import '../../../testing/fakes/repositories/fake_itinerary_config_repository.dart.bak';
 import '../../../testing/mocks.dart';
 import '../../../testing/models/activity.dart';
 import '../../../testing/models/booking.dart';

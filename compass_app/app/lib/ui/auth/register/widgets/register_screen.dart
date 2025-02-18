@@ -8,19 +8,19 @@ import 'package:go_router/go_router.dart';
 import '../../../../routing/routes.dart';
 import '../../../core/localization/applocalization.dart';
 import '../../../core/themes/dimens.dart';
-import '../view_models/login_viewmodel.dart';
+import '../view_models/register_viewmodel.dart';
 import 'tilted_cards.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key, required this.viewModel});
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key, required this.viewModel});
 
-  final LoginViewModel viewModel;
+  final RegisterViewModel viewModel;
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _email = TextEditingController(
     text: 'email@example.com', // Đặt giá trị mặc định cho email
   );
@@ -31,19 +31,21 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    widget.viewModel.login.addListener(_onResult); // Thêm listener cho login
+    widget.viewModel.register.addListener(_onResult); // Thêm listener cho login
   }
 
   @override
-  void didUpdateWidget(covariant LoginScreen oldWidget) {
+  void didUpdateWidget(covariant RegisterScreen oldWidget) {
     super.didUpdateWidget(oldWidget);
-    oldWidget.viewModel.login.removeListener(_onResult); // Gỡ listener cũ
-    widget.viewModel.login.addListener(_onResult); // Thêm listener mới
+    oldWidget.viewModel.register.removeListener(_onResult); // Gỡ listener cũ
+    widget.viewModel.register.addListener(_onResult); // Thêm listener mới
   }
 
   @override
   void dispose() {
-    widget.viewModel.login.removeListener(_onResult); // Gỡ listener khi dispose
+    widget.viewModel.register.removeListener(
+      _onResult,
+    ); // Gỡ listener khi dispose
     super.dispose();
   }
 
@@ -68,27 +70,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 ), // Trường nhập mật khẩu
                 const SizedBox(height: Dimens.paddingVertical),
                 ListenableBuilder(
-                  listenable: widget.viewModel.login,
+                  listenable: widget.viewModel.register,
                   builder: (context, _) {
                     return FilledButton(
                       onPressed: () {
-                        widget.viewModel.login.execute((
+                        widget.viewModel.register.execute((
                           _email.value.text,
                           _password.value.text,
-                        )); // Thực hiện login
+                        )); // Thực hiện register
                       },
                       child: Text(
-                        AppLocalization.of(context).login,
-                      ), // Nút đăng nhập
+                        AppLocalization.of(context).register,
+                      ), // Nút đăng ký
                     );
                   },
-                ),
-                TextButton(
-                  onPressed: () {
-                    print('nhấn nút đăng ký');
-                    context.go(Routes.register); // Điều hướng đến trang đăng ký
-                  },
-                  child: Text('Nếu bạn chưa có tài khoản, hãy đăng ký'),
                 ),
               ],
             ),
@@ -99,13 +94,13 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _onResult() {
-    if (widget.viewModel.login.completed) {
-      widget.viewModel.login.clearResult(); // Xóa kết quả sau khi hoàn thành
+    if (widget.viewModel.register.completed) {
+      widget.viewModel.register.clearResult(); // Xóa kết quả sau khi hoàn thành
       context.go(Routes.home); // Điều hướng đến trang chủ
     }
 
-    if (widget.viewModel.login.error) {
-      widget.viewModel.login.clearResult(); // Xóa kết quả sau khi có lỗi
+    if (widget.viewModel.register.error) {
+      widget.viewModel.register.clearResult(); // Xóa kết quả sau khi có lỗi
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -114,10 +109,10 @@ class _LoginScreenState extends State<LoginScreen> {
           action: SnackBarAction(
             label: AppLocalization.of(context).tryAgain,
             onPressed:
-                () => widget.viewModel.login.execute((
+                () => widget.viewModel.register.execute((
                   _email.value.text,
                   _password.value.text,
-                )), // Thử lại đăng nhập
+                )), // Thử lại đăng ký
           ),
         ),
       );

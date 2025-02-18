@@ -6,9 +6,9 @@ import 'package:compass_app/domain/models/itinerary_config/itinerary_config.dart
 import 'package:compass_app/domain/use_cases/booking/booking_create_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../../testing/fakes/repositories/fake_activities_repository.dart';
-import '../../../../testing/fakes/repositories/fake_booking_repository.dart';
-import '../../../../testing/fakes/repositories/fake_destination_repository.dart';
+import '../../../../testing/fakes/repositories/fake_activities_repository.dart.bâk';
+import '../../../../testing/fakes/repositories/fake_booking_repository.dart.bak';
+import '../../../../testing/fakes/repositories/fake_destination_repository.dart.bak';
 import '../../../../testing/models/activity.dart';
 import '../../../../testing/models/booking.dart';
 import '../../../../testing/models/destination.dart';

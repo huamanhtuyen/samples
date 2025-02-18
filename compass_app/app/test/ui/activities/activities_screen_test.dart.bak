@@ -12,8 +12,8 @@ import 'package:mocktail/mocktail.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 
 import '../../../testing/app.dart';
-import '../../../testing/fakes/repositories/fake_activities_repository.dart';
-import '../../../testing/fakes/repositories/fake_itinerary_config_repository.dart';
+import '../../../testing/fakes/repositories/fake_activities_repository.dart.bâk';
+import '../../../testing/fakes/repositories/fake_itinerary_config_repository.dart.bak';
 import '../../../testing/mocks.dart';
 
 void main() {

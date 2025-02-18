@@ -112,9 +112,35 @@ class AuthRepositoryRemote extends AuthRepository {
     }
   }
 
+  @override
+  Future<Result<void>> register({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final result = await _authApiClient.register(
+        LoginRequest(email: email, password: password), // Gửi yêu cầu đăng ký
+      );
+      switch (result) {
+        case Ok<LoginResponse>():
+          _log.info('Người dùng đã đăng ký');
+          // Cập nhật trạng thái xác thực
+          _isAuthenticated = true;
+          _authToken = result.value.token; // Lưu token
+          // Lưu token vào SharedPreferences
+          return await _sharedPreferencesService.saveToken(result.value.token);
+        case Error<LoginResponse>():
+          _log.warning('Lỗi khi đăng ký: ${result.error}');
+          return Result.error(result.error);
+      }
+    } finally {
+      notifyListeners(); // Thông báo cho các listeners
+    }
+  }
+
   //vì supabase có cơ chế tự lắng nghe và tự cập nhật token mới rồi nên không cần phương thức này
   // String? _authHeaderProvider() =>
   //     _authToken != null
   //         ? 'Bearer $_authToken'
   //         : null; // Cung cấp header xác thực
-}
+} //class

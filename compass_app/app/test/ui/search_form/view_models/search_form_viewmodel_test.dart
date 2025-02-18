@@ -6,8 +6,8 @@ import 'package:compass_app/ui/search_form/view_models/search_form_viewmodel.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../../testing/fakes/repositories/fake_continent_repository.dart';
-import '../../../../testing/fakes/repositories/fake_itinerary_config_repository.dart';
+import '../../../../testing/fakes/repositories/fake_continent_repository.dart.bak';
+import '../../../../testing/fakes/repositories/fake_itinerary_config_repository.dart.bak';
 
 void main() {
   group('SearchFormViewModel Tests', () {

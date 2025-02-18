@@ -14,10 +14,10 @@ import 'package:mocktail/mocktail.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../testing/app.dart';
-import '../../../../testing/fakes/repositories/fake_auth_repository.dart';
-import '../../../../testing/fakes/repositories/fake_booking_repository.dart';
-import '../../../../testing/fakes/repositories/fake_itinerary_config_repository.dart';
-import '../../../../testing/fakes/repositories/fake_user_repository.dart';
+import '../../../../testing/fakes/repositories/fake_auth_repository.dart.bak';
+import '../../../../testing/fakes/repositories/fake_booking_repository.dart.bak';
+import '../../../../testing/fakes/repositories/fake_itinerary_config_repository.dart.bak';
+import '../../../../testing/fakes/repositories/fake_user_repository.dart.bak';
 import '../../../../testing/mocks.dart';
 import '../../../../testing/models/booking.dart';
 

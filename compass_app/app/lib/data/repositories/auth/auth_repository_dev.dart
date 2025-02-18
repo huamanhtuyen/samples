@@ -24,4 +24,12 @@ class AuthRepositoryDev extends AuthRepository {
   Future<Result<void>> logout() async {
     return const Result.ok(null);
   }
+
+  @override
+  Future<Result<void>> register({
+    required String email,
+    required String password,
+  }) async {
+    return const Result.ok(null);
+  }
 }
