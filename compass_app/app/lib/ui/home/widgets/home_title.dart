@@ -67,20 +67,22 @@ class HomeHeader extends StatelessWidget {
                 //size: Dimens.of(context).profilePictureSize,
                 size: 40,
               ),
+              padding:
+                  EdgeInsets.zero, // Loại bỏ padding mặc định của IconButton
               onPressed: () {
                 context.go(Routes.profile);
               },
             ),
 
-            LogoutButton(
-              // Nút đăng xuất
-              viewModel: LogoutViewModel(
-                // Khởi tạo LogoutViewModel
-                authRepository: context.read(), // Lấy authRepository từ context
-                itineraryConfigRepository:
-                    context.read(), // Lấy itineraryConfigRepository từ context
-              ),
-            ),
+            // LogoutButton(
+            //   // Nút đăng xuất
+            //   viewModel: LogoutViewModel(
+            //     // Khởi tạo LogoutViewModel
+            //     authRepository: context.read(), // Lấy authRepository từ context
+            //     itineraryConfigRepository:
+            //         context.read(), // Lấy itineraryConfigRepository từ context
+            //   ),
+            // ),
           ],
         ),
         const SizedBox(
