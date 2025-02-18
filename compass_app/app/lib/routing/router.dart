@@ -54,6 +54,16 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
       },
     ),
     GoRoute(
+      path: Routes.profile, // Đường dẫn đến trang profile
+      builder: (context, state) {
+        return RegisterScreen(
+          viewModel: RegisterViewModel(
+            authRepository: context.read(),
+          ), // Tạo viewModel cho màn hình đăng ký
+        );
+      },
+    ),
+    GoRoute(
       path: Routes.home, // Đường dẫn đến trang chủ
       builder: (context, state) {
         final viewModel = HomeViewModel(

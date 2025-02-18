@@ -45,3 +45,4 @@ flutter:
     - assets/destinations.json # Đường dẫn đến file JSON chứa dữ liệu điểm đến
     - assets/logo.svg # Đường dẫn đến file SVG chứa logo
     - assets/user.jpg # Đường dẫn đến file hình ảnh người dùng
+    - assets/logo.png #

@@ -78,7 +78,12 @@ abstract final class AppTheme {
   static ThemeData greenTheme = ThemeData(
     useMaterial3: true, // Sử dụng Material 3
     brightness: Brightness.light, // Độ sáng của chủ đề
-    colorScheme: AppColors.greenColorScheme, // Bảng màu cho chủ đề xanh lá
+    //đây là màu xanh mình tự phối màu
+    //colorScheme: AppColors.greenColorScheme, // Bảng màu cho chủ đề xanh lá
+    //còn đây là màu xanh của material
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: Colors.lightGreen,
+    ), // Bảng màu cho chủ đề xanh lá
     textTheme: _textTheme, // Áp dụng TextTheme đã định nghĩa
     inputDecorationTheme:
         _inputDecorationTheme, // Áp dụng InputDecorationTheme đã định nghĩa

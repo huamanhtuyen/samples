@@ -3,24 +3,13 @@
 // tìm thấy trong tệp LICENSE.
 
 import 'package:flutter/material.dart'; // Thư viện Flutter Material
-import 'package:flutter_svg/flutter_svg.dart';
-
-import 'package:go_router/go_router.dart';
-
 import 'package:google_fonts/google_fonts.dart'; // Thư viện Google Fonts
-
 import 'package:provider/provider.dart'; // Thư viện Provider
 
-import '../../../../routing/routes.dart';
-
 import '../../auth/logout/view_models/logout_viewmodel.dart'; // Import ViewModel cho chức năng đăng xuất
-
 import '../../auth/logout/widgets/logout_button.dart'; // Import nút đăng xuất
-
 import '../../core/localization/applocalization.dart'; // Import localization
-
 import '../../core/themes/dimens.dart'; // Import các kích thước giao diện
-
 import '../view_models/home_viewmodel.dart'; // Import ViewModel cho màn hình chính
 
 class HomeHeader extends StatelessWidget {
@@ -55,23 +44,15 @@ class HomeHeader extends StatelessWidget {
               CrossAxisAlignment
                   .start, // Căn chỉnh các widget con theo chiều dọc
           children: [
-            SvgPicture.asset(
-              'assets/logo.svg', // Đường dẫn ảnh logo SVG
-              width: Dimens.of(context).profilePictureSize, // Chiều rộng logo
-              height: 40, // Chiều cao logo
-            ),
-            SizedBox(width: 1), // Khoảng cách giữa ảnh đại diện và logo
-            IconButton(
-              icon: Icon(
-                Icons.account_circle,
-                //size: Dimens.of(context).profilePictureSize,
-                size: 40,
+            ClipOval(
+              // Widget để cắt ảnh thành hình oval
+              child: Image.asset(
+                // Hiển thị ảnh đại diện người dùng
+                user.picture, // Đường dẫn ảnh
+                width: Dimens.of(context).profilePictureSize, // Chiều rộng ảnh
+                height: Dimens.of(context).profilePictureSize, // Chiều cao ảnh
               ),
-              onPressed: () {
-                context.go(Routes.profile);
-              },
             ),
-
             LogoutButton(
               // Nút đăng xuất
               viewModel: LogoutViewModel(

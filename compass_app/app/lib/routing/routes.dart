@@ -6,6 +6,8 @@ abstract final class Routes {
   static const login = '/login';
   // Tuyến đường cho trang đăng ký
   static const register = '/register';
+  // Tuyến đường cho trang profile
+  static const profile = '/profile';
   // Tuyến đường cho trang tìm kiếm, sử dụng hằng số searchRelative
   static const search = '/$searchRelative';
   // Hằng số tương đối cho tìm kiếm

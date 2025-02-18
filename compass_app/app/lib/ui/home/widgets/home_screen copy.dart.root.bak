@@ -102,10 +102,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   SliverToBoxAdapter(
                     child: Padding(
                       padding: EdgeInsets.symmetric(
-                        //vertical: Dimens.of(context).paddingScreenVertical,
-                        vertical: 0,
-                        //horizontal: Dimens.of(context).paddingScreenHorizontal,
-                        horizontal: 0,
+                        vertical: Dimens.of(context).paddingScreenVertical,
+                        horizontal: Dimens.of(context).paddingScreenHorizontal,
                       ),
                       child: HomeHeader(
                         viewModel: widget.viewModel,
