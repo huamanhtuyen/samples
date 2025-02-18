@@ -30,4 +30,15 @@ class AuthApiClient {
       return Result.error(error);
     }
   }
+
+  // Phương thức logout, trả về một đối tượng Result chứa bool, logout supabase
+  Future<Result<bool>> logout() async {
+    try {
+      final supabaseClient = Supabase.instance.client;
+      await supabaseClient.auth.signOut();
+      return Result.ok(true);
+    } on Exception catch (error) {
+      return Result.error(error);
+    }
+  }
 }

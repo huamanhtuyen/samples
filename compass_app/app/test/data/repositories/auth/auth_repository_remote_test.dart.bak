@@ -6,8 +6,8 @@ import 'package:compass_app/data/repositories/auth/auth_repository_remote.dart';
 import 'package:compass_app/utils/result.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../../testing/fakes/services/fake_api_client.dart';
-import '../../../../testing/fakes/services/fake_auth_api_client.dart';
+import '../../../../testing/fakes/services/fake_api_client.dart.bak';
+import '../../../../testing/fakes/services/fake_auth_api_client.dart.bâk';
 import '../../../../testing/fakes/services/fake_shared_preferences_service.dart';
 
 void main() {

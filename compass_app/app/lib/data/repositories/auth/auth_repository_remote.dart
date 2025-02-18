@@ -17,14 +17,14 @@ class AuthRepositoryRemote extends AuthRepository {
     required ApiClient apiClient,
     required AuthApiClient authApiClient,
     required SharedPreferencesService sharedPreferencesService,
-  }) : _apiClient = apiClient,
+  }) : //_apiClient = apiClient,
        _authApiClient = authApiClient,
        _sharedPreferencesService = sharedPreferencesService {
-    _apiClient.authHeaderProvider = _authHeaderProvider;
+    //_apiClient.authHeaderProvider = _authHeaderProvider;
   }
 
   final AuthApiClient _authApiClient; // Khai báo biến AuthApiClient
-  final ApiClient _apiClient; // Khai báo biến ApiClient
+  //final ApiClient _apiClient; // Khai báo biến ApiClient
   final SharedPreferencesService
   _sharedPreferencesService; // Khai báo biến SharedPreferencesService
 
@@ -40,6 +40,7 @@ class AuthRepositoryRemote extends AuthRepository {
     switch (result) {
       case Ok<String?>():
         _authToken = result.value; // Gán giá trị token
+        print('Token: $_authToken');
         _isAuthenticated = result.value != null; // Cập nhật trạng thái xác thực
       case Error<String?>():
         _log.severe('Không thể lấy token từ SharedPreferences', result.error);
@@ -87,6 +88,13 @@ class AuthRepositoryRemote extends AuthRepository {
   Future<Result<void>> logout() async {
     _log.info('Người dùng đã đăng xuất');
     try {
+      //logout trên supabase
+      final resultLogout = await _authApiClient.logout();
+
+      if (resultLogout is Error<bool>) {
+        _log.severe('Không thể logout trên supabase');
+      }
+
       // Xóa token đã lưu
       final result = await _sharedPreferencesService.saveToken(null);
       if (result is Error<void>) {
@@ -104,8 +112,9 @@ class AuthRepositoryRemote extends AuthRepository {
     }
   }
 
-  String? _authHeaderProvider() =>
-      _authToken != null
-          ? 'Bearer $_authToken'
-          : null; // Cung cấp header xác thực
+  //vì supabase có cơ chế tự lắng nghe và tự cập nhật token mới rồi nên không cần phương thức này
+  // String? _authHeaderProvider() =>
+  //     _authToken != null
+  //         ? 'Bearer $_authToken'
+  //         : null; // Cung cấp header xác thực
 }

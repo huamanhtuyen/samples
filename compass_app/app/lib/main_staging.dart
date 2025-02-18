@@ -22,6 +22,21 @@ void main() async {
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh4ZXRiaHdjYXFqZm1mcG5haWlxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk2NjYzNDAsImV4cCI6MjA1NTI0MjM0MH0.I-a7DHYtOVNt5oB9EUrfBwqff0bj8AruMlVab37ZyZY',
   );
 
+  //Supabase có cơ chế tự động cập nhật session nếu bạn bật auth.onAuthStateChange:
+  final supabaseClient = Supabase.instance.client;
+  supabaseClient.auth.onAuthStateChange.listen((data) {
+    final event = data.event;
+    final session = data.session;
+
+    if (session != null) {
+      print('Token mới: ${session.accessToken}');
+    }
+
+    if (event == AuthChangeEvent.signedOut) {
+      print('Người dùng đã đăng xuất');
+    }
+  });
+
   runApp(MultiProvider(providers: providersRemote, child: const MainApp()));
   // Chạy ứng dụng với MultiProvider, sử dụng providersRemote và MainApp
 }
