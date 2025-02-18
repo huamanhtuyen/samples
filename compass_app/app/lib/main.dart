@@ -33,9 +33,9 @@ class MainApp extends StatelessWidget {
       ],
       scrollBehavior:
           AppCustomScrollBehavior(), // Định nghĩa hành vi cuộn tùy chỉnh
-      theme: AppTheme.lightTheme, // Định nghĩa theme sáng
+      theme: AppTheme.greenTheme, // Định nghĩa theme sáng
       darkTheme: AppTheme.darkTheme, // Định nghĩa theme tối
-      themeMode: ThemeMode.system, // Định nghĩa chế độ theme theo hệ thống
+      themeMode: ThemeMode.light, // Định nghĩa chế độ theme theo hệ thống
       routerConfig: router(context.read()), // Định nghĩa cấu hình router
     );
   }

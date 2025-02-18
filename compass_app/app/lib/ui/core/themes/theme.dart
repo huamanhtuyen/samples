@@ -60,8 +60,25 @@ abstract final class AppTheme {
 
   // Định nghĩa một ThemeData cho chủ đề sáng
   static ThemeData lightTheme = ThemeData(
+    useMaterial3: true, // Sử dụng Material 3
     brightness: Brightness.light, // Độ sáng của chủ đề
     colorScheme: AppColors.lightColorScheme, // Bảng màu cho chủ đề sáng
+    textTheme: _textTheme, // Áp dụng TextTheme đã định nghĩa
+    inputDecorationTheme:
+        _inputDecorationTheme, // Áp dụng InputDecorationTheme đã định nghĩa
+    extensions: [
+      TagChipTheme(
+        chipColor: AppColors.whiteTransparent, // Màu nền cho chip
+        onChipColor: Colors.white, // Màu chữ trên chip
+      ),
+    ],
+  );
+
+  // Định nghĩa một ThemeData cho chủ đề xanh lá
+  static ThemeData greenTheme = ThemeData(
+    useMaterial3: true, // Sử dụng Material 3
+    brightness: Brightness.light, // Độ sáng của chủ đề
+    colorScheme: AppColors.greenColorScheme, // Bảng màu cho chủ đề xanh lá
     textTheme: _textTheme, // Áp dụng TextTheme đã định nghĩa
     inputDecorationTheme:
         _inputDecorationTheme, // Áp dụng InputDecorationTheme đã định nghĩa

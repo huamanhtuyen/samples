@@ -24,6 +24,10 @@ abstract final class AppColors {
   static const blackTransparent = Color(0x4D000000);
   // Định nghĩa màu đỏ với mã màu hex
   static const red1 = Color(0xFFE74C3C);
+  // Định nghĩa màu xanh lá cây với mã màu hex
+  static const green1 = Color(0xFF4CAF50);
+  static const green2 = Color(0xFF388E3C);
+  static const green3 = Color(0xFFC8E6C9);
 
   // Định nghĩa bảng màu cho giao diện sáng
   static const lightColorScheme = ColorScheme(
@@ -49,5 +53,28 @@ abstract final class AppColors {
     onSurface: Colors.white, // Màu chữ trên bề mặt
     error: Colors.black, // Màu lỗi
     onError: AppColors.red1, // Màu chữ trên màu lỗi
+  );
+
+  // Định nghĩa bảng màu cho giao diện xanh lá cây
+  static const greenColorScheme = ColorScheme(
+    brightness: Brightness.light, // Độ sáng của giao diện
+    primary: AppColors.green1, // Màu chính
+    onPrimary: AppColors.white1, // Màu chữ trên màu chính
+    secondary: AppColors.green2, // Màu phụ
+    onSecondary: AppColors.white1, // Màu chữ trên màu phụ
+    surface: AppColors.green3, // Màu bề mặt
+    onSurface: AppColors.black1, // Màu chữ trên bề mặt
+    error: AppColors.red1, // Màu lỗi
+    onError: AppColors.white1, // Màu chữ trên màu lỗi
+    primaryContainer: AppColors.green2, // Màu chứa chính
+    onPrimaryContainer: AppColors.white1, // Màu chữ trên màu chứa chính
+    secondaryContainer: AppColors.green3, // Màu chứa phụ
+    onSecondaryContainer: AppColors.black1, // Màu chữ trên màu chứa phụ
+    onSurfaceVariant: AppColors.black1, // Màu chữ trên biến thể màu bề mặt
+    outline: AppColors.green2, // Màu viền
+    shadow: AppColors.black1, // Màu bóng
+    inverseSurface: AppColors.black1, // Màu bề mặt ngược
+    onInverseSurface: AppColors.green3, // Màu chữ trên bề mặt ngược
+    inversePrimary: AppColors.green2, // Màu chính ngược
   );
 }
