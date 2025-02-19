@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../../../routing/routes.dart';
 import '../view_models/home_viewmodel.dart';
 import '../../core/themes/theme.dart'; // Import tệp theme.dart
+import '../../core/themes/colors.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.viewModel});
@@ -288,7 +289,10 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
                   ),
                   backgroundColor:
                       Theme.of(context).primaryColor, // Màu nền của nút
-                  foregroundColor: Colors.white, // Màu chữ của nút
+                  foregroundColor:
+                      Theme.of(
+                        context,
+                      ).colorScheme.onPrimary, // Màu chữ của nút
                   textStyle: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w500,
