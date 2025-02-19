@@ -3,13 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:go_router/go_router.dart';
 
-import 'package:provider/provider.dart'; // Thư viện Provider
-
 import '../../../../routing/routes.dart';
-
-import '../../auth/logout/view_models/logout_viewmodel.dart'; // Import ViewModel cho chức năng đăng xuất
-
-import '../../auth/logout/widgets/logout_button.dart'; // Import nút đăng xuất
 
 import '../../core/themes/dimens.dart'; // Import các kích thước giao diện
 
@@ -46,29 +40,11 @@ class HomeHeader extends StatelessWidget {
             //App logo
             SvgPicture.asset(
               'assets/logo.svg', // Đường dẫn ảnh logo SVG
-              width: Dimens.of(context).profilePictureSize, // Chiều rộng logo
-              height: 40, // Chiều cao logo
+              height: Dimens.of(context).logoSize, // Chiều cao logo
             ),
             //Nút menu
             IconButton(
-              icon: Icon(
-                Icons.menu,
-                //size: Dimens.of(context).profilePictureSize,
-                size: 40,
-              ),
-              padding:
-                  EdgeInsets.zero, // Loại bỏ padding mặc định của IconButton
-              onPressed: () {
-                context.go(Routes.profile);
-              },
-            ),
-            //Nút menu
-            IconButton(
-              icon: Icon(
-                Icons.menu,
-                size: Dimens.of(context).profilePictureSize,
-                //size: 40,
-              ),
+              icon: Icon(Icons.menu, size: Dimens.of(context).menuButtonSize),
               padding:
                   EdgeInsets.zero, // Loại bỏ padding mặc định của IconButton
               onPressed: () {

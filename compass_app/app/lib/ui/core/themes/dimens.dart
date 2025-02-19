@@ -11,7 +11,7 @@ abstract final class Dimens {
   static const paddingHorizontal = 20.0;
 
   /// Khoảng cách dọc chung dùng để tách các mục UI
-  static const paddingVertical = 24.0;
+  static const paddingVertical = 12.0;
 
   /// Khoảng cách ngang cho các cạnh màn hình
   double get paddingScreenHorizontal;
@@ -20,6 +20,12 @@ abstract final class Dimens {
   double get paddingScreenVertical;
 
   double get profilePictureSize;
+
+  //Kích thước nút menu
+  double get menuButtonSize;
+
+  //Kích thước logo ứng dụng
+  double get logoSize;
 
   /// Khoảng cách ngang đối xứng cho các cạnh màn hình
   EdgeInsets get edgeInsetsScreenHorizontal =>
@@ -54,6 +60,12 @@ final class _DimensMobile extends Dimens {
   @override
   final double profilePictureSize = 64.0;
 
+  @override
+  final double menuButtonSize = 48.0;
+
+  @override
+  final double logoSize = 48.0;
+
   const _DimensMobile();
 }
 
@@ -67,6 +79,12 @@ final class _DimensDesktop extends Dimens {
 
   @override
   final double profilePictureSize = 128.0;
+
+  @override
+  final double menuButtonSize = 128.0;
+
+  @override
+  final double logoSize = 128.0;
 
   const _DimensDesktop();
 }
