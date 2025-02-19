@@ -263,7 +263,7 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
             );
           },
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             //menu item
             child: SizedBox(
               width: 300, // Thiết lập chiều rộng của nút
@@ -287,21 +287,31 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
                     horizontal: 16,
                     vertical: 16,
                   ),
-                  backgroundColor:
-                      Theme.of(context).primaryColor, // Màu nền của nút
-                  foregroundColor:
-                      Theme.of(
-                        context,
-                      ).colorScheme.onPrimary, // Màu chữ của nút
-                  textStyle: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w500,
-                  ),
+
+                  // backgroundColor:
+                  //     Theme.of(context).primaryColor, // Màu nền của nút
+                  // foregroundColor:
+                  //     Theme.of(
+                  //       context,
+                  //     ).colorScheme.onPrimary, // Màu chữ của nút
+                  textStyle: Theme.of(context).textTheme.titleSmall,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8), // Bo góc nút
+                    borderRadius: BorderRadius.circular(18), // Bo góc nút
                   ),
+                  elevation:
+                      0, // Loại bỏ bóng đổ để phù hợp với Material Design 3
                 ),
-                child: Text(_menuTitles[i]),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Icon(
+                      _getIconForMenuTitle(_menuTitles[i]),
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(_menuTitles[i]),
+                  ],
+                ),
               ),
             ),
           ),
@@ -309,5 +319,18 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
       );
     }
     return listItems;
+  }
+}
+
+IconData _getIconForMenuTitle(String title) {
+  switch (title) {
+    case 'Thông tin doanh nghiệp':
+      return Icons.business;
+    case 'Tài khoản':
+      return Icons.account_circle;
+    case 'Đăng xuất':
+      return Icons.logout;
+    default:
+      return Icons.help;
   }
 }
