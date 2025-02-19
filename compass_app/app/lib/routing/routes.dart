@@ -8,6 +8,8 @@ abstract final class Routes {
   static const register = '/register';
   // Tuyến đường cho trang profile
   static const profile = '/profile';
+  // Tuyến đường cho trang sửa profile
+  static const editprofile = '/editprofile';
   // Tuyến đường cho trang tìm kiếm, sử dụng hằng số searchRelative
   static const search = '/$searchRelative';
   // Hằng số tương đối cho tìm kiếm

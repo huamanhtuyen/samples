@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import '../../../routing/routes.dart';
 import '../view_models/home_viewmodel.dart';
+import '../../core/themes/theme.dart'; // Import tệp theme.dart
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.viewModel});
@@ -55,18 +58,24 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: _buildAppBar(), // Xây dựng AppBar
+      backgroundColor:
+          Theme.of(
+            context,
+          ).scaffoldBackgroundColor, // Use theme background color
+      appBar: _buildAppBar(context), // Pass context to _buildAppBar
       body: Stack(
         children: [_buildContent(), _buildDrawer()],
       ), // Xây dựng nội dung và drawer
     );
   }
 
-  PreferredSizeWidget _buildAppBar() {
+  PreferredSizeWidget _buildAppBar(BuildContext context) {
     return AppBar(
       title: const Text('LogiW', style: TextStyle(color: Colors.black)),
-      backgroundColor: Colors.transparent,
+      backgroundColor:
+          Theme.of(
+            context,
+          ).appBarTheme.backgroundColor, // Use theme app bar color
       elevation: 0.0,
       automaticallyImplyLeading: false,
       actions: [
@@ -125,11 +134,9 @@ class Menu extends StatefulWidget {
 
 class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
   static const _menuTitles = [
-    'Declarative style',
-    'Premade widgets',
-    'Stateful hot reload',
-    'Native performance',
-    'Great community',
+    'Thông tin doanh nghiệp',
+    'Tài khoản',
+    'Đăng xuất',
   ]; // Danh sách tiêu đề menu
 
   static const _initialDelayTime = Duration(
@@ -189,6 +196,7 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
       buttonStartTime.inMilliseconds / _animationDuration.inMilliseconds,
       buttonEndTime.inMilliseconds / _animationDuration.inMilliseconds,
     );
+    if (_buttonInterval.end > 1.0) {}
   }
 
   @override
@@ -228,7 +236,6 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
         const SizedBox(height: 16),
         ..._buildListItems(), // Xây dựng các mục trong danh sách
         const Spacer(),
-        //_buildGetStartedButton(), // Xây dựng nút "Get started"
       ],
     );
   }
@@ -256,15 +263,41 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
           },
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
+            //menu item
             child: SizedBox(
-              width: 200, // Đặt chiều rộng cố định cho các mục menu
-              child: Text(
-                _menuTitles[i],
-                textAlign: TextAlign.left,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
+              width: 300, // Thiết lập chiều rộng của nút
+              child: ElevatedButton(
+                onPressed: () {
+                  // Điều hướng tới các trang tương ứng
+                  switch (_menuTitles[i]) {
+                    case 'Thông tin doanh nghiệp':
+                      context.go(Routes.editprofile);
+                      break;
+                    case 'Tài khoản':
+                      context.go(Routes.profile);
+                      break;
+                    case 'Đăng xuất':
+                      context.go('/logout');
+                      break;
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 16,
+                  ),
+                  backgroundColor:
+                      Theme.of(context).primaryColor, // Màu nền của nút
+                  foregroundColor: Colors.white, // Màu chữ của nút
+                  textStyle: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8), // Bo góc nút
+                  ),
                 ),
+                child: Text(_menuTitles[i]),
               ),
             ),
           ),

@@ -4,7 +4,7 @@ import 'package:compass_app/ui/activities/widgets/activities_screen.dart';
 import 'package:compass_app/ui/booking/widgets/booking_screen.dart';
 import 'package:compass_app/ui/core/ui/custom_checkbox.dart';
 import 'package:compass_app/ui/core/ui/home_button.dart';
-import 'package:compass_app/ui/home/widgets/home_screen.dart1';
+import 'package:compass_app/ui/home/widgets/home_screen.dart';
 import 'package:compass_app/ui/results/widgets/result_card.dart';
 import 'package:compass_app/ui/results/widgets/results_screen.dart';
 import 'package:compass_app/ui/search_form/widgets/search_form_guests.dart';
