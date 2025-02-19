@@ -88,13 +88,13 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
               onPressed: _toggleDrawer,
               icon:
                   _isDrawerOpen() || _isDrawerOpening()
-                      ? const Icon(
+                      ? Icon(
                         Icons.clear,
                         color: Colors.black,
                       ) // Icon khi drawer mở
-                      : const Icon(
+                      : Icon(
                         Icons.menu,
-                        color: Colors.black,
+                        color: Theme.of(context).colorScheme.primary,
                       ), // Icon khi drawer đóng
             );
           },
