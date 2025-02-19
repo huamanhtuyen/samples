@@ -37,7 +37,7 @@ void main() async {
     }
   });
 
-  debugPaintSizeEnabled = true;
+  //debugPaintSizeEnabled = true;
 
   runApp(MultiProvider(providers: providersRemote, child: const MainApp()));
   // Chạy ứng dụng với MultiProvider, sử dụng providersRemote và MainApp

@@ -12,7 +12,8 @@ class HomeScreen extends StatefulWidget {
 
 class _ExampleStaggeredAnimationsState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
-  late AnimationController _drawerSlideController;
+  late AnimationController
+  _drawerSlideController; // Điều khiển hoạt ảnh cho drawer
 
   @override
   void initState() {
@@ -20,33 +21,34 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
 
     _drawerSlideController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 150),
+      duration: const Duration(milliseconds: 150), // Thời gian hoạt ảnh
     );
   }
 
   @override
   void dispose() {
-    _drawerSlideController.dispose();
+    _drawerSlideController.dispose(); // Giải phóng tài nguyên
     super.dispose();
   }
 
   bool _isDrawerOpen() {
-    return _drawerSlideController.value == 1.0;
+    return _drawerSlideController.value == 1.0; // Kiểm tra drawer có mở không
   }
 
   bool _isDrawerOpening() {
-    return _drawerSlideController.status == AnimationStatus.forward;
+    return _drawerSlideController.status ==
+        AnimationStatus.forward; // Kiểm tra drawer đang mở
   }
 
   bool _isDrawerClosed() {
-    return _drawerSlideController.value == 0.0;
+    return _drawerSlideController.value == 0.0; // Kiểm tra drawer có đóng không
   }
 
   void _toggleDrawer() {
     if (_isDrawerOpen() || _isDrawerOpening()) {
-      _drawerSlideController.reverse();
+      _drawerSlideController.reverse(); // Đóng drawer
     } else {
-      _drawerSlideController.forward();
+      _drawerSlideController.forward(); // Mở drawer
     }
   }
 
@@ -54,14 +56,16 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: _buildAppBar(),
-      body: Stack(children: [_buildContent(), _buildDrawer()]),
+      appBar: _buildAppBar(), // Xây dựng AppBar
+      body: Stack(
+        children: [_buildContent(), _buildDrawer()],
+      ), // Xây dựng nội dung và drawer
     );
   }
 
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
-      title: const Text('Flutter Menu', style: TextStyle(color: Colors.black)),
+      title: const Text('LogiW', style: TextStyle(color: Colors.black)),
       backgroundColor: Colors.transparent,
       elevation: 0.0,
       automaticallyImplyLeading: false,
@@ -73,8 +77,14 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
               onPressed: _toggleDrawer,
               icon:
                   _isDrawerOpen() || _isDrawerOpening()
-                      ? const Icon(Icons.clear, color: Colors.black)
-                      : const Icon(Icons.menu, color: Colors.black),
+                      ? const Icon(
+                        Icons.clear,
+                        color: Colors.black,
+                      ) // Icon khi drawer mở
+                      : const Icon(
+                        Icons.menu,
+                        color: Colors.black,
+                      ), // Icon khi drawer đóng
             );
           },
         ),
@@ -83,7 +93,7 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
   }
 
   Widget _buildContent() {
-    // Put page content here.
+    // Đặt nội dung trang ở đây.
     return const SizedBox();
   }
 
@@ -92,8 +102,14 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
       animation: _drawerSlideController,
       builder: (context, child) {
         return FractionalTranslation(
-          translation: Offset(1.0 - _drawerSlideController.value, 0.0),
-          child: _isDrawerClosed() ? const SizedBox() : const Menu(),
+          translation: Offset(
+            1.0 - _drawerSlideController.value,
+            0.0,
+          ), // Dịch chuyển drawer
+          child:
+              _isDrawerClosed()
+                  ? const SizedBox()
+                  : const Menu(), // Hiển thị drawer khi mở
         );
       },
     );
@@ -114,33 +130,44 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
     'Stateful hot reload',
     'Native performance',
     'Great community',
-  ];
+  ]; // Danh sách tiêu đề menu
 
-  static const _initialDelayTime = Duration(milliseconds: 50);
-  static const _itemSlideTime = Duration(milliseconds: 250);
-  static const _staggerTime = Duration(milliseconds: 50);
-  static const _buttonDelayTime = Duration(milliseconds: 150);
-  static const _buttonTime = Duration(milliseconds: 500);
+  static const _initialDelayTime = Duration(
+    milliseconds: 50,
+  ); // Thời gian trễ ban đầu
+  static const _itemSlideTime = Duration(
+    milliseconds: 250,
+  ); // Thời gian trượt của mỗi mục
+  static const _staggerTime = Duration(
+    milliseconds: 50,
+  ); // Thời gian trễ giữa các mục
+  static const _buttonDelayTime = Duration(
+    milliseconds: 150,
+  ); // Thời gian trễ của nút
+  static const _buttonTime = Duration(
+    milliseconds: 500,
+  ); // Thời gian hoạt ảnh của nút
   final _animationDuration =
       _initialDelayTime +
       (_staggerTime * _menuTitles.length) +
       _buttonDelayTime +
-      _buttonTime;
+      _buttonTime; // Tổng thời gian hoạt ảnh
 
-  late AnimationController _staggeredController;
-  final List<Interval> _itemSlideIntervals = [];
-  late Interval _buttonInterval;
+  late AnimationController _staggeredController; // Điều khiển hoạt ảnh
+  final List<Interval> _itemSlideIntervals =
+      []; // Danh sách khoảng thời gian hoạt ảnh cho các mục
+  late Interval _buttonInterval; // Khoảng thời gian hoạt ảnh cho nút
 
   @override
   void initState() {
     super.initState();
 
-    _createAnimationIntervals();
+    _createAnimationIntervals(); // Tạo các khoảng thời gian hoạt ảnh
 
     _staggeredController = AnimationController(
       vsync: this,
       duration: _animationDuration,
-    )..forward();
+    )..forward(); // Bắt đầu hoạt ảnh
   }
 
   void _createAnimationIntervals() {
@@ -166,7 +193,7 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
 
   @override
   void dispose() {
-    _staggeredController.dispose();
+    _staggeredController.dispose(); // Giải phóng tài nguyên
     super.dispose();
   }
 
@@ -176,7 +203,10 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
       color: Colors.white,
       child: Stack(
         fit: StackFit.expand,
-        children: [_buildFlutterLogo(), _buildContent()],
+        children: [
+          _buildFlutterLogo(),
+          _buildContent(),
+        ], // Xây dựng logo và nội dung
       ),
     );
   }
@@ -184,19 +214,21 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
   Widget _buildFlutterLogo() {
     return const Positioned(
       right: -100,
-      bottom: -30,
-      child: Opacity(opacity: 0.2, child: FlutterLogo(size: 400)),
+      child: Opacity(
+        opacity: 0.2,
+        child: FlutterLogo(size: 400),
+      ), // Logo Flutter
     );
   }
 
   Widget _buildContent() {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         const SizedBox(height: 16),
-        ..._buildListItems(),
+        ..._buildListItems(), // Xây dựng các mục trong danh sách
         const Spacer(),
-        _buildGetStartedButton(),
+        //_buildGetStartedButton(), // Xây dựng nút "Get started"
       ],
     );
   }
@@ -224,51 +256,21 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
           },
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
-            child: Text(
-              _menuTitles[i],
-              textAlign: TextAlign.left,
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+            child: SizedBox(
+              width: 200, // Đặt chiều rộng cố định cho các mục menu
+              child: Text(
+                _menuTitles[i],
+                textAlign: TextAlign.left,
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ),
           ),
         ),
       );
     }
     return listItems;
-  }
-
-  Widget _buildGetStartedButton() {
-    return SizedBox(
-      width: double.infinity,
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: AnimatedBuilder(
-          animation: _staggeredController,
-          builder: (context, child) {
-            final animationPercent = Curves.elasticOut.transform(
-              _buttonInterval.transform(_staggeredController.value),
-            );
-            final opacity = animationPercent.clamp(0.0, 1.0);
-            final scale = (animationPercent * 0.5) + 0.5;
-
-            return Opacity(
-              opacity: opacity,
-              child: Transform.scale(scale: scale, child: child),
-            );
-          },
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              shape: const StadiumBorder(),
-              backgroundColor: Colors.blue,
-              padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 14),
-            ),
-            onPressed: () {},
-            child: const Text(
-              'Get started',
-              style: TextStyle(color: Colors.white, fontSize: 22),
-            ),
-          ),
-        ),
-      ),
-    );
   }
 }
