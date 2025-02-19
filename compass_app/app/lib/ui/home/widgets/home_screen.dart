@@ -111,33 +111,40 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
       };
     });
 
-    return ListView.builder(
-      padding: const EdgeInsets.all(16.0),
-      itemCount: cacChucNang.length,
-      itemBuilder: (context, index) {
-        final function = cacChucNang[index];
-        return Card(
-          margin: const EdgeInsets.symmetric(vertical: 8.0),
-          child: ListTile(
-            leading: Icon(
-              Icons.apps,
-              color: Theme.of(context).colorScheme.primary,
+    return Container(
+      color: Colors.white, // Đặt màu nền cho Container
+      child: ListView.builder(
+        padding: const EdgeInsets.all(16.0),
+        itemCount: cacChucNang.length,
+        itemBuilder: (context, index) {
+          final chucNang = cacChucNang[index];
+          return Card(
+            margin: const EdgeInsets.symmetric(vertical: 8.0),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12.0),
             ),
-            title: Text(
-              function['title']!,
-              style: Theme.of(context).textTheme.titleMedium,
+            elevation: 1,
+            child: ListTile(
+              leading: Icon(
+                Icons.apps,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              title: Text(
+                chucNang['title']!,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              subtitle: Text(
+                chucNang['description']!,
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+              onTap: () {
+                // Điều hướng tới các trang tương ứng
+                context.go('/function${index}');
+              },
             ),
-            subtitle: Text(
-              function['description']!,
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
-            onTap: () {
-              // Điều hướng tới các trang tương ứng
-              context.go('/function${index}');
-            },
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 
