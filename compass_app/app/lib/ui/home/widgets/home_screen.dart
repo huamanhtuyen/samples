@@ -1,9 +1,10 @@
+// ignore_for_file: directives_ordering
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../routing/routes.dart';
 import '../view_models/home_viewmodel.dart';
-import '../../core/themes/theme.dart'; // Import tệp theme.dart
-import '../../core/themes/colors.dart';
+// import '../../core/themes/theme.dart'; // Import tệp theme.dart
+// import '../../core/themes/colors.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.viewModel});
@@ -103,8 +104,41 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
   }
 
   Widget _buildContent() {
-    // Đặt nội dung trang ở đây.
-    return const SizedBox();
+    final cacChucNang = List.generate(20, (index) {
+      return {
+        'title': 'Chức năng $index',
+        'description': 'Mô tả chức năng $index',
+      };
+    });
+
+    return ListView.builder(
+      padding: const EdgeInsets.all(16.0),
+      itemCount: cacChucNang.length,
+      itemBuilder: (context, index) {
+        final function = cacChucNang[index];
+        return Card(
+          margin: const EdgeInsets.symmetric(vertical: 8.0),
+          child: ListTile(
+            leading: Icon(
+              Icons.apps,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            title: Text(
+              function['title']!,
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            subtitle: Text(
+              function['description']!,
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
+            onTap: () {
+              // Điều hướng tới các trang tương ứng
+              context.go('/function${index}');
+            },
+          ),
+        );
+      },
+    );
   }
 
   Widget _buildDrawer() {
