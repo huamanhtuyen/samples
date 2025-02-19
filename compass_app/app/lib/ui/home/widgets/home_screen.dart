@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../routing/routes.dart';
 import '../view_models/home_viewmodel.dart';
-// import '../../core/themes/theme.dart'; // Import tệp theme.dart
-// import '../../core/themes/colors.dart';
+import '../../widgets/language_button.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.viewModel});
@@ -81,7 +80,9 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
       elevation: 0.0,
       automaticallyImplyLeading: false,
       actions: [
-        //nút thông báo
+        // Nút ngôn ngữ
+        const LanguageButton(),
+        // Nút thông báo
         IconButton(
           onPressed: () {
             context.go('/notifications'); // Điều hướng tới trang thông báo
