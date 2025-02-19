@@ -2,14 +2,14 @@
 // Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD có trong tệp LICENSE.
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+//import 'package:go_router/go_router.dart';
 
-import '../../../domain/models/booking/booking_summary.dart';
-import '../../../routing/routes.dart';
+//import '../../../domain/models/booking/booking_summary.dart';
+//import '../../../routing/routes.dart';
 import '../../core/localization/applocalization.dart';
-import '../../core/themes/colors.dart';
-import '../../core/themes/dimens.dart';
-import '../../core/ui/date_format_start_end.dart';
+//import '../../core/themes/colors.dart';
+//import '../../core/themes/dimens.dart';
+//import '../../core/ui/date_format_start_end.dart';
 import '../../core/ui/error_indicator.dart';
 import '../view_models/home_viewmodel.dart';
 import 'home_title.dart';
@@ -57,14 +57,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
-        // Giải pháp tạm thời cho vấn đề https://github.com/flutter/flutter/issues/115358#issuecomment-2117157419
-        heroTag: null,
-        key: const ValueKey(bookingButtonKey),
-        onPressed: () => context.go(Routes.search), // Chuyển đến trang tìm kiếm
-        label: Text(AppLocalization.of(context).bookNewTrip), // Nhãn nút
-        icon: const Icon(Icons.add_location_outlined), // Biểu tượng nút
-      ),
       body: SafeArea(
         top: true,
         bottom: true,
@@ -134,25 +126,25 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _onResult() {
     if (widget.viewModel.deleteBooking.completed) {
-      widget.viewModel.deleteBooking
-          .clearResult(); // Xóa kết quả sau khi hoàn thành
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(AppLocalization.of(context).bookingDeleted),
-        ), // Hiển thị thông báo đặt chỗ đã xóa
-      );
+      // widget.viewModel.deleteBooking
+      //     .clearResult(); // Xóa kết quả sau khi hoàn thành
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(
+      //     content: Text(AppLocalization.of(context).bookingDeleted),
+      //   ), // Hiển thị thông báo đặt chỗ đã xóa
+      // );
     }
 
     if (widget.viewModel.deleteBooking.error) {
-      widget.viewModel.deleteBooking
-          .clearResult(); // Xóa kết quả sau khi có lỗi
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            AppLocalization.of(context).errorWhileDeletingBooking,
-          ), // Hiển thị thông báo lỗi khi xóa đặt chỗ
-        ),
-      );
+      // widget.viewModel.deleteBooking
+      //     .clearResult(); // Xóa kết quả sau khi có lỗi
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(
+      //     content: Text(
+      //       AppLocalization.of(context).errorWhileDeletingBooking,
+      //     ), // Hiển thị thông báo lỗi khi xóa đặt chỗ
+      //   ),
+      // );
     }
   }
 }
