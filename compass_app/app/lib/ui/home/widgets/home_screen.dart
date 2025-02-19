@@ -112,39 +112,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       ), // Hiển thị tiêu đề trang chủ
                     ),
                   ),
-                  SliverList.builder(
-                    itemCount:
-                        widget.viewModel.bookings.length, // Số lượng đặt chỗ
-                    itemBuilder:
-                        (_, index) => _Booking(
-                          key: ValueKey(
-                            widget.viewModel.bookings[index].id,
-                          ), // Khóa cho mỗi đặt chỗ
-                          booking:
-                              widget
-                                  .viewModel
-                                  .bookings[index], // Thông tin đặt chỗ
-                          onTap:
-                              () => context.push(
-                                Routes.bookingWithId(
-                                  widget.viewModel.bookings[index].id,
-                                ),
-                              ), // Chuyển đến trang chi tiết đặt chỗ khi nhấn
-                          confirmDismiss: (_) async {
-                            // Chờ lệnh hoàn thành
-                            await widget.viewModel.deleteBooking.execute(
-                              widget.viewModel.bookings[index].id,
-                            );
-                            // Nếu lệnh hoàn thành thành công, trả về true
-                            if (widget.viewModel.deleteBooking.completed) {
-                              // Xóa mục khỏi danh sách
-                              return true;
-                            } else {
-                              // Giữ mục trong danh sách
-                              return false;
-                            }
-                          },
-                        ),
+                  SliverToBoxAdapter(
+                    child: Column(
+                      children: [
+                        // Add your list of links or other widgets here
+                        Text('Link 1'),
+                        Text('Link 2'),
+                        Text('Link 3'),
+                        // ...more links or widgets...
+                      ],
+                    ),
                   ),
                 ],
               );
@@ -177,66 +154,5 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
     }
-  }
-}
-
-class _Booking extends StatelessWidget {
-  const _Booking({
-    super.key,
-    required this.booking,
-    required this.onTap,
-    required this.confirmDismiss,
-  });
-
-  final BookingSummary booking; // Thông tin đặt chỗ
-  final GestureTapCallback onTap; // Hành động khi nhấn
-  final ConfirmDismissCallback confirmDismiss; // Hành động khi xác nhận xóa
-
-  @override
-  Widget build(BuildContext context) {
-    return Dismissible(
-      key: ValueKey(booking.id), // Khóa cho mỗi đặt chỗ
-      direction: DismissDirection.endToStart, // Hướng xóa từ phải sang trái
-      confirmDismiss: confirmDismiss, // Xác nhận xóa
-      background: Container(
-        color: AppColors.grey1, // Màu nền khi xóa
-        child: const Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(right: Dimens.paddingHorizontal),
-              child: Icon(Icons.delete), // Biểu tượng xóa
-            ),
-          ],
-        ),
-      ),
-      child: InkWell(
-        onTap: onTap, // Hành động khi nhấn
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: Dimens.of(context).paddingScreenHorizontal,
-            vertical: Dimens.paddingVertical,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                booking.name,
-                style: Theme.of(context).textTheme.titleLarge,
-              ), // Tên đặt chỗ
-              Text(
-                dateFormatStartEnd(
-                  DateTimeRange(start: booking.startDate, end: booking.endDate),
-                ),
-                style:
-                    Theme.of(
-                      context,
-                    ).textTheme.bodyLarge, // Ngày bắt đầu và kết thúc
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
   }
 }
