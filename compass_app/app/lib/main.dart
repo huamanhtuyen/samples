@@ -1,5 +1,4 @@
-// Bản quyền 2024 của nhóm Flutter. Tất cả các quyền được bảo lưu.
-// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD có trong tệp LICENSE.
+// ignore_for_file: directives_ordering
 
 import 'package:flutter/material.dart'; // Thư viện Flutter Material
 import 'package:flutter_localizations/flutter_localizations.dart'; // Thư viện hỗ trợ đa ngôn ngữ

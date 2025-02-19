@@ -1,6 +1,4 @@
-// Bản quyền 2024 của nhóm Flutter. Tất cả các quyền được bảo lưu.
-// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD có thể
-// được tìm thấy trong tệp LICENSE.
+// ignore_for_file: directives_ordering
 
 import 'package:flutter/material.dart'; // Nhập gói Flutter Material
 import 'package:logging/logging.dart'; // Nhập gói logging
@@ -8,13 +6,14 @@ import 'package:provider/provider.dart'; // Nhập gói provider
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'config/dependencies.dart'; // Nhập tệp dependencies
 import 'main.dart'; // Nhập tệp main
+import 'package:flutter/rendering.dart';
 
 /// Điểm vào cấu hình staging.
 /// Khởi chạy với `flutter run --target lib/main_staging.dart`.
 /// Sử dụng dữ liệu từ xa từ máy chủ.
 void main() async {
   Logger.root.level = Level.ALL; // Đặt mức độ ghi log là ALL
-
+  final log = Logger('MainApplication'); // Biến lưu trữ đối tượng Logger
   //Khởi tạo kết nối đến supabase
   await Supabase.initialize(
     url: 'https://hxetbhwcaqjfmfpnaiiq.supabase.co',
@@ -29,13 +28,16 @@ void main() async {
     final session = data.session;
 
     if (session != null) {
-      print('Token mới: ${session.accessToken}');
+      log.info('Cập nhật trạng thái đăng nhập: ${session.user.email}');
+      log.info('Token mới: ${session.accessToken}');
     }
 
     if (event == AuthChangeEvent.signedOut) {
-      print('Người dùng đã đăng xuất');
+      log.info('Người dùng đã đăng xuất');
     }
   });
+
+  debugPaintSizeEnabled = true;
 
   runApp(MultiProvider(providers: providersRemote, child: const MainApp()));
   // Chạy ứng dụng với MultiProvider, sử dụng providersRemote và MainApp

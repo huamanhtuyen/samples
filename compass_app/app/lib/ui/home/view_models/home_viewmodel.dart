@@ -1,6 +1,4 @@
-// Bản quyền 2024 Nhóm Flutter. Đã đăng ký bản quyền.
-// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD có thể được
-// tìm thấy trong tệp LICENSE.
+// ignore_for_file: directives_ordering
 
 import 'dart:async';
 

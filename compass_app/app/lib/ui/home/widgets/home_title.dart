@@ -1,13 +1,7 @@
-// Bản quyền 2024 của nhóm Flutter. Bảo lưu mọi quyền.
-// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD có thể
-// tìm thấy trong tệp LICENSE.
-
 import 'package:flutter/material.dart'; // Thư viện Flutter Material
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:go_router/go_router.dart';
-
-import 'package:google_fonts/google_fonts.dart'; // Thư viện Google Fonts
 
 import 'package:provider/provider.dart'; // Thư viện Provider
 
@@ -16,8 +10,6 @@ import '../../../../routing/routes.dart';
 import '../../auth/logout/view_models/logout_viewmodel.dart'; // Import ViewModel cho chức năng đăng xuất
 
 import '../../auth/logout/widgets/logout_button.dart'; // Import nút đăng xuất
-
-import '../../core/localization/applocalization.dart'; // Import localization
 
 import '../../core/themes/dimens.dart'; // Import các kích thước giao diện
 
@@ -34,12 +26,6 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Phương thức build để xây dựng giao diện
-    final user = viewModel.user; // Lấy thông tin người dùng từ viewModel
-    if (user == null) {
-      // Nếu người dùng không tồn tại
-      return const SizedBox(); // Trả về một SizedBox rỗng
-    }
     return Column(
       // Trả về một cột chứa các widget con
       crossAxisAlignment:
@@ -48,22 +34,25 @@ class HomeHeader extends StatelessWidget {
       children: [
         Row(
           // Hàng chứa ảnh đại diện và nút đăng xuất
+          //MainAxis là chiều dài của row
           mainAxisAlignment:
               MainAxisAlignment
                   .spaceBetween, // Căn chỉnh các widget con cách đều nhau
+          //CrossAxis là chiều ngắn của row
           crossAxisAlignment:
               CrossAxisAlignment
-                  .start, // Căn chỉnh các widget con theo chiều dọc
+                  .start, // Căn chỉnh các widget con theo chiều dọc của màn hình
           children: [
+            //App logo
             SvgPicture.asset(
               'assets/logo.svg', // Đường dẫn ảnh logo SVG
               width: Dimens.of(context).profilePictureSize, // Chiều rộng logo
               height: 40, // Chiều cao logo
             ),
-            SizedBox(width: 1), // Khoảng cách giữa ảnh đại diện và logo
+            //Nút menu
             IconButton(
               icon: Icon(
-                Icons.account_circle,
+                Icons.menu,
                 //size: Dimens.of(context).profilePictureSize,
                 size: 40,
               ),
@@ -73,64 +62,26 @@ class HomeHeader extends StatelessWidget {
                 context.go(Routes.profile);
               },
             ),
-
-            // LogoutButton(
-            //   // Nút đăng xuất
-            //   viewModel: LogoutViewModel(
-            //     // Khởi tạo LogoutViewModel
-            //     authRepository: context.read(), // Lấy authRepository từ context
-            //     itineraryConfigRepository:
-            //         context.read(), // Lấy itineraryConfigRepository từ context
-            //   ),
-            // ),
+            //Nút menu
+            IconButton(
+              icon: Icon(
+                Icons.menu,
+                size: Dimens.of(context).profilePictureSize,
+                //size: 40,
+              ),
+              padding:
+                  EdgeInsets.zero, // Loại bỏ padding mặc định của IconButton
+              onPressed: () {
+                context.go(Routes.profile);
+              },
+            ),
           ],
         ),
+        //padding khoảng cách với header
         const SizedBox(
           height: Dimens.paddingVertical,
         ), // Khoảng cách giữa các widget
-        _Title(
-          text: AppLocalization.of(context).nameTrips(user.name),
-        ), // Tiêu đề chứa tên người dùng
       ],
-    );
-  }
-}
-
-class _Title extends StatelessWidget {
-  // Định nghĩa một StatelessWidget tên là _Title
-  const _Title({required this.text}); // Constructor với tham số text
-
-  final String text; // Khai báo biến text kiểu String
-
-  @override
-  Widget build(BuildContext context) {
-    // Phương thức build để xây dựng giao diện
-    return ShaderMask(
-      // Widget để áp dụng hiệu ứng shader
-      blendMode: BlendMode.srcIn, // Chế độ hòa trộn
-      shaderCallback:
-          (bounds) => RadialGradient(
-            // Tạo hiệu ứng gradient
-            center: Alignment.bottomLeft, // Tâm của gradient
-            radius: 2, // Bán kính của gradient
-            colors: [
-              Colors.purple.shade700,
-              Colors.purple.shade400,
-            ], // Màu sắc của gradient
-          ).createShader(
-            Rect.fromLTWH(0, 0, bounds.width, bounds.height),
-          ), // Tạo shader từ gradient
-      child: Text(
-        // Hiển thị văn bản
-        text,
-        style: GoogleFonts.rubik(
-          // Áp dụng font Rubik từ Google Fonts
-          textStyle:
-              Theme.of(
-                context,
-              ).textTheme.headlineLarge, // Áp dụng kiểu chữ từ theme
-        ),
-      ),
     );
   }
 }
