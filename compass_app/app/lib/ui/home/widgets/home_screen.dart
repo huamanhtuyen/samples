@@ -81,6 +81,17 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
       elevation: 0.0,
       automaticallyImplyLeading: false,
       actions: [
+        //nút thông báo
+        IconButton(
+          onPressed: () {
+            context.go('/notifications'); // Điều hướng tới trang thông báo
+          },
+          icon: Icon(
+            Icons.notifications,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+        ),
+        //nút menu
         AnimatedBuilder(
           animation: _drawerSlideController,
           builder: (context, child) {
