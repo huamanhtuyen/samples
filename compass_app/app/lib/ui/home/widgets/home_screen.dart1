@@ -1,0 +1,179 @@
+// ignore_for_file: directives_ordering
+import 'package:flutter/material.dart';
+//import 'package:go_router/go_router.dart';
+
+//import '../../../domain/models/booking/booking_summary.dart';
+//import '../../../routing/routes.dart';
+import '../../core/localization/applocalization.dart';
+//import '../../core/themes/colors.dart';
+//import '../../core/themes/dimens.dart';
+//import '../../core/ui/date_format_start_end.dart';
+import '../../core/ui/error_indicator.dart';
+import '../view_models/home_viewmodel.dart1';
+import 'home_title.dart';
+import 'app_menu.dart';
+
+const String bookingButtonKey = 'booking-button'; // Khóa cho nút đặt chỗ
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({
+    super.key,
+    required this.viewModel,
+  }); // Constructor với tham số viewModel
+
+  final HomeViewModel viewModel; // Biến viewModel
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState(); // Tạo state cho HomeScreen
+}
+
+class _HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _menuController;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.viewModel.setMenuController(this);
+    widget.viewModel.deleteBooking.addListener(_onResult);
+    _menuController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 150),
+    );
+  }
+
+  @override
+  void didUpdateWidget(covariant HomeScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    oldWidget.viewModel.deleteBooking.removeListener(
+      _onResult,
+    ); // Xóa listener cũ
+    widget.viewModel.deleteBooking.addListener(_onResult); // Thêm listener mới
+  }
+
+  @override
+  void dispose() {
+    widget.viewModel.deleteBooking.removeListener(_onResult);
+    widget.viewModel.menuController.dispose();
+    super.dispose();
+  }
+
+  bool _isMenuOpen() {
+    return _menuController.value == 1.0;
+  }
+
+  bool _isMenuOpening() {
+    return _menuController.status == AnimationStatus.forward;
+  }
+
+  bool _isMenuClosed() {
+    return _menuController.value == 0.0;
+  }
+
+  void _toggleMenu() {
+    if (_isMenuOpen() || _isMenuOpening()) {
+      _menuController.reverse();
+    } else {
+      _menuController.forward();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        top: true,
+        bottom: true,
+        child: Stack(
+          children: [
+            ListenableBuilder(
+              listenable: widget.viewModel.load,
+              builder: (context, child) {
+                if (widget.viewModel.load.running) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+
+                if (widget.viewModel.load.error) {
+                  return ErrorIndicator(
+                    title: AppLocalization.of(context).errorWhileLoadingHome,
+                    label: AppLocalization.of(context).tryAgain,
+                    onPressed: widget.viewModel.load.execute,
+                  );
+                }
+
+                return child!;
+              },
+              child: ListenableBuilder(
+                listenable: widget.viewModel,
+                builder: (context, _) {
+                  return CustomScrollView(
+                    slivers: [
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 0,
+                            horizontal: 0,
+                          ),
+                          child: HomeHeader(
+                            viewModel: widget.viewModel,
+                            toggleMenu: _toggleMenu,
+                          ),
+                        ),
+                      ),
+                      SliverToBoxAdapter(
+                        child: Column(
+                          children: [
+                            Text('Link 1'),
+                            Text('Link 2'),
+                            Text('Link 3'),
+                          ],
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+            AnimatedBuilder(
+              animation: _menuController,
+              builder: (context, child) {
+                return Positioned.fill(
+                  top:
+                      100, // Adjust this value to match the height of HomeHeader
+                  child: FractionalTranslation(
+                    translation: Offset(0.0, 1.0 - _menuController.value),
+                    child: _isMenuClosed() ? const SizedBox() : const Menu(),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _onResult() {
+    if (widget.viewModel.deleteBooking.completed) {
+      // widget.viewModel.deleteBooking
+      //     .clearResult(); // Xóa kết quả sau khi hoàn thành
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(
+      //     content: Text(AppLocalization.of(context).bookingDeleted),
+      //   ), // Hiển thị thông báo đặt chỗ đã xóa
+      // );
+    }
+
+    if (widget.viewModel.deleteBooking.error) {
+      // widget.viewModel.deleteBooking
+      //     .clearResult(); // Xóa kết quả sau khi có lỗi
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(
+      //     content: Text(
+      //       AppLocalization.of(context).errorWhileDeletingBooking,
+      //     ), // Hiển thị thông báo lỗi khi xóa đặt chỗ
+      //   ),
+      // );
+    }
+  }
+}

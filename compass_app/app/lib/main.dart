@@ -36,6 +36,7 @@ class MainApp extends StatelessWidget {
       darkTheme: AppTheme.darkTheme, // Định nghĩa theme tối
       themeMode: ThemeMode.light, // Định nghĩa chế độ theme theo hệ thống
       routerConfig: router(context.read()), // Định nghĩa cấu hình router
+      debugShowCheckedModeBanner: false, // Ẩn banner debug
     );
   }
 }
