@@ -2,11 +2,11 @@
 // Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD có thể được
 // tìm thấy trong tệp LICENSE.
 
-import 'package:cached_network_image/cached_network_image.dart'; // Thư viện để tải và lưu trữ hình ảnh từ mạng
+//import 'package:cached_network_image/cached_network_image.dart'; // Thư viện để tải và lưu trữ hình ảnh từ mạng
 import 'package:flutter/material.dart'; // Thư viện chính của Flutter
 import 'package:flutter_svg/svg.dart'; // Thư viện để hiển thị hình ảnh SVG
 
-import '../../../../utils/image_error_listener.dart'; // Import hàm xử lý lỗi hình ảnh
+//import '../../../../utils/image_error_listener.dart'; // Import hàm xử lý lỗi hình ảnh
 
 class TiltedCards extends StatelessWidget {
   // Định nghĩa một widget không thay đổi
@@ -32,8 +32,7 @@ class TiltedCards extends StatelessWidget {
               left: 0, // Căn trái
               child: _Card(
                 // Widget con là _Card
-                imageUrl:
-                    'https://rstr.in/google/tripedia/g2i0BsYPKW-', // URL hình ảnh
+                imageUrl: 'assets/anh2.jpg', // Local asset image
                 width: 200, // Chiều rộng của thẻ
                 height: 273, // Chiều cao của thẻ
                 tilt: -3.83 / 360, // Góc nghiêng của thẻ
@@ -44,8 +43,7 @@ class TiltedCards extends StatelessWidget {
               right: 0, // Căn phải
               child: _Card(
                 // Widget con là _Card
-                imageUrl:
-                    'https://rstr.in/google/tripedia/980sqNgaDRK', // URL hình ảnh
+                imageUrl: 'assets/anh3.jpg', // Local asset image
                 width: 180, // Chiều rộng của thẻ
                 height: 230, // Chiều cao của thẻ
                 tilt: 3.46 / 360, // Góc nghiêng của thẻ
@@ -53,8 +51,7 @@ class TiltedCards extends StatelessWidget {
             ),
             _Card(
               // Widget con là _Card
-              imageUrl:
-                  'https://rstr.in/google/tripedia/pHfPmf3o5NU', // URL hình ảnh
+              imageUrl: 'assets/anh1.jpg', // Local asset image
               width: 225, // Chiều rộng của thẻ
               height: 322, // Chiều cao của thẻ
               tilt: 0, // Góc nghiêng của thẻ
@@ -102,9 +99,9 @@ class _Card extends StatelessWidget {
                 StackFit.expand, // Mở rộng các widget con để lấp đầy không gian
             alignment: Alignment.center, // Căn giữa các widget con
             children: [
-              CachedNetworkImage(
-                // Widget để tải và hiển thị hình ảnh từ mạng
-                imageUrl: imageUrl, // URL hình ảnh
+              Image.asset(
+                // Widget để hiển thị hình ảnh từ local assets
+                imageUrl, // Đường dẫn hình ảnh
                 fit: BoxFit.cover, // Cách hiển thị hình ảnh
                 color:
                     showTitle
@@ -114,7 +111,6 @@ class _Card extends StatelessWidget {
                     showTitle
                         ? BlendMode.darken
                         : null, // Chế độ pha trộn màu nếu hiển thị tiêu đề
-                errorListener: imageErrorListener, // Hàm xử lý lỗi hình ảnh
               ),
               if (showTitle)
                 Center(
