@@ -44,6 +44,72 @@ class AppLocalization {
     'when': 'Khi nào',
   };
 
+  // Thêm từ điển chứa các chuỗi văn bản cho Tiếng Thái
+  static const _stringsTh = <String, String>{
+    'activities': 'กิจกรรม',
+    'addDates': 'เพิ่มวันที่',
+    'bookingDeleted': 'การจองถูกลบ',
+    'bookNewTrip': 'จองทริปใหม่',
+    'close': 'ปิด',
+    'confirm': 'ยืนยัน',
+    'daytime': 'กลางวัน',
+    'errorWhileDeletingBooking': 'เกิดข้อผิดพลาดขณะลบการจอง',
+    'errorWhileLoadingActivities': 'เกิดข้อผิดพลาดขณะโหลดกิจกรรม',
+    'errorWhileLoadingBooking': 'เกิดข้อผิดพลาดขณะโหลดการจอง',
+    'errorWhileLoadingContinents': 'เกิดข้อผิดพลาดขณะโหลดทวีป',
+    'errorWhileLoadingDestinations': 'เกิดข้อผิดพลาดขณะโหลดจุดหมายปลายทาง',
+    'errorWhileLoadingHome': 'เกิดข้อผิดพลาดขณะโหลดหน้าแรก',
+    'errorWhileLogin': 'เกิดข้อผิดพลาดขณะเข้าสู่ระบบ',
+    'errorWhileLogout': 'เกิดข้อผิดพลาดขณะออกจากระบบ',
+    'errorWhileSavingActivities': 'เกิดข้อผิดพลาดขณะบันทึกกิจกรรม',
+    'errorWhileSavingItinerary': 'เกิดข้อผิดพลาดขณะบันทึกแผนการเดินทาง',
+    'errorWhileSharing': 'เกิดข้อผิดพลาดขณะแชร์การจอง',
+    'evening': 'เย็น',
+    'login': 'เข้าสู่ระบบ',
+    'register': 'ลงทะเบียน',
+    'nameTrips': 'ทริปของ {name}',
+    'search': 'ค้นหา',
+    'searchDestination': 'ค้นหาจุดหมายปลายทาง',
+    'selected': 'เลือก {1}',
+    'shareTrip': 'แชร์ทริป',
+    'tryAgain': 'ลองอีกครั้ง',
+    'yourChosenActivities': 'กิจกรรมที่คุณเลือก',
+    'when': 'เมื่อไหร่',
+  };
+
+  // Thêm từ điển chứa các chuỗi văn bản cho Tiếng Trung Quốc
+  static const _stringsZh = <String, String>{
+    'activities': '活动',
+    'addDates': '添加日期',
+    'bookingDeleted': '预订已删除',
+    'bookNewTrip': '预订新行程',
+    'close': '关闭',
+    'confirm': '确认',
+    'daytime': '白天',
+    'errorWhileDeletingBooking': '删除预订时出错',
+    'errorWhileLoadingActivities': '加载活动时出错',
+    'errorWhileLoadingBooking': '加载预订时出错',
+    'errorWhileLoadingContinents': '加载大陆时出错',
+    'errorWhileLoadingDestinations': '加载目的地时出错',
+    'errorWhileLoadingHome': '加载主页时出错',
+    'errorWhileLogin': '登录时出错',
+    'errorWhileLogout': '登出时出错',
+    'errorWhileSavingActivities': '保存活动时出错',
+    'errorWhileSavingItinerary': '保存行程时出错',
+    'errorWhileSharing': '分享预订时出错',
+    'evening': '晚上',
+    'login': '登录',
+    'register': '注册',
+    'nameTrips': '{name}的行程',
+    'search': '搜索',
+    'searchDestination': '搜索目的地',
+    'selected': '已选择 {1}',
+    'shareTrip': '分享行程',
+    'tryAgain': '再试一次',
+    'yourChosenActivities': '你选择的活动',
+    'when': '什么时候',
+  };
+
   // Phương thức tĩnh để lấy đối tượng AppLocalization từ context
   static AppLocalization of(BuildContext context) {
     return Localizations.of(context, AppLocalization);
@@ -84,10 +150,16 @@ class AppLocalization {
 
   // Cập nhật phương thức _get để hỗ trợ đa ngôn ngữ
   static String _get(String label, Locale locale) {
-    if (locale.languageCode == 'vi') {
-      return _stringsVi[label] ?? '[${label.toUpperCase()}]';
+    switch (locale.languageCode) {
+      case 'vi':
+        return _stringsVi[label] ?? '[${label.toUpperCase()}]';
+      case 'th':
+        return _stringsTh[label] ?? '[${label.toUpperCase()}]';
+      case 'zh':
+        return _stringsZh[label] ?? '[${label.toUpperCase()}]';
+      default:
+        return _strings[label] ?? '[${label.toUpperCase()}]';
     }
-    return _strings[label] ?? '[${label.toUpperCase()}]';
   }
 
   // Các phương thức getter để lấy chuỗi văn bản tương ứng
@@ -160,10 +232,11 @@ class AppLocalization {
       _get('selected', locale).replaceAll('{1}', value.toString());
 }
 
-// Cập nhật lớp AppLocalizationDelegate để hỗ trợ ngôn ngữ Tiếng Việt
+// Cập nhật lớp AppLocalizationDelegate để hỗ trợ ngôn ngữ Tiếng Việt, Tiếng Thái và Tiếng Trung Quốc
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {
   @override
-  bool isSupported(Locale locale) => ['en', 'vi'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      ['en', 'vi', 'th', 'zh'].contains(locale.languageCode);
 
   @override
   Future<AppLocalization> load(Locale locale) {

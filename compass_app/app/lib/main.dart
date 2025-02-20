@@ -39,6 +39,8 @@ class MainApp extends StatelessWidget {
       supportedLocales: [
         const Locale('en', ''), // English
         const Locale('vi', ''), // Vietnamese
+        const Locale('zh', ''), // Tiếng Trung
+        const Locale('th', ''), // Tiếng Thái
       ],
       scrollBehavior:
           AppCustomScrollBehavior(), // Định nghĩa hành vi cuộn tùy chỉnh
