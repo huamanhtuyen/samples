@@ -60,11 +60,15 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                TextField(controller: _email), // Trường nhập email
+                TextField(
+                  controller: _email,
+                  decoration: InputDecoration(labelText: 'Số điện thoại'),
+                ), // Trường nhập email
                 const SizedBox(height: Dimens.paddingVertical),
                 TextField(
                   controller: _password,
                   obscureText: true,
+                  decoration: InputDecoration(labelText: 'Mật khẩu'),
                 ), // Trường nhập mật khẩu
                 const SizedBox(height: Dimens.paddingVertical),
                 ListenableBuilder(
