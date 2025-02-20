@@ -10,6 +10,7 @@ import 'routing/router.dart'; // Import tệp router.dart
 import 'ui/core/localization/applocalization.dart'; // Import tệp applocalization.dart
 import 'ui/core/themes/theme.dart'; // Import tệp theme.dart
 import 'ui/core/ui/scroll_behavior.dart'; // Import tệp scroll_behavior.dart
+import 'ui/core/localization/locale_provider.dart';
 
 /// Phương thức main mặc định
 void main() {
@@ -22,13 +23,22 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //lấy ra instance localeProvider hiện tại
+    final localeProvider = Provider.of<LocaleProvider>(context);
+
     return MaterialApp.router(
+      locale: localeProvider.locale, // Định nghĩa locale mặc định
       localizationsDelegates: [
         GlobalWidgetsLocalizations
             .delegate, // Định nghĩa các delegate cho đa ngôn ngữ
         GlobalMaterialLocalizations
             .delegate, // Định nghĩa các delegate cho đa ngôn ngữ
         AppLocalizationDelegate(), // Định nghĩa delegate cho localization của ứng dụng
+      ],
+      // Định nghĩa các locales được hỗ trợ
+      supportedLocales: [
+        const Locale('en', ''), // English
+        const Locale('vi', ''), // Vietnamese
       ],
       scrollBehavior:
           AppCustomScrollBehavior(), // Định nghĩa hành vi cuộn tùy chỉnh

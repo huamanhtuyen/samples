@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 TextField(
                   controller: _email,
-                  decoration: InputDecoration(labelText: 'Số điện thoại'),
+                  decoration: InputDecoration(labelText: 'Email'),
                 ), // Trường nhập email
                 const SizedBox(height: Dimens.paddingVertical),
                 TextField(
@@ -87,6 +87,40 @@ class _LoginScreenState extends State<LoginScreen> {
                     );
                   },
                 ),
+                // Thêm nút đăng nhập bằng tài khoản Apple ID
+                const SizedBox(height: Dimens.paddingVertical),
+                FilledButton.icon(
+                  onPressed: () {
+                    // Thực hiện đăng nhập bằng Apple ID
+                  },
+                  icon: Icon(Icons.apple, size: 24.0), // Logo Apple
+                  label: Text('Đăng nhập bằng Apple ID'),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.all(
+                      ColorScheme.fromSeed(seedColor: Colors.blue).primary,
+                    ),
+                    foregroundColor: WidgetStateProperty.all(Colors.white),
+                  ),
+                ),
+                // Thêm nút đăng nhập bằng tài khoản Google
+                const SizedBox(height: Dimens.paddingVertical),
+                FilledButton.icon(
+                  onPressed: () {
+                    // Thực hiện đăng nhập bằng Google
+                  },
+                  icon: Image.asset(
+                    'assets/google_logo.png',
+                    height: 24.0,
+                  ), // Logo Google
+                  label: Text('Đăng nhập bằng Google'),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.all(
+                      ColorScheme.fromSeed(seedColor: Colors.red).secondary,
+                    ),
+                    foregroundColor: WidgetStateProperty.all(Colors.white),
+                  ),
+                ),
+
                 TextButton(
                   onPressed: () {
                     print('nhấn nút đăng ký');

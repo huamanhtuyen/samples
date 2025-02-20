@@ -6,7 +6,8 @@ import 'package:provider/provider.dart'; // Nhập gói provider
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'config/dependencies.dart'; // Nhập tệp dependencies
 import 'main.dart'; // Nhập tệp main
-//import 'package:flutter/rendering.dart';
+import 'package:flutter/rendering.dart';
+import 'ui/core/localization/locale_provider.dart';
 
 /// Điểm vào cấu hình staging.
 /// Khởi chạy với `flutter run --target lib/main_staging.dart`.
@@ -37,8 +38,18 @@ void main() async {
     }
   });
 
-  //debugPaintSizeEnabled = true;
+  debugPaintSizeEnabled = false;
 
-  runApp(MultiProvider(providers: providersRemote, child: const MainApp()));
+  runApp(
+    MultiProvider(
+      providers: [
+        ...providersRemote,
+        ChangeNotifierProvider(
+          create: (_) => LocaleProvider(),
+        ), // Thêm LocaleProvider vào danh sách providers
+      ],
+      child: const MainApp(),
+    ),
+  );
   // Chạy ứng dụng với MultiProvider, sử dụng providersRemote và MainApp
 }
