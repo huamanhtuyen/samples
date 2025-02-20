@@ -22,10 +22,10 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _email = TextEditingController(
-    text: 'email@example.com', // Đặt giá trị mặc định cho email
+    text: 'test1@gmail.com', // Đặt giá trị mặc định cho email
   );
   final TextEditingController _password = TextEditingController(
-    text: 'password', // Đặt giá trị mặc định cho mật khẩu
+    text: '123456', // Đặt giá trị mặc định cho mật khẩu
   );
 
   @override

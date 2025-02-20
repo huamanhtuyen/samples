@@ -85,6 +85,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     );
                   },
                 ),
+                TextButton(
+                  onPressed: () {
+                    print('nhấn nút link đăng nhập');
+                    context.go(Routes.login); // Điều hướng đến trang đăng ký
+                  },
+                  child: Text(
+                    'Nếu bạn đã có tài khoản, nhấn vào đây để đăng nhập',
+                  ),
+                ),
               ],
             ),
           ),

@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../routing/routes.dart';
 import '../view_models/home_viewmodel.dart';
-import '../../widgets/language_button.dart';
+import '../../core/ui/language_button.dart';
+import '../../auth/logout/widgets/logout_button_big.dart';
+import '../../auth/logout/view_models/logout_viewmodel.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.viewModel});
@@ -190,7 +193,6 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
   static const _menuTitles = [
     'Thông tin doanh nghiệp',
     'Tài khoản',
-    'Đăng xuất',
   ]; // Danh sách tiêu đề menu
 
   static const _initialDelayTime = Duration(
@@ -330,9 +332,6 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
                     case 'Tài khoản':
                       context.go(Routes.profile);
                       break;
-                    case 'Đăng xuất':
-                      context.go('/logout');
-                      break;
                   }
                 },
                 style: ElevatedButton.styleFrom(
@@ -340,13 +339,6 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
                     horizontal: 16,
                     vertical: 16,
                   ),
-
-                  // backgroundColor:
-                  //     Theme.of(context).primaryColor, // Màu nền của nút
-                  // foregroundColor:
-                  //     Theme.of(
-                  //       context,
-                  //     ).colorScheme.onPrimary, // Màu chữ của nút
                   textStyle: Theme.of(context).textTheme.titleSmall,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18), // Bo góc nút
@@ -371,6 +363,27 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
         ),
       );
     }
+
+    // Thêm LogoutButtonBig vào danh sách menu item
+    listItems.add(
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        child: Builder(
+          builder: (context) {
+            return LogoutButtonBig(
+              // Nút đăng xuất
+              viewModel: LogoutViewModel(
+                // Khởi tạo LogoutViewModel
+                authRepository: context.read(), // Lấy authRepository từ context
+                itineraryConfigRepository:
+                    context.read(), // Lấy itineraryConfigRepository từ context
+              ),
+            );
+          },
+        ),
+      ),
+    );
+
     return listItems;
   }
 }
@@ -381,8 +394,6 @@ IconData _getIconForMenuTitle(String title) {
       return Icons.business;
     case 'Tài khoản':
       return Icons.account_circle;
-    case 'Đăng xuất':
-      return Icons.logout;
     default:
       return Icons.help;
   }
