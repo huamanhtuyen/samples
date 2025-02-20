@@ -172,7 +172,7 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
     return Container(
       color: Colors.white, // Đặt màu nền cho Container
       child: ListView.builder(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.fromLTRB(16.0, 16, 16, 200),
         itemCount: cacChucNang.length,
         itemBuilder: (context, index) {
           final chucNang = cacChucNang[index];
