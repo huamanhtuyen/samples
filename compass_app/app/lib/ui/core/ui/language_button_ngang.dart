@@ -71,6 +71,8 @@ class LanguageButtonNgangState extends State<LanguageButtonNgang> {
     String flagAsset,
   ) {
     final isSelected = _selectedLanguage == languageCode;
+    final selectedColor =
+        Theme.of(context).colorScheme.secondary; // Lấy màu từ theme
     return GestureDetector(
       onTap: () => _saveLanguage(languageCode),
       child: IntrinsicWidth(
@@ -78,9 +80,9 @@ class LanguageButtonNgangState extends State<LanguageButtonNgang> {
           margin: EdgeInsets.symmetric(horizontal: 4.0), // Giảm khoảng cách
           padding: EdgeInsets.all(4.0), // Giảm khoảng cách
           decoration: BoxDecoration(
-            color: isSelected ? Colors.blue : Colors.transparent,
+            color: isSelected ? selectedColor : Colors.transparent,
             borderRadius: BorderRadius.circular(8.0),
-            border: Border.all(color: isSelected ? Colors.blue : Colors.grey),
+            border: Border.all(color: isSelected ? selectedColor : Colors.grey),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center, // Căn giữa nội dung
