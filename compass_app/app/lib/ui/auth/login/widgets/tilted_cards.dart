@@ -20,7 +20,7 @@ class TiltedCards extends StatelessWidget {
       constraints: const BoxConstraints(
         maxWidth: 300,
       ), // Giới hạn chiều rộng tối đa là 300
-      child: const AspectRatio(
+      child: AspectRatio(
         // Đặt tỷ lệ khung hình cho widget con
         aspectRatio: 1, // Tỷ lệ khung hình là 1:1
         child: Stack(
@@ -51,7 +51,7 @@ class TiltedCards extends StatelessWidget {
             ),
             _Card(
               // Widget con là _Card
-              imageUrl: 'assets/anh1.jpg', // Local asset image
+              imageUrl: 'assets/anh5.jpg', // Local asset image
               width: 225, // Chiều rộng của thẻ
               height: 322, // Chiều cao của thẻ
               tilt: 0, // Góc nghiêng của thẻ
@@ -109,7 +109,7 @@ class _Card extends StatelessWidget {
                         : null, // Màu phủ nếu hiển thị tiêu đề
                 colorBlendMode:
                     showTitle
-                        ? BlendMode.darken
+                        ? BlendMode.lighten
                         : null, // Chế độ pha trộn màu nếu hiển thị tiêu đề
               ),
               if (showTitle)

@@ -1,6 +1,4 @@
-// Copyright 2024 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// ignore_for_file: directives_ordering
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -10,6 +8,7 @@ import '../../../core/localization/applocalization.dart';
 import '../../../core/themes/dimens.dart';
 import '../view_models/login_viewmodel.dart';
 import 'tilted_cards.dart';
+import '../../../core/ui/language_button_ngang.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key, required this.viewModel});
@@ -55,6 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           const TiltedCards(), // Hiển thị các thẻ nghiêng
+          const LanguageButtonNgang(), // Thêm nút chọn ngôn ngữ
           Padding(
             padding: Dimens.of(context).edgeInsetsScreenSymmetric,
             child: Column(
