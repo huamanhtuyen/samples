@@ -266,7 +266,11 @@ class Navigation extends StatelessWidget {
       label: 'Navigation',
       children: [
         const BottomAppBars(),
-        const NavigationBars(selectedIndex: 0, isExampleBar: true),
+        const NavigationBars(
+          selectedIndex: 0,
+          isExampleBar: true,
+          isBadgeExample: true,
+        ),
         NavigationDrawers(scaffoldKey: scaffoldKey),
         const NavigationRails(),
         const Tabs(),

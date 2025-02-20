@@ -7,6 +7,7 @@ import '../../core/ui/language_button.dart';
 import '../../auth/logout/widgets/logout_button_big.dart';
 import '../../auth/logout/view_models/logout_viewmodel.dart';
 import 'package:provider/provider.dart';
+import '../../core/ui/navigation_bar.dart'; // Import NavigationBars
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.viewModel});
@@ -21,6 +22,7 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController
   _drawerSlideController; // Điều khiển hoạt ảnh cho drawer
+  late int _selectedIndex = 0; // Add selectedIndex for NavigationBars
 
   @override
   void initState() {
@@ -70,6 +72,14 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
       body: Stack(
         children: [_buildContent(), _buildDrawer()],
       ), // Xây dựng nội dung và drawer
+      bottomNavigationBar: NavigationBars(
+        selectedIndex: _selectedIndex,
+        onSelectItem: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+      ), // Add NavigationBars at the bottom
     );
   }
 
