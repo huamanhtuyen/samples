@@ -118,12 +118,55 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
     );
   }
 
+  //build phần content của HomeScreen
   Widget _buildContent() {
-    final cacChucNang = List.generate(20, (index) {
-      return {
-        'title': 'Chức năng $index',
-        'description': 'Mô tả chức năng $index',
-      };
+    final cacChucNang = [];
+    cacChucNang.add({
+      'title': 'Chủ xe (phương tiện vận tải)',
+      'description':
+          'Tìm hàng; Báo xe trống cần hàng; Báo cần hàng chiều về; Đăng thông tin xe.',
+      'route': Routes.chuXe,
+    });
+    cacChucNang.add({
+      'title': 'Chủ hàng',
+      'description':
+          'Tìm xe; Tìm xe chiều về; Tìm xe quanh đây; Đăng nhu cầu vận chuyển.',
+      'route': Routes.chuXe,
+    });
+    cacChucNang.add({
+      'title': 'Thị trường',
+      'description': 'Danh sách thông tin về xe và nhu cầu vận chuyển hàng',
+      'route': Routes.chuXe,
+    });
+    cacChucNang.add({
+      'title': 'Thuê và cho thuê vỏ cont',
+      'description': 'Thị trường vỏ cont',
+      'route': Routes.chuXe,
+    });
+    cacChucNang.add({
+      'title': 'Thuê và cho thuê kho bãi',
+      'description': 'Thị trường kho bãi',
+      'route': Routes.chuXe,
+    });
+    cacChucNang.add({
+      'title': 'Thị trường xuất nhập khẩu',
+      'description': 'Thông tin dịch vụ xuất nhập khẩu',
+      'route': Routes.chuXe,
+    });
+    cacChucNang.add({
+      'title': 'Giao dịch',
+      'description': 'Các giao dịch đã thực hiện',
+      'route': Routes.chuXe,
+    });
+    cacChucNang.add({
+      'title': 'Ví tiền (logistic)',
+      'description': 'Ví tiền của đơn vị logistic',
+      'route': Routes.chuXe,
+    });
+    cacChucNang.add({
+      'title': 'Tài xế',
+      'description': 'Định vị tuyến đường',
+      'route': Routes.chuXe,
     });
 
     return Container(
@@ -150,18 +193,18 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
               ),
               subtitle: Text(
                 chucNang['description']!,
-                style: Theme.of(context).textTheme.titleSmall,
+                style: Theme.of(context).textTheme.bodySmall,
               ),
               onTap: () {
                 // Điều hướng tới các trang tương ứng
-                context.go('/function${index}');
+                context.go(chucNang['route']!);
               },
             ),
           );
         },
       ),
     );
-  }
+  } //end _buildContent
 
   Widget _buildDrawer() {
     return AnimatedBuilder(
@@ -182,6 +225,7 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
   }
 }
 
+//nút menu trên phải
 class Menu extends StatefulWidget {
   const Menu({super.key});
 

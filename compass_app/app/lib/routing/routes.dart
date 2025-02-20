@@ -28,4 +28,8 @@ abstract final class Routes {
   static const bookingRelative = 'booking';
   // Hàm tạo tuyến đường cho trang đặt chỗ với ID cụ thể
   static String bookingWithId(int id) => '$booking/$id';
+
+  //link các chức năng
+  //chủ xe (phương tiện vận tải)
+  static const chuXe = '/chu_xe';
 }
