@@ -191,7 +191,8 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12.0),
             ),
-            elevation: 1,
+            elevation: 0, // Remove shadow
+            color: Theme.of(context).colorScheme.onPrimary, //khá đẹp
             child: ListTile(
               leading: Icon(
                 Icons.apps,
