@@ -53,3 +53,5 @@ flutter:
     - assets/anh5.jpg #
     - assets/flags/vi.png #
     - assets/flags/en.png #
+    - assets/flags/zh.png #
+    - assets/flags/th.png #

@@ -39,17 +39,27 @@ class LanguageButtonNgangState extends State<LanguageButtonNgang> {
       case 'vi':
         // Load resource tiếng Việt
         break;
+      case 'zh':
+        // Load resource tiếng Trung Quốc
+        break;
+      case 'th':
+        // Load resource tiếng Thái
+        break;
       // Thêm các ngôn ngữ khác nếu cần
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Wrap(
+      alignment: WrapAlignment.center,
+      spacing: 8.0, // Khoảng cách ngang giữa các nút
+      runSpacing: 4.0, // Khoảng cách dọc giữa các hàng
       children: [
         _buildLanguageButton('en', 'English', 'assets/flags/en.png'),
         _buildLanguageButton('vi', 'Tiếng Việt', 'assets/flags/vi.png'),
+        _buildLanguageButton('zh', '中文', 'assets/flags/zh.png'),
+        _buildLanguageButton('th', 'ภาษาไทย', 'assets/flags/th.png'),
         // Thêm các ngôn ngữ khác nếu cần
       ],
     );
@@ -63,23 +73,33 @@ class LanguageButtonNgangState extends State<LanguageButtonNgang> {
     final isSelected = _selectedLanguage == languageCode;
     return GestureDetector(
       onTap: () => _saveLanguage(languageCode),
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 8.0),
-        padding: EdgeInsets.all(8.0),
-        decoration: BoxDecoration(
-          color: isSelected ? Colors.blue : Colors.transparent,
-          borderRadius: BorderRadius.circular(8.0),
-          border: Border.all(color: isSelected ? Colors.blue : Colors.grey),
-        ),
-        child: Row(
-          children: [
-            Image.asset(flagAsset, width: 24, height: 24),
-            SizedBox(width: 8.0),
-            Text(
-              languageName,
-              style: TextStyle(color: isSelected ? Colors.white : Colors.black),
-            ),
-          ],
+      child: IntrinsicWidth(
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 4.0), // Giảm khoảng cách
+          padding: EdgeInsets.all(4.0), // Giảm khoảng cách
+          decoration: BoxDecoration(
+            color: isSelected ? Colors.blue : Colors.transparent,
+            borderRadius: BorderRadius.circular(8.0),
+            border: Border.all(color: isSelected ? Colors.blue : Colors.grey),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center, // Căn giữa nội dung
+            children: [
+              Image.asset(
+                flagAsset,
+                width: 20,
+                height: 20,
+              ), // Giảm kích thước ảnh
+              SizedBox(width: 4.0), // Giảm khoảng cách
+              Text(
+                languageName,
+                style: TextStyle(
+                  color: isSelected ? Colors.white : Colors.black,
+                  fontSize: 12,
+                ), // Giảm kích thước chữ
+              ),
+            ],
+          ),
         ),
       ),
     );
