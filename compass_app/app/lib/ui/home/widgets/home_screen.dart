@@ -132,6 +132,11 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
   Widget _buildContent() {
     final cacChucNang = [];
     cacChucNang.add({
+      'title': 'Học Sinh',
+      'description': 'Test view model',
+      'route': Routes.hocSinh,
+    });
+    cacChucNang.add({
       'title': 'Chủ xe (phương tiện vận tải)',
       'description':
           'Tìm hàng; Báo xe trống cần hàng; Báo cần hàng chiều về; Đăng thông tin xe.',

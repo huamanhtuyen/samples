@@ -29,7 +29,14 @@ abstract final class Routes {
   // Hàm tạo tuyến đường cho trang đặt chỗ với ID cụ thể
   static String bookingWithId(int id) => '$booking/$id';
 
+  //test screen
+  static const hocSinh = '/hocsinh';
+
   //link các chức năng
   //chủ xe (phương tiện vận tải)
   static const chuXe = '/chu_xe';
+  //tài xế (phương tiện vận tải)
+  static const taiXe = '/tai_xe';
+  //khách hàng (phương tiện vận tải)
+  static const khachHang = '/khach_hang';
 }

@@ -1,6 +1,4 @@
-// Bản quyền 2024 của nhóm Flutter. Bảo lưu mọi quyền.
-// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD có thể tìm thấy trong tệp LICENSE.
-
+// ignore_for_file: directives_ordering
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
@@ -30,6 +28,7 @@ import '../data/services/local/local_data_service.dart';
 import '../data/services/shared_preferences_service.dart';
 import '../domain/use_cases/booking/booking_create_use_case.dart';
 import '../domain/use_cases/booking/booking_share_use_case.dart';
+import '../data/repositories/hocsinh/hocsinh_repository.dart';
 
 /// Các provider dùng chung cho tất cả các cấu hình.
 List<SingleChildWidget> _sharedProviders = [
@@ -93,6 +92,7 @@ List<SingleChildWidget> get providersRemote {
               ActivityRepositoryRemote(apiClient: context.read())
                   as ActivityRepository, // Ép kiểu về ActivityRepository
     ),
+    Provider(create: (context) => HocSinhRepository()),
     Provider.value(
       value:
           ItineraryConfigRepositoryMemory()

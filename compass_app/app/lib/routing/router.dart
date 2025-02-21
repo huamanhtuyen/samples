@@ -1,14 +1,10 @@
-// Bản quyền 2024 thuộc về nhóm Flutter. Bảo lưu mọi quyền.
-// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép kiểu BSD
-// có thể được tìm thấy trong tệp LICENSE.
+// ignore_for_file: directives_ordering
 
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../data/repositories/auth/auth_repository.dart';
-import '../ui/activities/view_models/activities_viewmodel.dart';
-import '../ui/activities/widgets/activities_screen.dart';
 import '../ui/auth/login/view_models/login_viewmodel.dart';
 import '../ui/auth/login/widgets/login_screen.dart';
 import '../ui/auth/register/view_models/register_viewmodel.dart';
@@ -22,6 +18,9 @@ import '../ui/results/widgets/results_screen.dart';
 import '../ui/search_form/view_models/search_form_viewmodel.dart';
 import '../ui/search_form/widgets/search_form_screen.dart';
 import 'routes.dart';
+//học sinh
+import '../ui/hocsinh/widgets/hocsinh_screen.dart';
+import '../ui/hocsinh/view_models/hocsinh_viewmodel.dart';
 
 /// Điểm vào chính của go_router.
 ///
@@ -104,17 +103,16 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
           },
         ),
         GoRoute(
-          path: Routes.activitiesRelative, // Đường dẫn đến trang hoạt động
+          path: Routes.hocSinh, // Đường dẫn đến trang Học sinh (dùng để test)
           builder: (context, state) {
-            final viewModel = ActivitiesViewModel(
-              activityRepository:
-                  context.read(), // Đọc activityRepository từ context
-              itineraryConfigRepository:
-                  context.read(), // Đọc itineraryConfigRepository từ context
+            return ChangeNotifierProvider(
+              create:
+                  (context) => HocSinhViewModel(
+                    hocSinhRepository:
+                        context.read(), // Đọc hocSinhRepository từ context
+                  ),
+              child: const HocSinhScreen(),
             );
-            return ActivitiesScreen(
-              viewModel: viewModel,
-            ); // Trả về màn hình hoạt động với viewModel
           },
         ),
         GoRoute(
@@ -186,6 +184,10 @@ Future<String?> _redirect(BuildContext context, GoRouterState state) async {
   }
 
   if (loggedIn) {
+    if (state.matchedLocation == Routes.hocSinh) {
+      return Routes
+          .hocSinh; // Chuyển hướng đến trang Học Sinh nếu đã đăng nhập và nhấn vào route hocSinh
+    }
     return Routes.home; // Chuyển hướng đến trang chủ nếu đã đăng nhập
   }
 
