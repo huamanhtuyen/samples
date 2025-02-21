@@ -53,36 +53,54 @@ class _HocSinhScreenState extends State<HocSinhScreen> {
                 return ListTile(
                   title: Text(hocSinh.hoten),
                   subtitle: Text('ID: ${hocSinh.id}'),
-                  trailing: IconButton(
-                    icon: Icon(Icons.delete),
-                    onPressed: () async {
-                      final confirm = await showDialog<bool>(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text('Confirm Delete'),
-                            content: Text(
-                              'Are you sure you want to delete this student?',
-                            ),
-                            actions: [
-                              TextButton(
-                                onPressed:
-                                    () => Navigator.of(context).pop(false),
-                                child: Text('Cancel'),
-                              ),
-                              TextButton(
-                                onPressed:
-                                    () => Navigator.of(context).pop(true),
-                                child: Text('Delete'),
-                              ),
-                            ],
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.edit),
+                        onPressed: () async {
+                          final result = await context.push(
+                            '/hocsinh/edit',
+                            extra: hocSinh,
                           );
+                          if (result == true) {
+                            if (mounted)
+                              context.read<HocSinhViewModel>().load.execute();
+                          }
                         },
-                      );
-                      if (confirm == true) {
-                        viewModel.deleteHocSinh.execute(hocSinh.id ?? 0);
-                      }
-                    },
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.delete),
+                        onPressed: () async {
+                          final confirm = await showDialog<bool>(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text('Confirm Delete'),
+                                content: Text(
+                                  'Are you sure you want to delete this student?',
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed:
+                                        () => Navigator.of(context).pop(false),
+                                    child: Text('Cancel'),
+                                  ),
+                                  TextButton(
+                                    onPressed:
+                                        () => Navigator.of(context).pop(true),
+                                    child: Text('Delete'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                          if (confirm == true) {
+                            viewModel.deleteHocSinh.execute(hocSinh.id ?? 0);
+                          }
+                        },
+                      ),
+                    ],
                   ),
                 );
               },

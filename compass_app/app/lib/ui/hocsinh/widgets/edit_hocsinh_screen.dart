@@ -5,22 +5,31 @@ import 'package:provider/provider.dart';
 import '../view_models/hocsinh_viewmodel.dart';
 import '../../../domain/models/hocsinh/hocsinh_model.dart';
 
-class AddHocSinhScreen extends StatefulWidget {
-  const AddHocSinhScreen({super.key});
+class EditHocSinhScreen extends StatefulWidget {
+  final HocSinh hocSinh;
+
+  const EditHocSinhScreen({super.key, required this.hocSinh});
 
   @override
-  State<AddHocSinhScreen> createState() => _AddHocSinhScreenState();
+  State<EditHocSinhScreen> createState() => _EditHocSinhScreenState();
 }
 
-class _AddHocSinhScreenState extends State<AddHocSinhScreen> {
+class _EditHocSinhScreenState extends State<EditHocSinhScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _hotenController = TextEditingController();
-  final _tuoiController = TextEditingController();
+  late String _hoten;
+  late int _tuoi;
+
+  @override
+  void initState() {
+    super.initState();
+    _hoten = widget.hocSinh.hoten;
+    _tuoi = widget.hocSinh.tuoi;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Add Hoc Sinh')),
+      appBar: AppBar(title: Text('Edit Hoc Sinh')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -28,39 +37,36 @@ class _AddHocSinhScreenState extends State<AddHocSinhScreen> {
           child: Column(
             children: [
               TextFormField(
-                controller: _hotenController,
+                initialValue: _hoten,
                 decoration: InputDecoration(labelText: 'Ho Ten'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter ho ten';
-                  }
-                  return null;
+                onSaved: (value) {
+                  _hoten = value!;
                 },
               ),
               TextFormField(
-                controller: _tuoiController,
+                initialValue: _tuoi.toString(),
                 decoration: InputDecoration(labelText: 'Tuoi'),
                 keyboardType: TextInputType.number,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter tuoi';
-                  }
-                  return null;
+                onSaved: (value) {
+                  _tuoi = int.parse(value!);
                 },
               ),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    final hocSinh = HocSinh(
-                      hoten: _hotenController.text,
-                      tuoi: int.parse(_tuoiController.text),
+                    _formKey.currentState!.save();
+                    final updatedHocSinh = HocSinh(
+                      id: widget.hocSinh.id,
+                      hoten: _hoten,
+                      tuoi: _tuoi,
                     );
                     final viewModel = context.read<HocSinhViewModel>();
-                    await viewModel.addHocSinh.execute(hocSinh);
+                    await viewModel.updateHocSinh.execute(updatedHocSinh);
                     if (!mounted) return;
-                    final error = viewModel.addHocSinh.error;
-                    final errorMsg = viewModel.addHocSinh.result.toString();
+                    final error = viewModel.updateHocSinh.error;
+                    final errorMsg = viewModel.updateHocSinh.result.toString();
+
                     if (error == false) {
                       //Navigator.pop(context, true);
                       Navigator.of(context).pop(true);
@@ -73,7 +79,7 @@ class _AddHocSinhScreenState extends State<AddHocSinhScreen> {
                     }
                   }
                 },
-                child: Text('Add Hoc Sinh'),
+                child: Text('Save'),
               ),
             ],
           ),

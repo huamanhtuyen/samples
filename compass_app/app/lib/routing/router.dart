@@ -22,6 +22,8 @@ import 'routes.dart';
 import '../ui/hocsinh/widgets/hocsinh_screen.dart';
 import '../ui/hocsinh/view_models/hocsinh_viewmodel.dart';
 import '../ui/hocsinh/widgets/add_hocsinh_screen.dart';
+import '../ui/hocsinh/widgets/edit_hocsinh_screen.dart';
+import '../domain/models/hocsinh/hocsinh_model.dart';
 
 /// Điểm vào chính của go_router.
 ///
@@ -129,6 +131,18 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
                 );
               },
             ),
+            GoRoute(
+              path: 'edit', // Đường dẫn đến trang sửa Học sinh
+              builder: (context, state) {
+                final hocSinh = state.extra as HocSinh;
+                return ChangeNotifierProvider(
+                  create:
+                      (context) =>
+                          HocSinhViewModel(hocSinhRepository: context.read()),
+                  child: EditHocSinhScreen(hocSinh: hocSinh),
+                );
+              },
+            ),
           ],
         ),
         GoRoute(
@@ -211,6 +225,10 @@ Future<String?> _redirect(BuildContext context, GoRouterState state) async {
 
     if (state.matchedLocation == '/hocsinh/add') {
       return '/hocsinh/add'; // Cho phép điều hướng đến trang Học Sinh hoặc trang thêm Học Sinh nếu đã đăng nhập
+    }
+
+    if (state.matchedLocation == '/hocsinh/edit') {
+      return '/hocsinh/edit'; // Cho phép điều hướng đến trang Học Sinh hoặc trang thêm Học Sinh nếu đã đăng nhập
     }
 
     return Routes.home; // Chuyển hướng đến trang chủ nếu đã đăng nhập

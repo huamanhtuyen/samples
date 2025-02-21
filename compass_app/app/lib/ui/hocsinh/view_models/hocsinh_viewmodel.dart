@@ -22,6 +22,7 @@ class HocSinhViewModel extends ChangeNotifier {
     load = Command0(_load)..execute(); // Khởi tạo và thực thi lệnh load
     deleteHocSinh = Command1(_deleteHocSinh); // Khởi tạo lệnh deleteHocSinh
     addHocSinh = Command1(_addHocSinh); // Khởi tạo lệnh addHocSinh
+    updateHocSinh = Command1(_updateHocSinh); // Khởi tạo lệnh updateHocSinh
   }
 
   final HocSinhRepository
@@ -35,6 +36,7 @@ class HocSinhViewModel extends ChangeNotifier {
   late Command0 load; // Lệnh load
   late Command1<void, int> deleteHocSinh; // Lệnh deleteHocSinh
   late Command1<void, HocSinh> addHocSinh; // Lệnh addHocSinh
+  late Command1<void, HocSinh> updateHocSinh; // Lệnh updateHocSinh
 
   // Hàm load dữ liệu
   Future<Result> _load() async {
@@ -90,6 +92,29 @@ class HocSinhViewModel extends ChangeNotifier {
           return resultAdd;
       }
       return resultAdd;
+    } finally {
+      notifyListeners();
+    }
+  }
+
+  Future<Result<void>> _updateHocSinh(HocSinh hocSinh) async {
+    try {
+      final resultUpdate = await _hocSinhRepository.updateHocSinh(hocSinh);
+      switch (resultUpdate) {
+        case Ok<void>():
+          _log.fine('Updated hoc sinh ${hocSinh.hoten}');
+          final index = _hocsinhs.indexWhere((h) => h.id == hocSinh.id);
+          if (index != -1) {
+            _hocsinhs[index] = hocSinh;
+          }
+        case Error<void>():
+          _log.warning(
+            'Failed to update hoc sinh ${hocSinh.hoten}',
+            resultUpdate.error,
+          );
+          return resultUpdate;
+      }
+      return resultUpdate;
     } finally {
       notifyListeners();
     }
