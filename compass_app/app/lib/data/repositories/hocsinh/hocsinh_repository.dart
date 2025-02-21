@@ -27,17 +27,41 @@ class HocSinhRepository {
   }
 
   /// Thêm học sinh mới
-  Future<void> addHocSinh(HocSinh hocSinh) async {
-    await _supabase.from(table).insert(hocSinh.toJson());
+  Future<Result<void>> addHocSinh(HocSinh hocSinh) async {
+    try {
+      await _supabase.from(table).insert(hocSinh.toJson());
+      return Result.ok(null);
+    } on Exception catch (e) {
+      return Result.error(e);
+    }
   }
 
   /// Cập nhật thông tin học sinh
-  Future<void> updateHocSinh(HocSinh hocSinh) async {
-    await _supabase.from(table).update(hocSinh.toJson()).eq('id', hocSinh.id);
+  Future<Result<void>> updateHocSinh(HocSinh hocSinh) async {
+    if (hocSinh.id == null) {
+      return Result.error(Exception('HocSinh id cannot be null'));
+    }
+    try {
+      await _supabase
+          .from(table)
+          .update(hocSinh.toJson())
+          .eq(
+            'id',
+            hocSinh.id!,
+          ); //dấu ! để báo rằng id không thể null, là kỹ thuật casting
+      return Result.ok(null);
+    } on Exception catch (e) {
+      return Result.error(e);
+    }
   }
 
   /// Xóa học sinh theo ID
-  Future<void> deleteHocSinh(String id) async {
-    await _supabase.from(table).delete().eq('id', id);
+  Future<Result<void>> deleteHocSinh(int id) async {
+    try {
+      await _supabase.from(table).delete().eq('id', id);
+      return Result.ok(null);
+    } on Exception catch (e) {
+      return Result.error(e);
+    }
   }
 }

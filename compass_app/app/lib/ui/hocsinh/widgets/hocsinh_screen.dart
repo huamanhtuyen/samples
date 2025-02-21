@@ -1,9 +1,13 @@
+// ignore_for_file: directives_ordering
+
 // Import các thư viện cần thiết từ Flutter và Provider
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 // Import các repository và model cần thiết
 import '../../core/ui/error_indicator.dart';
 import '../view_models/hocsinh_viewmodel.dart';
+//import 'add_hocsinh_screen.dart'; // Import the new screen for adding a student
+import 'package:go_router/go_router.dart';
 
 // Định nghĩa một StatefulWidget có tên là HocSinhScreen
 class HocSinhScreen extends StatefulWidget {
@@ -49,11 +53,51 @@ class _HocSinhScreenState extends State<HocSinhScreen> {
                 return ListTile(
                   title: Text(hocSinh.hoten),
                   subtitle: Text('ID: ${hocSinh.id}'),
+                  trailing: IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () async {
+                      final confirm = await showDialog<bool>(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text('Confirm Delete'),
+                            content: Text(
+                              'Are you sure you want to delete this student?',
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed:
+                                    () => Navigator.of(context).pop(false),
+                                child: Text('Cancel'),
+                              ),
+                              TextButton(
+                                onPressed:
+                                    () => Navigator.of(context).pop(true),
+                                child: Text('Delete'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                      if (confirm == true) {
+                        viewModel.deleteHocSinh.execute(hocSinh.id ?? 0);
+                      }
+                    },
+                  ),
                 );
               },
             ),
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          final result = await context.push('/hocsinh/add');
+          if (result == true) {
+            if (mounted) context.read<HocSinhViewModel>().load.execute();
+          }
+        },
+        child: Icon(Icons.add),
       ),
     );
   }
