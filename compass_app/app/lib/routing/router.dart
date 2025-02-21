@@ -24,6 +24,9 @@ import '../ui/hocsinh/view_models/hocsinh_viewmodel.dart';
 import '../ui/hocsinh/widgets/add_hocsinh_screen.dart';
 import '../ui/hocsinh/widgets/edit_hocsinh_screen.dart';
 import '../domain/models/hocsinh/hocsinh_model.dart';
+//chủ xe
+import '../ui/chuxe/view_models/chuxe_viewmodel.dart';
+import '../ui/chuxe/widgets/chuxe_screen.dart';
 
 /// Điểm vào chính của go_router.
 ///
@@ -77,6 +80,19 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
         ); // Trả về màn hình trang chủ với viewModel
       },
       routes: [
+        GoRoute(
+          path: Routes.chuXe, // Đường dẫn đến trang chủ
+          builder: (context, state) {
+            final viewModel = ChuXeViewModel(
+              bookingRepository:
+                  context.read(), // Đọc bookingRepository từ context
+              userRepository: context.read(), // Đọc userRepository từ context
+            );
+            return ChuXeScreen(
+              viewModel: viewModel,
+            ); // Trả về màn hình trang chủ với viewModel
+          },
+        ),
         GoRoute(
           path: Routes.searchRelative, // Đường dẫn đến trang tìm kiếm
           builder: (context, state) {
@@ -229,6 +245,10 @@ Future<String?> _redirect(BuildContext context, GoRouterState state) async {
 
     if (state.matchedLocation == '/hocsinh/edit') {
       return '/hocsinh/edit'; // Cho phép điều hướng đến trang Học Sinh hoặc trang thêm Học Sinh nếu đã đăng nhập
+    }
+
+    if (state.matchedLocation == Routes.chuXe) {
+      return Routes.chuXe;
     }
 
     return Routes.home; // Chuyển hướng đến trang chủ nếu đã đăng nhập
