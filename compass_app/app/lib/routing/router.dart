@@ -27,6 +27,12 @@ import '../domain/models/hocsinh/hocsinh_model.dart';
 //chủ xe
 import '../ui/chuxe/view_models/chuxe_viewmodel.dart';
 import '../ui/chuxe/widgets/chuxe_screen.dart';
+//thông tin xe
+import '../ui/thongtinxe/widgets/thongtinxe_screen.dart';
+import '../ui/thongtinxe/view_models/thongtinxe_viewmodel.dart';
+import '../ui/thongtinxe/widgets/add_thongtinxe_screen.dart';
+import '../ui/thongtinxe/widgets/edit_thongtinxe_screen.dart';
+import '../domain/models/thongtinxe/thongtinxe_model.dart';
 
 /// Điểm vào chính của go_router.
 ///
@@ -162,6 +168,42 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
           ],
         ),
         GoRoute(
+          path: Routes.thongTinXe, // Đường dẫn đến trang Thông tin xe
+          builder: (context, state) {
+            return ChangeNotifierProvider(
+              create: (context) => ThongTinXeViewModel(
+                thongTinXeRepository: context.read(),
+              ),
+              child: const ThongTinXeScreen(),
+            );
+          },
+          routes: [
+            GoRoute(
+              path: 'add', // Đường dẫn đến trang thêm Thông tin xe
+              builder: (context, state) {
+                return ChangeNotifierProvider(
+                  create: (context) => ThongTinXeViewModel(
+                    thongTinXeRepository: context.read(),
+                  ),
+                  child: const AddThongTinXeScreen(),
+                );
+              },
+            ),
+            GoRoute(
+              path: 'edit', // Đường dẫn đến trang sửa Thông tin xe
+              builder: (context, state) {
+                final thongTinXe = state.extra as ThongTinXe;
+                return ChangeNotifierProvider(
+                  create: (context) => ThongTinXeViewModel(
+                    thongTinXeRepository: context.read(),
+                  ),
+                  child: EditThongTinXeScreen(thongTinXe: thongTinXe),
+                );
+              },
+            ),
+          ],
+        ),
+        GoRoute(
           path: Routes.bookingRelative, // Đường dẫn đến trang đặt chỗ
           builder: (context, state) {
             final viewModel = BookingViewModel(
@@ -249,6 +291,18 @@ Future<String?> _redirect(BuildContext context, GoRouterState state) async {
 
     if (state.matchedLocation == Routes.chuXe) {
       return Routes.chuXe;
+    }
+
+    if (state.matchedLocation == Routes.thongTinXe) {
+      return Routes.thongTinXe;
+    }
+
+      if (state.matchedLocation == '/thongtinxe/add') {
+      return '/thongtinxe/add'; // Cho phép điều hướng đến trang Học Sinh hoặc trang thêm Học Sinh nếu đã đăng nhập
+    }
+
+    if (state.matchedLocation == '/thongtinxe/edit') {
+      return '/thongtinxe/edit'; // Cho phép điều hướng đến trang Học Sinh hoặc trang thêm Học Sinh nếu đã đăng nhập
     }
 
     return Routes.home; // Chuyển hướng đến trang chủ nếu đã đăng nhập
