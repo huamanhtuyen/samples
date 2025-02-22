@@ -33,7 +33,7 @@ class TiltedCards extends StatelessWidget {
               child: _Card(
                 // Widget con là _Card
                 imageUrl:
-                    'https://rstr.in/google/tripedia/g2i0BsYPKW-', // URL hình ảnh
+                    'https://rstr.in/google/tripedia/980sqNgaDRK', // URL hình ảnh
                 width: 200, // Chiều rộng của thẻ
                 height: 273, // Chiều cao của thẻ
                 tilt: -3.83 / 360, // Góc nghiêng của thẻ
@@ -45,7 +45,7 @@ class TiltedCards extends StatelessWidget {
               child: _Card(
                 // Widget con là _Card
                 imageUrl:
-                    'https://rstr.in/google/tripedia/980sqNgaDRK', // URL hình ảnh
+                    'https://rstr.in/google/tripedia/pHfPmf3o5NU', // URL hình ảnh
                 width: 180, // Chiều rộng của thẻ
                 height: 230, // Chiều cao của thẻ
                 tilt: 3.46 / 360, // Góc nghiêng của thẻ
@@ -54,7 +54,7 @@ class TiltedCards extends StatelessWidget {
             _Card(
               // Widget con là _Card
               imageUrl:
-                  'https://rstr.in/google/tripedia/pHfPmf3o5NU', // URL hình ảnh
+                  'https://rstr.in/google/tripedia/g2i0BsYPKW-', // URL hình ảnh
               width: 225, // Chiều rộng của thẻ
               height: 322, // Chiều cao của thẻ
               tilt: 0, // Góc nghiêng của thẻ
@@ -112,7 +112,7 @@ class _Card extends StatelessWidget {
                         : null, // Màu phủ nếu hiển thị tiêu đề
                 colorBlendMode:
                     showTitle
-                        ? BlendMode.darken
+                        ? BlendMode.lighten
                         : null, // Chế độ pha trộn màu nếu hiển thị tiêu đề
                 errorListener: imageErrorListener, // Hàm xử lý lỗi hình ảnh
               ),
