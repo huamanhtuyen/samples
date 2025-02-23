@@ -31,6 +31,7 @@ import '../domain/use_cases/booking/booking_share_use_case.dart';
 import '../data/repositories/hocsinh/hocsinh_repository.dart';
 import '../data/repositories/thongtinxe/thongtinxe_repository.dart';
 import '../data/repositories/image_repository.dart';
+import '../data/repositories/baocanhang/baocanhang_repository.dart';
 
 /// Các provider dùng chung cho tất cả các cấu hình.
 List<SingleChildWidget> _sharedProviders = [
@@ -97,6 +98,7 @@ List<SingleChildWidget> get providersRemote {
     Provider(create: (context) => HocSinhRepository()),
     Provider(create: (context) => ThongTinXeRepository()),
     Provider(create: (context) => ImageRepository()),
+    Provider(create: (context) => BaoCanHangRepository()),
     Provider.value(
       value:
           ItineraryConfigRepositoryMemory()
@@ -152,6 +154,7 @@ List<SingleChildWidget> get providersLocal {
                   as BookingRepository, // Ép kiểu về BookingRepository
     ),
     Provider(create: (context) => ThongTinXeRepository()),
+    Provider(create: (context) => BaoCanHangRepository()),
     Provider.value(
       value:
           ItineraryConfigRepositoryMemory()

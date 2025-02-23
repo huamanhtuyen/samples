@@ -33,6 +33,12 @@ import '../ui/thongtinxe/view_models/thongtinxe_viewmodel.dart';
 import '../ui/thongtinxe/widgets/add_thongtinxe_screen.dart';
 import '../ui/thongtinxe/widgets/edit_thongtinxe_screen.dart';
 import '../domain/models/thongtinxe/thongtinxe_model.dart';
+//báo cần hàng
+import '../ui/baocanhang/widgets/baocanhang_screen.dart';
+import '../ui/baocanhang/view_models/baocanhang_viewmodel.dart';
+import '../ui/baocanhang/widgets/add_baocanhang_screen.dart';
+import '../ui/baocanhang/widgets/edit_baocanhang_screen.dart';
+import '../domain/models/baocanhang/baocanhang_model.dart';
 
 /// Điểm vào chính của go_router.
 ///
@@ -207,6 +213,42 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
           ],
         ),
         GoRoute(
+          path: Routes.baoCanHang, // Đường dẫn đến trang báo cần hàng
+          builder: (context, state) {
+            return ChangeNotifierProvider(
+              create: (context) => BaoCanHangViewModel(
+                baoCanHangRepository: context.read(),
+              ),
+              child: const BaoCanHangScreen(),
+            );
+          },
+          routes: [
+            GoRoute(
+              path: 'add', // Đường dẫn đến trang thêm báo cần hàng
+              builder: (context, state) {
+                return ChangeNotifierProvider(
+                  create: (context) => BaoCanHangViewModel(
+                    baoCanHangRepository: context.read(),
+                  ),
+                  child: const AddBaoCanHangScreen(),
+                );
+              },
+            ),
+            GoRoute(
+              path: 'edit', // Đường dẫn đến trang sửa báo cần hàng
+              builder: (context, state) {
+                final baoCanHang = state.extra as BaoCanHang;
+                return ChangeNotifierProvider(
+                  create: (context) => BaoCanHangViewModel(
+                    baoCanHangRepository: context.read(),
+                  ),
+                  child: EditBaoCanHangScreen(baoCanHang: baoCanHang),
+                );
+              },
+            ),
+          ],
+        ),
+        GoRoute(
           path: Routes.bookingRelative, // Đường dẫn đến trang đặt chỗ
           builder: (context, state) {
             final viewModel = BookingViewModel(
@@ -233,8 +275,8 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
               path: ':id', // Đường dẫn đến trang đặt chỗ với id cụ thể
               builder: (context, state) {
                 final id = int.parse(
-                  state.pathParameters['id']!,
-                ); // Lấy id từ tham số đường dẫn
+                  state.pathParameters['id']!, // Lấy id từ tham số đường dẫn
+                );
                 final viewModel = BookingViewModel(
                   itineraryConfigRepository:
                       context
@@ -301,11 +343,23 @@ Future<String?> _redirect(BuildContext context, GoRouterState state) async {
     }
 
       if (state.matchedLocation == '/thongtinxe/add') {
-      return '/thongtinxe/add'; // Cho phép điều hướng đến trang Học Sinh hoặc trang thêm Học Sinh nếu đã đăng nhập
+      return '/thongtinxe/add'; // điều hướng đến trang thêm thông tin
     }
 
     if (state.matchedLocation == '/thongtinxe/edit') {
-      return '/thongtinxe/edit'; // Cho phép điều hướng đến trang Học Sinh hoặc trang thêm Học Sinh nếu đã đăng nhập
+      return '/thongtinxe/edit'; // điều hướng đến trang sửa thông tin
+    }
+
+     if (state.matchedLocation == Routes.baoCanHang) {
+      return Routes.baoCanHang;
+    }
+
+      if (state.matchedLocation == '/baocanhang/add') {
+      return '/baocanhang/add'; // điều hướng đến trang thêm thông tin
+    }
+
+    if (state.matchedLocation == '/baocanhang/edit') {
+      return '/baocanhang/edit'; // điều hướng đến trang sửa thông tin
     }
 
     return Routes.home; // Chuyển hướng đến trang chủ nếu đã đăng nhập

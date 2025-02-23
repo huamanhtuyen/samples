@@ -141,7 +141,7 @@ class _ExampleStaggeredAnimationsState extends State<ChuXeScreen>
     cacChucNang.add({
       'title': 'Báo cần hàng chiều về',
       'description': 'Thông báo xe cần hàng chiều về tới tất cả các chủ hàng',
-      'route': Routes.hocSinh,
+      'route': Routes.baoCanHang,
     });
     cacChucNang.add({
       'title': 'Tìm hàng cần chở',

@@ -41,4 +41,6 @@ abstract final class Routes {
   static const khachHang = '/khach_hang';
   // Tuyến đường cho trang thông tin xe
   static const thongTinXe = '/thongtinxe';
+  // Tuyến đường cho trang báo cần hàng
+  static const baoCanHang = '/baocanhang';
 }
