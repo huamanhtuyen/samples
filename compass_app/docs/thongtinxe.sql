@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS public.thongtinxe
     taitrong_tan numeric,
     taitrong_m3 numeric,
     kichthuoccont character varying COLLATE pg_catalog."default",
+    sdttaixe character varying COLLATE pg_catalog."default",
     CONSTRAINT thongtinxe_pkey PRIMARY KEY (id)
 )
 

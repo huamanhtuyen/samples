@@ -16,8 +16,7 @@ class AddThongTinXeScreen extends StatefulWidget {
 class _AddThongTinXeScreenState extends State<AddThongTinXeScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
-  final _nameController = TextEditingController();
-  final _phoneNumberController = TextEditingController();
+  final _sdttaixeController = TextEditingController();
   final _anh1Controller = TextEditingController();
   final _anh2Controller = TextEditingController();
   final _anh3Controller = TextEditingController();
@@ -102,22 +101,13 @@ class _AddThongTinXeScreenState extends State<AddThongTinXeScreen> {
                     return null;
                   },
                 ),
+              
                 TextFormField(
-                  controller: _nameController,
-                  decoration: InputDecoration(labelText: 'Name'),
+                  controller: _sdttaixeController,
+                  decoration: InputDecoration(labelText: 'Sđt tài xế'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter name';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  controller: _phoneNumberController,
-                  decoration: InputDecoration(labelText: 'Phone Number'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter phone number';
+                      return 'Please enter drivers phone number';
                     }
                     return null;
                   },

@@ -30,6 +30,7 @@ class ThongTinXe {
   final double? taitrong_tan;
   final double? taitrong_m3;
   final String? kichthuoccont;
+  final String? sdttaixe;
 
   ThongTinXe({
     this.id,
@@ -78,6 +79,7 @@ class ThongTinXe {
     // ignore: non_constant_identifier_names
     this.taitrong_m3,
     this.kichthuoccont,
+    this.sdttaixe,
   });
 
   factory ThongTinXe.fromJson(Map<String, dynamic> json) {
@@ -113,6 +115,7 @@ class ThongTinXe {
       taitrong_tan: json['taitrong_tan'],
       taitrong_m3: json['taitrong_m3'],
       kichthuoccont: json['kichthuoccont'],
+      sdttaixe: json['sdttaixe'],
     );
   }
 
@@ -148,6 +151,7 @@ class ThongTinXe {
       'taitrong_tan': taitrong_tan,
       'taitrong_m3': taitrong_m3,
       'kichthuoccont': kichthuoccont,
+      'sdttaixe': sdttaixe,
     };
     if (id != null) {
       data['id'] = id;
