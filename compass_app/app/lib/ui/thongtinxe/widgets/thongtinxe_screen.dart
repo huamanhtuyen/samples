@@ -40,7 +40,7 @@ class _ThongTinXeScreenState extends State<ThongTinXeScreen> {
             itemBuilder: (context, index) {
               final thongTinXe = viewModel.thongTinXes[index];
               return ListTile(
-                title: Text(thongTinXe.email),
+                title: Text(thongTinXe.bienso ?? ''),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

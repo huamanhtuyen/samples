@@ -16,7 +16,6 @@ class EditThongTinXeScreen extends StatefulWidget {
 
 class _EditThongTinXeScreenState extends State<EditThongTinXeScreen> {
   final _formKey = GlobalKey<FormState>();
-  late String _email;
   late String _name;
   late String _phoneNumber;
   late String _anh1;
@@ -66,7 +65,6 @@ class _EditThongTinXeScreenState extends State<EditThongTinXeScreen> {
   @override
   void initState() {
     super.initState();
-    _email = widget.thongTinXe.email;
     _anh1 = widget.thongTinXe.anh1 ?? '';
     _anh2 = widget.thongTinXe.anh2 ?? '';
     _anh3 = widget.thongTinXe.anh3 ?? '';
@@ -108,13 +106,7 @@ class _EditThongTinXeScreenState extends State<EditThongTinXeScreen> {
           key: _formKey,
           child: Column(
             children: [
-              TextFormField(
-                initialValue: _email,
-                decoration: InputDecoration(labelText: 'Email'),
-                onSaved: (value) {
-                  _email = value!;
-                },
-              ),
+             
               TextFormField(
                 initialValue: _name,
                 decoration: InputDecoration(labelText: 'Name'),
@@ -338,8 +330,7 @@ class _EditThongTinXeScreenState extends State<EditThongTinXeScreen> {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
                     final updatedThongTinXe = ThongTinXe(
-                      id: widget.thongTinXe.id,
-                      email: _email,                    
+                      id: widget.thongTinXe.id,                                    
                       anh1: _anh1,
                       anh2: _anh2,
                       anh3: _anh3,

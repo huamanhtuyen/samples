@@ -15,7 +15,6 @@ class AddThongTinXeScreen extends StatefulWidget {
 
 class _AddThongTinXeScreenState extends State<AddThongTinXeScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
   final _sdttaixeController = TextEditingController();
   final _anh1Controller = TextEditingController();
   final _anh2Controller = TextEditingController();
@@ -91,17 +90,6 @@ class _AddThongTinXeScreenState extends State<AddThongTinXeScreen> {
             key: _formKey,
             child: Column(
               children: [
-                TextFormField(
-                  controller: _emailController,
-                  decoration: InputDecoration(labelText: 'Email'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter email';
-                    }
-                    return null;
-                  },
-                ),
-              
                 TextFormField(
                   controller: _sdttaixeController,
                   decoration: InputDecoration(labelText: 'Sđt tài xế'),
@@ -394,8 +382,7 @@ class _AddThongTinXeScreenState extends State<AddThongTinXeScreen> {
                 ElevatedButton(
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      final thongTinXe = ThongTinXe(
-                        email: _emailController.text,                   
+                      final thongTinXe = ThongTinXe(              
                         anh1: _anh1Controller.text,
                         anh2: _anh2Controller.text,
                         anh3: _anh3Controller.text,

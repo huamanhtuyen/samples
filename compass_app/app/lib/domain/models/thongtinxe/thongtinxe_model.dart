@@ -1,6 +1,6 @@
 class ThongTinXe {
   final int? id;
-  final String email;
+  final String? email;
   final String? anh1;
   final String? anh2;
   final String? anh3;
@@ -34,7 +34,7 @@ class ThongTinXe {
 
   ThongTinXe({
     this.id,
-    required this.email,
+    this.email, //email là db tự điền
     this.anh1,
     this.anh2,
     this.anh3,
@@ -121,7 +121,7 @@ class ThongTinXe {
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{
-      'email': email,
+      //không được phép truyền cột email khi insert dữ liệu vì cột này được kiểm soát hoàn toàn bằng DB      
       'anh1': anh1,
       'anh2': anh2,
       'anh3': anh3,
