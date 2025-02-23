@@ -8,11 +8,6 @@ class ImageRepository {
   final ImagePicker _picker = ImagePicker();
 
   Future<Result<String?>> pickAndUploadImage() async {
-    // Ensure the client is authenticated
-    if (_supabaseClient.auth.currentUser == null) {
-      // Handle unauthenticated state, e.g., prompt user to log in
-      return Result.error(Exception('You are unauthenticated'));;
-    }
 
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
     final bucketName = 'anhcacloai';
