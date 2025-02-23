@@ -1,3 +1,5 @@
+// ignore_for_file: directives_ordering
+
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:logging/logging.dart';
@@ -5,18 +7,23 @@ import '../../../data/repositories/thongtinxe/thongtinxe_repository.dart';
 import '../../../domain/models/thongtinxe/thongtinxe_model.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
+import '../../../data/repositories/image_repository.dart';
 
 class ThongTinXeViewModel extends ChangeNotifier {
   ThongTinXeViewModel({
     required ThongTinXeRepository thongTinXeRepository,
-  }) : _thongTinXeRepository = thongTinXeRepository {
+    required ImageRepository imageRepository, // Add this line
+  }) : _thongTinXeRepository = thongTinXeRepository,
+       _imageRepository = imageRepository { // Modify this line
     load = Command0(_load)..execute();
     deleteThongTinXe = Command1(_deleteThongTinXe);
     addThongTinXe = Command1(_addThongTinXe);
     updateThongTinXe = Command1(_updateThongTinXe);
+    pickAndUploadImage = Command0(_pickAndUploadImage);
   }
 
   final ThongTinXeRepository _thongTinXeRepository;
+  final ImageRepository _imageRepository; // Modify this line
   final _log = Logger('ThongTinXeViewModel');
   List<ThongTinXe> _thongTinXes = [];
 
@@ -26,6 +33,7 @@ class ThongTinXeViewModel extends ChangeNotifier {
   late Command1<void, int> deleteThongTinXe;
   late Command1<void, ThongTinXe> addThongTinXe;
   late Command1<void, ThongTinXe> updateThongTinXe;
+  late Command0<String?> pickAndUploadImage;
 
   Future<Result> _load() async {
     try {
@@ -92,6 +100,22 @@ class ThongTinXeViewModel extends ChangeNotifier {
           return resultUpdate;
       }
       return resultUpdate;
+    } finally {
+      notifyListeners();
+    }
+  }
+
+  Future<Result<String?>> _pickAndUploadImage() async {
+     try {     
+      final result =await _imageRepository.pickAndUploadImage();
+      switch (result) {
+        case Ok<String?>():
+          _log.fine('Uploaded image');      
+        case Error<String?>():
+          _log.warning('Upload image failure', result.error);
+         
+      }
+      return result;
     } finally {
       notifyListeners();
     }

@@ -173,6 +173,7 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
             return ChangeNotifierProvider(
               create: (context) => ThongTinXeViewModel(
                 thongTinXeRepository: context.read(),
+                imageRepository: context.read(),
               ),
               child: const ThongTinXeScreen(),
             );
@@ -184,6 +185,7 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
                 return ChangeNotifierProvider(
                   create: (context) => ThongTinXeViewModel(
                     thongTinXeRepository: context.read(),
+                     imageRepository: context.read(),
                   ),
                   child: const AddThongTinXeScreen(),
                 );
@@ -196,6 +198,7 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
                 return ChangeNotifierProvider(
                   create: (context) => ThongTinXeViewModel(
                     thongTinXeRepository: context.read(),
+                     imageRepository: context.read(),
                   ),
                   child: EditThongTinXeScreen(thongTinXe: thongTinXe),
                 );

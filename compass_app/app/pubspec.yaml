@@ -25,6 +25,7 @@ dependencies:
   shared_preferences: ^2.3.5 # Thư viện để lưu trữ dữ liệu đơn giản
   supabase_flutter: ^2.8.3 # Thư viện để làm việc với Supabase
   mockito: ^5.0.0 # Thư viện để mock trong kiểm thử
+  image_picker: ^0.8.5+3 # Thư viện để chọn hình ảnh từ thư viện hoặc máy ảnh
 
 dev_dependencies:
   flutter_test:

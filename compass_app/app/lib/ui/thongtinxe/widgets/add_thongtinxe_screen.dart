@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../view_models/thongtinxe_viewmodel.dart';
 import '../../../domain/models/thongtinxe/thongtinxe_model.dart';
+import '../../../utils/result.dart';
 
 class AddThongTinXeScreen extends StatefulWidget {
   const AddThongTinXeScreen({super.key});
@@ -47,6 +48,38 @@ class _AddThongTinXeScreenState extends State<AddThongTinXeScreen> {
   final _diachichitietController = TextEditingController();
   final _biensoController = TextEditingController();
   final _maloaixeController = TextEditingController();
+  
+  Future<void> _pickAndUploadImage() async {
+  final viewModel = context.read<ThongTinXeViewModel>();
+  await viewModel.pickAndUploadImage.execute();
+  final result = viewModel.pickAndUploadImage.result;
+  if (result != null) {
+    if (result is Ok<String?>) {
+      final imageUrl = result.value;
+      setState(() {
+        _anh1Controller.text = imageUrl ?? '';
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Image uploaded successfully'),
+        ),
+      );
+    } else if (result is Error<String?>) {
+      final error = result.error;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Image loaded unsuccessfully: $error'),
+        ),
+      );
+    }
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Image upload result is null'),
+      ),
+    );
+  }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +121,17 @@ class _AddThongTinXeScreenState extends State<AddThongTinXeScreen> {
                     }
                     return null;
                   },
+                ),
+                GestureDetector(
+                  onTap: _pickAndUploadImage,
+                  child: Container(
+                    height: 150,
+                    width: 150,
+                    color: Colors.grey[300],
+                    child: _anh1Controller.text.isEmpty
+                        ? Icon(Icons.add_a_photo)
+                        : Image.network(_anh1Controller.text, fit: BoxFit.cover),
+                  ),
                 ),
                 TextFormField(
                   controller: _anh1Controller,
