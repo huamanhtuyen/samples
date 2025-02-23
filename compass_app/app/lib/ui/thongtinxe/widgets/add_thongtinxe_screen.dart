@@ -52,311 +52,313 @@ class _AddThongTinXeScreenState extends State<AddThongTinXeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Add Thong Tin Xe')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              TextFormField(
-                controller: _emailController,
-                decoration: InputDecoration(labelText: 'Email'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter email';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _nameController,
-                decoration: InputDecoration(labelText: 'Name'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter name';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _phoneNumberController,
-                decoration: InputDecoration(labelText: 'Phone Number'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter phone number';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _anh1Controller,
-                decoration: InputDecoration(labelText: 'Anh 1'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter Anh 1';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _anh2Controller,
-                decoration: InputDecoration(labelText: 'Anh 2'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter Anh 2';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _anh3Controller,
-                decoration: InputDecoration(labelText: 'Anh 3'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter Anh 3';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _anh4Controller,
-                decoration: InputDecoration(labelText: 'Anh 4'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter Anh 4';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _anh5Controller,
-                decoration: InputDecoration(labelText: 'Anh 5'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter Anh 5';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _anh6Controller,
-                decoration: InputDecoration(labelText: 'Anh 6'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter Anh 6';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _anh7Controller,
-                decoration: InputDecoration(labelText: 'Anh 7'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter Anh 7';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _anh8Controller,
-                decoration: InputDecoration(labelText: 'Anh 8'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter Anh 8';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _anh9Controller,
-                decoration: InputDecoration(labelText: 'Anh 9'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter Anh 9';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _matinhController,
-                decoration: InputDecoration(labelText: 'Ma Tinh'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter Ma Tinh';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _tentinh_tienganhController,
-                decoration: InputDecoration(labelText: 'Ten Tinh Tieng Anh'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter Ten Tinh Tieng Anh';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _tentinh_tiengvietController,
-                decoration: InputDecoration(labelText: 'Ten Tinh Tieng Viet'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter Ten Tinh Tieng Viet';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _tentinh_tiengthaiController,
-                decoration: InputDecoration(labelText: 'Ten Tinh Tieng Thai'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter Ten Tinh Tieng Thai';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _temtinh_tiengtrungController,
-                decoration: InputDecoration(labelText: 'Ten Tinh Tieng Trung'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter Ten Tinh Tieng Trung';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _maquanController,
-                decoration: InputDecoration(labelText: 'Ma Quan'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter Ma Quan';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _tenquan_tienganhController,
-                decoration: InputDecoration(labelText: 'Ten Quan Tieng Anh'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter Ten Quan Tieng Anh';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _tenquan_tiengvietController,
-                decoration: InputDecoration(labelText: 'Ten Quan Tieng Viet'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter Ten Quan Tieng Viet';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _tenquan_tiengthaiController,
-                decoration: InputDecoration(labelText: 'Ten Quan Tieng Thai'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter Ten Quan Tieng Thai';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _tenquan_tiengtrungController,
-                decoration: InputDecoration(labelText: 'Ten Quan Tieng Trung'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter Ten Quan Tieng Trung';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _diachichitietController,
-                decoration: InputDecoration(labelText: 'Dia Chi Chi Tiet'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter Dia Chi Chi Tiet';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _biensoController,
-                decoration: InputDecoration(labelText: 'Bien So'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter Bien So';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _maloaixeController,
-                decoration: InputDecoration(labelText: 'Ma Loai Xe'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter Ma Loai Xe';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    final thongTinXe = ThongTinXe(
-                      email: _emailController.text,                   
-                      anh1: _anh1Controller.text,
-                      anh2: _anh2Controller.text,
-                      anh3: _anh3Controller.text,
-                      anh4: _anh4Controller.text,
-                      anh5: _anh5Controller.text,
-                      anh6: _anh6Controller.text,
-                      anh7: _anh7Controller.text,
-                      anh8: _anh8Controller.text,
-                      anh9: _anh9Controller.text,
-                      matinh: _matinhController.text,
-                      tentinh_tienganh: _tentinh_tienganhController.text,
-                      tentinh_tiengviet: _tentinh_tiengvietController.text,
-                      tentinh_tiengthai: _tentinh_tiengthaiController.text,
-                      temtinh_tiengtrung: _temtinh_tiengtrungController.text,
-                      maquan: _maquanController.text,
-                      tenquan_tienganh: _tenquan_tienganhController.text,
-                      tenquan_tiengviet: _tenquan_tiengvietController.text,
-                      tenquan_tiengthai: _tenquan_tiengthaiController.text,
-                      tenquan_tiengtrung: _tenquan_tiengtrungController.text,
-                      diachichitiet: _diachichitietController.text,
-                      bienso: _biensoController.text,
-                      maloaixe: _maloaixeController.text,
-                      // Add more fields as needed
-                    );
-                    final viewModel = context.read<ThongTinXeViewModel>();
-                    await viewModel.addThongTinXe.execute(thongTinXe);
-                    if (!mounted) return;
-                    final error = viewModel.addThongTinXe.error;
-                    final errorMsg = viewModel.addThongTinXe.result.toString();
-                    if (error == false) {
-                      Navigator.of(context).pop(true);
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Failed to add Thong Tin Xe: $errorMsg'),
-                        ),
-                      );
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                TextFormField(
+                  controller: _emailController,
+                  decoration: InputDecoration(labelText: 'Email'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter email';
                     }
-                  }
-                },
-                child: Text('Add Thong Tin Xe'),
-              ),
-            ],
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _nameController,
+                  decoration: InputDecoration(labelText: 'Name'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter name';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _phoneNumberController,
+                  decoration: InputDecoration(labelText: 'Phone Number'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter phone number';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _anh1Controller,
+                  decoration: InputDecoration(labelText: 'Anh 1'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Anh 1';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _anh2Controller,
+                  decoration: InputDecoration(labelText: 'Anh 2'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Anh 2';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _anh3Controller,
+                  decoration: InputDecoration(labelText: 'Anh 3'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Anh 3';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _anh4Controller,
+                  decoration: InputDecoration(labelText: 'Anh 4'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Anh 4';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _anh5Controller,
+                  decoration: InputDecoration(labelText: 'Anh 5'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Anh 5';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _anh6Controller,
+                  decoration: InputDecoration(labelText: 'Anh 6'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Anh 6';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _anh7Controller,
+                  decoration: InputDecoration(labelText: 'Anh 7'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Anh 7';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _anh8Controller,
+                  decoration: InputDecoration(labelText: 'Anh 8'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Anh 8';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _anh9Controller,
+                  decoration: InputDecoration(labelText: 'Anh 9'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Anh 9';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _matinhController,
+                  decoration: InputDecoration(labelText: 'Ma Tinh'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Ma Tinh';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _tentinh_tienganhController,
+                  decoration: InputDecoration(labelText: 'Ten Tinh Tieng Anh'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Ten Tinh Tieng Anh';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _tentinh_tiengvietController,
+                  decoration: InputDecoration(labelText: 'Ten Tinh Tieng Viet'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Ten Tinh Tieng Viet';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _tentinh_tiengthaiController,
+                  decoration: InputDecoration(labelText: 'Ten Tinh Tieng Thai'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Ten Tinh Tieng Thai';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _temtinh_tiengtrungController,
+                  decoration: InputDecoration(labelText: 'Ten Tinh Tieng Trung'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Ten Tinh Tieng Trung';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _maquanController,
+                  decoration: InputDecoration(labelText: 'Ma Quan'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Ma Quan';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _tenquan_tienganhController,
+                  decoration: InputDecoration(labelText: 'Ten Quan Tieng Anh'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Ten Quan Tieng Anh';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _tenquan_tiengvietController,
+                  decoration: InputDecoration(labelText: 'Ten Quan Tieng Viet'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Ten Quan Tieng Viet';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _tenquan_tiengthaiController,
+                  decoration: InputDecoration(labelText: 'Ten Quan Tieng Thai'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Ten Quan Tieng Thai';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _tenquan_tiengtrungController,
+                  decoration: InputDecoration(labelText: 'Ten Quan Tieng Trung'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Ten Quan Tieng Trung';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _diachichitietController,
+                  decoration: InputDecoration(labelText: 'Dia Chi Chi Tiet'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Dia Chi Chi Tiet';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _biensoController,
+                  decoration: InputDecoration(labelText: 'Bien So'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Bien So';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _maloaixeController,
+                  decoration: InputDecoration(labelText: 'Ma Loai Xe'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Ma Loai Xe';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      final thongTinXe = ThongTinXe(
+                        email: _emailController.text,                   
+                        anh1: _anh1Controller.text,
+                        anh2: _anh2Controller.text,
+                        anh3: _anh3Controller.text,
+                        anh4: _anh4Controller.text,
+                        anh5: _anh5Controller.text,
+                        anh6: _anh6Controller.text,
+                        anh7: _anh7Controller.text,
+                        anh8: _anh8Controller.text,
+                        anh9: _anh9Controller.text,
+                        matinh: _matinhController.text,
+                        tentinh_tienganh: _tentinh_tienganhController.text,
+                        tentinh_tiengviet: _tentinh_tiengvietController.text,
+                        tentinh_tiengthai: _tentinh_tiengthaiController.text,
+                        temtinh_tiengtrung: _temtinh_tiengtrungController.text,
+                        maquan: _maquanController.text,
+                        tenquan_tienganh: _tenquan_tienganhController.text,
+                        tenquan_tiengviet: _tenquan_tiengvietController.text,
+                        tenquan_tiengthai: _tenquan_tiengthaiController.text,
+                        tenquan_tiengtrung: _tenquan_tiengtrungController.text,
+                        diachichitiet: _diachichitietController.text,
+                        bienso: _biensoController.text,
+                        maloaixe: _maloaixeController.text,
+                        // Add more fields as needed
+                      );
+                      final viewModel = context.read<ThongTinXeViewModel>();
+                      await viewModel.addThongTinXe.execute(thongTinXe);
+                      if (!mounted) return;
+                      final error = viewModel.addThongTinXe.error;
+                      final errorMsg = viewModel.addThongTinXe.result.toString();
+                      if (error == false) {
+                        Navigator.of(context).pop(true);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Failed to add Thong Tin Xe: $errorMsg'),
+                          ),
+                        );
+                      }
+                    }
+                  },
+                  child: Text('Add Thong Tin Xe'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
