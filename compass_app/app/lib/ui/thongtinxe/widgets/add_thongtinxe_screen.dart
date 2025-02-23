@@ -159,46 +159,64 @@ class _AddThongTinXeScreenState extends State<AddThongTinXeScreen> {
                     return null;
                   },
                 ),
-                TextFormField(
-                  controller: _anh2Controller,
-                  decoration: InputDecoration(labelText: 'Anh 2'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter Anh 2';
-                    }
-                    return null;
-                  },
+                Visibility(
+                  visible: false,
+                  child: TextFormField(
+                    controller: _anh2Controller,
+                    decoration: InputDecoration(labelText: 'Anh 2'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter Anh 2';
+                      }
+                      return null;
+                    },
+                  ),
                 ),
-                TextFormField(
-                  controller: _anh3Controller,
-                  decoration: InputDecoration(labelText: 'Anh 3'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter Anh 3';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  controller: _anh4Controller,
-                  decoration: InputDecoration(labelText: 'Anh 4'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter Anh 4';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  controller: _anh5Controller,
-                  decoration: InputDecoration(labelText: 'Anh 5'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter Anh 5';
-                    }
-                    return null;
-                  },
-                ),
+                 Visibility(
+                  visible: false,
+                  child:
+                  TextFormField(
+                    controller: _anh3Controller,
+                    decoration: InputDecoration(labelText: 'Anh 3'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter Anh 3';
+                      }
+                      return null;
+                    },
+                  ),
+                 ),
+                  Visibility(
+                  visible: false,
+                  child:
+                  TextFormField(
+                    controller: _anh4Controller,
+                    decoration: InputDecoration(labelText: 'Anh 4'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter Anh 4';
+                      }
+                      return null;
+                    },
+                  ),
+                  ),
+                   Visibility(
+                  visible: false,
+                  child:
+                    TextFormField(
+                      controller: _anh5Controller,
+                      decoration: InputDecoration(labelText: 'Anh 5'),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter Anh 5';
+                        }
+                        return null;
+                      },
+                    ),
+                   ),
+                    Visibility(
+                  visible: false,
+                  child:
                 TextFormField(
                   controller: _anh6Controller,
                   decoration: InputDecoration(labelText: 'Anh 6'),
@@ -209,6 +227,10 @@ class _AddThongTinXeScreenState extends State<AddThongTinXeScreen> {
                     return null;
                   },
                 ),
+                    ),
+                     Visibility(
+                  visible: false,
+                  child:
                 TextFormField(
                   controller: _anh7Controller,
                   decoration: InputDecoration(labelText: 'Anh 7'),
@@ -219,6 +241,10 @@ class _AddThongTinXeScreenState extends State<AddThongTinXeScreen> {
                     return null;
                   },
                 ),
+                     ),
+                      Visibility(
+                  visible: false,
+                  child:
                 TextFormField(
                   controller: _anh8Controller,
                   decoration: InputDecoration(labelText: 'Anh 8'),
@@ -229,6 +255,10 @@ class _AddThongTinXeScreenState extends State<AddThongTinXeScreen> {
                     return null;
                   },
                 ),
+                      ),
+                       Visibility(
+                  visible: false,
+                  child:
                 TextFormField(
                   controller: _anh9Controller,
                   decoration: InputDecoration(labelText: 'Anh 9'),
@@ -239,6 +269,7 @@ class _AddThongTinXeScreenState extends State<AddThongTinXeScreen> {
                     return null;
                   },
                 ),
+                       ),
                 TextFormField(
                   controller: _matinhController,
                   decoration: InputDecoration(labelText: 'Ma Tinh'),
