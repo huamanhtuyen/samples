@@ -130,7 +130,7 @@ class _AddThongTinXeScreenState extends State<AddThongTinXeScreen> {
                     color: Colors.grey[300],
                     child: _anh1Controller.text.isEmpty
                         ? Icon(Icons.add_a_photo)
-                        : Image.network(_anh1Controller.text, fit: BoxFit.cover),
+                        : Image.network(_anh1Controller.text, fit: BoxFit.fill),
                   ),
                 ),
                 TextFormField(
