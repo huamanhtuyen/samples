@@ -15,19 +15,30 @@ class AddBaoCanHangScreen extends StatefulWidget {
 class _AddBaoCanHangScreenState extends State<AddBaoCanHangScreen> {
   final _formKey = GlobalKey<FormState>();
   final _biensoxeController = TextEditingController();
+   // ignore: non_constant_identifier_names
   final _chieuvetu_matinhController = TextEditingController();
+   // ignore: non_constant_identifier_names
   final _chieuvetu_tentinh_tienganhController = TextEditingController();
+   // ignore: non_constant_identifier_names
   final _chieuvetu_tentinh_tiengvietController = TextEditingController();
+   // ignore: non_constant_identifier_names
   final _chieuvetu_tentinh_tiengthaiController = TextEditingController();
+   // ignore: non_constant_identifier_names
   final _chieuvetu_temtinh_tiengtrungController = TextEditingController();
+   // ignore: non_constant_identifier_names
   final _veden_matinhController = TextEditingController();
+   // ignore: non_constant_identifier_names
   final _veden_tentinh_tienganhController = TextEditingController();
+   // ignore: non_constant_identifier_names
   final _veden_tentinh_tiengvietController = TextEditingController();
+   // ignore: non_constant_identifier_names
   final _veden_tentinh_tiengthaiController = TextEditingController();
+   // ignore: non_constant_identifier_names
   final _veden_temtinh_tiengtrungController = TextEditingController();
   final _gianhanController = TextEditingController();
   final _gianhandvtController = TextEditingController();
   final _ngaydoitoidaController = TextEditingController();
+  DateTime _selectedDate = DateTime.now().add(Duration(days: 2));
 
   @override
   Widget build(BuildContext context) {
@@ -179,6 +190,21 @@ class _AddBaoCanHangScreenState extends State<AddBaoCanHangScreen> {
                     }
                     return null;
                   },
+                  onTap: () async {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                    final DateTime? picked = await showDatePicker(
+                      context: context,
+                      initialDate: _selectedDate,
+                      firstDate: DateTime(2000),
+                      lastDate: DateTime(2101),
+                    );
+                    if (picked != null && picked != _selectedDate) {
+                      setState(() {
+                        _selectedDate = picked;
+                        _ngaydoitoidaController.text = _selectedDate.toIso8601String().split('T').first;
+                      });
+                    }
+                  },
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(
@@ -198,7 +224,7 @@ class _AddBaoCanHangScreenState extends State<AddBaoCanHangScreen> {
                         veden_temtinh_tiengtrung: _veden_temtinh_tiengtrungController.text,
                         gianhan: double.tryParse(_gianhanController.text),
                         gianhandvt: double.tryParse(_gianhandvtController.text),
-                        ngaydoitoida: DateTime.tryParse(_ngaydoitoidaController.text),
+                        ngaydoitoida: _selectedDate,
                       );
                       final viewModel = context.read<BaoCanHangViewModel>();
                       await viewModel.addBaoCanHang.execute(baoCanHang);
