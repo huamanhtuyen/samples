@@ -128,9 +128,25 @@ class _AddThongTinXeScreenState extends State<AddThongTinXeScreen> {
                     height: 150,
                     width: 150,
                     color: Colors.grey[300],
-                    child: _anh1Controller.text.isEmpty
-                        ? Icon(Icons.add_a_photo)
-                        : Image.network(_anh1Controller.text, fit: BoxFit.fill),
+                    child: Stack(
+                      children: [
+                        _anh1Controller.text.isEmpty
+                            ? Center(child: Icon(Icons.add_a_photo))
+                            : Image.network(_anh1Controller.text, fit: BoxFit.fill),
+                        if (_anh1Controller.text.isEmpty)
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'Chọn ảnh',
+                                style: TextStyle(color: Colors.black54),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
                 ),
                 TextFormField(
