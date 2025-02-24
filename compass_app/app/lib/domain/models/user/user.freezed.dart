@@ -35,6 +35,17 @@ mixin _$User {
   /// The user's address.
   String? get diachi => throw _privateConstructorUsedError; // Add diachi field
 
+  String? get sdt1 => throw _privateConstructorUsedError;
+  String? get sdt2 => throw _privateConstructorUsedError;
+  String? get sdt3 => throw _privateConstructorUsedError;
+  String? get nguoidaidiendn => throw _privateConstructorUsedError;
+  String? get stk1 => throw _privateConstructorUsedError;
+  String? get tennganhang1 => throw _privateConstructorUsedError;
+  String? get stk2 => throw _privateConstructorUsedError;
+  String? get tennganhang2 => throw _privateConstructorUsedError;
+  String? get stk3 => throw _privateConstructorUsedError;
+  String? get tennganhang3 => throw _privateConstructorUsedError;
+
   /// Serializes this User to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
@@ -55,6 +66,16 @@ abstract class $UserCopyWith<$Res> {
     String? tencty,
     String? picture,
     String? diachi,
+    String? sdt1,
+    String? sdt2,
+    String? sdt3,
+    String? nguoidaidiendn,
+    String? stk1,
+    String? tennganhang1,
+    String? stk2,
+    String? tennganhang2,
+    String? stk3,
+    String? tennganhang3,
   }); // Add diachi field
 }
 
@@ -78,6 +99,16 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? tencty = freezed,
     Object? picture = freezed,
     Object? diachi = freezed, // Add diachi field
+    Object? sdt1 = freezed,
+    Object? sdt2 = freezed,
+    Object? sdt3 = freezed,
+    Object? nguoidaidiendn = freezed,
+    Object? stk1 = freezed,
+    Object? tennganhang1 = freezed,
+    Object? stk2 = freezed,
+    Object? tennganhang2 = freezed,
+    Object? stk3 = freezed,
+    Object? tennganhang3 = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -106,6 +137,56 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
                     ? _value.diachi
                     : diachi // ignore: cast_nullable_to_non_nullable
                         as String?, // Add diachi field
+            sdt1:
+                freezed == sdt1
+                    ? _value.sdt1
+                    : sdt1 // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            sdt2:
+                freezed == sdt2
+                    ? _value.sdt2
+                    : sdt2 // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            sdt3:
+                freezed == sdt3
+                    ? _value.sdt3
+                    : sdt3 // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            nguoidaidiendn:
+                freezed == nguoidaidiendn
+                    ? _value.nguoidaidiendn
+                    : nguoidaidiendn // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            stk1:
+                freezed == stk1
+                    ? _value.stk1
+                    : stk1 // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            tennganhang1:
+                freezed == tennganhang1
+                    ? _value.tennganhang1
+                    : tennganhang1 // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            stk2:
+                freezed == stk2
+                    ? _value.stk2
+                    : stk2 // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            tennganhang2:
+                freezed == tennganhang2
+                    ? _value.tennganhang2
+                    : tennganhang2 // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            stk3:
+                freezed == stk3
+                    ? _value.stk3
+                    : stk3 // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            tennganhang3:
+                freezed == tennganhang3
+                    ? _value.tennganhang3
+                    : tennganhang3 // ignore: cast_nullable_to_non_nullable
+                        as String?,
           )
           as $Val,
     );
@@ -126,6 +207,16 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
     String? tencty,
     String? picture,
     String? diachi,
+    String? sdt1,
+    String? sdt2,
+    String? sdt3,
+    String? nguoidaidiendn,
+    String? stk1,
+    String? tennganhang1,
+    String? stk2,
+    String? tennganhang2,
+    String? stk3,
+    String? tennganhang3,
   }); // Add diachi field
 }
 
@@ -146,6 +237,16 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? tencty = freezed,
     Object? picture = freezed,
     Object? diachi = freezed, // Add diachi field
+    Object? sdt1 = freezed,
+    Object? sdt2 = freezed,
+    Object? sdt3 = freezed,
+    Object? nguoidaidiendn = freezed,
+    Object? stk1 = freezed,
+    Object? tennganhang1 = freezed,
+    Object? stk2 = freezed,
+    Object? tennganhang2 = freezed,
+    Object? stk3 = freezed,
+    Object? tennganhang3 = freezed,
   }) {
     return _then(
       _$UserImpl(
@@ -174,6 +275,56 @@ class __$$UserImplCopyWithImpl<$Res>
                 ? _value.diachi
                 : diachi // ignore: cast_nullable_to_non_nullable
                     as String?, // Add diachi field
+        sdt1:
+            freezed == sdt1
+                ? _value.sdt1
+                : sdt1 // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        sdt2:
+            freezed == sdt2
+                ? _value.sdt2
+                : sdt2 // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        sdt3:
+            freezed == sdt3
+                ? _value.sdt3
+                : sdt3 // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        nguoidaidiendn:
+            freezed == nguoidaidiendn
+                ? _value.nguoidaidiendn
+                : nguoidaidiendn // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        stk1:
+            freezed == stk1
+                ? _value.stk1
+                : stk1 // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        tennganhang1:
+            freezed == tennganhang1
+                ? _value.tennganhang1
+                : tennganhang1 // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        stk2:
+            freezed == stk2
+                ? _value.stk2
+                : stk2 // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        tennganhang2:
+            freezed == tennganhang2
+                ? _value.tennganhang2
+                : tennganhang2 // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        stk3:
+            freezed == stk3
+                ? _value.stk3
+                : stk3 // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        tennganhang3:
+            freezed == tennganhang3
+                ? _value.tennganhang3
+                : tennganhang3 // ignore: cast_nullable_to_non_nullable
+                    as String?,
       ),
     );
   }
@@ -188,6 +339,16 @@ class _$UserImpl implements _User {
     this.tencty,
     this.picture,
     this.diachi,
+    this.sdt1,
+    this.sdt2,
+    this.sdt3,
+    this.nguoidaidiendn,
+    this.stk1,
+    this.tennganhang1,
+    this.stk2,
+    this.tennganhang2,
+    this.stk3,
+    this.tennganhang3,
   }); // Add diachi field
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
@@ -212,8 +373,29 @@ class _$UserImpl implements _User {
   final String? diachi; // Add diachi field
 
   @override
+  final String? sdt1;
+  @override
+  final String? sdt2;
+  @override
+  final String? sdt3;
+  @override
+  final String? nguoidaidiendn;
+  @override
+  final String? stk1;
+  @override
+  final String? tennganhang1;
+  @override
+  final String? stk2;
+  @override
+  final String? tennganhang2;
+  @override
+  final String? stk3;
+  @override
+  final String? tennganhang3;
+
+  @override
   String toString() {
-    return 'User(id: $id, mst: $mst, tencty: $tencty, picture: $picture, diachi: $diachi)'; // Add diachi field
+    return 'User(id: $id, mst: $mst, tencty: $tencty, picture: $picture, diachi: $diachi, sdt1: $sdt1, sdt2: $sdt2, sdt3: $sdt3, nguoidaidiendn: $nguoidaidiendn, stk1: $stk1, tennganhang1: $tennganhang1, stk2: $stk2, tennganhang2: $tennganhang2, stk3: $stk3, tennganhang3: $tennganhang3)'; // Add diachi field
   }
 
   @override
@@ -225,14 +407,43 @@ class _$UserImpl implements _User {
             (identical(other.mst, mst) || other.mst == mst) &&
             (identical(other.tencty, tencty) || other.tencty == tencty) &&
             (identical(other.picture, picture) || other.picture == picture) &&
-            (identical(other.diachi, diachi) ||
-                other.diachi == diachi)); // Add diachi field
+            (identical(other.diachi, diachi) || other.diachi == diachi) &&
+            (identical(other.sdt1, sdt1) || other.sdt1 == sdt1) &&
+            (identical(other.sdt2, sdt2) || other.sdt2 == sdt2) &&
+            (identical(other.sdt3, sdt3) || other.sdt3 == sdt3) &&
+            (identical(other.nguoidaidiendn, nguoidaidiendn) ||
+                other.nguoidaidiendn == nguoidaidiendn) &&
+            (identical(other.stk1, stk1) || other.stk1 == stk1) &&
+            (identical(other.tennganhang1, tennganhang1) ||
+                other.tennganhang1 == tennganhang1) &&
+            (identical(other.stk2, stk2) || other.stk2 == stk2) &&
+            (identical(other.tennganhang2, tennganhang2) ||
+                other.tennganhang2 == tennganhang2) &&
+            (identical(other.stk3, stk3) || other.stk3 == stk3) &&
+            (identical(other.tennganhang3, tennganhang3) ||
+                other.tennganhang3 == tennganhang3)); // Add diachi field
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, mst, tencty, picture, diachi); // Add diachi field
+  int get hashCode => Object.hash(
+    runtimeType,
+    id,
+    mst,
+    tencty,
+    picture,
+    diachi,
+    sdt1,
+    sdt2,
+    sdt3,
+    nguoidaidiendn,
+    stk1,
+    tennganhang1,
+    stk2,
+    tennganhang2,
+    stk3,
+    tennganhang3,
+  ); // Add diachi field
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -255,6 +466,16 @@ abstract class _User implements User {
     final String? tencty,
     final String? picture,
     final String? diachi, // Add diachi field
+    final String? sdt1,
+    final String? sdt2,
+    final String? sdt3,
+    final String? nguoidaidiendn,
+    final String? stk1,
+    final String? tennganhang1,
+    final String? stk2,
+    final String? tennganhang2,
+    final String? stk3,
+    final String? tennganhang3,
   }) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
@@ -274,6 +495,27 @@ abstract class _User implements User {
   /// The user's address.
   @override
   String? get diachi; // Add diachi field
+
+  @override
+  String? get sdt1;
+  @override
+  String? get sdt2;
+  @override
+  String? get sdt3;
+  @override
+  String? get nguoidaidiendn;
+  @override
+  String? get stk1;
+  @override
+  String? get tennganhang1;
+  @override
+  String? get stk2;
+  @override
+  String? get tennganhang2;
+  @override
+  String? get stk3;
+  @override
+  String? get tennganhang3;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.

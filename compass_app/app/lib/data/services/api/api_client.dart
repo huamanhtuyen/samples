@@ -172,6 +172,16 @@ class ApiClient {
         tencty: userProfile.tencty ?? '',
         picture: userProfile.picture ?? '',
         diachi: userProfile.diachi ?? '',
+        sdt1: userProfile.sdt1 ?? '',
+        sdt2: userProfile.sdt2 ?? '',
+        sdt3: userProfile.sdt3 ?? '',
+        nguoidaidiendn: userProfile.nguoidaidiendn ?? '',
+        stk1: userProfile.stk1 ?? '',
+        tennganhang1: userProfile.tennganhang1 ?? '',
+        stk2: userProfile.stk2 ?? '',
+        tennganhang2: userProfile.tennganhang2 ?? '',
+        stk3: userProfile.stk3 ?? '',
+        tennganhang3: userProfile.tennganhang3 ?? '',
       );
 
       return Result.ok(user);

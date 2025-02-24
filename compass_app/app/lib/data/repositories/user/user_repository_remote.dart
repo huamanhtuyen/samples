@@ -39,6 +39,16 @@ class UserRepositoryRemote implements UserRepository {
           picture: result.value.picture, // Lấy hình ảnh từ kết quả API
           tencty: result.value.tencty, // Lấy tên từ kết quả API
           diachi: result.value.diachi, // Ensure diachi field is handled
+          sdt1: result.value.sdt1,
+          sdt2: result.value.sdt2,
+          sdt3: result.value.sdt3,
+          nguoidaidiendn: result.value.nguoidaidiendn,
+          stk1: result.value.stk1,
+          tennganhang1: result.value.tennganhang1,
+          stk2: result.value.stk2,
+          tennganhang2: result.value.tennganhang2,
+          stk3: result.value.stk3,
+          tennganhang3: result.value.tennganhang3,
         );
         _cachedData = user; // Lưu dữ liệu vào biến cache
         return Result.ok(user); // Trả về kết quả thành công với đối tượng User

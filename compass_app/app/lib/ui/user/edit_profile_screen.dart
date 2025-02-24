@@ -17,6 +17,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   late String _picture;
   late String _tencty;
   late String _diachi;
+  late String _sdt1;
+  late String _sdt2;
+  late String _sdt3;
+  late String _nguoidaidiendn;
+  late String _stk1;
+  late String _tennganhang1;
+  late String _stk2;
+  late String _tennganhang2;
+  late String _stk3;
+  late String _tennganhang3;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +49,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   _picture = user.picture ?? '';
                   _tencty = user.tencty ?? '';
                   _diachi = user.diachi ?? '';
+                  _sdt1 = user.sdt1 ?? '';
+                  _sdt2 = user.sdt2 ?? '';
+                  _sdt3 = user.sdt3 ?? '';
+                  _nguoidaidiendn = user.nguoidaidiendn ?? '';
+                  _stk1 = user.stk1 ?? '';
+                  _tennganhang1 = user.tennganhang1 ?? '';
+                  _stk2 = user.stk2 ?? '';
+                  _tennganhang2 = user.tennganhang2 ?? '';
+                  _stk3 = user.stk3 ?? '';
+                  _tennganhang3 = user.tennganhang3 ?? '';
                   return Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Form(
@@ -70,6 +90,96 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               _diachi = value!;
                             },
                           ),
+                          TextFormField(
+                            initialValue: _sdt1,
+                            decoration: const InputDecoration(
+                              labelText: 'Số điện thoại 1',
+                            ),
+                            onSaved: (value) {
+                              _sdt1 = value!;
+                            },
+                          ),
+                          TextFormField(
+                            initialValue: _sdt2,
+                            decoration: const InputDecoration(
+                              labelText: 'Số điện thoại 2',
+                            ),
+                            onSaved: (value) {
+                              _sdt2 = value!;
+                            },
+                          ),
+                          TextFormField(
+                            initialValue: _sdt3,
+                            decoration: const InputDecoration(
+                              labelText: 'Số điện thoại 3',
+                            ),
+                            onSaved: (value) {
+                              _sdt3 = value!;
+                            },
+                          ),
+                          TextFormField(
+                            initialValue: _nguoidaidiendn,
+                            decoration: const InputDecoration(
+                              labelText: 'Người đại diện doanh nghiệp',
+                            ),
+                            onSaved: (value) {
+                              _nguoidaidiendn = value!;
+                            },
+                          ),
+                          TextFormField(
+                            initialValue: _stk1,
+                            decoration: const InputDecoration(
+                              labelText: 'Số tài khoản 1',
+                            ),
+                            onSaved: (value) {
+                              _stk1 = value!;
+                            },
+                          ),
+                          TextFormField(
+                            initialValue: _tennganhang1,
+                            decoration: const InputDecoration(
+                              labelText: 'Tên ngân hàng 1',
+                            ),
+                            onSaved: (value) {
+                              _tennganhang1 = value!;
+                            },
+                          ),
+                          TextFormField(
+                            initialValue: _stk2,
+                            decoration: const InputDecoration(
+                              labelText: 'Số tài khoản 2',
+                            ),
+                            onSaved: (value) {
+                              _stk2 = value!;
+                            },
+                          ),
+                          TextFormField(
+                            initialValue: _tennganhang2,
+                            decoration: const InputDecoration(
+                              labelText: 'Tên ngân hàng 2',
+                            ),
+                            onSaved: (value) {
+                              _tennganhang2 = value!;
+                            },
+                          ),
+                          TextFormField(
+                            initialValue: _stk3,
+                            decoration: const InputDecoration(
+                              labelText: 'Số tài khoản 3',
+                            ),
+                            onSaved: (value) {
+                              _stk3 = value!;
+                            },
+                          ),
+                          TextFormField(
+                            initialValue: _tennganhang3,
+                            decoration: const InputDecoration(
+                              labelText: 'Tên ngân hàng 3',
+                            ),
+                            onSaved: (value) {
+                              _tennganhang3 = value!;
+                            },
+                          ),
                           Visibility(
                             visible: false,
                             child: TextFormField(
@@ -97,6 +207,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         picture: _picture,
                                         tencty: _tencty,
                                         diachi: _diachi,
+                                        sdt1: _sdt1,
+                                        sdt2: _sdt2,
+                                        sdt3: _sdt3,
+                                        nguoidaidiendn: _nguoidaidiendn,
+                                        stk1: _stk1,
+                                        tennganhang1: _tennganhang1,
+                                        stk2: _stk2,
+                                        tennganhang2: _tennganhang2,
+                                        stk3: _stk3,
+                                        tennganhang3: _tennganhang3,
                                       ),
                                     );
                                 switch (result) {

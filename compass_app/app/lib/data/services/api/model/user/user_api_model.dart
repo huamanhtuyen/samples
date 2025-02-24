@@ -27,6 +27,35 @@ abstract class UserApiModel with _$UserApiModel {
 
     // Địa chỉ của người dùng.
     String? diachi, // Add diachi field
+    // Số điện thoại 1
+    String? sdt1,
+
+    // Số điện thoại 2
+    String? sdt2,
+
+    // Số điện thoại 3
+    String? sdt3,
+
+    // Người đại diện doanh nghiệp
+    String? nguoidaidiendn,
+
+    // Số tài khoản 1
+    String? stk1,
+
+    // Tên ngân hàng 1
+    String? tennganhang1,
+
+    // Số tài khoản 2
+    String? stk2,
+
+    // Tên ngân hàng 2
+    String? tennganhang2,
+
+    // Số tài khoản 3
+    String? stk3,
+
+    // Tên ngân hàng 3
+    String? tennganhang3,
   }) = _UserApiModel;
 
   // Phương thức để tạo một đối tượng UserApiModel từ JSON.

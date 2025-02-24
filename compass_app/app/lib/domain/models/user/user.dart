@@ -24,6 +24,17 @@ abstract class User with _$User {
 
     /// Địa chỉ của người dùng.
     String? diachi,
+
+    String? sdt1,
+    String? sdt2,
+    String? sdt3,
+    String? nguoidaidiendn,
+    String? stk1,
+    String? tennganhang1,
+    String? stk2,
+    String? tennganhang2,
+    String? stk3,
+    String? tennganhang3,
   }) = _User;
 
   // Phương thức tạo đối tượng User từ JSON
