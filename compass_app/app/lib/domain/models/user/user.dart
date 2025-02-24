@@ -11,6 +11,9 @@ part 'user.g.dart'; // Phần của json_serializable
 abstract class User with _$User {
   // Định nghĩa lớp User sử dụng freezed
   const factory User({
+    /// id của người dùng.
+    required String id,
+
     /// Tên của người dùng.
     required String name,
 

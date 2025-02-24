@@ -40,6 +40,7 @@ import '../ui/baocanhang/widgets/add_baocanhang_screen.dart';
 import '../ui/baocanhang/widgets/edit_baocanhang_screen.dart';
 import '../domain/models/baocanhang/baocanhang_model.dart';
 import '../ui/user/profile_screen.dart';
+import '../ui/user/edit_profile_screen.dart';
 
 /// Điểm vào chính của go_router.
 ///
@@ -88,6 +89,12 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
           path: Routes.profile, // Đường dẫn đến trang profile
           builder: (context, state) {
             return const ProfileScreen();
+          },
+        ),
+        GoRoute(
+          path: Routes.editprofile, // Đường dẫn đến trang editprofile
+          builder: (context, state) {
+            return const EditProfileScreen();
           },
         ),
         GoRoute(

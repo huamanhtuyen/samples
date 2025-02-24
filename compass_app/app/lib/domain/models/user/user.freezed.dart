@@ -21,6 +21,9 @@ User _$UserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$User {
+  /// The user's id.
+  String get id => throw _privateConstructorUsedError;
+
   /// The user's name.
   String get name => throw _privateConstructorUsedError;
 
@@ -99,9 +102,14 @@ class __$$UserImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? name = null, Object? picture = null}) {
+  $Res call({Object? id = null, Object? name = null, Object? picture = null}) {
     return _then(
       _$UserImpl(
+        id:
+            null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String,
         name:
             null == name
                 ? _value.name
@@ -120,10 +128,17 @@ class __$$UserImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserImpl implements _User {
-  const _$UserImpl({required this.name, required this.picture});
+  const _$UserImpl({
+    required this.id,
+    required this.name,
+    required this.picture,
+  });
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
+
+  @override
+  final String id;
 
   /// The user's name.
   @override
@@ -167,6 +182,7 @@ class _$UserImpl implements _User {
 
 abstract class _User implements User {
   const factory _User({
+    required final String id,
     required final String name,
     required final String picture,
   }) = _$UserImpl;

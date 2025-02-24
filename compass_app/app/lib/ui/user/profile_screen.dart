@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../../../data/repositories/user/user_repository.dart';
 import '../../../domain/models/user/user.dart';
 import '../../../utils/result.dart';
+import 'edit_profile_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -64,9 +65,13 @@ class ProfileScreen extends StatelessWidget {
                             children: [
                               ElevatedButton(
                                 onPressed: () {
-                                  Navigator.of(
-                                    context,
-                                  ).pushNamed('editprofile');
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder:
+                                          (context) =>
+                                              const EditProfileScreen(),
+                                    ),
+                                  );
                                 },
                                 child: const Text('Edit Profile'),
                               ),

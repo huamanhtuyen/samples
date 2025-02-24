@@ -140,6 +140,26 @@ class ApiClient {
     }
   }
 
+  Future<Result<UserApiModel>> updateUser(UserApiModel user) async {
+    try {
+      final response =
+          await _supabaseClient
+              .from('user')
+              .update(user.toJson())
+              .eq('id', user.id)
+              .single(); // Cập nhật dữ liệu người dùng và lấy một bản ghi duy nhất
+
+      final updatedUser = UserApiModel.fromJson(
+        response,
+      ); // Chuyển đổi dữ liệu thành đối tượng UserApiModel
+      return Result.ok(
+        updatedUser,
+      ); // Trả về kết quả thành công với đối tượng UserApiModel
+    } on Exception catch (error) {
+      return Result.error(error); // Trả về lỗi nếu có ngoại lệ
+    }
+  }
+
   Future<Result<void>> deleteBooking(int id) async {
     try {
       final response = await _supabaseClient

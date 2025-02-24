@@ -11,4 +11,7 @@ abstract class UserRepository {
   Future<Result<User>> getUser();
 
   Future<Result<void>> deleteUser();
+
+  /// update current user
+  Future<Result<User>> updateUser(User user);
 }

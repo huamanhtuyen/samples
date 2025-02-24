@@ -12,4 +12,4 @@ const userApiModel = UserApiModel(
   picture: 'assets/user.jpg',
 );
 
-const user = User(name: 'NAME', picture: 'assets/user.jpg');
+const user = User(id: 'ID', name: 'NAME', picture: 'assets/user.jpg');

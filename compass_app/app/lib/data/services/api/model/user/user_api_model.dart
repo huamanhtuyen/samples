@@ -20,7 +20,7 @@ abstract class UserApiModel with _$UserApiModel {
     required String name,
 
     // Email của người dùng.
-    required String email,
+    String? email,
 
     // URL hình ảnh của người dùng.
     required String picture,

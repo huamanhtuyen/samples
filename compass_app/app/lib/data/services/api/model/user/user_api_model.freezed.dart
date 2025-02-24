@@ -28,7 +28,7 @@ mixin _$UserApiModel {
   String get name => throw _privateConstructorUsedError;
 
   /// Email của người dùng.
-  String get email => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
 
   /// URL hình ảnh của người dùng.
   String get picture => throw _privateConstructorUsedError;
@@ -50,7 +50,7 @@ abstract class $UserApiModelCopyWith<$Res> {
     $Res Function(UserApiModel) then,
   ) = _$UserApiModelCopyWithImpl<$Res, UserApiModel>;
   @useResult
-  $Res call({String id, String name, String email, String picture});
+  $Res call({String id, String name, String? email, String picture});
 }
 
 /// @nodoc
@@ -110,7 +110,7 @@ abstract class _$$UserApiModelImplCopyWith<$Res>
   ) = __$$UserApiModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name, String email, String picture});
+  $Res call({String id, String name, String? email, String picture});
 }
 
 /// @nodoc
@@ -165,7 +165,7 @@ class _$UserApiModelImpl implements _UserApiModel {
   const _$UserApiModelImpl({
     required this.id,
     required this.name,
-    required this.email,
+    this.email, // Make email optional
     required this.picture,
   });
 
@@ -182,7 +182,7 @@ class _$UserApiModelImpl implements _UserApiModel {
 
   /// Email của người dùng.
   @override
-  final String email;
+  final String? email;
 
   /// URL hình ảnh của người dùng.
   @override
@@ -226,7 +226,7 @@ abstract class _UserApiModel implements UserApiModel {
   const factory _UserApiModel({
     required final String id,
     required final String name,
-    required final String email,
+    final String? email,
     required final String picture,
   }) = _$UserApiModelImpl;
 
@@ -243,7 +243,7 @@ abstract class _UserApiModel implements UserApiModel {
 
   /// Email của người dùng.
   @override
-  String get email;
+  String? get email;
 
   /// URL hình ảnh của người dùng.
   @override
