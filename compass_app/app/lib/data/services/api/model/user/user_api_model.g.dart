@@ -15,7 +15,7 @@ _$UserApiModelImpl _$$UserApiModelImplFromJson(
   name:
       json['name']
           as String, // Lấy giá trị 'name' từ JSON và gán cho thuộc tính name
-  email:
+  tencty:
       json['email']
           as String, // Lấy giá trị 'email' từ JSON và gán cho thuộc tính email
   picture:
@@ -32,7 +32,7 @@ Map<String, dynamic> _$$UserApiModelImplToJson(
       instance.name, // Chuyển thuộc tính name của đối tượng thành giá trị JSON
   'email':
       instance
-          .email, // Chuyển thuộc tính email của đối tượng thành giá trị JSON
+          .tencty, // Chuyển thuộc tính email của đối tượng thành giá trị JSON
   'picture':
       instance
           .picture, // Chuyển thuộc tính picture của đối tượng thành giá trị JSON

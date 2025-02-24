@@ -128,7 +128,7 @@ class ApiClient {
     try {
       final u = _supabaseClient.auth.currentUser; // Get current user
       final user = UserApiModel(
-        email: u?.email ?? '',
+        tencty: u?.email ?? '',
         id: u?.id ?? '',
         name: u?.email ?? '',
         picture: '',

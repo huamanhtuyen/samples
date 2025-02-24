@@ -8,7 +8,7 @@ import 'package:compass_app/domain/models/user/user.dart';
 const userApiModel = UserApiModel(
   id: 'ID',
   name: 'NAME',
-  email: 'EMAIL',
+  tencty: 'EMAIL',
   picture: 'assets/user.jpg',
 );
 

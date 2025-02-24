@@ -27,8 +27,8 @@ mixin _$UserApiModel {
   /// Tên của người dùng.
   String get name => throw _privateConstructorUsedError;
 
-  /// Email của người dùng.
-  String? get email => throw _privateConstructorUsedError;
+  /// tencty của người dùng.
+  String? get tencty => throw _privateConstructorUsedError;
 
   /// URL hình ảnh của người dùng.
   String get picture => throw _privateConstructorUsedError;
@@ -50,7 +50,7 @@ abstract class $UserApiModelCopyWith<$Res> {
     $Res Function(UserApiModel) then,
   ) = _$UserApiModelCopyWithImpl<$Res, UserApiModel>;
   @useResult
-  $Res call({String id, String name, String? email, String picture});
+  $Res call({String id, String name, String? tencty, String picture});
 }
 
 /// @nodoc
@@ -70,7 +70,7 @@ class _$UserApiModelCopyWithImpl<$Res, $Val extends UserApiModel>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? email = null,
+    Object? tencty = null,
     Object? picture = null,
   }) {
     return _then(
@@ -85,10 +85,10 @@ class _$UserApiModelCopyWithImpl<$Res, $Val extends UserApiModel>
                     ? _value.name
                     : name // ignore: cast_nullable_to_non_nullable
                         as String,
-            email:
-                null == email
-                    ? _value.email
-                    : email // ignore: cast_nullable_to_non_nullable
+            tencty:
+                null == tencty
+                    ? _value.tencty
+                    : tencty // ignore: cast_nullable_to_non_nullable
                         as String,
             picture:
                 null == picture
@@ -110,7 +110,7 @@ abstract class _$$UserApiModelImplCopyWith<$Res>
   ) = __$$UserApiModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name, String? email, String picture});
+  $Res call({String id, String name, String? tencty, String picture});
 }
 
 /// @nodoc
@@ -129,7 +129,7 @@ class __$$UserApiModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? email = null,
+    Object? tencty = null,
     Object? picture = null,
   }) {
     return _then(
@@ -144,10 +144,10 @@ class __$$UserApiModelImplCopyWithImpl<$Res>
                 ? _value.name
                 : name // ignore: cast_nullable_to_non_nullable
                     as String,
-        email:
-            null == email
-                ? _value.email
-                : email // ignore: cast_nullable_to_non_nullable
+        tencty:
+            null == tencty
+                ? _value.tencty
+                : tencty // ignore: cast_nullable_to_non_nullable
                     as String,
         picture:
             null == picture
@@ -165,7 +165,7 @@ class _$UserApiModelImpl implements _UserApiModel {
   const _$UserApiModelImpl({
     required this.id,
     required this.name,
-    this.email, // Make email optional
+    this.tencty, // Make optional
     required this.picture,
   });
 
@@ -180,9 +180,9 @@ class _$UserApiModelImpl implements _UserApiModel {
   @override
   final String name;
 
-  /// Email của người dùng.
+  /// tencty của người dùng.
   @override
-  final String? email;
+  final String? tencty;
 
   /// URL hình ảnh của người dùng.
   @override
@@ -190,7 +190,7 @@ class _$UserApiModelImpl implements _UserApiModel {
 
   @override
   String toString() {
-    return 'UserApiModel(id: $id, name: $name, email: $email, picture: $picture)';
+    return 'UserApiModel(id: $id, name: $name, tencty: $tencty, picture: $picture)';
   }
 
   @override
@@ -200,13 +200,13 @@ class _$UserApiModelImpl implements _UserApiModel {
             other is _$UserApiModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.email, email) || other.email == email) &&
+            (identical(other.tencty, tencty) || other.tencty == tencty) &&
             (identical(other.picture, picture) || other.picture == picture));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, email, picture);
+  int get hashCode => Object.hash(runtimeType, id, name, tencty, picture);
 
   /// Tạo một bản sao của UserApiModel
   /// với các trường được thay thế bởi các giá trị tham số không null.
@@ -226,7 +226,7 @@ abstract class _UserApiModel implements UserApiModel {
   const factory _UserApiModel({
     required final String id,
     required final String name,
-    final String? email,
+    final String? tencty,
     required final String picture,
   }) = _$UserApiModelImpl;
 
@@ -241,9 +241,9 @@ abstract class _UserApiModel implements UserApiModel {
   @override
   String get name;
 
-  /// Email của người dùng.
+  /// tencty của người dùng.
   @override
-  String? get email;
+  String? get tencty;
 
   /// URL hình ảnh của người dùng.
   @override
