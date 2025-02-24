@@ -39,6 +39,7 @@ import '../ui/baocanhang/view_models/baocanhang_viewmodel.dart';
 import '../ui/baocanhang/widgets/add_baocanhang_screen.dart';
 import '../ui/baocanhang/widgets/edit_baocanhang_screen.dart';
 import '../domain/models/baocanhang/baocanhang_model.dart';
+import '../ui/user/profile_screen.dart';
 
 /// Điểm vào chính của go_router.
 ///
@@ -73,11 +74,7 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
     GoRoute(
       path: Routes.profile, // Đường dẫn đến trang profile
       builder: (context, state) {
-        return RegisterScreen(
-          viewModel: RegisterViewModel(
-            authRepository: context.read(),
-          ), // Tạo viewModel cho màn hình đăng ký
-        );
+        return const ProfileScreen();
       },
     ),
     GoRoute(
@@ -177,10 +174,11 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
           path: Routes.thongTinXe, // Đường dẫn đến trang Thông tin xe
           builder: (context, state) {
             return ChangeNotifierProvider(
-              create: (context) => ThongTinXeViewModel(
-                thongTinXeRepository: context.read(),
-                imageRepository: context.read(),
-              ),
+              create:
+                  (context) => ThongTinXeViewModel(
+                    thongTinXeRepository: context.read(),
+                    imageRepository: context.read(),
+                  ),
               child: const ThongTinXeScreen(),
             );
           },
@@ -189,10 +187,11 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
               path: 'add', // Đường dẫn đến trang thêm Thông tin xe
               builder: (context, state) {
                 return ChangeNotifierProvider(
-                  create: (context) => ThongTinXeViewModel(
-                    thongTinXeRepository: context.read(),
-                     imageRepository: context.read(),
-                  ),
+                  create:
+                      (context) => ThongTinXeViewModel(
+                        thongTinXeRepository: context.read(),
+                        imageRepository: context.read(),
+                      ),
                   child: const AddThongTinXeScreen(),
                 );
               },
@@ -202,10 +201,11 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
               builder: (context, state) {
                 final thongTinXe = state.extra as ThongTinXe;
                 return ChangeNotifierProvider(
-                  create: (context) => ThongTinXeViewModel(
-                    thongTinXeRepository: context.read(),
-                     imageRepository: context.read(),
-                  ),
+                  create:
+                      (context) => ThongTinXeViewModel(
+                        thongTinXeRepository: context.read(),
+                        imageRepository: context.read(),
+                      ),
                   child: EditThongTinXeScreen(thongTinXe: thongTinXe),
                 );
               },
@@ -216,9 +216,9 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
           path: Routes.baoCanHang, // Đường dẫn đến trang báo cần hàng
           builder: (context, state) {
             return ChangeNotifierProvider(
-              create: (context) => BaoCanHangViewModel(
-                baoCanHangRepository: context.read(),
-              ),
+              create:
+                  (context) =>
+                      BaoCanHangViewModel(baoCanHangRepository: context.read()),
               child: const BaoCanHangScreen(),
             );
           },
@@ -227,9 +227,10 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
               path: 'add', // Đường dẫn đến trang thêm báo cần hàng
               builder: (context, state) {
                 return ChangeNotifierProvider(
-                  create: (context) => BaoCanHangViewModel(
-                    baoCanHangRepository: context.read(),
-                  ),
+                  create:
+                      (context) => BaoCanHangViewModel(
+                        baoCanHangRepository: context.read(),
+                      ),
                   child: const AddBaoCanHangScreen(),
                 );
               },
@@ -239,9 +240,10 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
               builder: (context, state) {
                 final baoCanHang = state.extra as BaoCanHang;
                 return ChangeNotifierProvider(
-                  create: (context) => BaoCanHangViewModel(
-                    baoCanHangRepository: context.read(),
-                  ),
+                  create:
+                      (context) => BaoCanHangViewModel(
+                        baoCanHangRepository: context.read(),
+                      ),
                   child: EditBaoCanHangScreen(baoCanHang: baoCanHang),
                 );
               },
@@ -342,7 +344,7 @@ Future<String?> _redirect(BuildContext context, GoRouterState state) async {
       return Routes.thongTinXe;
     }
 
-      if (state.matchedLocation == '/thongtinxe/add') {
+    if (state.matchedLocation == '/thongtinxe/add') {
       return '/thongtinxe/add'; // điều hướng đến trang thêm thông tin
     }
 
@@ -350,16 +352,24 @@ Future<String?> _redirect(BuildContext context, GoRouterState state) async {
       return '/thongtinxe/edit'; // điều hướng đến trang sửa thông tin
     }
 
-     if (state.matchedLocation == Routes.baoCanHang) {
+    if (state.matchedLocation == Routes.baoCanHang) {
       return Routes.baoCanHang;
     }
 
-      if (state.matchedLocation == '/baocanhang/add') {
+    if (state.matchedLocation == '/baocanhang/add') {
       return '/baocanhang/add'; // điều hướng đến trang thêm thông tin
     }
 
     if (state.matchedLocation == '/baocanhang/edit') {
       return '/baocanhang/edit'; // điều hướng đến trang sửa thông tin
+    }
+
+    if (state.matchedLocation == Routes.profile) {
+      return Routes.profile; //
+    }
+
+    if (state.matchedLocation == Routes.editprofile) {
+      return Routes.editprofile; //
     }
 
     return Routes.home; // Chuyển hướng đến trang chủ nếu đã đăng nhập

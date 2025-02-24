@@ -46,6 +46,8 @@ final class Error<T> extends Result<T> {
   /// Lỗi được trả về trong kết quả
   final Exception error;
 
+  String messsage() => error.toString();
+
   @override
   String toString() => 'Result<$T>.error($error)';
 }
