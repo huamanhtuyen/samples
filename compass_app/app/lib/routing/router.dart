@@ -71,12 +71,7 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
         );
       },
     ),
-    GoRoute(
-      path: Routes.profile, // Đường dẫn đến trang profile
-      builder: (context, state) {
-        return const ProfileScreen();
-      },
-    ),
+
     GoRoute(
       path: Routes.home, // Đường dẫn đến trang chủ
       builder: (context, state) {
@@ -89,6 +84,12 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
         ); // Trả về màn hình trang chủ với viewModel
       },
       routes: [
+        GoRoute(
+          path: Routes.profile, // Đường dẫn đến trang profile
+          builder: (context, state) {
+            return const ProfileScreen();
+          },
+        ),
         GoRoute(
           path: Routes.chuXe, // Đường dẫn đến trang chủ
           builder: (context, state) {
