@@ -89,6 +89,16 @@ class UserRepositoryRemote implements UserRepository {
       tencty: user.tencty,
       picture: user.picture,
       diachi: user.diachi, // Ensure diachi field is handled
+      sdt1: user.sdt1,
+      sdt2: user.sdt2,
+      sdt3: user.sdt3,
+      nguoidaidiendn: user.nguoidaidiendn,
+      stk1: user.stk1,
+      tennganhang1: user.tennganhang1,
+      stk2: user.stk2,
+      tennganhang2: user.tennganhang2,
+      stk3: user.stk3,
+      tennganhang3: user.tennganhang3,
     );
 
     // Gọi phương thức updateUser từ apiClient và lưu kết quả vào biến result
@@ -104,6 +114,16 @@ class UserRepositoryRemote implements UserRepository {
           tencty: result.value.tencty, // Lấy tên từ kết quả API
           picture: result.value.picture, // Lấy hình ảnh từ kết quả API
           diachi: result.value.diachi, // Ensure diachi field is handled
+          sdt1: result.value.sdt1,
+          sdt2: result.value.sdt2,
+          sdt3: result.value.sdt3,
+          nguoidaidiendn: result.value.nguoidaidiendn,
+          stk1: result.value.stk1,
+          tennganhang1: result.value.tennganhang1,
+          stk2: result.value.stk2,
+          tennganhang2: result.value.tennganhang2,
+          stk3: result.value.stk3,
+          tennganhang3: result.value.tennganhang3,
         );
         _cachedData = updatedUser; // Cập nhật dữ liệu cache
         return Result.ok(
