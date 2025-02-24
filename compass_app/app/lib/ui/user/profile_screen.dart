@@ -39,14 +39,52 @@ class ProfileScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Name: ${user.name}',
-                          style: TextStyle(fontSize: 20),
+                        Row(
+                          children: [
+                            Text(
+                              'Name: ',
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ),
+                            Text(
+                              user.name,
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.blue,
+                              ),
+                            ),
+                          ],
                         ),
                         const SizedBox(height: 10),
                         user.picture.isNotEmpty
                             ? Image.network(user.picture)
                             : const SizedBox.shrink(),
+                        const SizedBox(height: 10),
+                        Center(
+                          child: Column(
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.of(
+                                    context,
+                                  ).pushNamed('editprofile');
+                                },
+                                child: const Text('Edit Profile'),
+                              ),
+                              const SizedBox(height: 10),
+                              TextButton(
+                                onPressed: () async {
+                                  await context
+                                      .read<UserRepository>()
+                                      .deleteUser();
+                                },
+                                style: TextButton.styleFrom(
+                                  foregroundColor: Colors.red.withAlpha(128),
+                                ),
+                                child: const Text('Delete Account'),
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   );

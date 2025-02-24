@@ -46,4 +46,23 @@ class UserRepositoryRemote implements UserRepository {
         ); // Trả về kết quả lỗi với thông báo lỗi
     }
   }
+
+  // Ghi đè phương thức deleteUser từ giao diện UserRepository
+  @override
+  Future<Result<void>> deleteUser() async {
+    // Gọi phương thức deleteUser từ apiClient và lưu kết quả vào biến result
+    final result = await _apiClient.deleteUser();
+    // Kiểm tra kết quả trả về
+    switch (result) {
+      // Nếu kết quả là thành công
+      case Ok<void>():
+        _cachedData = null; // Xóa dữ liệu cache
+        return Result.ok(null); // Trả về kết quả thành công
+      // Nếu kết quả là lỗi
+      case Error<void>():
+        return Result.error(
+          result.error,
+        ); // Trả về kết quả lỗi với thông báo lỗi
+    }
+  }
 }
