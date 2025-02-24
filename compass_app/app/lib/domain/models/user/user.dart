@@ -21,6 +21,9 @@ abstract class User with _$User {
 
     /// URL hình ảnh của người dùng.
     String? picture,
+
+    /// Địa chỉ của người dùng.
+    String? diachi,
   }) = _User;
 
   // Phương thức tạo đối tượng User từ JSON

@@ -24,6 +24,9 @@ abstract class UserApiModel with _$UserApiModel {
 
     // URL hình ảnh của người dùng.
     String? picture,
+
+    // Địa chỉ của người dùng.
+    String? diachi, // Add diachi field
   }) = _UserApiModel;
 
   // Phương thức để tạo một đối tượng UserApiModel từ JSON.

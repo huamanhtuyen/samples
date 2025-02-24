@@ -21,6 +21,9 @@ _$UserApiModelImpl _$$UserApiModelImplFromJson(
   picture:
       json['picture']
           as String?, // Lấy giá trị 'picture' từ JSON và gán cho thuộc tính picture
+  diachi:
+      json['diachi']
+          as String?, // Lấy giá trị 'diachi' từ JSON và gán cho thuộc tính diachi
 );
 
 // Hàm chuyển đổi từ đối tượng _$UserApiModelImpl sang JSON
@@ -35,4 +38,7 @@ Map<String, dynamic> _$$UserApiModelImplToJson(
   'picture':
       instance
           .picture, // Chuyển thuộc tính picture của đối tượng thành giá trị JSON
+  'diachi':
+      instance
+          .diachi, // Chuyển thuộc tính diachi của đối tượng thành giá trị JSON
 };

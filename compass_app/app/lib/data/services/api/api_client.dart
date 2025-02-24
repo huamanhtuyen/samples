@@ -167,10 +167,11 @@ class ApiClient {
       final userProfile = UserApiModel.fromJson(response);
 
       final user = UserApiModel(
-        tencty: userProfile.tencty ?? '',
         id: userProfile.id,
         mst: userProfile.mst ?? '',
+        tencty: userProfile.tencty ?? '',
         picture: userProfile.picture ?? '',
+        diachi: userProfile.diachi ?? '',
       );
 
       return Result.ok(user);

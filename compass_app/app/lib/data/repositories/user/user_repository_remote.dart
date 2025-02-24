@@ -37,6 +37,8 @@ class UserRepositoryRemote implements UserRepository {
           id: result.value.id, // Thêm tham số id
           mst: result.value.mst, // Lấy tên từ kết quả API
           picture: result.value.picture, // Lấy hình ảnh từ kết quả API
+          tencty: result.value.tencty, // Lấy tên từ kết quả API
+          diachi: result.value.diachi, // Ensure diachi field is handled
         );
         _cachedData = user; // Lưu dữ liệu vào biến cache
         return Result.ok(user); // Trả về kết quả thành công với đối tượng User
@@ -76,6 +78,7 @@ class UserRepositoryRemote implements UserRepository {
       mst: user.mst,
       tencty: user.tencty,
       picture: user.picture,
+      diachi: user.diachi, // Ensure diachi field is handled
     );
 
     // Gọi phương thức updateUser từ apiClient và lưu kết quả vào biến result
@@ -90,6 +93,7 @@ class UserRepositoryRemote implements UserRepository {
           mst: result.value.mst, // Lấy tên từ kết quả API
           tencty: result.value.tencty, // Lấy tên từ kết quả API
           picture: result.value.picture, // Lấy hình ảnh từ kết quả API
+          diachi: result.value.diachi, // Ensure diachi field is handled
         );
         _cachedData = updatedUser; // Cập nhật dữ liệu cache
         return Result.ok(

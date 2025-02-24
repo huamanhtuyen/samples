@@ -33,6 +33,9 @@ mixin _$UserApiModel {
   /// URL hình ảnh của người dùng.
   String? get picture => throw _privateConstructorUsedError;
 
+  /// Địa chỉ của người dùng.
+  String? get diachi => throw _privateConstructorUsedError;
+
   /// Chuyển đổi UserApiModel này thành một bản đồ JSON.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
@@ -50,7 +53,13 @@ abstract class $UserApiModelCopyWith<$Res> {
     $Res Function(UserApiModel) then,
   ) = _$UserApiModelCopyWithImpl<$Res, UserApiModel>;
   @useResult
-  $Res call({String id, String? mst, String? tencty, String? picture});
+  $Res call({
+    String id,
+    String? mst,
+    String? tencty,
+    String? picture,
+    String? diachi,
+  });
 }
 
 /// @nodoc
@@ -72,6 +81,7 @@ class _$UserApiModelCopyWithImpl<$Res, $Val extends UserApiModel>
     Object? mst = null,
     Object? tencty = null,
     Object? picture = null,
+    Object? diachi = null,
   }) {
     return _then(
       _value.copyWith(
@@ -95,6 +105,11 @@ class _$UserApiModelCopyWithImpl<$Res, $Val extends UserApiModel>
                     ? _value.picture
                     : picture // ignore: cast_nullable_to_non_nullable
                         as String,
+            diachi:
+                null == diachi
+                    ? _value.diachi
+                    : diachi // ignore: cast_nullable_to_non_nullable
+                        as String,
           )
           as $Val,
     );
@@ -110,7 +125,13 @@ abstract class _$$UserApiModelImplCopyWith<$Res>
   ) = __$$UserApiModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String? mst, String? tencty, String? picture});
+  $Res call({
+    String id,
+    String? mst,
+    String? tencty,
+    String? picture,
+    String? diachi,
+  });
 }
 
 /// @nodoc
@@ -131,6 +152,7 @@ class __$$UserApiModelImplCopyWithImpl<$Res>
     Object? mst = null,
     Object? tencty = null,
     Object? picture = null,
+    Object? diachi = null,
   }) {
     return _then(
       _$UserApiModelImpl(
@@ -154,6 +176,11 @@ class __$$UserApiModelImplCopyWithImpl<$Res>
                 ? _value.picture
                 : picture // ignore: cast_nullable_to_non_nullable
                     as String,
+        diachi:
+            null == diachi
+                ? _value.diachi
+                : diachi // ignore: cast_nullable_to_non_nullable
+                    as String,
       ),
     );
   }
@@ -167,6 +194,7 @@ class _$UserApiModelImpl implements _UserApiModel {
     this.mst, // Make optional
     this.tencty, // Make optional
     this.picture, // Make optional
+    this.diachi, // Make optional
   });
 
   factory _$UserApiModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -188,9 +216,13 @@ class _$UserApiModelImpl implements _UserApiModel {
   @override
   final String? picture;
 
+  /// Địa chỉ của người dùng.
+  @override
+  final String? diachi;
+
   @override
   String toString() {
-    return 'UserApiModel(id: $id, mst: $mst, tencty: $tencty, picture: $picture)';
+    return 'UserApiModel(id: $id, mst: $mst, tencty: $tencty, picture: $picture, diachi: $diachi)';
   }
 
   @override
@@ -201,12 +233,14 @@ class _$UserApiModelImpl implements _UserApiModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.mst, mst) || other.mst == mst) &&
             (identical(other.tencty, tencty) || other.tencty == tencty) &&
-            (identical(other.picture, picture) || other.picture == picture));
+            (identical(other.picture, picture) || other.picture == picture) &&
+            (identical(other.diachi, diachi) || other.diachi == diachi));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, mst, tencty, picture);
+  int get hashCode =>
+      Object.hash(runtimeType, id, mst, tencty, picture, diachi);
 
   /// Tạo một bản sao của UserApiModel
   /// với các trường được thay thế bởi các giá trị tham số không null.
@@ -228,6 +262,7 @@ abstract class _UserApiModel implements UserApiModel {
     final String? mst,
     final String? tencty,
     final String? picture,
+    final String? diachi,
   }) = _$UserApiModelImpl;
 
   factory _UserApiModel.fromJson(Map<String, dynamic> json) =
@@ -248,6 +283,10 @@ abstract class _UserApiModel implements UserApiModel {
   /// URL hình ảnh của người dùng.
   @override
   String? get picture;
+
+  /// Địa chỉ của người dùng.
+  @override
+  String? get diachi;
 
   /// Tạo một bản sao của UserApiModel
   /// với các trường được thay thế bởi các giá trị tham số không null.

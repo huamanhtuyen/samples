@@ -16,6 +16,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   late String _mst;
   late String _picture;
   late String _tencty;
+  late String _diachi;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +38,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   _mst = user.mst ?? '';
                   _picture = user.picture ?? '';
                   _tencty = user.tencty ?? '';
+                  _diachi = user.diachi ?? '';
                   return Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Form(
@@ -57,6 +59,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ),
                             onSaved: (value) {
                               _tencty = value!;
+                            },
+                          ),
+                          TextFormField(
+                            initialValue: _diachi,
+                            decoration: const InputDecoration(
+                              labelText: 'Địa chỉ',
+                            ),
+                            onSaved: (value) {
+                              _diachi = value!;
                             },
                           ),
                           Visibility(
@@ -85,6 +96,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         mst: _mst,
                                         picture: _picture,
                                         tencty: _tencty,
+                                        diachi: _diachi,
                                       ),
                                     );
                                 switch (result) {

@@ -32,6 +32,9 @@ mixin _$User {
   /// The user's picture URL.
   String? get picture => throw _privateConstructorUsedError;
 
+  /// The user's address.
+  String? get diachi => throw _privateConstructorUsedError; // Add diachi field
+
   /// Serializes this User to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
@@ -46,7 +49,13 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res, User>;
   @useResult
-  $Res call({String? mst, String? tencty, String? picture});
+  $Res call({
+    String id,
+    String? mst,
+    String? tencty,
+    String? picture,
+    String? diachi,
+  }); // Add diachi field
 }
 
 /// @nodoc
@@ -64,22 +73,39 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? mst = null,
-    Object? tencty = null,
-    Object? picture = null,
+    Object? id = null,
+    Object? mst = freezed,
+    Object? tencty = freezed,
+    Object? picture = freezed,
+    Object? diachi = freezed, // Add diachi field
   }) {
     return _then(
       _value.copyWith(
+            id:
+                null == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String,
             mst:
-                null == mst
+                freezed == mst
                     ? _value.mst
                     : mst // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
+            tencty:
+                freezed == tencty
+                    ? _value.tencty
+                    : tencty // ignore: cast_nullable_to_non_nullable
+                        as String?,
             picture:
-                null == picture
+                freezed == picture
                     ? _value.picture
                     : picture // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
+            diachi:
+                freezed == diachi
+                    ? _value.diachi
+                    : diachi // ignore: cast_nullable_to_non_nullable
+                        as String?, // Add diachi field
           )
           as $Val,
     );
@@ -94,7 +120,13 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
   ) = __$$UserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? mst, String? tencty, String? picture});
+  $Res call({
+    String id,
+    String? mst,
+    String? tencty,
+    String? picture,
+    String? diachi,
+  }); // Add diachi field
 }
 
 /// @nodoc
@@ -110,9 +142,10 @@ class __$$UserImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? mst = null,
-    Object? tencty = null,
-    Object? picture = null,
+    Object? mst = freezed,
+    Object? tencty = freezed,
+    Object? picture = freezed,
+    Object? diachi = freezed, // Add diachi field
   }) {
     return _then(
       _$UserImpl(
@@ -122,20 +155,25 @@ class __$$UserImplCopyWithImpl<$Res>
                 : id // ignore: cast_nullable_to_non_nullable
                     as String,
         mst:
-            null == mst
+            freezed == mst
                 ? _value.mst
                 : mst // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         tencty:
-            null == tencty
+            freezed == tencty
                 ? _value.tencty
                 : tencty // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         picture:
-            null == picture
+            freezed == picture
                 ? _value.picture
                 : picture // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
+        diachi:
+            freezed == diachi
+                ? _value.diachi
+                : diachi // ignore: cast_nullable_to_non_nullable
+                    as String?, // Add diachi field
       ),
     );
   }
@@ -144,7 +182,13 @@ class __$$UserImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserImpl implements _User {
-  const _$UserImpl({required this.id, this.mst, this.tencty, this.picture});
+  const _$UserImpl({
+    required this.id,
+    this.mst,
+    this.tencty,
+    this.picture,
+    this.diachi,
+  }); // Add diachi field
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
@@ -163,9 +207,13 @@ class _$UserImpl implements _User {
   @override
   final String? picture;
 
+  /// The user's address.
+  @override
+  final String? diachi; // Add diachi field
+
   @override
   String toString() {
-    return 'User(mst: $mst,tencty: $tencty, picture: $picture)';
+    return 'User(id: $id, mst: $mst, tencty: $tencty, picture: $picture, diachi: $diachi)'; // Add diachi field
   }
 
   @override
@@ -173,13 +221,18 @@ class _$UserImpl implements _User {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.mst, mst) || other.mst == mst) &&
-            (identical(other.picture, picture) || other.picture == picture));
+            (identical(other.tencty, tencty) || other.tencty == tencty) &&
+            (identical(other.picture, picture) || other.picture == picture) &&
+            (identical(other.diachi, diachi) ||
+                other.diachi == diachi)); // Add diachi field
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, mst, picture);
+  int get hashCode =>
+      Object.hash(runtimeType, id, mst, tencty, picture, diachi); // Add diachi field
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -201,6 +254,7 @@ abstract class _User implements User {
     final String? mst,
     final String? tencty,
     final String? picture,
+    final String? diachi, // Add diachi field
   }) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
@@ -216,6 +270,10 @@ abstract class _User implements User {
   /// The user's picture URL.
   @override
   String? get picture;
+
+  /// The user's address.
+  @override
+  String? get diachi; // Add diachi field
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
