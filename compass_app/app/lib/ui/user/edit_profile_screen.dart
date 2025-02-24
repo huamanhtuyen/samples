@@ -15,6 +15,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   final _formKey = GlobalKey<FormState>();
   late String _mst;
   late String _picture;
+  late String _tencty;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +36,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   final user = result.value;
                   _mst = user.mst ?? '';
                   _picture = user.picture ?? '';
+                  _tencty = user.tencty ?? '';
                   return Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Form(
@@ -49,14 +51,27 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             },
                           ),
                           TextFormField(
-                            initialValue: _picture,
+                            initialValue: _tencty,
                             decoration: const InputDecoration(
-                              labelText: 'Picture URL',
+                              labelText: 'Tên công ty',
                             ),
                             onSaved: (value) {
-                              _picture = value!;
+                              _tencty = value!;
                             },
                           ),
+                          Visibility(
+                            visible: false,
+                            child: TextFormField(
+                              initialValue: _picture,
+                              decoration: const InputDecoration(
+                                labelText: 'Picture URL',
+                              ),
+                              onSaved: (value) {
+                                _picture = value!;
+                              },
+                            ),
+                          ),
+
                           const SizedBox(height: 20),
                           ElevatedButton(
                             onPressed: () async {
@@ -69,6 +84,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         id: user.id,
                                         mst: _mst,
                                         picture: _picture,
+                                        tencty: _tencty,
                                       ),
                                     );
                                 switch (result) {
