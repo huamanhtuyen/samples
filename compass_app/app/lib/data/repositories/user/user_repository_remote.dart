@@ -35,7 +35,7 @@ class UserRepositoryRemote implements UserRepository {
         // Tạo đối tượng User từ dữ liệu API
         final user = User(
           id: result.value.id, // Thêm tham số id
-          name: result.value.name, // Lấy tên từ kết quả API
+          mst: result.value.mst, // Lấy tên từ kết quả API
           picture: result.value.picture, // Lấy hình ảnh từ kết quả API
         );
         _cachedData = user; // Lưu dữ liệu vào biến cache
@@ -73,7 +73,8 @@ class UserRepositoryRemote implements UserRepository {
     // Chuyển đổi đối tượng User thành UserApiModel
     final userApiModel = UserApiModel(
       id: user.id, // Thêm tham số id
-      name: user.name,
+      mst: user.mst,
+      tencty: user.tencty,
       picture: user.picture,
     );
 
@@ -86,7 +87,8 @@ class UserRepositoryRemote implements UserRepository {
         // Tạo đối tượng User từ dữ liệu API
         final updatedUser = User(
           id: user.id, // Thêm tham số id
-          name: result.value.name, // Lấy tên từ kết quả API
+          mst: result.value.mst, // Lấy tên từ kết quả API
+          tencty: result.value.tencty, // Lấy tên từ kết quả API
           picture: result.value.picture, // Lấy hình ảnh từ kết quả API
         );
         _cachedData = updatedUser; // Cập nhật dữ liệu cache

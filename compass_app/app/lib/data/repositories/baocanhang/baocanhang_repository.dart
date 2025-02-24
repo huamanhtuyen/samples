@@ -9,7 +9,10 @@ class BaoCanHangRepository {
   Future<Result<List<BaoCanHang>>> getAllBaoCanHang() async {
     try {
       final response = await _supabase.from(table).select();
-      final list = response.map<BaoCanHang>((json) => BaoCanHang.fromJson(json)).toList();
+      final list =
+          response
+              .map<BaoCanHang>((json) => BaoCanHang.fromJson(json))
+              .toList();
       return Result.ok(list);
     } on Exception catch (e) {
       return Result.error(e);
@@ -17,7 +20,8 @@ class BaoCanHangRepository {
   }
 
   Future<BaoCanHang?> getBaoCanHangById(String id) async {
-    final response = await _supabase.from(table).select().eq('id', id).single();
+    final response =
+        await _supabase.from(table).select().eq('id', id).limit(1).single();
     return BaoCanHang.fromJson(response);
   }
 
@@ -35,7 +39,10 @@ class BaoCanHangRepository {
       return Result.error(Exception('BaoCanHang id cannot be null'));
     }
     try {
-      await _supabase.from(table).update(baoCanHang.toJson()).eq('id', baoCanHang.id!);
+      await _supabase
+          .from(table)
+          .update(baoCanHang.toJson())
+          .eq('id', baoCanHang.id!);
       return Result.ok(null);
     } on Exception catch (e) {
       return Result.error(e);

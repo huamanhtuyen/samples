@@ -21,7 +21,8 @@ class HocSinhRepository {
 
   /// Lấy thông tin học sinh theo ID
   Future<HocSinh?> getHocSinhById(String id) async {
-    final response = await _supabase.from(table).select().eq('id', id).single();
+    final response =
+        await _supabase.from(table).select().eq('id', id).limit(1).single();
 
     return HocSinh.fromJson(response);
   }

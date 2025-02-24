@@ -83,7 +83,7 @@ class LocalDataService {
   User getUser() {
     return const User(
       id: "123",
-      name: 'Sofie', // Tên người dùng
+      mst: 'Sofie', // Tên người dùng
       // Vì mục đích demo, chúng tôi sử dụng một tài sản cục bộ
       picture: 'assets/user.jpg', // Đường dẫn đến hình ảnh của người dùng
     );

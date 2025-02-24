@@ -96,6 +96,7 @@ class ApiClient {
               .from('booking')
               .select()
               .eq('id', id)
+              .limit(1)
               .single(); // Truy vấn bảng booking với điều kiện cột id và lấy một bản ghi duy nhất
 
       final booking = BookingApiModel.fromJson(
@@ -113,6 +114,8 @@ class ApiClient {
           await _supabaseClient
               .from('booking')
               .insert(booking.toJson())
+              .select()
+              .limit(1)
               .single(); // Thêm dữ liệu vào bảng booking và lấy một bản ghi duy nhất
 
       final newBooking = BookingApiModel.fromJson(
@@ -124,14 +127,50 @@ class ApiClient {
     }
   }
 
+  Future<Result<UserApiModel>> getUserProfile() async {
+    try {
+      final userId = _supabaseClient.auth.currentUser?.id;
+      if (userId == null) {
+        return Result.error(Exception('User not authenticated'));
+      }
+
+      final response =
+          await _supabaseClient
+              .from('profiles')
+              .select()
+              .eq('id', userId)
+              .limit(1)
+              .single(); // Fetch profile information for the current user
+
+      final userProfile = UserApiModel.fromJson(response);
+      return Result.ok(userProfile);
+    } on Exception catch (error) {
+      return Result.error(error); // Return error if there is an exception
+    }
+  }
+
   Future<Result<UserApiModel>> getUser() async {
     try {
       final u = _supabaseClient.auth.currentUser; // Get current user
+      final userId = u?.id;
+      if (userId == null) {
+        return Result.error(Exception('User not authenticated'));
+      }
+
+      final response =
+          await _supabaseClient
+              .from('profiles')
+              .select()
+              .eq('id', userId)
+              .limit(1)
+              .single(); // Fetch profile information for the current user
+      final userProfile = UserApiModel.fromJson(response);
+
       final user = UserApiModel(
-        tencty: u?.email ?? '',
-        id: u?.id ?? '',
-        name: u?.email ?? '',
-        picture: '',
+        tencty: userProfile.tencty ?? '',
+        id: userProfile.id,
+        mst: userProfile.mst ?? '',
+        picture: userProfile.picture ?? '',
       );
 
       return Result.ok(user);
@@ -142,12 +181,24 @@ class ApiClient {
 
   Future<Result<UserApiModel>> updateUser(UserApiModel user) async {
     try {
+      final json = user.toJson();
+      print(json);
+
       final response =
           await _supabaseClient
               .from('profiles')
               .update(user.toJson())
               .eq('id', user.id)
+              .select()
+              .order('id')
+              .limit(1)
               .single(); // Cập nhật dữ liệu người dùng và lấy một bản ghi duy nhất
+
+      if (response.isEmpty) {
+        return Result.error(
+          Exception('No user found with the given id or response is empty'),
+        );
+      }
 
       final updatedUser = UserApiModel.fromJson(
         response,

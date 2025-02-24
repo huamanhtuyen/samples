@@ -14,11 +14,13 @@ abstract class User with _$User {
     /// id của người dùng.
     required String id,
 
-    /// Tên của người dùng.
-    required String name,
+    ///
+    String? mst,
+
+    String? tencty,
 
     /// URL hình ảnh của người dùng.
-    required String picture,
+    String? picture,
   }) = _User;
 
   // Phương thức tạo đối tượng User từ JSON

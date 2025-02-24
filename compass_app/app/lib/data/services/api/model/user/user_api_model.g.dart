@@ -12,15 +12,15 @@ _$UserApiModelImpl _$$UserApiModelImplFromJson(
   Map<String, dynamic> json,
 ) => _$UserApiModelImpl(
   id: json['id'] as String, // Lấy giá trị 'id' từ JSON và gán cho thuộc tính id
-  name:
-      json['name']
-          as String, // Lấy giá trị 'name' từ JSON và gán cho thuộc tính name
+  mst:
+      json['mst']
+          as String?, // Lấy giá trị 'mst' từ JSON và gán cho thuộc tính mst
   tencty:
-      json['email']
-          as String, // Lấy giá trị 'email' từ JSON và gán cho thuộc tính email
+      json['tencty']
+          as String?, // Lấy giá trị 'tencty' từ JSON và gán cho thuộc tính tencty
   picture:
       json['picture']
-          as String, // Lấy giá trị 'picture' từ JSON và gán cho thuộc tính picture
+          as String?, // Lấy giá trị 'picture' từ JSON và gán cho thuộc tính picture
 );
 
 // Hàm chuyển đổi từ đối tượng _$UserApiModelImpl sang JSON
@@ -28,11 +28,10 @@ Map<String, dynamic> _$$UserApiModelImplToJson(
   _$UserApiModelImpl instance,
 ) => <String, dynamic>{
   'id': instance.id, // Chuyển thuộc tính id của đối tượng thành giá trị JSON
-  'name':
-      instance.name, // Chuyển thuộc tính name của đối tượng thành giá trị JSON
-  'email':
+  'mst': instance.mst, // Chuyển thuộc tính mst của đối tượng thành giá trị JSON
+  'tencty':
       instance
-          .tencty, // Chuyển thuộc tính email của đối tượng thành giá trị JSON
+          .tencty, // Chuyển thuộc tính tencty của đối tượng thành giá trị JSON
   'picture':
       instance
           .picture, // Chuyển thuộc tính picture của đối tượng thành giá trị JSON

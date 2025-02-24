@@ -13,7 +13,7 @@ class EditProfileScreen extends StatefulWidget {
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
   final _formKey = GlobalKey<FormState>();
-  late String _name;
+  late String _mst;
   late String _picture;
 
   @override
@@ -33,8 +33,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               case Ok():
                 {
                   final user = result.value;
-                  _name = user.name;
-                  _picture = user.picture;
+                  _mst = user.mst ?? '';
+                  _picture = user.picture ?? '';
                   return Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Form(
@@ -42,12 +42,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       child: Column(
                         children: [
                           TextFormField(
-                            initialValue: _name,
-                            decoration: const InputDecoration(
-                              labelText: 'Name',
-                            ),
+                            initialValue: _mst,
+                            decoration: const InputDecoration(labelText: 'Mst'),
                             onSaved: (value) {
-                              _name = value!;
+                              _mst = value!;
                             },
                           ),
                           TextFormField(
@@ -69,7 +67,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     .updateUser(
                                       User(
                                         id: user.id,
-                                        name: _name,
+                                        mst: _mst,
                                         picture: _picture,
                                       ),
                                     );

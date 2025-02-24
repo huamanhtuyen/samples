@@ -16,14 +16,14 @@ abstract class UserApiModel with _$UserApiModel {
     // ID của người dùng.
     required String id,
 
-    // Tên của người dùng.
-    required String name,
+    // Mã số thuế
+    String? mst,
 
-    // Email của người dùng.
+    // tencty của người dùng.
     String? tencty,
 
     // URL hình ảnh của người dùng.
-    required String picture,
+    String? picture,
   }) = _UserApiModel;
 
   // Phương thức để tạo một đối tượng UserApiModel từ JSON.

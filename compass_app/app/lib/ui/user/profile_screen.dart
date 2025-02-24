@@ -43,11 +43,11 @@ class ProfileScreen extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              'Name: ',
+                              'Mst: ',
                               style: Theme.of(context).textTheme.labelMedium,
                             ),
                             Text(
-                              user.name,
+                              user.mst ?? '',
                               style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.blue,
@@ -56,8 +56,8 @@ class ProfileScreen extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 10),
-                        user.picture.isNotEmpty
-                            ? Image.network(user.picture)
+                        user.picture != null
+                            ? Image.network(user.picture ?? '')
                             : const SizedBox.shrink(),
                         const SizedBox(height: 10),
                         Center(

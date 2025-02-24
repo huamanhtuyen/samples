@@ -10,7 +10,10 @@ class ThongTinXeRepository {
   Future<Result<List<ThongTinXe>>> getAllThongTinXe() async {
     try {
       final response = await _supabase.from(table).select();
-      final list = response.map<ThongTinXe>((json) => ThongTinXe.fromJson(json)).toList();
+      final list =
+          response
+              .map<ThongTinXe>((json) => ThongTinXe.fromJson(json))
+              .toList();
       return Result.ok(list);
     } on Exception catch (e) {
       return Result.error(e);
@@ -19,7 +22,8 @@ class ThongTinXeRepository {
 
   /// Lấy thông tin xe theo ID
   Future<ThongTinXe?> getThongTinXeById(String id) async {
-    final response = await _supabase.from(table).select().eq('id', id).single();
+    final response =
+        await _supabase.from(table).select().eq('id', id).limit(1).single();
     return ThongTinXe.fromJson(response);
   }
 
@@ -39,7 +43,10 @@ class ThongTinXeRepository {
       return Result.error(Exception('ThongTinXe id cannot be null'));
     }
     try {
-      await _supabase.from(table).update(thongTinXe.toJson()).eq('id', thongTinXe.id!);
+      await _supabase
+          .from(table)
+          .update(thongTinXe.toJson())
+          .eq('id', thongTinXe.id!);
       return Result.ok(null);
     } on Exception catch (e) {
       return Result.error(e);

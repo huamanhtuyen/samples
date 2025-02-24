@@ -24,11 +24,13 @@ mixin _$User {
   /// The user's id.
   String get id => throw _privateConstructorUsedError;
 
-  /// The user's name.
-  String get name => throw _privateConstructorUsedError;
+  ///
+  String? get mst => throw _privateConstructorUsedError;
+
+  String? get tencty => throw _privateConstructorUsedError;
 
   /// The user's picture URL.
-  String get picture => throw _privateConstructorUsedError;
+  String? get picture => throw _privateConstructorUsedError;
 
   /// Serializes this User to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,7 +46,7 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res, User>;
   @useResult
-  $Res call({String name, String picture});
+  $Res call({String? mst, String? tencty, String? picture});
 }
 
 /// @nodoc
@@ -61,13 +63,17 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? name = null, Object? picture = null}) {
+  $Res call({
+    Object? mst = null,
+    Object? tencty = null,
+    Object? picture = null,
+  }) {
     return _then(
       _value.copyWith(
-            name:
-                null == name
-                    ? _value.name
-                    : name // ignore: cast_nullable_to_non_nullable
+            mst:
+                null == mst
+                    ? _value.mst
+                    : mst // ignore: cast_nullable_to_non_nullable
                         as String,
             picture:
                 null == picture
@@ -88,7 +94,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
   ) = __$$UserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String picture});
+  $Res call({String? mst, String? tencty, String? picture});
 }
 
 /// @nodoc
@@ -102,7 +108,12 @@ class __$$UserImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? id = null, Object? name = null, Object? picture = null}) {
+  $Res call({
+    Object? id = null,
+    Object? mst = null,
+    Object? tencty = null,
+    Object? picture = null,
+  }) {
     return _then(
       _$UserImpl(
         id:
@@ -110,10 +121,15 @@ class __$$UserImplCopyWithImpl<$Res>
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
                     as String,
-        name:
-            null == name
-                ? _value.name
-                : name // ignore: cast_nullable_to_non_nullable
+        mst:
+            null == mst
+                ? _value.mst
+                : mst // ignore: cast_nullable_to_non_nullable
+                    as String,
+        tencty:
+            null == tencty
+                ? _value.tencty
+                : tencty // ignore: cast_nullable_to_non_nullable
                     as String,
         picture:
             null == picture
@@ -128,11 +144,7 @@ class __$$UserImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserImpl implements _User {
-  const _$UserImpl({
-    required this.id,
-    required this.name,
-    required this.picture,
-  });
+  const _$UserImpl({required this.id, this.mst, this.tencty, this.picture});
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
@@ -140,17 +152,20 @@ class _$UserImpl implements _User {
   @override
   final String id;
 
-  /// The user's name.
+  ///
   @override
-  final String name;
+  final String? mst;
+
+  @override
+  final String? tencty;
 
   /// The user's picture URL.
   @override
-  final String picture;
+  final String? picture;
 
   @override
   String toString() {
-    return 'User(name: $name, picture: $picture)';
+    return 'User(mst: $mst,tencty: $tencty, picture: $picture)';
   }
 
   @override
@@ -158,13 +173,13 @@ class _$UserImpl implements _User {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserImpl &&
-            (identical(other.name, name) || other.name == name) &&
+            (identical(other.mst, mst) || other.mst == mst) &&
             (identical(other.picture, picture) || other.picture == picture));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, name, picture);
+  int get hashCode => Object.hash(runtimeType, mst, picture);
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -183,19 +198,24 @@ class _$UserImpl implements _User {
 abstract class _User implements User {
   const factory _User({
     required final String id,
-    required final String name,
-    required final String picture,
+    final String? mst,
+    final String? tencty,
+    final String? picture,
   }) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
-  /// The user's name.
+  ///
   @override
-  String get name;
+  String? get mst;
+
+  ///
+  @override
+  String? get tencty;
 
   /// The user's picture URL.
   @override
-  String get picture;
+  String? get picture;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
