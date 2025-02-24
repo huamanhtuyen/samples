@@ -9,4 +9,6 @@ import '../../../utils/result.dart';
 abstract class UserRepository {
   /// Get current user
   Future<Result<User>> getUser();
+
+  Future<Result<void>> deleteUser();
 }

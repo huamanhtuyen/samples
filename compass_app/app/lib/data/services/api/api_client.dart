@@ -158,4 +158,30 @@ class ApiClient {
       return Result.error(error); // Trả về lỗi nếu có ngoại lệ
     }
   }
+
+  Future<Result<void>> deleteUser() async {
+    try {
+      final userId = _supabaseClient.auth.currentUser?.id;
+      if (userId == null) {
+        return Result.error(
+          Exception('User not authenticated'),
+        ); // Trả về lỗi nếu người dùng chưa đăng nhập
+      }
+
+      final response = await _supabaseClient
+          .from('user')
+          .delete()
+          .eq('id', userId); // Xóa người dùng hiện tại
+
+      if (response.error == null) {
+        return const Result.ok(null); // Xóa thành công
+      } else {
+        return Result.error(
+          response.error!.message,
+        ); // Trả về lỗi nếu có lỗi từ Supabase
+      }
+    } on Exception catch (error) {
+      return Result.error(error); // Trả về lỗi nếu có ngoại lệ
+    }
+  }
 }
