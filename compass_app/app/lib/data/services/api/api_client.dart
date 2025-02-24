@@ -144,7 +144,7 @@ class ApiClient {
     try {
       final response =
           await _supabaseClient
-              .from('user')
+              .from('profiles')
               .update(user.toJson())
               .eq('id', user.id)
               .single(); // Cập nhật dữ liệu người dùng và lấy một bản ghi duy nhất

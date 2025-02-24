@@ -64,14 +64,41 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             onPressed: () async {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();
-                                await context.read<UserRepository>().updateUser(
-                                  User(
-                                    id: user.id,
-                                    name: _name,
-                                    picture: _picture,
-                                  ),
-                                );
-                                Navigator.of(context).pop();
+                                final result = await context
+                                    .read<UserRepository>()
+                                    .updateUser(
+                                      User(
+                                        id: user.id,
+                                        name: _name,
+                                        picture: _picture,
+                                      ),
+                                    );
+                                switch (result) {
+                                  case Ok():
+                                    {
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        const SnackBar(
+                                          content: Text(
+                                            'Profile updated successfully',
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                  case Error():
+                                    {
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Error: ${result.error}',
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                }
                               }
                             },
                             child: const Text('Save'),
