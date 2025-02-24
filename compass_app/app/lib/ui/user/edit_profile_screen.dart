@@ -32,9 +32,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Edit Profile')),
+      appBar: AppBar(title: const Text('Thông tin doanh nghiệp')),
       body: Container(
-        color: Theme.of(context).colorScheme.background,
+        color: Theme.of(context).colorScheme.onPrimary,
         child: FutureBuilder<Result<User>>(
           future: context.read<UserRepository>().getUser(),
           builder: (context, snapshot) {
@@ -217,7 +217,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           },
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
           if (_formKey.currentState!.validate()) {
             _formKey.currentState!.save();
@@ -261,7 +261,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             }
           }
         },
-        child: const Icon(Icons.save),
+        label: const Text('Lưu lại'),
+        icon: const Icon(Icons.save),
       ),
     );
   }
