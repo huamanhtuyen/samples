@@ -287,6 +287,7 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
               create:
                   (context) => NhuCauVanChuyenViewModel(
                     nhuCauVanChuyenRepository: context.read(),
+                     imageRepository: context.read(),
                   ),
               child: const NhuCauVanChuyenScreen(),
             );
@@ -299,6 +300,7 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
                   create:
                       (context) => NhuCauVanChuyenViewModel(
                         nhuCauVanChuyenRepository: context.read(),
+                         imageRepository: context.read(),
                       ),
                   child: const AddNhuCauVanChuyenScreen(),
                 );
@@ -312,6 +314,7 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
                   create:
                       (context) => NhuCauVanChuyenViewModel(
                         nhuCauVanChuyenRepository: context.read(),
+                         imageRepository: context.read(),
                       ),
                   child: EditNhuCauVanChuyenScreen(
                     nhuCauVanChuyen: nhuCauVanChuyen,

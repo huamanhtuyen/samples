@@ -1,3 +1,4 @@
+// ignore_for_file: directives_ordering
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:logging/logging.dart';
@@ -5,18 +6,25 @@ import '../../../data/repositories/nhucauvanchuyen/nhucauvanchuyen_repository.da
 import '../../../domain/models/nhucauvanchuyen/nhucauvanchuyen_model.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
+import '../../../data/repositories/image_repository.dart';
 
 class NhuCauVanChuyenViewModel extends ChangeNotifier {
   NhuCauVanChuyenViewModel({
     required NhuCauVanChuyenRepository nhuCauVanChuyenRepository,
-  }) : _nhuCauVanChuyenRepository = nhuCauVanChuyenRepository {
+     required ImageRepository imageRepository, // Add this line
+  }) : _nhuCauVanChuyenRepository = nhuCauVanChuyenRepository,
+      _imageRepository = imageRepository
+   {
+    
     load = Command0(_load)..execute();
     deleteNhuCauVanChuyen = Command1(_deleteNhuCauVanChuyen);
     addNhuCauVanChuyen = Command1(_addNhuCauVanChuyen);
     updateNhuCauVanChuyen = Command1(_updateNhuCauVanChuyen);
+     pickAndUploadImage = Command0(_pickAndUploadImage);
   }
 
   final NhuCauVanChuyenRepository _nhuCauVanChuyenRepository;
+  final ImageRepository _imageRepository; 
   final _log = Logger('NhuCauVanChuyenViewModel');
   List<NhuCauVanChuyen> _nhuCauVanChuyens = [];
 
@@ -26,6 +34,8 @@ class NhuCauVanChuyenViewModel extends ChangeNotifier {
   late Command1<void, int> deleteNhuCauVanChuyen;
   late Command1<void, NhuCauVanChuyen> addNhuCauVanChuyen;
   late Command1<void, NhuCauVanChuyen> updateNhuCauVanChuyen;
+  late Command0<String?> pickAndUploadImage;
+
 
   Future<Result> _load() async {
     try {
@@ -121,4 +131,20 @@ class NhuCauVanChuyenViewModel extends ChangeNotifier {
       notifyListeners();
     }
   }
-}
+
+  Future<Result<String?>> _pickAndUploadImage() async {
+     try {     
+      final result =await _imageRepository.pickAndUploadImage();
+      switch (result) {
+        case Ok<String?>():
+          _log.fine('Uploaded image');      
+        case Error<String?>():
+          _log.warning('Upload image failure', result.error);
+         
+      }
+      return result;
+    } finally {
+      notifyListeners();
+    }
+  }
+}//class
