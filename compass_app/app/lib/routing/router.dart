@@ -41,6 +41,12 @@ import '../ui/baocanhang/widgets/edit_baocanhang_screen.dart';
 import '../domain/models/baocanhang/baocanhang_model.dart';
 import '../ui/user/profile_screen.dart';
 import '../ui/user/edit_profile_screen.dart';
+//nhu cầu vận chuyển
+import '../ui/nhucauvanchuyen/widgets/nhucauvanchuyen_screen.dart';
+import '../ui/nhucauvanchuyen/view_models/nhucauvanchuyen_viewmodel.dart';
+import '../ui/nhucauvanchuyen/widgets/add_nhucauvanchuyen_screen.dart';
+import '../ui/nhucauvanchuyen/widgets/edit_nhucauvanchuyen_screen.dart';
+import '../domain/models/nhucauvanchuyen/nhucauvanchuyen_model.dart';
 
 /// Điểm vào chính của go_router.
 ///
@@ -253,6 +259,47 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
                         baoCanHangRepository: context.read(),
                       ),
                   child: EditBaoCanHangScreen(baoCanHang: baoCanHang),
+                );
+              },
+            ),
+          ],
+        ),
+        GoRoute(
+          path: Routes.nhucauvanchuyen,
+          builder: (context, state) {
+            return ChangeNotifierProvider(
+              create:
+                  (context) => NhuCauVanChuyenViewModel(
+                    nhuCauVanChuyenRepository: context.read(),
+                  ),
+              child: const NhuCauVanChuyenScreen(),
+            );
+          },
+          routes: [
+            GoRoute(
+              path: 'add',
+              builder: (context, state) {
+                return ChangeNotifierProvider(
+                  create:
+                      (context) => NhuCauVanChuyenViewModel(
+                        nhuCauVanChuyenRepository: context.read(),
+                      ),
+                  child: const AddNhuCauVanChuyenScreen(),
+                );
+              },
+            ),
+            GoRoute(
+              path: 'edit',
+              builder: (context, state) {
+                final nhuCauVanChuyen = state.extra as NhuCauVanChuyen;
+                return ChangeNotifierProvider(
+                  create:
+                      (context) => NhuCauVanChuyenViewModel(
+                        nhuCauVanChuyenRepository: context.read(),
+                      ),
+                  child: EditNhuCauVanChuyenScreen(
+                    nhuCauVanChuyen: nhuCauVanChuyen,
+                  ),
                 );
               },
             ),

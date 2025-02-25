@@ -43,4 +43,6 @@ abstract final class Routes {
   static const thongTinXe = '/thongtinxe';
   // Tuyến đường cho trang báo cần hàng
   static const baoCanHang = '/baocanhang';
+  // Tuyến đường cho trang nhu cầu vận chuyển
+  static const nhucauvanchuyen = '/nhucauvanchuyen';
 }
