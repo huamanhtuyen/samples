@@ -65,13 +65,21 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   TextField(
                     controller: _email,
-                    decoration: InputDecoration(labelText: 'Email'),
+                    decoration: InputDecoration(
+                      labelText: 'Email',
+                      fillColor: Theme.of(context).colorScheme.onPrimary,
+                      filled: true,
+                    ),
                   ), // Trường nhập email
                   const SizedBox(height: Dimens.paddingVertical),
                   TextField(
                     controller: _password,
                     obscureText: true,
-                    decoration: InputDecoration(labelText: 'Mật khẩu'),
+                    decoration: InputDecoration(
+                      labelText: 'Mật khẩu',
+                      fillColor: Theme.of(context).colorScheme.onPrimary,
+                      filled: true,
+                    ),
                   ), // Trường nhập mật khẩu
                   const SizedBox(height: Dimens.paddingVertical),
                   ListenableBuilder(
