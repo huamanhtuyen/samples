@@ -17,6 +17,7 @@ dependencies:
   freezed_annotation: ^2.4.4 # Thư viện để hỗ trợ code generation cho các class bất biến
   go_router: ^14.6.2 # Thư viện để điều hướng trong ứng dụng
   google_fonts: ^6.2.1 # Thư viện để sử dụng các font chữ của Google
+  http: 1.3.0 # Thư viện để thực hiện các yêu cầu HTTP
   intl: any # Thư viện để hỗ trợ quốc tế hóa
   json_annotation: ^4.9.0 # Thư viện để hỗ trợ code generation cho JSON serialization
   logging: ^1.3.0 # Thư viện để ghi log

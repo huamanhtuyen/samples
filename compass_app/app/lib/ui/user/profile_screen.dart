@@ -111,9 +111,61 @@ class ProfileScreen extends StatelessWidget {
                                 const SizedBox(height: 5),
                                 TextButton(
                                   onPressed: () async {
-                                    await context
-                                        .read<UserRepository>()
-                                        .deleteUser();
+                                    final confirm = await showDialog<bool>(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          title: const Text('Xác nhận'),
+                                          content: const Text(
+                                            'Bạn có chắc chắn muốn xóa tài khoản không?',
+                                          ),
+                                          actions: [
+                                            TextButton(
+                                              onPressed:
+                                                  () => Navigator.of(
+                                                    context,
+                                                  ).pop(false),
+                                              child: const Text('Hủy'),
+                                            ),
+                                            TextButton(
+                                              onPressed:
+                                                  () => Navigator.of(
+                                                    context,
+                                                  ).pop(true),
+                                              child: const Text('Xóa'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+
+                                    if (confirm == true) {
+                                      final result =
+                                          await context
+                                              .read<UserRepository>()
+                                              .deleteUser();
+                                      if (result is Ok) {
+                                        ScaffoldMessenger.of(
+                                          context,
+                                        ).showSnackBar(
+                                          const SnackBar(
+                                            content: Text(
+                                              'Tài khoản đã được xóa thành công',
+                                            ),
+                                          ),
+                                        );
+                                      } else {
+                                        ScaffoldMessenger.of(
+                                          context,
+                                        ).showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'Lỗi: ${(result as Error).error}',
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                    }
                                   },
                                   style: TextButton.styleFrom(
                                     foregroundColor: Colors.red.withAlpha(128),

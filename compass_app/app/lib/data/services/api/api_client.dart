@@ -1,9 +1,7 @@
-// Bản quyền 2024 Nhóm Flutter. Bảo lưu mọi quyền.
-// Việc sử dụng mã nguồn này được điều chỉnh bởi giấy phép BSD-style có thể
-// được tìm thấy trong tệp LICENSE.
-
+// ignore_for_file: directives_ordering
+import 'dart:convert'; // Thêm dòng này để sử dụng jsonEncode
+import 'package:http/http.dart' as http;
 import 'package:supabase_flutter/supabase_flutter.dart';
-
 import '../../../domain/models/activity/activity.dart';
 import '../../../domain/models/continent/continent.dart';
 import '../../../domain/models/destination/destination.dart';
@@ -241,29 +239,59 @@ class ApiClient {
     }
   }
 
+  //không chạy ở phía client được do bảo mật service_role key
+  // Future<Result<void>> deleteUser() async {
+  //   try {
+  //     final userId = _supabaseClient.auth.currentUser?.id;
+  //     if (userId == null) {
+  //       return Result.error(
+  //         Exception('User not authenticated'),
+  //       ); // Trả về lỗi nếu người dùng chưa đăng nhập
+  //     }
+
+  //     //tuyenhm
+  //     //tạm
+  //     //cái này cần service_role key
+  //     //và supabase khuyến cáo là chỉ gọi ở phía server
+  //     //không để service_role key ở client
+  //     //có 1 hướng là sử dụng edge function tích hợp vào supabase để làm hàm xóa
+  //     await _supabaseClient.auth.admin.deleteUser(
+  //       userId,
+  //     ); // Xóa người dùng từ Supabase
+  //     return const Result.ok(null); // Xóa thành công
+  //   } on Exception catch (error) {
+  //     return Result.error(error); // Trả về lỗi nếu có ngoại lệ
+  //   }
+  // }
+
+  //dùng phương án gọi đến Edge function của supabase
+  //ĐÃ TEST, CHẠY NGON LÀNH
   Future<Result<void>> deleteUser() async {
     try {
       final userId = _supabaseClient.auth.currentUser?.id;
-      if (userId == null) {
-        return Result.error(
-          Exception('User not authenticated'),
-        ); // Trả về lỗi nếu người dùng chưa đăng nhập
+      final accessToken = _supabaseClient.auth.currentSession?.accessToken;
+      if (userId == null || accessToken == null) {
+        return Result.error(Exception('User not authenticated'));
       }
 
-      final response = await _supabaseClient
-          .from('user')
-          .delete()
-          .eq('id', userId); // Xóa người dùng hiện tại
+      final response = await http.post(
+        Uri.parse(
+          'https://hxetbhwcaqjfmfpnaiiq.supabase.co/functions/v1/deleteUser',
+        ),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        body: jsonEncode({'userId': userId}),
+      );
 
-      if (response.error == null) {
-        return const Result.ok(null); // Xóa thành công
+      if (response.statusCode == 200) {
+        return const Result.ok(null);
       } else {
-        return Result.error(
-          response.error!.message,
-        ); // Trả về lỗi nếu có lỗi từ Supabase
+        return Result.error(Exception(response.body));
       }
     } on Exception catch (error) {
-      return Result.error(error); // Trả về lỗi nếu có ngoại lệ
+      return Result.error(error);
     }
   }
 }
