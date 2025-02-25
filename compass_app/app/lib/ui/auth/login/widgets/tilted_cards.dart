@@ -15,11 +15,33 @@ class TiltedCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Hàm xây dựng giao diện
+    // final screenWidth =
+    //     MediaQuery.of(context).size.width; // Lấy chiều rộng màn hình
+
+    // double cardWidth;
+    // double cardHeight;
+
+    // if (screenWidth < 600) {
+    //   // sm
+    //   cardWidth = 150;
+    //   cardHeight = 225;
+    // } else if (screenWidth < 900) {
+    //   // md
+    //   cardWidth = 200;
+    //   cardHeight = 300;
+    // } else if (screenWidth < 1200) {
+    //   // lg
+    //   cardWidth = 250;
+    //   cardHeight = 375;
+    // } else {
+    //   // xl
+    //   cardWidth = 300;
+    //   cardHeight = 450;
+    // }
+
     return ConstrainedBox(
       // Đặt giới hạn cho kích thước của widget con
-      constraints: const BoxConstraints(
-        maxWidth: 300,
-      ), // Giới hạn chiều rộng tối đa là 300
+      constraints: BoxConstraints(maxWidth: 300), // Giới hạn chiều rộng tối đa
       child: AspectRatio(
         // Đặt tỷ lệ khung hình cho widget con
         aspectRatio: 1, // Tỷ lệ khung hình là 1:1
