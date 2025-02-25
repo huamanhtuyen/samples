@@ -27,6 +27,9 @@ import '../domain/models/hocsinh/hocsinh_model.dart';
 //chủ xe
 import '../ui/chuxe/view_models/chuxe_viewmodel.dart';
 import '../ui/chuxe/widgets/chuxe_screen.dart';
+//chủ hàng
+import '../ui/chuhang/view_models/chuhang_viewmodel.dart';
+import '../ui/chuhang/widgets/chuhang_screen.dart';
 //thông tin xe
 import '../ui/thongtinxe/widgets/thongtinxe_screen.dart';
 import '../ui/thongtinxe/view_models/thongtinxe_viewmodel.dart';
@@ -112,6 +115,19 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
               userRepository: context.read(), // Đọc userRepository từ context
             );
             return ChuXeScreen(
+              viewModel: viewModel,
+            ); // Trả về màn hình trang chủ với viewModel
+          },
+        ),
+        GoRoute(
+          path: Routes.chuHang, // Đường dẫn đến trang chủ
+          builder: (context, state) {
+            final viewModel = ChuHangViewModel(
+              bookingRepository:
+                  context.read(), // Đọc bookingRepository từ context
+              userRepository: context.read(), // Đọc userRepository từ context
+            );
+            return ChuHangScreen(
               viewModel: viewModel,
             ); // Trả về màn hình trang chủ với viewModel
           },
@@ -393,6 +409,10 @@ Future<String?> _redirect(BuildContext context, GoRouterState state) async {
 
     if (state.matchedLocation == Routes.chuXe) {
       return Routes.chuXe;
+    }
+
+    if (state.matchedLocation == Routes.chuHang) {
+      return Routes.chuHang;
     }
 
     if (state.matchedLocation == Routes.thongTinXe) {

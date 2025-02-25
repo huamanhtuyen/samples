@@ -2,23 +2,23 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../routing/routes.dart';
-import '../view_models/home_viewmodel.dart';
+import '../view_models/chuhang_viewmodel.dart';
 import '../../core/ui/language_button.dart';
 import '../../auth/logout/widgets/logout_button_big.dart';
 import '../../auth/logout/view_models/logout_viewmodel.dart';
 import 'package:provider/provider.dart';
 import '../../core/ui/navigation_bar.dart'; // Import NavigationBars
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key, required this.viewModel});
+class ChuHangScreen extends StatefulWidget {
+  const ChuHangScreen({super.key, required this.viewModel});
 
-  final HomeViewModel viewModel; // Biến viewModel
+  final ChuHangViewModel viewModel; // Biến viewModel
 
   @override
-  State<HomeScreen> createState() => _ExampleStaggeredAnimationsState();
+  State<ChuHangScreen> createState() => _ExampleStaggeredAnimationsState();
 }
 
-class _ExampleStaggeredAnimationsState extends State<HomeScreen>
+class _ExampleStaggeredAnimationsState extends State<ChuHangScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController
   _drawerSlideController; // Điều khiển hoạt ảnh cho drawer
@@ -78,6 +78,8 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
           setState(() {
             _selectedIndex = index;
           });
+
+          if (index == 0) context.go(Routes.home);
         },
       ), // Add NavigationBars at the bottom
     );
@@ -128,60 +130,29 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
     );
   }
 
-  //build phần content của HomeScreen
+  //build phần content
   Widget _buildContent() {
     final cacChucNang = [];
     cacChucNang.add({
-      'title': 'Học Sinh',
-      'description': 'Test view model',
+      'title': 'Tìm xe',
+      'description': 'Tìm xe đang sẵn',
+      'route': '${Routes.hocSinh}/add',
+    });
+    cacChucNang.add({
+      'title': 'Tìm xe chiều về',
+      'description': 'Có giá cước phải chăng',
       'route': Routes.hocSinh,
     });
     cacChucNang.add({
-      'title': 'Chủ xe (phương tiện vận tải)',
+      'title': 'Tìm xe quanh đây',
+      'description': 'Có giá cước phải chăng',
+      'route': Routes.hocSinh,
+    });
+    cacChucNang.add({
+      'title': 'Đăng nhu cầu vận chuyển',
       'description':
-          'Tìm hàng; Báo xe trống cần hàng; Báo cần hàng chiều về; Đăng thông tin xe.',
-      'route': Routes.chuXe,
-    });
-    cacChucNang.add({
-      'title': 'Chủ hàng',
-      'description':
-          'Tìm xe; Tìm xe chiều về; Tìm xe quanh đây; Đăng nhu cầu vận chuyển.',
-      'route': Routes.chuHang,
-    });
-    cacChucNang.add({
-      'title': 'Thị trường',
-      'description': 'Danh sách thông tin về xe và nhu cầu vận chuyển hàng',
-      'route': Routes.chuXe,
-    });
-    cacChucNang.add({
-      'title': 'Thuê và cho thuê vỏ cont',
-      'description': 'Thị trường vỏ cont',
-      'route': Routes.chuXe,
-    });
-    cacChucNang.add({
-      'title': 'Thuê và cho thuê kho bãi',
-      'description': 'Thị trường kho bãi',
-      'route': Routes.chuXe,
-    });
-    cacChucNang.add({
-      'title': 'Thị trường xuất nhập khẩu',
-      'description': 'Thông tin dịch vụ xuất nhập khẩu',
-      'route': Routes.chuXe,
-    });
-    cacChucNang.add({
-      'title': 'Giao dịch',
-      'description': 'Các giao dịch đã thực hiện',
-      'route': Routes.chuXe,
-    });
-    cacChucNang.add({
-      'title': 'Ví tiền (logistic)',
-      'description': 'Ví tiền của đơn vị logistic',
-      'route': Routes.chuXe,
-    });
-    cacChucNang.add({
-      'title': 'Tài xế',
-      'description': 'Định vị tuyến đường',
-      'route': Routes.chuXe,
+          'Thông tin nhu cầu vận chuyển sẽ được gửi tới tất cả các xe trong hệ thống',
+      'route': '${Routes.nhucauvanchuyen}/add',
     });
 
     return Container(
