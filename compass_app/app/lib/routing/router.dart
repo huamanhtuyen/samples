@@ -447,6 +447,18 @@ Future<String?> _redirect(BuildContext context, GoRouterState state) async {
       return Routes.editprofile; //
     }
 
+    if (state.matchedLocation == Routes.nhucauvanchuyen) {
+      return Routes.nhucauvanchuyen;
+    }
+
+    if (state.matchedLocation == '/nhucauvanchuyen/add') {
+      return '/nhucauvanchuyen/add'; // điều hướng đến trang thêm thông tin
+    }
+
+    if (state.matchedLocation == '/nhucauvanchuyen/edit') {
+      return '/nhucauvanchuyen/edit'; // điều hướng đến trang sửa thông tin
+    }
+
     return Routes.home; // Chuyển hướng đến trang chủ nếu đã đăng nhập
   }
 
