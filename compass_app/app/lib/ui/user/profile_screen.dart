@@ -1,9 +1,16 @@
+// ignore_for_file: directives_ordering
+
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../../../data/repositories/user/user_repository.dart';
 import '../../../domain/models/user/user.dart';
 import '../../../utils/result.dart';
+import '../../routing/routes.dart';
 import 'edit_profile_screen.dart';
+import '../../../../data/repositories/auth/auth_repository.dart'; // Import kho lưu trữ xác thực
+import '../../../../data/repositories/itinerary_config/itinerary_config_repository.dart'; // Import kho lưu trữ cấu hình hành trình
+import '../../../../domain/models/itinerary_config/itinerary_config.dart'; // Import mô hình cấu hình hành trình
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -154,6 +161,16 @@ class ProfileScreen extends StatelessWidget {
                                             ),
                                           ),
                                         );
+                                        //Xóa tài khoản thành công thì đăng xuất trên ứng dụng
+                                        await context
+                                            .read<AuthRepository>()
+                                            .logout();
+                                        await context
+                                            .read<ItineraryConfigRepository>()
+                                            .setItineraryConfig(
+                                              const ItineraryConfig(), // Đặt lại cấu hình hành trình rỗng
+                                            );
+                                        context.go(Routes.login);
                                       } else {
                                         ScaffoldMessenger.of(
                                           context,
