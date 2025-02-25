@@ -49,89 +49,95 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          const TiltedCards(), // Hiển thị các thẻ nghiêng
-          const LanguageButtonNgang(), // Thêm nút chọn ngôn ngữ
-          Padding(
-            padding: Dimens.of(context).edgeInsetsScreenSymmetric,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                TextField(
-                  controller: _email,
-                  decoration: InputDecoration(labelText: 'Email'),
-                ), // Trường nhập email
-                const SizedBox(height: Dimens.paddingVertical),
-                TextField(
-                  controller: _password,
-                  obscureText: true,
-                  decoration: InputDecoration(labelText: 'Mật khẩu'),
-                ), // Trường nhập mật khẩu
-                const SizedBox(height: Dimens.paddingVertical),
-                ListenableBuilder(
-                  listenable: widget.viewModel.login,
-                  builder: (context, _) {
-                    return FilledButton(
-                      onPressed: () {
-                        widget.viewModel.login.execute((
-                          _email.value.text,
-                          _password.value.text,
-                        )); // Thực hiện login
-                      },
-                      child: Text(
-                        AppLocalization.of(context).login,
-                      ), // Nút đăng nhập
-                    );
-                  },
-                ),
-                // Thêm nút đăng nhập bằng tài khoản Apple ID
-                const SizedBox(height: Dimens.paddingVertical),
-                FilledButton.icon(
-                  onPressed: () {
-                    // Thực hiện đăng nhập bằng Apple ID
-                  },
-                  icon: Icon(Icons.apple, size: 24.0), // Logo Apple
-                  label: Text('Đăng nhập bằng Apple ID'),
-                  style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all(
-                      ColorScheme.fromSeed(seedColor: Colors.blue).primary,
-                    ),
-                    foregroundColor: WidgetStateProperty.all(Colors.white),
+      body: SingleChildScrollView(
+        // Wrap with SingleChildScrollView
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const TiltedCards(), // Hiển thị các thẻ nghiêng
+            const SizedBox(height: Dimens.paddingVertical),
+            const LanguageButtonNgang(), // Thêm nút chọn ngôn ngữ
+            Padding(
+              padding: Dimens.of(context).edgeInsetsScreenSymmetric,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  TextField(
+                    controller: _email,
+                    decoration: InputDecoration(labelText: 'Email'),
+                  ), // Trường nhập email
+                  const SizedBox(height: Dimens.paddingVertical),
+                  TextField(
+                    controller: _password,
+                    obscureText: true,
+                    decoration: InputDecoration(labelText: 'Mật khẩu'),
+                  ), // Trường nhập mật khẩu
+                  const SizedBox(height: Dimens.paddingVertical),
+                  ListenableBuilder(
+                    listenable: widget.viewModel.login,
+                    builder: (context, _) {
+                      return FilledButton(
+                        onPressed: () {
+                          widget.viewModel.login.execute((
+                            _email.value.text,
+                            _password.value.text,
+                          )); // Thực hiện login
+                        },
+                        child: Text(
+                          AppLocalization.of(context).login,
+                        ), // Nút đăng nhập
+                      );
+                    },
                   ),
-                ),
-                // Thêm nút đăng nhập bằng tài khoản Google
-                const SizedBox(height: Dimens.paddingVertical),
-                FilledButton.icon(
-                  onPressed: () {
-                    // Thực hiện đăng nhập bằng Google
-                  },
-                  icon: Image.asset(
-                    'assets/google_logo.png',
-                    height: 24.0,
-                  ), // Logo Google
-                  label: Text('Đăng nhập bằng Google'),
-                  style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all(
-                      ColorScheme.fromSeed(seedColor: Colors.red).secondary,
+                  // Thêm nút đăng nhập bằng tài khoản Apple ID
+                  const SizedBox(height: Dimens.paddingVertical),
+                  FilledButton.icon(
+                    onPressed: () {
+                      // Thực hiện đăng nhập bằng Apple ID
+                    },
+                    icon: Icon(Icons.apple, size: 24.0), // Logo Apple
+                    label: Text('Đăng nhập bằng Apple ID'),
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all(
+                        ColorScheme.fromSeed(seedColor: Colors.blue).primary,
+                      ),
+                      foregroundColor: WidgetStateProperty.all(Colors.white),
                     ),
-                    foregroundColor: WidgetStateProperty.all(Colors.white),
                   ),
-                ),
+                  // Thêm nút đăng nhập bằng tài khoản Google
+                  const SizedBox(height: Dimens.paddingVertical),
+                  FilledButton.icon(
+                    onPressed: () {
+                      // Thực hiện đăng nhập bằng Google
+                    },
+                    icon: Image.asset(
+                      'assets/google_logo.png',
+                      height: 24.0,
+                    ), // Logo Google
+                    label: Text('Đăng nhập bằng Google'),
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all(
+                        ColorScheme.fromSeed(seedColor: Colors.red).secondary,
+                      ),
+                      foregroundColor: WidgetStateProperty.all(Colors.white),
+                    ),
+                  ),
 
-                TextButton(
-                  onPressed: () {
-                    print('nhấn nút đăng ký');
-                    context.go(Routes.register); // Điều hướng đến trang đăng ký
-                  },
-                  child: Text('Nếu bạn chưa có tài khoản, hãy đăng ký'),
-                ),
-              ],
+                  TextButton(
+                    onPressed: () {
+                      print('nhấn nút đăng ký');
+                      context.go(
+                        Routes.register,
+                      ); // Điều hướng đến trang đăng ký
+                    },
+                    child: Text('Nếu bạn chưa có tài khoản, hãy đăng ký'),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
