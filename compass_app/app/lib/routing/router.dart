@@ -50,6 +50,8 @@ import '../ui/nhucauvanchuyen/view_models/nhucauvanchuyen_viewmodel.dart';
 import '../ui/nhucauvanchuyen/widgets/add_nhucauvanchuyen_screen.dart';
 import '../ui/nhucauvanchuyen/widgets/edit_nhucauvanchuyen_screen.dart';
 import '../domain/models/nhucauvanchuyen/nhucauvanchuyen_model.dart';
+//test map
+import '../ui/testmap/testmap1_screen.dart';
 
 /// Điểm vào chính của go_router.
 ///
@@ -94,6 +96,12 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
         ); // Trả về màn hình trang chủ với viewModel
       },
       routes: [
+        GoRoute(
+          path: Routes.testmap1, // Đường dẫn đến trang profile
+          builder: (context, state) {
+            return const OpenStreetMapScreen1();
+          },
+        ),
         GoRoute(
           path: Routes.profile, // Đường dẫn đến trang profile
           builder: (context, state) {
@@ -397,6 +405,10 @@ Future<String?> _redirect(BuildContext context, GoRouterState state) async {
     if (state.matchedLocation == Routes.hocSinh) {
       return Routes
           .hocSinh; // Cho phép điều hướng đến trang Học Sinh hoặc trang thêm Học Sinh nếu đã đăng nhập
+    }
+
+    if (state.matchedLocation == Routes.testmap1) {
+      return Routes.testmap1; //
     }
 
     if (state.matchedLocation == '/hocsinh/add') {

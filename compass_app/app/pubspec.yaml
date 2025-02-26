@@ -1,4 +1,4 @@
-name: compass_app # Tên của ứng dụng
+name: logiw # Tên của ứng dụng
 description: >- # Mô tả ngắn gọn về ứng dụng
   Kết nối vận chuyển # Mô tả chi tiết về ứng dụng
 publish_to: none # Không xuất bản ứng dụng này lên pub.dev
@@ -27,6 +27,8 @@ dependencies:
   supabase_flutter: ^2.8.3 # Thư viện để làm việc với Supabase
   mockito: ^5.0.0 # Thư viện để mock trong kiểm thử
   image_picker: ^0.8.5+3 # Thư viện để chọn hình ảnh từ thư viện hoặc máy ảnh
+  flutter_map: ^8.1.0
+  latlong2: ^0.9.1
 
 dev_dependencies:
   flutter_test:

@@ -31,6 +31,7 @@ abstract final class Routes {
 
   //test screen
   static const hocSinh = '/hocsinh';
+  static const testmap1 = '/testmap1';
 
   //link các chức năng
   //chủ xe (phương tiện vận tải)
