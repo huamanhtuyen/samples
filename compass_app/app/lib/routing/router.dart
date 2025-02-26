@@ -51,8 +51,8 @@ import '../ui/nhucauvanchuyen/widgets/add_nhucauvanchuyen_screen.dart';
 import '../ui/nhucauvanchuyen/widgets/edit_nhucauvanchuyen_screen.dart';
 import '../domain/models/nhucauvanchuyen/nhucauvanchuyen_model.dart';
 //test map
-import '../ui/testmap/testmap1_screen.dart';
-//import '../ui/testmap/mapbox1_screen.dart';
+//import '../ui/testmap/testmap1_screen.dart';
+import '../ui/testmap/mapbox1_screen.dart';
 
 /// Điểm vào chính của go_router.
 ///
@@ -100,8 +100,8 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
         GoRoute(
           path: Routes.testmap1, // Đường dẫn đến trang profile
           builder: (context, state) {
-            //return const MapboxMapWidget1();
-            return const OpenStreetMapScreen1();
+            return const MapboxMapWidget1();
+            //return const OpenStreetMapScreen1();
           },
         ),
         GoRoute(
