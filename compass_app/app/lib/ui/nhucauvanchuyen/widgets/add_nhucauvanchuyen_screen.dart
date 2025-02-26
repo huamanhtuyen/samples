@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../view_models/nhucauvanchuyen_viewmodel.dart';
 import '../../../domain/models/nhucauvanchuyen/nhucauvanchuyen_model.dart';
+import '../../../utils/result.dart';
 
 class AddNhuCauVanChuyenScreen extends StatefulWidget {
   const AddNhuCauVanChuyenScreen({super.key});
@@ -29,6 +30,39 @@ class _AddNhuCauVanChuyenScreenState extends State<AddNhuCauVanChuyenScreen> {
   final _kichthuocController = TextEditingController();
   final _trongluongController = TextEditingController();
 
+Future<void> _pickAndUploadImage() async {
+  final viewModel = context.read<NhuCauVanChuyenViewModel>();
+  await viewModel.pickAndUploadImage.execute();
+  final result = viewModel.pickAndUploadImage.result;
+  if (result != null) {
+    if (result is Ok<String?>) {
+      final imageUrl = result.value;
+      setState(() {   
+        _anh1Controller.text = imageUrl ?? '';
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Image uploaded successfully'),
+        ),
+      );
+    } else if (result is Error<String?>) {
+      final error = result.error;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Image loaded unsuccessfully: $error'),
+        ),
+      );
+    }
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Image upload result is null'),
+      ),
+    );
+  }
+}
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +83,33 @@ class _AddNhuCauVanChuyenScreenState extends State<AddNhuCauVanChuyenScreen> {
                     }
                     return null;
                   },
+                ),
+                 GestureDetector(
+                  onTap: _pickAndUploadImage,
+                  child: Container(
+                    height: 150,
+                    width: 150,
+                    color: Colors.grey[300],
+                    child: Stack(
+                      children: [
+                        _anh1Controller.text.isEmpty
+                            ? Center(child: Icon(Icons.add_a_photo))
+                            : Image.network(_anh1Controller.text, fit: BoxFit.fill),
+                        if (_anh1Controller.text.isEmpty)
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'Chọn ảnh',
+                                style: TextStyle(color: Colors.black54),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
                 ),
                 TextFormField(
                   controller: _anh1Controller,

@@ -14,7 +14,8 @@ class ThongTinXeViewModel extends ChangeNotifier {
     required ThongTinXeRepository thongTinXeRepository,
     required ImageRepository imageRepository, // Add this line
   }) : _thongTinXeRepository = thongTinXeRepository,
-       _imageRepository = imageRepository { // Modify this line
+       _imageRepository = imageRepository 
+       { 
     load = Command0(_load)..execute();
     deleteThongTinXe = Command1(_deleteThongTinXe);
     addThongTinXe = Command1(_addThongTinXe);
@@ -120,4 +121,4 @@ class ThongTinXeViewModel extends ChangeNotifier {
       notifyListeners();
     }
   }
-}
+}//class

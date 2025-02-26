@@ -1,6 +1,6 @@
 class NhuCauVanChuyen {
   final int? id;
-  final DateTime? createdAt;
+  final DateTime? createdAt;//được tạo tự động bởi database nên không được xử lý ở đây
   final String? userId;
   final String? anh1;
   final String? anh2;

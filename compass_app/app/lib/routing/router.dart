@@ -295,6 +295,7 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
               create:
                   (context) => NhuCauVanChuyenViewModel(
                     nhuCauVanChuyenRepository: context.read(),
+                     imageRepository: context.read(),
                   ),
               child: const NhuCauVanChuyenScreen(),
             );
@@ -307,6 +308,7 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
                   create:
                       (context) => NhuCauVanChuyenViewModel(
                         nhuCauVanChuyenRepository: context.read(),
+                         imageRepository: context.read(),
                       ),
                   child: const AddNhuCauVanChuyenScreen(),
                 );
@@ -320,6 +322,7 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
                   create:
                       (context) => NhuCauVanChuyenViewModel(
                         nhuCauVanChuyenRepository: context.read(),
+                         imageRepository: context.read(),
                       ),
                   child: EditNhuCauVanChuyenScreen(
                     nhuCauVanChuyen: nhuCauVanChuyen,
@@ -457,6 +460,18 @@ Future<String?> _redirect(BuildContext context, GoRouterState state) async {
 
     if (state.matchedLocation == Routes.editprofile) {
       return Routes.editprofile; //
+    }
+
+    if (state.matchedLocation == Routes.nhucauvanchuyen) {
+      return Routes.nhucauvanchuyen;
+    }
+
+    if (state.matchedLocation == '/nhucauvanchuyen/add') {
+      return '/nhucauvanchuyen/add'; // điều hướng đến trang thêm thông tin
+    }
+
+    if (state.matchedLocation == '/nhucauvanchuyen/edit') {
+      return '/nhucauvanchuyen/edit'; // điều hướng đến trang sửa thông tin
     }
 
     return Routes.home; // Chuyển hướng đến trang chủ nếu đã đăng nhập

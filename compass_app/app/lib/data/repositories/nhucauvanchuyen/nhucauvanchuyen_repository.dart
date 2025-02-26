@@ -29,7 +29,10 @@ class NhuCauVanChuyenRepository {
     NhuCauVanChuyen nhuCauVanChuyen,
   ) async {
     try {
-      await _supabase.from(table).insert(nhuCauVanChuyen.toJson());
+      final data = nhuCauVanChuyen.toJson();
+      data.remove('created_at'); // Remove createdAt field
+      data.remove('user_id'); // Remove createdAt field
+      await _supabase.from(table).insert(data);
       return Result.ok(null);
     } on Exception catch (e) {
       return Result.error(e);
