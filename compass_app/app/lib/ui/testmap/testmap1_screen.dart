@@ -8,7 +8,7 @@ class OpenStreetMapScreen1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('OpenStreetMap Online')),
+      appBar: AppBar(title: Text('Định vị')),
       body: FlutterMap(
         options: MapOptions(
           initialCenter: LatLng(10.762622, 106.660172), // TP. HCM
@@ -16,9 +16,7 @@ class OpenStreetMapScreen1 extends StatelessWidget {
         ),
         children: [
           TileLayer(
-            urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-            subdomains: ['a', 'b', 'c'], // Server load balancing
-            userAgentPackageName: 'com.example.app',
+            urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
           ),
           MarkerLayer(
             markers: [

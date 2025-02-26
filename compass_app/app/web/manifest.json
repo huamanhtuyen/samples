@@ -1,6 +1,6 @@
 {
-    "name": "compass_app",
-    "short_name": "compass_app",
+    "name": "logiw",
+    "short_name": "logiw",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

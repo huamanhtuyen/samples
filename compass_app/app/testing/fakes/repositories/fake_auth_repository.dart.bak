@@ -2,9 +2,9 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:compass_app/data/repositories/auth/auth_repository.dart';
-import 'package:compass_app/ui/auth/register/widgets/register_screen.dart';
-import 'package:compass_app/utils/result.dart';
+import 'package:logiw/data/repositories/auth/auth_repository.dart';
+import 'package:logiw/ui/auth/register/widgets/register_screen.dart';
+import 'package:logiw/utils/result.dart';
 
 class FakeAuthRepository extends AuthRepository {
   String? token;

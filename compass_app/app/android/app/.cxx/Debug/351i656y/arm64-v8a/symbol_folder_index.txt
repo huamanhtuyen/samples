@@ -1,1 +1,1 @@
-C:\PROJECTS\samples\compass_app\app\build\app\intermediates\cxx\Debug\351i656y\obj\arm64-v8a
+C:\PROJECTS\samples\logiw\app\build\app\intermediates\cxx\Debug\351i656y\obj\arm64-v8a
