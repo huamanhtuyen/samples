@@ -52,7 +52,7 @@ import '../ui/nhucauvanchuyen/widgets/edit_nhucauvanchuyen_screen.dart';
 import '../domain/models/nhucauvanchuyen/nhucauvanchuyen_model.dart';
 //test map
 //import '../ui/testmap/testmap1_screen.dart';
-import '../ui/testmap/mapbox1_screen.dart';
+import '../ui/testmap/mapbox2_screen.dart';
 
 /// Điểm vào chính của go_router.
 ///

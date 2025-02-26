@@ -14,6 +14,7 @@ import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 /// Khởi chạy với `flutter run --target lib/main_staging.dart`.
 /// Sử dụng dữ liệu từ xa từ máy chủ.
 void main() async {
+  //nếu xóa dòng nầy thì mapbox sẽ không chạy được nhé, lưu ý
   WidgetsFlutterBinding.ensureInitialized(); // Đảm bảo Flutter binding được khởi tạo
 
   Logger.root.level = Level.ALL; // Đặt mức độ ghi log là ALL
