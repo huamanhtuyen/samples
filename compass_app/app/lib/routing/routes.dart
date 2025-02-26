@@ -48,4 +48,6 @@ abstract final class Routes {
   static const nhucauvanchuyen = '/nhucauvanchuyen';
   //chủ hàng
   static const chuHang = '/chu_hang';
+  // Tuyến đường cho trang cho thuê container
+  static const chothuecont = '/chothuecont';
 }
