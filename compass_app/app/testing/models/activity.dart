@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:compass_app/domain/models/activity/activity.dart';
+import 'package:logiw/domain/models/activity/activity.dart';
 
 const kActivity = Activity(
   description: 'DESCRIPTION',

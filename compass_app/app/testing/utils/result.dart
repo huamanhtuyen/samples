@@ -1,4 +1,4 @@
-import 'package:compass_app/utils/result.dart';
+import 'package:logiw/utils/result.dart';
 
 extension ResultCast<T> on Result<T> {
   /// Convenience method to cast to Ok

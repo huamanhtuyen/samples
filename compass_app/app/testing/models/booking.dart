@@ -2,9 +2,9 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:compass_app/data/services/api/model/booking/booking_api_model.dart';
-import 'package:compass_app/domain/models/booking/booking.dart';
-import 'package:compass_app/domain/models/booking/booking_summary.dart';
+import 'package:logiw/data/services/api/model/booking/booking_api_model.dart';
+import 'package:logiw/domain/models/booking/booking.dart';
+import 'package:logiw/domain/models/booking/booking_summary.dart';
 
 import 'activity.dart';
 import 'destination.dart';

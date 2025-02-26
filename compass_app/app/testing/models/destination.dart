@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:compass_app/domain/models/destination/destination.dart';
+import 'package:logiw/domain/models/destination/destination.dart';
 
 const kDestination1 = Destination(
   ref: 'ref1',

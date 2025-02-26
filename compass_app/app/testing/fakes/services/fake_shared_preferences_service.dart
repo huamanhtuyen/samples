@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:compass_app/data/services/shared_preferences_service.dart';
-import 'package:compass_app/utils/result.dart';
+import 'package:logiw/data/services/shared_preferences_service.dart';
+import 'package:logiw/utils/result.dart';
 
 class FakeSharedPreferencesService implements SharedPreferencesService {
   String? token;

@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:compass_app/data/services/api/model/user/user_api_model.dart';
-import 'package:compass_app/domain/models/user/user.dart';
+import 'package:logiw/data/services/api/model/user/user_api_model.dart';
+import 'package:logiw/domain/models/user/user.dart';
 
 const userApiModel = UserApiModel(
   id: 'ID',
