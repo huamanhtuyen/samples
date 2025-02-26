@@ -8,32 +8,14 @@ import 'config/dependencies.dart'; // Nhập tệp dependencies
 import 'main.dart'; // Nhập tệp main
 import 'package:flutter/rendering.dart';
 import 'ui/core/localization/locale_provider.dart';
-import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
+//import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 
 /// Điểm vào cấu hình staging.
 /// Khởi chạy với `flutter run --target lib/main_staging.dart`.
 /// Sử dụng dữ liệu từ xa từ máy chủ.
 void main() async {
-  //nếu xóa dòng nầy thì mapbox sẽ không chạy được nhé, lưu ý
-  WidgetsFlutterBinding.ensureInitialized(); // Đảm bảo Flutter binding được khởi tạo
-
   Logger.root.level = Level.ALL; // Đặt mức độ ghi log là ALL
   final log = Logger('MainApplication'); // Biến lưu trữ đối tượng Logger
-
-  //cấu hình mapbox
-  final accessToken = const String.fromEnvironment(
-    "ACCESS_TOKEN",
-    defaultValue: "",
-  );
-  if (accessToken.isEmpty) {
-    throw Exception("THIẾU Mapbox Access Token RỒI!");
-  }
-  try {
-    MapboxOptions.setAccessToken(accessToken);
-  } catch (e, stackTrace) {
-    debugPrint("🔥 Exception: $e");
-    debugPrint("📌 StackTrace: $stackTrace");
-  }
 
   //Khởi tạo kết nối đến supabase
   await Supabase.initialize(

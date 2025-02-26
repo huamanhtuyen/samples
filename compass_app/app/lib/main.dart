@@ -11,6 +11,7 @@ import 'ui/core/localization/applocalization.dart'; // Import tệp applocalizat
 import 'ui/core/themes/theme.dart'; // Import tệp theme.dart
 import 'ui/core/ui/scroll_behavior.dart'; // Import tệp scroll_behavior.dart
 import 'ui/core/localization/locale_provider.dart';
+import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 
 /// Phương thức main mặc định
 void main() {
@@ -18,11 +19,47 @@ void main() {
   staging.main();
 }
 
+void showErrorDialog(BuildContext context, String message) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Lỗi'),
+        content: Text(message),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('OK'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
 class MainApp extends StatelessWidget {
   const MainApp({super.key}); // Constructor của MainApp
 
   @override
   Widget build(BuildContext context) {
+    //cấu hình mapbox
+    final accessToken = const String.fromEnvironment(
+      "ACCESS_TOKEN",
+      defaultValue: "",
+    );
+    if (accessToken.isEmpty) {
+      throw Exception("THIẾU Mapbox Access Token RỒI!");
+    }
+    try {
+      MapboxOptions.setAccessToken(accessToken);
+    } catch (e, stackTrace) {
+      debugPrint("🔥 Exception: $e");
+      debugPrint("📌 StackTrace: $stackTrace");
+      showErrorDialog(context, "Đã xảy ra lỗi: $e"); // Hiển thị hộp thoại lỗi
+    }
+
     //lấy ra instance localeProvider hiện tại
     final localeProvider = Provider.of<LocaleProvider>(context);
 
