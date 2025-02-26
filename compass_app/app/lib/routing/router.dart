@@ -58,6 +58,12 @@ import '../ui/chothuecont/view_models/chothuecont_viewmodel.dart';
 import '../ui/chothuecont/widgets/add_chothuecont_screen.dart';
 import '../ui/chothuecont/widgets/edit_chothuecont_screen.dart';
 import '../domain/models/chothuecont/chothuecont_model.dart';
+//cần thuê cont
+import '../ui/canthuecont/widgets/canthuecont_screen.dart';
+import '../ui/canthuecont/view_models/canthuecont_viewmodel.dart';
+import '../ui/canthuecont/widgets/add_canthuecont_screen.dart';
+import '../ui/canthuecont/widgets/edit_canthuecont_screen.dart';
+import '../domain/models/canthuecont/canthuecont_model.dart';
 
 /// Điểm vào chính của go_router.
 ///
@@ -382,6 +388,48 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
           ],
         ),
         GoRoute(
+          path: Routes.canthuecont,
+          builder: (context, state) {
+            return ChangeNotifierProvider(
+              create:
+                  (context) => CanThueContViewModel(
+                    canThueContRepository: context.read(),
+                    imageRepository: context.read(),
+                  ),
+              child: const CanThueContScreen(),
+            );
+          },
+          routes: [
+            GoRoute(
+              path: 'add',
+              builder: (context, state) {
+                return ChangeNotifierProvider(
+                  create:
+                      (context) => CanThueContViewModel(
+                        canThueContRepository: context.read(),
+                        imageRepository: context.read(),
+                      ),
+                  child: const AddCanThueContScreen(),
+                );
+              },
+            ),
+            GoRoute(
+              path: 'edit',
+              builder: (context, state) {
+                final canThueCont = state.extra as CanThueCont;
+                return ChangeNotifierProvider(
+                  create:
+                      (context) => CanThueContViewModel(
+                        canThueContRepository: context.read(),
+                        imageRepository: context.read(),
+                      ),
+                  child: EditCanThueContScreen(canThueCont: canThueCont),
+                );
+              },
+            ),
+          ],
+        ),
+        GoRoute(
           path: Routes.bookingRelative, // Đường dẫn đến trang đặt chỗ
           builder: (context, state) {
             final viewModel = BookingViewModel(
@@ -524,7 +572,7 @@ Future<String?> _redirect(BuildContext context, GoRouterState state) async {
       return '/nhucauvanchuyen/edit'; // điều hướng đến trang sửa thông tin
     }
 
-    //nhu cầu vận chuyển
+    //cho thuê cont
     if (state.matchedLocation == Routes.chothuecont) {
       return Routes.chothuecont;
     }
@@ -535,6 +583,19 @@ Future<String?> _redirect(BuildContext context, GoRouterState state) async {
 
     if (state.matchedLocation == '/chothuecont/edit') {
       return '/chothuecont/edit'; // điều hướng đến trang sửa thông tin
+    }
+
+    //cần thuê cont
+    if (state.matchedLocation == Routes.canthuecont) {
+      return Routes.canthuecont;
+    }
+
+    if (state.matchedLocation == '/canthuecont/add') {
+      return '/canthuecont/add'; // điều hướng đến trang thêm thông tin
+    }
+
+    if (state.matchedLocation == '/canthuecont/edit') {
+      return '/canthuecont/edit'; // điều hướng đến trang sửa thông tin
     }
 
     return Routes.home; // Chuyển hướng đến trang chủ nếu đã đăng nhập
