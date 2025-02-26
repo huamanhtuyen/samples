@@ -489,118 +489,21 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
 // Từ https://github.com/flutter/packages/blob/main/packages/go_router/example/lib/redirection.dart
 Future<String?> _redirect(BuildContext context, GoRouterState state) async {
   final loggedIn = await context.read<AuthRepository>().isAuthenticated;
-  final loggingIn = state.matchedLocation == Routes.login;
-  final registering = state.matchedLocation == Routes.register;
+  final currentLocation = state.matchedLocation;
 
-  if (!loggedIn && !loggingIn && !registering) {
-    return Routes
-        .login; // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập và không phải trang đăng nhập hoặc đăng ký
+  // Public routes that don't require authentication
+  final publicRoutes = [Routes.login, Routes.register];
+
+  if (!loggedIn) {
+    // If not logged in, only allow public routes
+    return publicRoutes.contains(currentLocation) ? null : Routes.login;
   }
 
-  if (loggedIn) {
-    // if (state.matchedLocation == Routes.hocSinh) {
-    //   return Routes
-    //       .hocSinh; // Chuyển hướng đến trang Học Sinh nếu đã đăng nhập và nhấn vào route hocSinh
-    // }
-    if (state.matchedLocation == Routes.hocSinh) {
-      return Routes
-          .hocSinh; // Cho phép điều hướng đến trang Học Sinh hoặc trang thêm Học Sinh nếu đã đăng nhập
-    }
-
-    if (state.matchedLocation == Routes.testmap1) {
-      return Routes.testmap1; //
-    }
-
-    if (state.matchedLocation == '/hocsinh/add') {
-      return '/hocsinh/add'; // Cho phép điều hướng đến trang Học Sinh hoặc trang thêm Học Sinh nếu đã đăng nhập
-    }
-
-    if (state.matchedLocation == '/hocsinh/edit') {
-      return '/hocsinh/edit'; // Cho phép điều hướng đến trang Học Sinh hoặc trang thêm Học Sinh nếu đã đăng nhập
-    }
-
-    if (state.matchedLocation == Routes.chuXe) {
-      return Routes.chuXe;
-    }
-
-    if (state.matchedLocation == Routes.chuHang) {
-      return Routes.chuHang;
-    }
-
-    if (state.matchedLocation == Routes.thongTinXe) {
-      return Routes.thongTinXe;
-    }
-
-    if (state.matchedLocation == '/thongtinxe/add') {
-      return '/thongtinxe/add'; // điều hướng đến trang thêm thông tin
-    }
-
-    if (state.matchedLocation == '/thongtinxe/edit') {
-      return '/thongtinxe/edit'; // điều hướng đến trang sửa thông tin
-    }
-
-    if (state.matchedLocation == Routes.baoCanHang) {
-      return Routes.baoCanHang;
-    }
-
-    if (state.matchedLocation == '/baocanhang/add') {
-      return '/baocanhang/add'; // điều hướng đến trang thêm thông tin
-    }
-
-    if (state.matchedLocation == '/baocanhang/edit') {
-      return '/baocanhang/edit'; // điều hướng đến trang sửa thông tin
-    }
-
-    if (state.matchedLocation == Routes.profile) {
-      return Routes.profile; //
-    }
-
-    if (state.matchedLocation == Routes.editprofile) {
-      return Routes.editprofile; //
-    }
-
-    //nhu cầu vận chuyển
-    if (state.matchedLocation == Routes.nhucauvanchuyen) {
-      return Routes.nhucauvanchuyen;
-    }
-
-    if (state.matchedLocation == '/nhucauvanchuyen/add') {
-      return '/nhucauvanchuyen/add'; // điều hướng đến trang thêm thông tin
-    }
-
-    if (state.matchedLocation == '/nhucauvanchuyen/edit') {
-      return '/nhucauvanchuyen/edit'; // điều hướng đến trang sửa thông tin
-    }
-
-    //cho thuê cont
-    if (state.matchedLocation == Routes.chothuecont) {
-      return Routes.chothuecont;
-    }
-
-    if (state.matchedLocation == '/chothuecont/add') {
-      return '/chothuecont/add'; // điều hướng đến trang thêm thông tin
-    }
-
-    if (state.matchedLocation == '/chothuecont/edit') {
-      return '/chothuecont/edit'; // điều hướng đến trang sửa thông tin
-    }
-
-    //cần thuê cont
-    if (state.matchedLocation == Routes.canthuecont) {
-      return Routes.canthuecont;
-    }
-
-    if (state.matchedLocation == '/canthuecont/add') {
-      return '/canthuecont/add'; // điều hướng đến trang thêm thông tin
-    }
-
-    if (state.matchedLocation == '/canthuecont/edit') {
-      return '/canthuecont/edit'; // điều hướng đến trang sửa thông tin
-    }
-
-    return Routes.home; // Chuyển hướng đến trang chủ nếu đã đăng nhập
+  // If logged in but on a login/register page, redirect to home
+  if (publicRoutes.contains(currentLocation)) {
+    return Routes.home;
   }
 
-  // không cần chuyển hướng
+  // Authenticated users can access all routes, no need for additional redirects
   return null;
 }
