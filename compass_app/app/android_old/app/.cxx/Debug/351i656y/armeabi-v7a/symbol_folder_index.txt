@@ -1,1 +1,0 @@
-C:\PROJECTS\samples\compass_app\app\build\app\intermediates\cxx\Debug\351i656y\obj\armeabi-v7a

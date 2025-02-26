@@ -1,2 +1,0 @@
-C:/PROJECTS/samples/compass_app/app/android/app/.cxx/RelWithDebInfo/3g1m2e63/x86/CMakeFiles/edit_cache.dir
-C:/PROJECTS/samples/compass_app/app/android/app/.cxx/RelWithDebInfo/3g1m2e63/x86/CMakeFiles/rebuild_cache.dir

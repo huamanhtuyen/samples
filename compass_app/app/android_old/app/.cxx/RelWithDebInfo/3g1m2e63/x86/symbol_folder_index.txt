@@ -1,1 +1,0 @@
-C:\PROJECTS\samples\compass_app\app\build\app\intermediates\cxx\RelWithDebInfo\3g1m2e63\obj\x86
