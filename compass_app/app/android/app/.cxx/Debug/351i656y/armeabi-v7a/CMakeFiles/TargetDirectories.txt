@@ -1,2 +1,0 @@
-C:/PROJECTS/samples/logiw/app/android/app/.cxx/Debug/351i656y/armeabi-v7a/CMakeFiles/edit_cache.dir
-C:/PROJECTS/samples/logiw/app/android/app/.cxx/Debug/351i656y/armeabi-v7a/CMakeFiles/rebuild_cache.dir

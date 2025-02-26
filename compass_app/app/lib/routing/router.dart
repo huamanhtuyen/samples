@@ -52,6 +52,7 @@ import '../ui/nhucauvanchuyen/widgets/edit_nhucauvanchuyen_screen.dart';
 import '../domain/models/nhucauvanchuyen/nhucauvanchuyen_model.dart';
 //test map
 import '../ui/testmap/testmap1_screen.dart';
+//import '../ui/testmap/mapbox1_screen.dart';
 
 /// Điểm vào chính của go_router.
 ///
@@ -99,6 +100,7 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
         GoRoute(
           path: Routes.testmap1, // Đường dẫn đến trang profile
           builder: (context, state) {
+            //return const MapboxMapWidget1();
             return const OpenStreetMapScreen1();
           },
         ),
@@ -295,7 +297,7 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
               create:
                   (context) => NhuCauVanChuyenViewModel(
                     nhuCauVanChuyenRepository: context.read(),
-                     imageRepository: context.read(),
+                    imageRepository: context.read(),
                   ),
               child: const NhuCauVanChuyenScreen(),
             );
@@ -308,7 +310,7 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
                   create:
                       (context) => NhuCauVanChuyenViewModel(
                         nhuCauVanChuyenRepository: context.read(),
-                         imageRepository: context.read(),
+                        imageRepository: context.read(),
                       ),
                   child: const AddNhuCauVanChuyenScreen(),
                 );
@@ -322,7 +324,7 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
                   create:
                       (context) => NhuCauVanChuyenViewModel(
                         nhuCauVanChuyenRepository: context.read(),
-                         imageRepository: context.read(),
+                        imageRepository: context.read(),
                       ),
                   child: EditNhuCauVanChuyenScreen(
                     nhuCauVanChuyen: nhuCauVanChuyen,
