@@ -72,6 +72,11 @@ import '../ui/chothuekho/view_models/chothuekho_viewmodel.dart';
 import '../ui/chothuekho/widgets/chothuekho_form_screen.dart';
 import '../ui/chothuekho/widgets/chothuekho_list_screen.dart';
 import '../domain/models/chothuekho/chothuekho_model.dart';
+//cần thuê kho
+import '../ui/canthuekho/view_models/canthuekho_viewmodel.dart';
+import '../ui/canthuekho/widgets/canthuekho_form_screen.dart';
+import '../ui/canthuekho/widgets/canthuekho_list_screen.dart';
+import '../domain/models/canthuekho/canthuekho_model.dart';
 
 /// Điểm vào chính của go_router.
 ///
@@ -470,6 +475,48 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
                         imageRepository: context.read(),
                       ),
                   child: ChoThueKhoFormScreen(choThueKho: choThueKho),
+                );
+              },
+            ),
+          ],
+        ),
+        GoRoute(
+          path: Routes.canthuekho, // Đường dẫn đến trang Cần thuê kho
+          builder: (context, state) {
+            return ChangeNotifierProvider(
+              create:
+                  (context) => CanThueKhoViewModel(
+                    canThueKhoRepository: context.read(),
+                    imageRepository: context.read(),
+                  ),
+              child: const CanThueKhoListScreen(),
+            );
+          },
+          routes: [
+            GoRoute(
+              path: 'add', // Đường dẫn đến trang thêm Thông tin xe
+              builder: (context, state) {
+                return ChangeNotifierProvider(
+                  create:
+                      (context) => CanThueKhoViewModel(
+                        canThueKhoRepository: context.read(),
+                        imageRepository: context.read(),
+                      ),
+                  child: const CanThueKhoFormScreen(canThueKho: null),
+                );
+              },
+            ),
+            GoRoute(
+              path: 'edit', // Đường dẫn đến trang sửa Thông tin xe
+              builder: (context, state) {
+                final canThueKho = state.extra as CanThueKho;
+                return ChangeNotifierProvider(
+                  create:
+                      (context) => CanThueKhoViewModel(
+                        canThueKhoRepository: context.read(),
+                        imageRepository: context.read(),
+                      ),
+                  child: CanThueKhoFormScreen(canThueKho: canThueKho),
                 );
               },
             ),

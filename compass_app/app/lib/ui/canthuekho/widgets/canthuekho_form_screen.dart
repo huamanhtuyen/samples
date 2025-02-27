@@ -21,7 +21,7 @@ class _CanThueKhoFormScreenState extends State<CanThueKhoFormScreen> {
   late TextEditingController _sdt2Controller;
   late TextEditingController _sdt3Controller;
   late TextEditingController _motaController;
-  late TextEditingController _diaChiChiTietController;
+
   late String? _maTinh;
   late String? _maQuan;
   late String? _tentinhTiengviet;
@@ -80,7 +80,6 @@ class _CanThueKhoFormScreenState extends State<CanThueKhoFormScreen> {
     _sdt2Controller.dispose();
     _sdt3Controller.dispose();
     _motaController.dispose();
-    _diaChiChiTietController.dispose();
     super.dispose();
   }
 
