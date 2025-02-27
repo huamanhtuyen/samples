@@ -1,2 +1,6 @@
 Hãy trả lời tôi bằng Tiếng Việt. Trong cấc file tôi gửi kèm thì các file bắt đầu bằng "nhucauvanchuyen_" là những file dùng để làm việc với bảng dữ liệu nhucauvanchuyen trong cơ sở dữ liệu supabase, dựa vào những file mẫu đó, bây giờ tôi đã tạo một bảng dữ liệu mới (là bảng chothuecont) và cần tạo các file để làm việc với bảng dữ liệu mới này, cấu trúc dữ liệu của bảng mới này nằm trong file chothuecont.sql . Ngoài ra lưu ý là bao gổm cả việc sử dụng module cho phép upload ảnh (image_repository.dart) trong các file add và edit dữ liệu chothuecont
 
+
+
+hãy trả lời tôi bằng Tiếng Việt. File chothuekho_repository.dart là file dùng để làm việc với dữ liệu bảng chothuekho. Tôi vừa thêm bảng dữ liệu mới là bảng canthuekho và đã tạo file model để mô tả dữ liệu đó là file canthuekho_model.dart. Dựa vào file mẫu là file chothuekho_repository.dart hãy giúp tôi tạo file canthuekho_repository.dart để làm việc với bảng dữ liệu canthuekho
+
