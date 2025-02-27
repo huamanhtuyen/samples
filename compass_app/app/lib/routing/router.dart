@@ -70,13 +70,14 @@ import '../ui/thitruongcont/widgets/thitruongcont_screen.dart';
 //cho thuê kho
 import '../ui/chothuekho/view_models/chothuekho_viewmodel.dart';
 import '../ui/chothuekho/widgets/chothuekho_form_screen.dart';
-import '../ui/chothuekho/widgets/chothuekho_list_screen.dart';
+//import '../ui/chothuekho/widgets/chothuekho_list_screen.dart';
 import '../domain/models/chothuekho/chothuekho_model.dart';
 //cần thuê kho
 import '../ui/canthuekho/view_models/canthuekho_viewmodel.dart';
 import '../ui/canthuekho/widgets/canthuekho_form_screen.dart';
-import '../ui/canthuekho/widgets/canthuekho_list_screen.dart';
+//import '../ui/canthuekho/widgets/canthuekho_list_screen.dart';
 import '../domain/models/canthuekho/canthuekho_model.dart';
+import '../ui/thitruongkho/widgets/thitruongkho_screen.dart';
 
 /// Điểm vào chính của go_router.
 ///
@@ -438,21 +439,33 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
             ),
           ],
         ),
+        //thị trường kho
         GoRoute(
-          path: Routes.chothuekho, // Đường dẫn đến trang Thông tin xe
+          path: Routes.thitruongkho,
           builder: (context, state) {
-            return ChangeNotifierProvider(
-              create:
-                  (context) => ChoThueKhoViewModel(
-                    choThueKhoRepository: context.read(),
-                    imageRepository: context.read(),
-                  ),
-              child: const ChoThueKhoListScreen(),
+            return MultiProvider(
+              providers: [
+                ChangeNotifierProvider(
+                  create:
+                      (context) => ChoThueKhoViewModel(
+                        choThueKhoRepository: context.read(),
+                        imageRepository: context.read(),
+                      ),
+                ),
+                ChangeNotifierProvider(
+                  create:
+                      (context) => CanThueKhoViewModel(
+                        canThueKhoRepository: context.read(),
+                        imageRepository: context.read(),
+                      ),
+                ),
+              ],
+              child: const ThiTruongKhoScreen(),
             );
           },
           routes: [
             GoRoute(
-              path: 'add', // Đường dẫn đến trang thêm Thông tin xe
+              path: 'chothuekho/add',
               builder: (context, state) {
                 return ChangeNotifierProvider(
                   create:
@@ -465,7 +478,7 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
               },
             ),
             GoRoute(
-              path: 'edit', // Đường dẫn đến trang sửa Thông tin xe
+              path: 'chothuekho/edit',
               builder: (context, state) {
                 final choThueKho = state.extra as ChoThueKho;
                 return ChangeNotifierProvider(
@@ -478,23 +491,8 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
                 );
               },
             ),
-          ],
-        ),
-        GoRoute(
-          path: Routes.canthuekho, // Đường dẫn đến trang Cần thuê kho
-          builder: (context, state) {
-            return ChangeNotifierProvider(
-              create:
-                  (context) => CanThueKhoViewModel(
-                    canThueKhoRepository: context.read(),
-                    imageRepository: context.read(),
-                  ),
-              child: const CanThueKhoListScreen(),
-            );
-          },
-          routes: [
             GoRoute(
-              path: 'add', // Đường dẫn đến trang thêm Thông tin xe
+              path: 'canthuekho/add',
               builder: (context, state) {
                 return ChangeNotifierProvider(
                   create:
@@ -507,7 +505,7 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
               },
             ),
             GoRoute(
-              path: 'edit', // Đường dẫn đến trang sửa Thông tin xe
+              path: 'canthuekho/edit',
               builder: (context, state) {
                 final canThueKho = state.extra as CanThueKho;
                 return ChangeNotifierProvider(
@@ -522,6 +520,7 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
             ),
           ],
         ),
+        //Trang đặt chỗ
         GoRoute(
           path: Routes.bookingRelative, // Đường dẫn đến trang đặt chỗ
           builder: (context, state) {
