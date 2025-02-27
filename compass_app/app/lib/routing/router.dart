@@ -53,17 +53,18 @@ import '../domain/models/nhucauvanchuyen/nhucauvanchuyen_model.dart';
 //test map
 //import '../ui/testmap/testmap1_screen.dart';
 import '../ui/testmap/mapbox2_screen.dart';
-import '../ui/chothuecont/widgets/chothuecont_screen.dart';
+//import '../ui/chothuecont/widgets/chothuecont_screen.dart';//đã thay bằng màn hình thị trường cont
 import '../ui/chothuecont/view_models/chothuecont_viewmodel.dart';
 import '../ui/chothuecont/widgets/add_chothuecont_screen.dart';
 import '../ui/chothuecont/widgets/edit_chothuecont_screen.dart';
 import '../domain/models/chothuecont/chothuecont_model.dart';
 //cần thuê cont
-import '../ui/canthuecont/widgets/canthuecont_screen.dart';
+//import '../ui/canthuecont/widgets/canthuecont_screen.dart';//đã thay bằng màn hình thị trường cont
 import '../ui/canthuecont/view_models/canthuecont_viewmodel.dart';
 import '../ui/canthuecont/widgets/add_canthuecont_screen.dart';
 import '../ui/canthuecont/widgets/edit_canthuecont_screen.dart';
 import '../domain/models/canthuecont/canthuecont_model.dart';
+import '../ui/thitruongcont/widgets/thitruongcont_screen.dart';
 
 /// Điểm vào chính của go_router.
 ///
@@ -346,20 +347,31 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
           ],
         ),
         GoRoute(
-          path: Routes.chothuecont,
+          path: Routes.thitruongcont,
           builder: (context, state) {
-            return ChangeNotifierProvider(
-              create:
-                  (context) => ChoThueContViewModel(
-                    choThueContRepository: context.read(),
-                    imageRepository: context.read(),
-                  ),
-              child: const ChoThueContScreen(),
+            return MultiProvider(
+              providers: [
+                ChangeNotifierProvider(
+                  create:
+                      (context) => ChoThueContViewModel(
+                        choThueContRepository: context.read(),
+                        imageRepository: context.read(),
+                      ),
+                ),
+                ChangeNotifierProvider(
+                  create:
+                      (context) => CanThueContViewModel(
+                        canThueContRepository: context.read(),
+                        imageRepository: context.read(),
+                      ),
+                ),
+              ],
+              child: const ThiTruongContScreen(),
             );
           },
           routes: [
             GoRoute(
-              path: 'add',
+              path: 'chothuecont/add',
               builder: (context, state) {
                 return ChangeNotifierProvider(
                   create:
@@ -372,7 +384,7 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
               },
             ),
             GoRoute(
-              path: 'edit',
+              path: 'chothuecont/edit',
               builder: (context, state) {
                 final choThueCont = state.extra as ChoThueCont;
                 return ChangeNotifierProvider(
@@ -385,23 +397,8 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
                 );
               },
             ),
-          ],
-        ),
-        GoRoute(
-          path: Routes.canthuecont,
-          builder: (context, state) {
-            return ChangeNotifierProvider(
-              create:
-                  (context) => CanThueContViewModel(
-                    canThueContRepository: context.read(),
-                    imageRepository: context.read(),
-                  ),
-              child: const CanThueContScreen(),
-            );
-          },
-          routes: [
             GoRoute(
-              path: 'add',
+              path: 'canthuecont/add',
               builder: (context, state) {
                 return ChangeNotifierProvider(
                   create:
@@ -414,7 +411,7 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
               },
             ),
             GoRoute(
-              path: 'edit',
+              path: 'canthuecont/edit',
               builder: (context, state) {
                 final canThueCont = state.extra as CanThueCont;
                 return ChangeNotifierProvider(

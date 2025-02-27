@@ -156,7 +156,7 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
     cacChucNang.add({
       'title': 'Thuê và cho thuê vỏ cont',
       'description': 'Thị trường vỏ cont',
-      'route': Routes.canthuecont,
+      'route': Routes.thitruongcont,
     });
     cacChucNang.add({
       'title': 'Thuê và cho thuê kho bãi',
