@@ -7,6 +7,9 @@ import 'package:go_router/go_router.dart';
 
 class CanThueContScreen extends StatefulWidget {
   final bool excludeScaffold;
+  //this.excludeScaffold xác định việc trả về giàn giáo Scaffold hoặc không
+  ////(tức là ko có appbar, dùng để nhúng vào trong các tab)
+  //khi sử dụng cho các tab ở màn hình thị trường cont thì sẽ set excludeScaffold = true
   const CanThueContScreen({super.key, this.excludeScaffold = false});
 
   @override
