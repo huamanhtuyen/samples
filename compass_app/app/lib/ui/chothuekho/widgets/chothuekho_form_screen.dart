@@ -94,6 +94,7 @@ class _ChoThueKhoFormScreenState extends State<ChoThueKhoFormScreen> {
           _isEditing ? 'Chỉnh sửa thông tin kho' : 'Thêm kho cho thuê',
         ),
       ),
+      //Consumer có thể lấy insatance của ViewModel từ màn hình cha là màn hình list
       body: Consumer<ChoThueKhoViewModel>(
         builder: (context, viewModel, child) {
           return Form(

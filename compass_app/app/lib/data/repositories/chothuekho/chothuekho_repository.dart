@@ -2,14 +2,14 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../domain/models/chothuekho/chothuekho_model.dart';
 import '../../../utils/result.dart';
 
-abstract class ChoThueKhoRepository {
+abstract class ChoThueKhoRepositoryAbstract {
   Future<Result<List<ChoThueKho>>> getAllChoThueKho();
   Future<Result<void>> deleteChoThueKho(int id);
   Future<Result<void>> addChoThueKho(ChoThueKho choThueKho);
   Future<Result<void>> updateChoThueKho(ChoThueKho choThueKho);
 }
 
-class ChoThueKhoRepositoryImpl implements ChoThueKhoRepository {
+class ChoThueKhoRepository implements ChoThueKhoRepositoryAbstract {
   final SupabaseClient _supabase = Supabase.instance.client;
   final String table = 'chothuekho';
 

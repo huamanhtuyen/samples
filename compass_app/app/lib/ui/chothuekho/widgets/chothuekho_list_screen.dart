@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../view_models/chothuekho_viewmodel.dart';
 import 'chothuekho_card.dart';
-import 'chothuekho_form_screen.dart';
+//import 'chothuekho_form_screen.dart';
+import 'package:go_router/go_router.dart';
 
 class ChoThueKhoListScreen extends StatelessWidget {
   const ChoThueKhoListScreen({super.key});
@@ -85,13 +86,11 @@ class ChoThueKhoListScreen extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const ChoThueKhoFormScreen(),
-            ),
-          );
+        onPressed: () async {
+          final result = await context.push('/chothuekho/add');
+          if (result == true && context.mounted) {
+            context.read<ChoThueKhoViewModel>().load.execute();
+          }
         },
         child: const Icon(Icons.add),
       ),

@@ -11,6 +11,7 @@ import '../ui/auth/register/view_models/register_viewmodel.dart';
 import '../ui/auth/register/widgets/register_screen.dart';
 import '../ui/booking/view_models/booking_viewmodel.dart';
 import '../ui/booking/widgets/booking_screen.dart';
+
 import '../ui/home/view_models/home_viewmodel.dart';
 import '../ui/home/widgets/home_screen.dart';
 import '../ui/results/view_models/results_viewmodel.dart';
@@ -65,6 +66,12 @@ import '../ui/canthuecont/widgets/add_canthuecont_screen.dart';
 import '../ui/canthuecont/widgets/edit_canthuecont_screen.dart';
 import '../domain/models/canthuecont/canthuecont_model.dart';
 import '../ui/thitruongcont/widgets/thitruongcont_screen.dart';
+//Thị trường kho
+//cho thuê kho
+import '../ui/chothuekho/view_models/chothuekho_viewmodel.dart';
+import '../ui/chothuekho/widgets/chothuekho_form_screen.dart';
+import '../ui/chothuekho/widgets/chothuekho_list_screen.dart';
+import '../domain/models/chothuekho/chothuekho_model.dart';
 
 /// Điểm vào chính của go_router.
 ///
@@ -421,6 +428,48 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
                         imageRepository: context.read(),
                       ),
                   child: EditCanThueContScreen(canThueCont: canThueCont),
+                );
+              },
+            ),
+          ],
+        ),
+        GoRoute(
+          path: Routes.chothuekho, // Đường dẫn đến trang Thông tin xe
+          builder: (context, state) {
+            return ChangeNotifierProvider(
+              create:
+                  (context) => ChoThueKhoViewModel(
+                    choThueKhoRepository: context.read(),
+                    imageRepository: context.read(),
+                  ),
+              child: const ChoThueKhoListScreen(),
+            );
+          },
+          routes: [
+            GoRoute(
+              path: 'add', // Đường dẫn đến trang thêm Thông tin xe
+              builder: (context, state) {
+                return ChangeNotifierProvider(
+                  create:
+                      (context) => ChoThueKhoViewModel(
+                        choThueKhoRepository: context.read(),
+                        imageRepository: context.read(),
+                      ),
+                  child: const ChoThueKhoFormScreen(choThueKho: null),
+                );
+              },
+            ),
+            GoRoute(
+              path: 'edit', // Đường dẫn đến trang sửa Thông tin xe
+              builder: (context, state) {
+                final choThueKho = state.extra as ChoThueKho;
+                return ChangeNotifierProvider(
+                  create:
+                      (context) => ChoThueKhoViewModel(
+                        choThueKhoRepository: context.read(),
+                        imageRepository: context.read(),
+                      ),
+                  child: ChoThueKhoFormScreen(choThueKho: choThueKho),
                 );
               },
             ),
