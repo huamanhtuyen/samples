@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS public.chothuekho
     anh7 text COLLATE pg_catalog."default",
     anh8 text COLLATE pg_catalog."default",
     anh9 text COLLATE pg_catalog."default",
+    diachichitiet text COLLATE pg_catalog."default",
     CONSTRAINT chothuekho_pkey PRIMARY KEY (id)
 )
 
