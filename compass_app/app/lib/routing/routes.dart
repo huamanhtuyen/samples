@@ -52,4 +52,6 @@ abstract final class Routes {
   static const chothuecont = '/chothuecont';
   // Tuyến đường cho trang Cần thuê container
   static const canthuecont = '/canthuecont';
+  //thị trường cont
+  static const thitruongcont = '/thitruongcont';
 }
