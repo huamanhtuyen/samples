@@ -42,6 +42,7 @@ class AppLocalization {
     'tryAgain': 'Thử lại',
     'yourChosenActivities': 'Hoạt động bạn đã chọn',
     'when': 'Khi nào',
+    'chuxe': 'Chủ xe (phương tiện vận tải)',
   };
 
   // Thêm từ điển chứa các chuỗi văn bản cho Tiếng Thái
@@ -75,6 +76,7 @@ class AppLocalization {
     'tryAgain': 'ลองอีกครั้ง',
     'yourChosenActivities': 'กิจกรรมที่คุณเลือก',
     'when': 'เมื่อไหร่',
+    'chuxe': 'เจ้าของรถ (ยานพาหนะ)',
   };
 
   // Thêm từ điển chứa các chuỗi văn bản cho Tiếng Trung Quốc
@@ -108,6 +110,7 @@ class AppLocalization {
     'tryAgain': '再试一次',
     'yourChosenActivities': '你选择的活动',
     'when': '什么时候',
+    'chuxe': '车主（车辆）',
   };
 
   // Phương thức tĩnh để lấy đối tượng AppLocalization từ context
@@ -146,6 +149,7 @@ class AppLocalization {
     'tryAgain': 'Try again',
     'yourChosenActivities': 'Your chosen activities',
     'when': 'When',
+    'chuxe': 'Vehicle owner (vehicle)',
   };
 
   // Cập nhật phương thức _get để hỗ trợ đa ngôn ngữ
@@ -206,6 +210,9 @@ class AppLocalization {
   String get errorWhileLogin => _get('errorWhileLogin', locale);
 
   String get login => _get('login', locale);
+
+  //'Chủ xe (phương tiện vận tải)'
+  String get chuxe => _get('chuxe', locale);
 
   String get register => _get('register', locale);
 

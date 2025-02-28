@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter # SDK Flutter
   flutter_localizations:
     sdk: flutter # SDK Flutter cho việc hỗ trợ đa ngôn ngữ
-  flutter_svg: ^2.0.16 # Thư viện để hiển thị hình ảnh SVG
+  flutter_svg: ^2.0.5 # Thư viện để hiển thị hình ảnh SVG
   freezed_annotation: ^2.4.4 # Thư viện để hỗ trợ code generation cho các class bất biến
   go_router: ^14.6.2 # Thư viện để điều hướng trong ứng dụng
   google_fonts: ^6.2.1 # Thư viện để sử dụng các font chữ của Google

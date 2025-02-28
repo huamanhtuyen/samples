@@ -1,5 +1,8 @@
+// ignore_for_file: directives_ordering
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../localization/locale_provider.dart';
 
 class LanguageButton extends StatefulWidget {
   const LanguageButton({super.key});
@@ -30,12 +33,20 @@ class LanguageButtonState extends State<LanguageButton> {
     setState(() {
       _selectedLanguage = language;
     });
+    final localeProvider = Provider.of<LocaleProvider>(context, listen: false);
+    await localeProvider.setLocale(Locale(language));
     // Logic để load lại resource ngôn ngữ
     switch (_selectedLanguage) {
       case 'en':
         // Load resource tiếng Anh
         break;
       case 'vi':
+        // Load resource tiếng Việt
+        break;
+      case 'th':
+        // Load resource tiếng Việt
+        break;
+      case 'zh':
         // Load resource tiếng Việt
         break;
       // Thêm các ngôn ngữ khác nếu cần
@@ -53,6 +64,8 @@ class LanguageButtonState extends State<LanguageButton> {
         return [
           PopupMenuItem(value: 'en', child: Text('English')),
           PopupMenuItem(value: 'vi', child: Text('Tiếng Việt')),
+          PopupMenuItem(value: 'zh', child: Text('中文')),
+          PopupMenuItem(value: 'th', child: Text('ภาษาไทย')),
           // Thêm các ngôn ngữ khác nếu cần
         ];
       },

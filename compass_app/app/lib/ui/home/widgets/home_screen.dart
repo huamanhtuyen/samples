@@ -9,6 +9,7 @@ import '../../auth/logout/widgets/logout_button_big.dart';
 import '../../auth/logout/view_models/logout_viewmodel.dart';
 import 'package:provider/provider.dart';
 import '../../core/ui/navigation_bar.dart'; // Import NavigationBars
+import '../../core/localization/applocalization.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.viewModel});
@@ -142,7 +143,7 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
       'route': Routes.testmap1,
     });
     cacChucNang.add({
-      'title': 'Chủ xe (phương tiện vận tải)',
+      'title': AppLocalization.of(context).chuxe,
       'description':
           'Tìm hàng; Báo xe trống cần hàng; Báo cần hàng chiều về; Đăng thông tin xe.',
       'route': Routes.chuXe,
