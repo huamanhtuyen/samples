@@ -8,3 +8,6 @@ tôi đang xây dựng ứng dụng dành cho thiết bị di động bằng flu
 Bây giờ tôi muốn tạo ra một logo icon hoặc ảnh đại diện cho chức năng đó 1 cách chuyên nghiệp, đẹp, và hiện đại, phù hợp với ý nghĩa của chức năng. Bạn có thể tạo giúp tôi không?
 Tôi muốn sử dụng phong cách material design, phẳng, màu sắc tươi sáng.
 
+tôi đang xây dựng ứng dụng dành cho thiết bị di động bằng flutter, tại màn hình chính (home screen) sẽ có các menu chức năng để điều hướng tới các màn hình chức năng con. Trong đó có 1 menu chức năng là có title là 'Chủ hàng hóa', và mô tả của menu đó là 'Tìm xe; Tìm xe chiều về; Tìm xe quanh đây; Đăng nhu cầu vận chuyển'.
+Bây giờ tôi muốn tạo ra một logo icon hoặc ảnh đại diện cho chức năng đó 1 cách chuyên nghiệp, đẹp, và hiện đại, phù hợp với ý nghĩa của chức năng. Bạn có thể tạo giúp tôi không?
+Tôi muốn sử dụng phong cách material design, phẳng, màu sắc tươi sáng, không đổ bóng, không chiếu sáng, nền màu xanh blue, ảnh nền vuông và bo góc tròn, các icon trong ảnh thì màu trắng (hoặc đỏ, hoặc trắng và đỏ). Sử dụng các icon hình kiện hàng phối ghép với hình trái tim.
