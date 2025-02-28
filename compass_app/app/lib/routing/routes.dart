@@ -60,4 +60,6 @@ abstract final class Routes {
   static const canthuekho = '/canthuekho';
   //thị trường xnk
   static const thitruongxnk = '/thitruongxnk';
+  //Bài đăng của tôi
+  static const baidangcuatoi = '/baidangcuatoi';
 }

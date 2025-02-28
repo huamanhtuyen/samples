@@ -256,9 +256,22 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
-  static const _menuTitles = [
-    'Thông tin doanh nghiệp',
-    'Tài khoản',
+  static const _menus = [
+    {
+      'description': 'Bài đăng của tôi',
+      'icon': Icons.list,
+      'route': Routes.baidangcuatoi,
+    },
+    {
+      'description': 'Thông tin doanh nghiệp',
+      'icon': Icons.business,
+      'route': Routes.editprofile,
+    },
+    {
+      'description': 'Tài khoản',
+      'icon': Icons.account_circle,
+      'route': Routes.editprofile,
+    },
   ]; // Danh sách tiêu đề menu
 
   static const _initialDelayTime = Duration(
@@ -278,7 +291,7 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
   ); // Thời gian hoạt ảnh của nút
   final _animationDuration =
       _initialDelayTime +
-      (_staggerTime * _menuTitles.length) +
+      (_staggerTime * _menus.length) +
       _buttonDelayTime +
       _buttonTime; // Tổng thời gian hoạt ảnh
 
@@ -300,7 +313,7 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
   }
 
   void _createAnimationIntervals() {
-    for (var i = 0; i < _menuTitles.length; ++i) {
+    for (var i = 0; i < _menus.length; ++i) {
       final startTime = _initialDelayTime + (_staggerTime * i);
       final endTime = startTime + _itemSlideTime;
       _itemSlideIntervals.add(
@@ -312,7 +325,7 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
     }
 
     final buttonStartTime =
-        Duration(milliseconds: (_menuTitles.length * 50)) + _buttonDelayTime;
+        Duration(milliseconds: (_menus.length * 50)) + _buttonDelayTime;
     final buttonEndTime = buttonStartTime + _buttonTime;
     _buttonInterval = Interval(
       buttonStartTime.inMilliseconds / _animationDuration.inMilliseconds,
@@ -364,7 +377,7 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
 
   List<Widget> _buildListItems() {
     final listItems = <Widget>[];
-    for (var i = 0; i < _menuTitles.length; ++i) {
+    for (var i = 0; i < _menus.length; ++i) {
       listItems.add(
         AnimatedBuilder(
           animation: _staggeredController,
@@ -390,15 +403,7 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
               width: 300, // Thiết lập chiều rộng của nút
               child: ElevatedButton(
                 onPressed: () {
-                  // Điều hướng tới các trang tương ứng
-                  switch (_menuTitles[i]) {
-                    case 'Thông tin doanh nghiệp':
-                      context.go(Routes.editprofile);
-                      break;
-                    case 'Tài khoản':
-                      context.go(Routes.profile);
-                      break;
-                  }
+                  context.go(_menus[i]['route'].toString());
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(
@@ -416,11 +421,11 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Icon(
-                      _getIconForMenuTitle(_menuTitles[i]),
+                      _menus[i]['icon'] as IconData,
                       color: Theme.of(context).colorScheme.primary,
                     ),
                     const SizedBox(width: 8),
-                    Text(_menuTitles[i]),
+                    Text(_menus[i]['description'] as String),
                   ],
                 ),
               ),
@@ -451,16 +456,5 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
     );
 
     return listItems;
-  }
-}
-
-IconData _getIconForMenuTitle(String title) {
-  switch (title) {
-    case 'Thông tin doanh nghiệp':
-      return Icons.business;
-    case 'Tài khoản':
-      return Icons.account_circle;
-    default:
-      return Icons.help;
   }
 }
