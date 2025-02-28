@@ -161,7 +161,7 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
       'title': appLoc.funcContainerRent,
       'description': appLoc.funcContainerRentDesc,
       'route': Routes.thitruongcont,
-      'image': 'assets/icons/chuxe.png',
+      'image': 'assets/icons/thitruongcont.png',
     });
     cacChucNang.add({
       'title': appLoc.funcWarehouseRent,
