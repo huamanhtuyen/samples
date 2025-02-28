@@ -1,6 +1,7 @@
 // ignore_for_file: directives_ordering
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../../routing/routes.dart';
 import '../view_models/home_viewmodel.dart';
 import '../../core/ui/language_button.dart';
@@ -85,7 +86,11 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
 
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return AppBar(
-      title: const Text('LogiW', style: TextStyle(color: Colors.black)),
+      title: SvgPicture.asset(
+        'assets/logo.svg',
+        height: 30, // Adjust the height as needed
+        fit: BoxFit.contain,
+      ),
       backgroundColor:
           Theme.of(
             context,
