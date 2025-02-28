@@ -270,7 +270,7 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
     {
       'description': 'Tài khoản',
       'icon': Icons.account_circle,
-      'route': Routes.editprofile,
+      'route': Routes.profile,
     },
   ]; // Danh sách tiêu đề menu
 
