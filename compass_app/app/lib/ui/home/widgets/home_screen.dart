@@ -143,51 +143,61 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
       'description':
           appLoc.funcCargoOwnerDesc, // Reuse the cargo owner description
       'route': Routes.chuXe,
+      'image': 'assets/icons/chuxe.png',
     });
     cacChucNang.add({
       'title': appLoc.funcCargoOwner,
       'description': appLoc.funcCargoOwnerDesc,
       'route': Routes.chuHang,
+      'image': 'assets/icons/chuxe.png',
     });
     cacChucNang.add({
       'title': appLoc.funcMarket,
       'description': appLoc.funcMarketDesc,
       'route': Routes.chuXe,
+      'image': 'assets/icons/chuxe.png',
     });
     cacChucNang.add({
       'title': appLoc.funcContainerRent,
       'description': appLoc.funcContainerRentDesc,
       'route': Routes.thitruongcont,
+      'image': 'assets/icons/chuxe.png',
     });
     cacChucNang.add({
       'title': appLoc.funcWarehouseRent,
       'description': appLoc.funcWarehouseRentDesc,
       'route': Routes.thitruongkho,
+      'image': 'assets/icons/chuxe.png',
     });
     cacChucNang.add({
       'title': appLoc.funcImportExport,
       'description': appLoc.funcImportExportDesc,
       'route': Routes.thitruongxnk,
+      'image': 'assets/icons/chuxe.png',
     });
     cacChucNang.add({
       'title': appLoc.funcTransactions,
       'description': appLoc.funcTransactionsDesc,
       'route': Routes.chuXe,
+      'image': 'assets/icons/chuxe.png',
     });
     cacChucNang.add({
       'title': appLoc.funcWallet,
       'description': appLoc.funcWalletDesc,
       'route': Routes.chuXe,
+      'image': 'assets/icons/chuxe.png',
     });
     cacChucNang.add({
       'title': appLoc.funcDriver,
       'description': appLoc.funcDriverDesc,
       'route': Routes.chuXe,
+      'image': 'assets/icons/chuxe.png',
     });
     cacChucNang.add({
       'title': appLoc.funcTestMap,
       'description': appLoc.funcTestMapDesc,
       'route': Routes.testmap1,
+      'image': 'assets/icons/chuxe.png',
     });
 
     return Container(
@@ -205,9 +215,10 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
             elevation: 0, // Remove shadow
             color: Theme.of(context).colorScheme.onPrimary, //khá đẹp
             child: ListTile(
-              leading: Icon(
-                Icons.apps,
-                color: Theme.of(context).colorScheme.primary,
+              leading: Image.asset(
+                chucNang['image'] ?? 'assets/icons/chuxe.png',
+                width: 64,
+                height: 64,
               ),
               title: Text(
                 chucNang['title']!,
