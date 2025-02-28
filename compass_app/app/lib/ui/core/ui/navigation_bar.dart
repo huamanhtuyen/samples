@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../localization/applocalization.dart';
 
 class NavigationBars extends StatefulWidget {
   const NavigationBars({
@@ -36,6 +37,8 @@ class _NavigationBarsState extends State<NavigationBars> {
 
   @override
   Widget build(BuildContext context) {
+    final appLoc = AppLocalization.of(context);
+
     // App NavigationBar should get first focus.
     final Widget navigationBar = Focus(
       autofocus: !(widget.isBadgeExample),
@@ -47,31 +50,29 @@ class _NavigationBarsState extends State<NavigationBars> {
           });
           widget.onSelectItem!(index);
         },
-        destinations: exampleBarDestinations,
+        destinations: [
+          NavigationDestination(
+            tooltip: '',
+            icon: Icon(Icons.home_outlined),
+            label: appLoc.navHome,
+            selectedIcon: Icon(Icons.home),
+          ),
+          NavigationDestination(
+            tooltip: '',
+            icon: Icon(Icons.location_on_outlined),
+            label: appLoc.navTrip,
+            selectedIcon: Icon(Icons.location_on),
+          ),
+          NavigationDestination(
+            tooltip: '',
+            icon: Icon(Icons.history_outlined),
+            label: appLoc.navTransaction,
+            selectedIcon: Icon(Icons.history),
+          ),
+        ],
       ),
     );
 
     return navigationBar;
   }
 }
-
-const List<Widget> exampleBarDestinations = [
-  NavigationDestination(
-    tooltip: '',
-    icon: Icon(Icons.home_outlined),
-    label: 'Home',
-    selectedIcon: Icon(Icons.home),
-  ),
-  NavigationDestination(
-    tooltip: '',
-    icon: Icon(Icons.location_on_outlined),
-    label: 'Trong chuyến',
-    selectedIcon: Icon(Icons.location_on),
-  ),
-  NavigationDestination(
-    tooltip: '',
-    icon: Icon(Icons.history_outlined),
-    label: 'Giao dịch',
-    selectedIcon: Icon(Icons.history),
-  ),
-];

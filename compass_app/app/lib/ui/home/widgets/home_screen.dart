@@ -136,58 +136,58 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
 
   //build phần content của HomeScreen
   Widget _buildContent() {
+    final appLoc = AppLocalization.of(context);
     final cacChucNang = [];
     cacChucNang.add({
-      'title': 'Test map 1',
-      'description': 'Test map 1',
-      'route': Routes.testmap1,
-    });
-    cacChucNang.add({
-      'title': AppLocalization.of(context).chuxe,
+      'title': appLoc.chuxe,
       'description':
-          'Tìm hàng; Báo xe trống cần hàng; Báo cần hàng chiều về; Đăng thông tin xe.',
+          appLoc.funcCargoOwnerDesc, // Reuse the cargo owner description
       'route': Routes.chuXe,
     });
     cacChucNang.add({
-      'title': 'Chủ hàng',
-      'description':
-          'Tìm xe; Tìm xe chiều về; Tìm xe quanh đây; Đăng nhu cầu vận chuyển.',
+      'title': appLoc.funcCargoOwner,
+      'description': appLoc.funcCargoOwnerDesc,
       'route': Routes.chuHang,
     });
     cacChucNang.add({
-      'title': 'Thị trường',
-      'description': 'Danh sách thông tin về xe và nhu cầu vận chuyển hàng',
+      'title': appLoc.funcMarket,
+      'description': appLoc.funcMarketDesc,
       'route': Routes.chuXe,
     });
     cacChucNang.add({
-      'title': 'Thuê và cho thuê vỏ cont',
-      'description': 'Thị trường vỏ cont',
+      'title': appLoc.funcContainerRent,
+      'description': appLoc.funcContainerRentDesc,
       'route': Routes.thitruongcont,
     });
     cacChucNang.add({
-      'title': 'Thuê và cho thuê kho bãi',
-      'description': 'Thị trường kho bãi',
+      'title': appLoc.funcWarehouseRent,
+      'description': appLoc.funcWarehouseRentDesc,
       'route': Routes.thitruongkho,
     });
     cacChucNang.add({
-      'title': 'Thị trường xuất nhập khẩu',
-      'description': 'Thông tin dịch vụ xuất nhập khẩu',
+      'title': appLoc.funcImportExport,
+      'description': appLoc.funcImportExportDesc,
       'route': Routes.thitruongxnk,
     });
     cacChucNang.add({
-      'title': 'Giao dịch',
-      'description': 'Các giao dịch đã thực hiện',
+      'title': appLoc.funcTransactions,
+      'description': appLoc.funcTransactionsDesc,
       'route': Routes.chuXe,
     });
     cacChucNang.add({
-      'title': 'Ví tiền (logistic)',
-      'description': 'Ví tiền của đơn vị logistic',
+      'title': appLoc.funcWallet,
+      'description': appLoc.funcWalletDesc,
       'route': Routes.chuXe,
     });
     cacChucNang.add({
-      'title': 'Tài xế',
-      'description': 'Định vị tuyến đường',
+      'title': appLoc.funcDriver,
+      'description': appLoc.funcDriverDesc,
       'route': Routes.chuXe,
+    });
+    cacChucNang.add({
+      'title': appLoc.funcTestMap,
+      'description': appLoc.funcTestMapDesc,
+      'route': Routes.testmap1,
     });
 
     return Container(
@@ -258,17 +258,17 @@ class Menu extends StatefulWidget {
 class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
   static const _menus = [
     {
-      'description': 'Bài đăng của tôi',
+      'description': 'menuMyPosts', // Using keys instead of hardcoding text
       'icon': Icons.list,
       'route': Routes.baidangcuatoi,
     },
     {
-      'description': 'Thông tin doanh nghiệp',
+      'description': 'menuBusinessInfo',
       'icon': Icons.business,
       'route': Routes.editprofile,
     },
     {
-      'description': 'Tài khoản',
+      'description': 'menuAccount',
       'icon': Icons.account_circle,
       'route': Routes.profile,
     },
@@ -376,6 +376,7 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
   }
 
   List<Widget> _buildListItems() {
+    final appLoc = AppLocalization.of(context);
     final listItems = <Widget>[];
     for (var i = 0; i < _menus.length; ++i) {
       listItems.add(
@@ -425,7 +426,10 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
                       color: Theme.of(context).colorScheme.primary,
                     ),
                     const SizedBox(width: 8),
-                    Text(_menus[i]['description'] as String),
+                    // Get localized text using the key
+                    Text(
+                      _getMenuText(appLoc, _menus[i]['description'] as String),
+                    ),
                   ],
                 ),
               ),
@@ -456,5 +460,19 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
     );
 
     return listItems;
+  }
+
+  // Helper method to get the localized text for menu items
+  String _getMenuText(AppLocalization appLoc, String key) {
+    switch (key) {
+      case 'menuMyPosts':
+        return appLoc.menuMyPosts;
+      case 'menuBusinessInfo':
+        return appLoc.menuBusinessInfo;
+      case 'menuAccount':
+        return appLoc.menuAccount;
+      default:
+        return key;
+    }
   }
 }

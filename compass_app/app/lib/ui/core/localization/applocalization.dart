@@ -43,6 +43,34 @@ class AppLocalization {
     'yourChosenActivities': 'Hoạt động bạn đã chọn',
     'when': 'Khi nào',
     'chuxe': 'Chủ xe (phương tiện vận tải)',
+    // Navigation bar items
+    'navHome': 'Trang chủ',
+    'navTrip': 'Trong chuyến',
+    'navTransaction': 'Giao dịch',
+    // Menu items
+    'menuMyPosts': 'Bài đăng của tôi',
+    'menuBusinessInfo': 'Thông tin doanh nghiệp',
+    'menuAccount': 'Tài khoản',
+    // Function items
+    'funcTestMap': 'Bản đồ thử nghiệm 1',
+    'funcTestMapDesc': 'Bản đồ thử nghiệm 1',
+    'funcCargoOwner': 'Chủ hàng',
+    'funcCargoOwnerDesc':
+        'Tìm xe; Tìm xe chiều về; Tìm xe quanh đây; Đăng nhu cầu vận chuyển.',
+    'funcMarket': 'Thị trường',
+    'funcMarketDesc': 'Danh sách thông tin về xe và nhu cầu vận chuyển hàng',
+    'funcContainerRent': 'Thuê và cho thuê vỏ cont',
+    'funcContainerRentDesc': 'Thị trường vỏ cont',
+    'funcWarehouseRent': 'Thuê và cho thuê kho bãi',
+    'funcWarehouseRentDesc': 'Thị trường kho bãi',
+    'funcImportExport': 'Thị trường xuất nhập khẩu',
+    'funcImportExportDesc': 'Thông tin dịch vụ xuất nhập khẩu',
+    'funcTransactions': 'Giao dịch',
+    'funcTransactionsDesc': 'Các giao dịch đã thực hiện',
+    'funcWallet': 'Ví tiền (logistic)',
+    'funcWalletDesc': 'Ví tiền của đơn vị logistic',
+    'funcDriver': 'Tài xế',
+    'funcDriverDesc': 'Định vị tuyến đường',
   };
 
   // Thêm từ điển chứa các chuỗi văn bản cho Tiếng Thái
@@ -77,6 +105,34 @@ class AppLocalization {
     'yourChosenActivities': 'กิจกรรมที่คุณเลือก',
     'when': 'เมื่อไหร่',
     'chuxe': 'เจ้าของรถ (ยานพาหนะ)',
+    // Navigation bar items
+    'navHome': 'หน้าแรก',
+    'navTrip': 'ระหว่างทาง',
+    'navTransaction': 'ธุรกรรม',
+    // Menu items
+    'menuMyPosts': 'โพสต์ของฉัน',
+    'menuBusinessInfo': 'ข้อมูลธุรกิจ',
+    'menuAccount': 'บัญชี',
+    // Function items
+    'funcTestMap': 'ทดสอบแผนที่ 1',
+    'funcTestMapDesc': 'ทดสอบแผนที่ 1',
+    'funcCargoOwner': 'เจ้าของสินค้า',
+    'funcCargoOwnerDesc':
+        'ค้นหารถ; ค้นหารถขากลับ; ค้นหารถในบริเวณใกล้เคียง; ลงประกาศความต้องการขนส่ง',
+    'funcMarket': 'ตลาด',
+    'funcMarketDesc': 'รายการข้อมูลเกี่ยวกับรถและความต้องการขนส่งสินค้า',
+    'funcContainerRent': 'เช่าและให้เช่าตู้คอนเทนเนอร์',
+    'funcContainerRentDesc': 'ตลาดตู้คอนเทนเนอร์',
+    'funcWarehouseRent': 'เช่าและให้เช่าคลังสินค้า',
+    'funcWarehouseRentDesc': 'ตลาดคลังสินค้า',
+    'funcImportExport': 'ตลาดนำเข้าส่งออก',
+    'funcImportExportDesc': 'ข้อมูลบริการนำเข้าส่งออก',
+    'funcTransactions': 'ธุรกรรม',
+    'funcTransactionsDesc': 'ธุรกรรมที่ดำเนินการแล้ว',
+    'funcWallet': 'กระเป๋าเงิน (โลจิสติกส์)',
+    'funcWalletDesc': 'กระเป๋าเงินของหน่วยงานโลจิสติกส์',
+    'funcDriver': 'คนขับรถ',
+    'funcDriverDesc': 'การนำทางเส้นทาง',
   };
 
   // Thêm từ điển chứa các chuỗi văn bản cho Tiếng Trung Quốc
@@ -111,6 +167,33 @@ class AppLocalization {
     'yourChosenActivities': '你选择的活动',
     'when': '什么时候',
     'chuxe': '车主（车辆）',
+    // Navigation bar items
+    'navHome': '首页',
+    'navTrip': '行程中',
+    'navTransaction': '交易',
+    // Menu items
+    'menuMyPosts': '我的帖子',
+    'menuBusinessInfo': '企业信息',
+    'menuAccount': '账户',
+    // Function items
+    'funcTestMap': '测试地图 1',
+    'funcTestMapDesc': '测试地图 1',
+    'funcCargoOwner': '货主',
+    'funcCargoOwnerDesc': '找车辆；找回程车；找附近车辆；发布运输需求',
+    'funcMarket': '市场',
+    'funcMarketDesc': '车辆和货物运输需求信息列表',
+    'funcContainerRent': '集装箱租赁',
+    'funcContainerRentDesc': '集装箱市场',
+    'funcWarehouseRent': '仓库租赁',
+    'funcWarehouseRentDesc': '仓库市场',
+    'funcImportExport': '进出口市场',
+    'funcImportExportDesc': '进出口服务信息',
+    'funcTransactions': '交易',
+    'funcTransactionsDesc': '已完成的交易',
+    'funcWallet': '钱包（物流）',
+    'funcWalletDesc': '物流单位的钱包',
+    'funcDriver': '司机',
+    'funcDriverDesc': '路线定位',
   };
 
   // Phương thức tĩnh để lấy đối tượng AppLocalization từ context
@@ -150,6 +233,35 @@ class AppLocalization {
     'yourChosenActivities': 'Your chosen activities',
     'when': 'When',
     'chuxe': 'Vehicle owner (vehicle)',
+    // Navigation bar items
+    'navHome': 'Home',
+    'navTrip': 'Trip',
+    'navTransaction': 'Transactions',
+    // Menu items
+    'menuMyPosts': 'My Posts',
+    'menuBusinessInfo': 'Business Information',
+    'menuAccount': 'Account',
+    // Function items
+    'funcTestMap': 'Test map 1',
+    'funcTestMapDesc': 'Test map 1',
+    'funcCargoOwner': 'Cargo Owner',
+    'funcCargoOwnerDesc':
+        'Find vehicles; Find return vehicles; Find vehicles nearby; Post transportation needs.',
+    'funcMarket': 'Market',
+    'funcMarketDesc':
+        'List of information about vehicles and cargo transportation needs',
+    'funcContainerRent': 'Container Rental',
+    'funcContainerRentDesc': 'Container market',
+    'funcWarehouseRent': 'Warehouse Rental',
+    'funcWarehouseRentDesc': 'Warehouse market',
+    'funcImportExport': 'Import/Export Market',
+    'funcImportExportDesc': 'Import/Export service information',
+    'funcTransactions': 'Transactions',
+    'funcTransactionsDesc': 'Completed transactions',
+    'funcWallet': 'Wallet (logistics)',
+    'funcWalletDesc': 'Logistics unit wallet',
+    'funcDriver': 'Driver',
+    'funcDriverDesc': 'Route location',
   };
 
   // Cập nhật phương thức _get để hỗ trợ đa ngôn ngữ
@@ -230,6 +342,36 @@ class AppLocalization {
 
   String get errorWhileDeletingBooking =>
       _get('errorWhileDeletingBooking', locale);
+
+  // Navigation bar items
+  String get navHome => _get('navHome', locale);
+  String get navTrip => _get('navTrip', locale);
+  String get navTransaction => _get('navTransaction', locale);
+
+  // Menu items
+  String get menuMyPosts => _get('menuMyPosts', locale);
+  String get menuBusinessInfo => _get('menuBusinessInfo', locale);
+  String get menuAccount => _get('menuAccount', locale);
+
+  // Function items
+  String get funcTestMap => _get('funcTestMap', locale);
+  String get funcTestMapDesc => _get('funcTestMapDesc', locale);
+  String get funcCargoOwner => _get('funcCargoOwner', locale);
+  String get funcCargoOwnerDesc => _get('funcCargoOwnerDesc', locale);
+  String get funcMarket => _get('funcMarket', locale);
+  String get funcMarketDesc => _get('funcMarketDesc', locale);
+  String get funcContainerRent => _get('funcContainerRent', locale);
+  String get funcContainerRentDesc => _get('funcContainerRentDesc', locale);
+  String get funcWarehouseRent => _get('funcWarehouseRent', locale);
+  String get funcWarehouseRentDesc => _get('funcWarehouseRentDesc', locale);
+  String get funcImportExport => _get('funcImportExport', locale);
+  String get funcImportExportDesc => _get('funcImportExportDesc', locale);
+  String get funcTransactions => _get('funcTransactions', locale);
+  String get funcTransactionsDesc => _get('funcTransactionsDesc', locale);
+  String get funcWallet => _get('funcWallet', locale);
+  String get funcWalletDesc => _get('funcWalletDesc', locale);
+  String get funcDriver => _get('funcDriver', locale);
+  String get funcDriverDesc => _get('funcDriverDesc', locale);
 
   // Phương thức để lấy chuỗi văn bản với tham số
   String nameTrips(String name) =>
