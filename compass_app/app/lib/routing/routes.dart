@@ -58,4 +58,6 @@ abstract final class Routes {
   static const thitruongkho = '/thitruongkho';
   static const chothuekho = '/chothuekho';
   static const canthuekho = '/canthuekho';
+  //thị trường xnk
+  static const thitruongxnk = '/thitruongxnk';
 }

@@ -78,6 +78,11 @@ import '../ui/canthuekho/widgets/canthuekho_form_screen.dart';
 //import '../ui/canthuekho/widgets/canthuekho_list_screen.dart';
 import '../domain/models/canthuekho/canthuekho_model.dart';
 import '../ui/thitruongkho/widgets/thitruongkho_screen.dart';
+//thị trường xnk
+import '../domain/models/thitruongxnk/thitruongxnk_model.dart';
+import '../ui/thitruongxnk/view_models/thitruongxnk_viewmodel.dart';
+import '../ui/thitruongxnk/widgets/thitruongxnk_form_screen.dart';
+import '../ui/thitruongxnk/widgets/thitruongxnk_list_screen.dart';
 
 /// Điểm vào chính của go_router.
 ///
@@ -235,6 +240,50 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
             ),
           ],
         ),
+        //thị trường xnk
+        GoRoute(
+          path: Routes.thitruongxnk, // Đường dẫn
+          builder: (context, state) {
+            return ChangeNotifierProvider(
+              create:
+                  (context) => ThiTruongXNKViewModel(
+                    thiTruongXNKRepository: context.read(), //
+                    imageRepository: context.read(),
+                  ),
+              child: const ThiTruongXNKListScreen(),
+            );
+          },
+          routes: [
+            GoRoute(
+              path: 'add', // Đường dẫn đến trang thêm Học sinh
+              builder: (context, state) {
+                return ChangeNotifierProvider(
+                  create:
+                      (context) => ThiTruongXNKViewModel(
+                        thiTruongXNKRepository: context.read(), //
+                        imageRepository: context.read(),
+                      ),
+                  child: const ThiTruongXNKFormScreen(thiTruongXNK: null),
+                );
+              },
+            ),
+            GoRoute(
+              path: 'edit', // Đường dẫn đến trang sửa Học sinh
+              builder: (context, state) {
+                final thiTruongXNK = state.extra as ThiTruongXNK;
+                return ChangeNotifierProvider(
+                  create:
+                      (context) => ThiTruongXNKViewModel(
+                        thiTruongXNKRepository: context.read(),
+                        imageRepository: context.read(),
+                      ),
+                  child: ThiTruongXNKFormScreen(thiTruongXNK: thiTruongXNK),
+                );
+              },
+            ),
+          ],
+        ),
+
         GoRoute(
           path: Routes.thongTinXe, // Đường dẫn đến trang Thông tin xe
           builder: (context, state) {
