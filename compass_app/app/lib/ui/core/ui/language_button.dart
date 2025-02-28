@@ -12,45 +12,29 @@ class LanguageButton extends StatefulWidget {
 }
 
 class LanguageButtonState extends State<LanguageButton> {
-  String _selectedLanguage = 'en';
-
   @override
   void initState() {
     super.initState();
-    _loadLanguage();
-  }
-
-  Future<void> _loadLanguage() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _selectedLanguage = prefs.getString('language') ?? 'en';
-    });
   }
 
   Future<void> _saveLanguage(String language) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('language', language);
-    setState(() {
-      _selectedLanguage = language;
-    });
     final localeProvider = Provider.of<LocaleProvider>(context, listen: false);
     await localeProvider.setLocale(Locale(language));
-    // Logic để load lại resource ngôn ngữ
-    switch (_selectedLanguage) {
-      case 'en':
-        // Load resource tiếng Anh
-        break;
-      case 'vi':
-        // Load resource tiếng Việt
-        break;
-      case 'th':
-        // Load resource tiếng Việt
-        break;
-      case 'zh':
-        // Load resource tiếng Việt
-        break;
-      // Thêm các ngôn ngữ khác nếu cần
-    }
+  }
+
+  PopupMenuEntry<String> _buildLanguageMenuItem(String langCode, String label) {
+    return PopupMenuItem<String>(
+      value: langCode,
+      child: Row(
+        children: [
+          Image.asset('assets/flags/$langCode.png', width: 24, height: 24),
+          const SizedBox(width: 10),
+          Text(label),
+        ],
+      ),
+    );
   }
 
   @override
@@ -62,10 +46,10 @@ class LanguageButtonState extends State<LanguageButton> {
       },
       itemBuilder: (BuildContext context) {
         return [
-          PopupMenuItem(value: 'en', child: Text('English')),
-          PopupMenuItem(value: 'vi', child: Text('Tiếng Việt')),
-          PopupMenuItem(value: 'zh', child: Text('中文')),
-          PopupMenuItem(value: 'th', child: Text('ภาษาไทย')),
+          _buildLanguageMenuItem('vi', 'Tiếng Việt'),
+          _buildLanguageMenuItem('en', 'English'),
+          _buildLanguageMenuItem('zh', '中文'),
+          _buildLanguageMenuItem('th', 'ภาษาไทย'),
           // Thêm các ngôn ngữ khác nếu cần
         ];
       },
