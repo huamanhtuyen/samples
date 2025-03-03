@@ -11,6 +11,8 @@ import 'ui/core/localization/locale_provider.dart';
 //import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+//
+import 'error_app.dart';
 
 /// Điểm vào cấu hình staging.
 /// Khởi chạy với `flutter run --target lib/main_staging.dart`.
@@ -23,46 +25,80 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Cấu hình firebase
-  await Firebase.initializeApp();
-  final messaging = FirebaseMessaging.instance; //FirebaseMessaging
-
-  // Lấy token của thiết bị
-  //Ghi nhớ: token này sẽ được dùng để gửi thông báo đến thiết bị.
   try {
-    final token = await messaging.getToken();
-    log.info("FCM Token: $token");
-  } catch (e) {
-    log.severe("Lỗi khi lấy token: $e");
-  }
+    await Firebase.initializeApp();
+    final messaging = FirebaseMessaging.instance; //FirebaseMessaging
 
-  // Xử lý khi nhận notification trong foreground
-  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    log.info("Nhận thông báo: ${message.notification?.title}");
-  });
+    // Lấy token của thiết bị
+    //Ghi nhớ: token này sẽ được dùng để gửi thông báo đến thiết bị.
+    try {
+      final token = await messaging.getToken();
+      log.info("FCM Token: $token");
+    } catch (e) {
+      log.severe("Lỗi khi lấy token: $e");
+
+      String errorMessage;
+      if (e.toString().contains("MISSING_INSTANCEID_SERVICE")) {
+        errorMessage =
+            "Thiết bị của bạn thiếu Google Play Services. Bạn cần phải thoát ứng dụng và cài đặt Google Play Services để sử dụng ứng dụng.";
+      } else {
+        errorMessage = "Lỗi khi khởi tạo dịch vụ thông báo: $e";
+      }
+
+      // Hiển thị ErrorApp thay vì chỉ lưu lỗi
+      runApp(ErrorApp(errorMessage: errorMessage, onRetry: () => main()));
+      return; // Dừng việc khởi tạo ứng dụng
+    }
+
+    // Xử lý khi nhận notification trong foreground
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      log.info("Nhận thông báo: ${message.notification?.title}");
+    });
+  } catch (e) {
+    log.severe("Lỗi khi khởi tạo Firebase: $e");
+    runApp(
+      ErrorApp(
+        errorMessage: "Không thể khởi tạo Firebase: $e",
+        onRetry: () => main(),
+      ),
+    );
+    return;
+  }
   //Hết cấu hình firebase
 
   //Khởi tạo kết nối đến supabase
-  await Supabase.initialize(
-    url: 'https://hxetbhwcaqjfmfpnaiiq.supabase.co',
-    anonKey:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh4ZXRiaHdjYXFqZm1mcG5haWlxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk2NjYzNDAsImV4cCI6MjA1NTI0MjM0MH0.I-a7DHYtOVNt5oB9EUrfBwqff0bj8AruMlVab37ZyZY',
-  );
+  try {
+    await Supabase.initialize(
+      url: 'https://hxetbhwcaqjfmfpnaiiq.supabase.co',
+      anonKey:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh4ZXRiaHdjYXFqZm1mcG5haWlxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk2NjYzNDAsImV4cCI6MjA1NTI0MjM0MH0.I-a7DHYtOVNt5oB9EUrfBwqff0bj8AruMlVab37ZyZY',
+    );
 
-  //Supabase có cơ chế tự động cập nhật session nếu bạn bật auth.onAuthStateChange:
-  final supabaseClient = Supabase.instance.client;
-  supabaseClient.auth.onAuthStateChange.listen((data) {
-    final event = data.event;
-    final session = data.session;
+    //Supabase có cơ chế tự động cập nhật session nếu bạn bật auth.onAuthStateChange:
+    final supabaseClient = Supabase.instance.client;
+    supabaseClient.auth.onAuthStateChange.listen((data) {
+      final event = data.event;
+      final session = data.session;
 
-    if (session != null) {
-      log.info('Cập nhật trạng thái đăng nhập: ${session.user.email}');
-      log.info('Token mới: ${session.accessToken}');
-    }
+      if (session != null) {
+        log.info('Cập nhật trạng thái đăng nhập: ${session.user.email}');
+        log.info('Token mới: ${session.accessToken}');
+      }
 
-    if (event == AuthChangeEvent.signedOut) {
-      log.info('Người dùng đã đăng xuất');
-    }
-  });
+      if (event == AuthChangeEvent.signedOut) {
+        log.info('Người dùng đã đăng xuất');
+      }
+    });
+  } catch (e) {
+    log.severe("Lỗi khi khởi tạo Supabase: $e");
+    runApp(
+      ErrorApp(
+        errorMessage: "Không thể kết nối đến hệ thống: $e",
+        onRetry: () => main(),
+      ),
+    );
+    return;
+  }
 
   debugPaintSizeEnabled = false;
 

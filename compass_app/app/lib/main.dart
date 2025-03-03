@@ -12,6 +12,8 @@ import 'ui/core/themes/theme.dart'; // Import tệp theme.dart
 import 'ui/core/ui/scroll_behavior.dart'; // Import tệp scroll_behavior.dart
 import 'ui/core/localization/locale_provider.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
+import 'error_app.dart';
+//
 
 /// Phương thức main mặc định
 void main() {
@@ -39,9 +41,16 @@ void showErrorDialog(BuildContext context, String message) {
   );
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key}); // Constructor của MainApp
+// ErrorApp has been moved to main_staging.dart
 
+class MainApp extends StatefulWidget {
+  const MainApp({super.key});
+
+  @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     //cấu hình mapbox
@@ -49,43 +58,44 @@ class MainApp extends StatelessWidget {
       "ACCESS_TOKEN",
       defaultValue: "",
     );
+
+    // Check for errors that would prevent app initialization
     if (accessToken.isEmpty) {
-      throw Exception("THIẾU Mapbox Access Token RỒI!");
+      return const ErrorApp(errorMessage: "THIẾU Mapbox Access Token!");
     }
+
+    // Move MapboxOptions configuration to a try-catch and handle errors
     try {
       MapboxOptions.setAccessToken(accessToken);
     } catch (e, stackTrace) {
       debugPrint("🔥 Exception: $e");
       debugPrint("📌 StackTrace: $stackTrace");
-      showErrorDialog(context, "Đã xảy ra lỗi: $e"); // Hiển thị hộp thoại lỗi
+      // Return the ErrorApp instead of showing dialog
+      return ErrorApp(errorMessage: "Lỗi cấu hình Mapbox: $e");
     }
 
     //lấy ra instance localeProvider hiện tại
     final localeProvider = Provider.of<LocaleProvider>(context);
 
     return MaterialApp.router(
-      locale: localeProvider.locale, // Định nghĩa locale mặc định
+      locale: localeProvider.locale,
       localizationsDelegates: [
-        GlobalWidgetsLocalizations
-            .delegate, // Định nghĩa các delegate cho đa ngôn ngữ
-        GlobalMaterialLocalizations
-            .delegate, // Định nghĩa các delegate cho đa ngôn ngữ
-        AppLocalizationDelegate(), // Định nghĩa delegate cho localization của ứng dụng
+        GlobalWidgetsLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        AppLocalizationDelegate(),
       ],
-      // Định nghĩa các locales được hỗ trợ
       supportedLocales: [
         const Locale('en', ''), // English
         const Locale('vi', ''), // Vietnamese
         const Locale('zh', ''), // Tiếng Trung
         const Locale('th', ''), // Tiếng Thái
       ],
-      scrollBehavior:
-          AppCustomScrollBehavior(), // Định nghĩa hành vi cuộn tùy chỉnh
-      theme: AppTheme.greenTheme, // Định nghĩa theme sáng
-      darkTheme: AppTheme.darkTheme, // Định nghĩa theme tối
-      themeMode: ThemeMode.light, // Định nghĩa chế độ theme theo hệ thống
-      routerConfig: router(context.read()), // Định nghĩa cấu hình router
-      debugShowCheckedModeBanner: false, // Ẩn banner debug
+      scrollBehavior: AppCustomScrollBehavior(),
+      theme: AppTheme.greenTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.light,
+      routerConfig: router(context.read()),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
