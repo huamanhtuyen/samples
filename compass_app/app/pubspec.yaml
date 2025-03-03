@@ -32,6 +32,8 @@ dependencies:
   geolocator: 13.0.2
   mapbox_maps_flutter : 2.6.0
   url_launcher: 6.3.1
+  firebase_core: latest_version
+  firebase_messaging: latest_version
 
 dev_dependencies:
   flutter_test:

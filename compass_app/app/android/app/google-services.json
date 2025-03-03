@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "375444143547",
+    "project_id": "logiw-f8090",
+    "storage_bucket": "logiw-f8090.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:375444143547:android:d88fe530c1f0fade29189e",
+        "android_client_info": {
+          "package_name": "com.beeng.logiw"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWhmKoCQ-qp2qcRUGXfz1OYoLI6ij40fU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
