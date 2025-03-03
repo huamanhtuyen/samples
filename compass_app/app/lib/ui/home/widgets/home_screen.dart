@@ -167,31 +167,31 @@ class _ExampleStaggeredAnimationsState extends State<HomeScreen>
       'title': appLoc.funcWarehouseRent,
       'description': appLoc.funcWarehouseRentDesc,
       'route': Routes.thitruongkho,
-      'image': 'assets/icons/chuxe.png',
+      'image': 'assets/icons/khobai.png',
     });
     cacChucNang.add({
       'title': appLoc.funcImportExport,
       'description': appLoc.funcImportExportDesc,
       'route': Routes.thitruongxnk,
-      'image': 'assets/icons/chuxe.png',
+      'image': 'assets/icons/thitruongxnk.png',
     });
     cacChucNang.add({
       'title': appLoc.funcTransactions,
       'description': appLoc.funcTransactionsDesc,
       'route': Routes.chuXe,
-      'image': 'assets/icons/chuxe.png',
+      'image': 'assets/icons/giaodich.png',
     });
     cacChucNang.add({
       'title': appLoc.funcWallet,
       'description': appLoc.funcWalletDesc,
       'route': Routes.chuXe,
-      'image': 'assets/icons/chuxe.png',
+      'image': 'assets/icons/vitien.png',
     });
     cacChucNang.add({
       'title': appLoc.funcDriver,
       'description': appLoc.funcDriverDesc,
       'route': Routes.chuXe,
-      'image': 'assets/icons/chuxe.png',
+      'image': 'assets/icons/taixe.png',
     });
     cacChucNang.add({
       'title': appLoc.funcTestMap,
