@@ -4,9 +4,13 @@ import 'package:flutter/services.dart'; // Import for SystemNavigator
 
 class ErrorApp extends StatelessWidget {
   final String errorMessage;
-  final VoidCallback? onRetry;
+  final bool canRetry;
 
-  const ErrorApp({super.key, required this.errorMessage, this.onRetry});
+  const ErrorApp({
+    super.key,
+    required this.errorMessage,
+    this.canRetry = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +36,16 @@ class ErrorApp extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton(
-                  onPressed: onRetry ?? () => SystemNavigator.pop(),
-                  child: const Text('Thoát ứng dụng'),
+                  onPressed: () {
+                    if (canRetry) {
+                      // Restart the app
+                      RestartAppHelper.restartApp();
+                    } else {
+                      // Exit the app
+                      SystemNavigator.pop();
+                    }
+                  },
+                  child: Text(canRetry ? 'Thử lại' : 'Thoát ứng dụng'),
                 ),
               ],
             ),
@@ -41,5 +53,15 @@ class ErrorApp extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+/// Helper class to restart the app
+class RestartAppHelper {
+  static void restartApp() {
+    // This is meant to be replaced with your app's restart mechanism
+    // For example, you might want to call main() again or use a package like flutter_phoenix
+    // For now, we'll just exit to keep it simple
+    SystemNavigator.pop();
   }
 }
