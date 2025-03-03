@@ -1,4 +1,4 @@
-package com.example.logiw
+package com.beeng.logiw
 
 import io.flutter.embedding.android.FlutterActivity
 

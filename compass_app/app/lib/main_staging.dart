@@ -9,6 +9,8 @@ import 'main.dart'; // Nhập tệp main
 import 'package:flutter/rendering.dart';
 import 'ui/core/localization/locale_provider.dart';
 //import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 /// Điểm vào cấu hình staging.
 /// Khởi chạy với `flutter run --target lib/main_staging.dart`.
@@ -16,6 +18,28 @@ import 'ui/core/localization/locale_provider.dart';
 void main() async {
   Logger.root.level = Level.ALL; // Đặt mức độ ghi log là ALL
   final log = Logger('MainApplication'); // Biến lưu trữ đối tượng Logger
+
+  //
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Cấu hình firebase
+  await Firebase.initializeApp();
+  final messaging = FirebaseMessaging.instance; //FirebaseMessaging
+
+  // Lấy token của thiết bị
+  //Ghi nhớ: token này sẽ được dùng để gửi thông báo đến thiết bị.
+  try {
+    final token = await messaging.getToken();
+    log.info("FCM Token: $token");
+  } catch (e) {
+    log.severe("Lỗi khi lấy token: $e");
+  }
+
+  // Xử lý khi nhận notification trong foreground
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    log.info("Nhận thông báo: ${message.notification?.title}");
+  });
+  //Hết cấu hình firebase
 
   //Khởi tạo kết nối đến supabase
   await Supabase.initialize(
