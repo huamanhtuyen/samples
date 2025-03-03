@@ -151,7 +151,10 @@ void main() async {
   } catch (e) {
     log.severe("Lỗi khi khởi tạo Mapbox: $e");
     runApp(
-      ErrorApp(errorMessage: "Lỗi khi khởi tạo Mapbox: $e", canRetry: true),
+      ErrorApp(
+        errorMessage: "Lỗi khi khởi tạo kết nối tới dịch vụ bản đồ: $e",
+        canRetry: true,
+      ),
     );
     return;
   }
