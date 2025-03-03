@@ -72,6 +72,22 @@ class AppLocalization {
     'funcWalletDesc': 'Ví tiền của đơn vị logistic',
     'funcDriver': 'Tài xế',
     'funcDriverDesc': 'Định vị tuyến đường',
+    // ChuXe screen specific strings
+    'chuxePostVehicle': 'Đăng thông tin xe',
+    'chuxePostVehicleDesc': 'Đăng thông tin xe',
+    'chuxeReturnCargo': 'Báo cần hàng chiều về',
+    'chuxeReturnCargoDesc':
+        'Thông báo xe cần hàng chiều về tới tất cả các chủ hàng',
+    'chuxeFindCargo': 'Tìm hàng cần chở',
+    'chuxeFindCargoDesc': 'Xem danh sách hàng hóa cần chở trong thị trường',
+    'chuxeEmptyVehicle': 'Thông báo xe trống',
+    'chuxeEmptyVehicleDesc':
+        'Thông báo xe trống đang cần hàng tới tất cả chủ hàng',
+    'chuxeTrackVehicle': 'Theo dõi vị trí xe',
+    'chuxeTrackVehicleDesc': 'Theo dõi vị trí tất cả các xe của đơn vị mình',
+    'chuxeBusinessInfo': 'Thông tin doanh nghiệp',
+    'chuxeBusinessInfoDesc':
+        'Cập nhật chi tiết thông tin doanh nghiệp (để in hợp đồng vận tải)',
   };
 
   // Thêm từ điển chứa các chuỗi văn bản cho Tiếng Thái
@@ -135,6 +151,22 @@ class AppLocalization {
     'funcWalletDesc': 'กระเป๋าเงินของหน่วยงานโลจิสติกส์',
     'funcDriver': 'คนขับรถ',
     'funcDriverDesc': 'การนำทางเส้นทาง',
+    // ChuXe screen specific strings
+    'chuxePostVehicle': 'ลงทะเบียนข้อมูลรถ',
+    'chuxePostVehicleDesc': 'ลงทะเบียนข้อมูลรถ',
+    'chuxeReturnCargo': 'แจ้งต้องการสินค้าขากลับ',
+    'chuxeReturnCargoDesc':
+        'แจ้งให้เจ้าของสินค้าทุกคนทราบว่ารถต้องการสินค้าขากลับ',
+    'chuxeFindCargo': 'ค้นหาสินค้าที่ต้องขนส่ง',
+    'chuxeFindCargoDesc': 'ดูรายการสินค้าที่ต้องการขนส่งในตลาด',
+    'chuxeEmptyVehicle': 'แจ้งรถว่าง',
+    'chuxeEmptyVehicleDesc':
+        'แจ้งให้เจ้าของสินค้าทุกคนทราบว่ามีรถว่างต้องการสินค้า',
+    'chuxeTrackVehicle': 'ติดตามตำแหน่งรถ',
+    'chuxeTrackVehicleDesc': 'ติดตามตำแหน่งรถทั้งหมดของหน่วยงานของคุณ',
+    'chuxeBusinessInfo': 'ข้อมูลธุรกิจ',
+    'chuxeBusinessInfoDesc':
+        'อัปเดตข้อมูลธุรกิจโดยละเอียด (สำหรับพิมพ์สัญญาขนส่ง)',
   };
 
   // Thêm từ điển chứa các chuỗi văn bản cho Tiếng Trung Quốc
@@ -197,6 +229,19 @@ class AppLocalization {
     'funcWalletDesc': '物流单位的钱包',
     'funcDriver': '司机',
     'funcDriverDesc': '路线定位',
+    // ChuXe screen specific strings
+    'chuxePostVehicle': '发布车辆信息',
+    'chuxePostVehicleDesc': '发布车辆信息',
+    'chuxeReturnCargo': '通知需要回程货物',
+    'chuxeReturnCargoDesc': '通知所有货主车辆需要回程货物',
+    'chuxeFindCargo': '查找需要运输的货物',
+    'chuxeFindCargoDesc': '查看市场上需要运输的货物列表',
+    'chuxeEmptyVehicle': '通知空车',
+    'chuxeEmptyVehicleDesc': '通知所有货主有空车需要货物',
+    'chuxeTrackVehicle': '跟踪车辆位置',
+    'chuxeTrackVehicleDesc': '跟踪您单位的所有车辆位置',
+    'chuxeBusinessInfo': '企业信息',
+    'chuxeBusinessInfoDesc': '更新详细的企业信息（用于打印运输合同）',
   };
 
   // Phương thức tĩnh để lấy đối tượng AppLocalization từ context
@@ -266,6 +311,23 @@ class AppLocalization {
     'funcWalletDesc': 'Logistics unit wallet',
     'funcDriver': 'Driver',
     'funcDriverDesc': 'Route location',
+    // ChuXe screen specific strings
+    'chuxePostVehicle': 'Post Vehicle Information',
+    'chuxePostVehicleDesc': 'Post vehicle information',
+    'chuxeReturnCargo': 'Notify Return Cargo Needed',
+    'chuxeReturnCargoDesc':
+        'Notify all cargo owners that the vehicle needs return cargo',
+    'chuxeFindCargo': 'Find Cargo to Transport',
+    'chuxeFindCargoDesc':
+        'View list of cargo that needs transportation in the market',
+    'chuxeEmptyVehicle': 'Notify Empty Vehicle',
+    'chuxeEmptyVehicleDesc':
+        'Notify all cargo owners that there is an empty vehicle needing cargo',
+    'chuxeTrackVehicle': 'Track Vehicle Location',
+    'chuxeTrackVehicleDesc': 'Track the location of all vehicles in your unit',
+    'chuxeBusinessInfo': 'Business Information',
+    'chuxeBusinessInfoDesc':
+        'Update detailed business information (for printing transport contracts)',
   };
 
   // Cập nhật phương thức _get để hỗ trợ đa ngôn ngữ
@@ -377,6 +439,20 @@ class AppLocalization {
   String get funcWalletDesc => _get('funcWalletDesc', locale);
   String get funcDriver => _get('funcDriver', locale);
   String get funcDriverDesc => _get('funcDriverDesc', locale);
+
+  // ChuXe screen specific getters
+  String get chuxePostVehicle => _get('chuxePostVehicle', locale);
+  String get chuxePostVehicleDesc => _get('chuxePostVehicleDesc', locale);
+  String get chuxeReturnCargo => _get('chuxeReturnCargo', locale);
+  String get chuxeReturnCargoDesc => _get('chuxeReturnCargoDesc', locale);
+  String get chuxeFindCargo => _get('chuxeFindCargo', locale);
+  String get chuxeFindCargoDesc => _get('chuxeFindCargoDesc', locale);
+  String get chuxeEmptyVehicle => _get('chuxeEmptyVehicle', locale);
+  String get chuxeEmptyVehicleDesc => _get('chuxeEmptyVehicleDesc', locale);
+  String get chuxeTrackVehicle => _get('chuxeTrackVehicle', locale);
+  String get chuxeTrackVehicleDesc => _get('chuxeTrackVehicleDesc', locale);
+  String get chuxeBusinessInfo => _get('chuxeBusinessInfo', locale);
+  String get chuxeBusinessInfoDesc => _get('chuxeBusinessInfoDesc', locale);
 
   // Phương thức để lấy chuỗi văn bản với tham số
   String nameTrips(String name) =>

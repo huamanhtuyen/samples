@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../routing/routes.dart';
 import '../view_models/chuxe_viewmodel.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../../ui/core/localization/applocalization.dart';
 
 class ChuXeScreen extends StatefulWidget {
   const ChuXeScreen({super.key, required this.viewModel});
@@ -35,6 +36,10 @@ class _ExampleStaggeredAnimationsState extends State<ChuXeScreen>
 
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return AppBar(
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back),
+        onPressed: () => context.pop(),
+      ),
       title: SvgPicture.asset(
         'assets/logo.svg',
         height: 30, // Adjust the height as needed
@@ -51,38 +56,39 @@ class _ExampleStaggeredAnimationsState extends State<ChuXeScreen>
 
   //build phần content
   Widget _buildContent() {
-    final cacChucNang = [];
-    cacChucNang.add({
-      'title': 'Đăng thông tin xe',
-      'description': 'Đăng thông tin xe',
-      'route': '${Routes.thongTinXe}/add',
-    });
-    cacChucNang.add({
-      'title': 'Báo cần hàng chiều về',
-      'description': 'Thông báo xe cần hàng chiều về tới tất cả các chủ hàng',
-      'route': Routes.baoCanHang,
-    });
-    cacChucNang.add({
-      'title': 'Tìm hàng cần chở',
-      'description': 'Xem danh sách hàng hóa cần chở trong thị trường',
-      'route': Routes.hocSinh,
-    });
-    cacChucNang.add({
-      'title': 'Thông báo xe trống',
-      'description': 'Thông báo xe trống đang cần hàng tới tất cả chủ hàng',
-      'route': Routes.hocSinh,
-    });
-    cacChucNang.add({
-      'title': 'Theo dõi vị trí xe',
-      'description': 'Theo dõi vị trí tất cả các xe của đơn vị mình',
-      'route': Routes.hocSinh,
-    });
-    cacChucNang.add({
-      'title': 'Thông tin doanh nghiệp',
-      'description':
-          'Cập nhật chi tiết thông tin doanh nghiệp (để in hợp đồng vận tải)',
-      'route': Routes.hocSinh,
-    });
+    final localizations = AppLocalization.of(context);
+    final cacChucNang = [
+      {
+        'title': localizations.chuxePostVehicle,
+        'description': localizations.chuxePostVehicleDesc,
+        'route': '${Routes.thongTinXe}/add',
+      },
+      {
+        'title': localizations.chuxeReturnCargo,
+        'description': localizations.chuxeReturnCargoDesc,
+        'route': Routes.baoCanHang,
+      },
+      {
+        'title': localizations.chuxeFindCargo,
+        'description': localizations.chuxeFindCargoDesc,
+        'route': Routes.hocSinh,
+      },
+      {
+        'title': localizations.chuxeEmptyVehicle,
+        'description': localizations.chuxeEmptyVehicleDesc,
+        'route': Routes.hocSinh,
+      },
+      {
+        'title': localizations.chuxeTrackVehicle,
+        'description': localizations.chuxeTrackVehicleDesc,
+        'route': Routes.hocSinh,
+      },
+      {
+        'title': localizations.chuxeBusinessInfo,
+        'description': localizations.chuxeBusinessInfoDesc,
+        'route': Routes.hocSinh,
+      },
+    ];
 
     return Container(
       color: Colors.white, // Đặt màu nền cho Container
