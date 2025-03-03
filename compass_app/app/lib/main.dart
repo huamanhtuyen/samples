@@ -8,6 +8,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter/rendering.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 import 'routing/router.dart';
 import 'ui/core/localization/applocalization.dart';
@@ -24,6 +25,33 @@ void main() async {
   final log = Logger('MainApplication'); // Biến lưu trữ đối tượng Logger
 
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Kiểm tra kết nối internet
+  try {
+    final connectivity = await Connectivity().checkConnectivity();
+    if (connectivity == ConnectivityResult.none) {
+      log.severe("Không có kết nối internet");
+      runApp(
+        ErrorApp(
+          errorMessage: "Vui lòng kết nối internet để sử dụng ứng dụng.",
+          canRetry: true,
+        ),
+      );
+      return; // Dừng việc khởi tạo ứng dụng nếu không có kết nối
+    } else {
+      log.info("Đã kết nối internet: ${connectivity.toString()}");
+    }
+  } catch (e) {
+    log.warning("Không thể kiểm tra kết nối internet: $e");
+    // Không thể kiểm tra kết nối internet, hiển thị thông báo lỗi
+    runApp(
+      ErrorApp(
+        errorMessage: "Không thể kiểm tra kết nối internet: $e",
+        canRetry: true,
+      ),
+    );
+    return; // Dừng việc khởi tạo ứng dụng nếu không có kết nối
+  }
 
   // Cấu hình firebase
   try {
