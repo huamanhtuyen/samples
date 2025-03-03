@@ -29,7 +29,8 @@ void main() async {
   // Kiểm tra kết nối internet
   try {
     final connectivity = await Connectivity().checkConnectivity();
-    if (connectivity == ConnectivityResult.none) {
+    if (connectivity.isEmpty ||
+        connectivity.contains(ConnectivityResult.none)) {
       log.severe("Không có kết nối internet");
       runApp(
         ErrorApp(
