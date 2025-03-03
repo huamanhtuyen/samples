@@ -11,6 +11,9 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.10.0"))
 
     implementation("com.google.firebase:firebase-analytics")
+
+    // Sửa cú pháp ở đây, dùng hàm coreLibraryDesugaring của Kotlin
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.2.2")
 }
 
 android {
@@ -21,6 +24,8 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+        // Sửa cú pháp ở đây, dùng gán giá trị = true thay vì space true
+        isCoreLibraryDesugaringEnabled = true
     }
 
     kotlinOptions {

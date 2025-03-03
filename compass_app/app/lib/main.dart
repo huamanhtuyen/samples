@@ -9,6 +9,7 @@ import 'package:flutter/rendering.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'routing/router.dart';
 import 'ui/core/localization/applocalization.dart';
@@ -79,11 +80,6 @@ void main() async {
       runApp(ErrorApp(errorMessage: errorMessage, canRetry: false));
       return; // Dừng việc khởi tạo ứng dụng
     }
-
-    // Xử lý khi nhận notification trong foreground
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      log.info("Nhận thông báo: ${message.notification?.title}");
-    });
   } catch (e) {
     log.severe("Lỗi khi khởi tạo Firebase: $e");
     runApp(
@@ -182,6 +178,73 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+  final Logger log = Logger('MainApp');
+
+  @override
+  void initState() {
+    super.initState();
+    _initNotifications();
+  }
+
+  Future<void> _initNotifications() async {
+    // Android setup
+    const initializationSettingsAndroid = AndroidInitializationSettings(
+      '@mipmap/ic_launcher',
+    ); //AndroidInitializationSettings
+
+    // iOS setup
+    final initializationSettingsIOS = DarwinInitializationSettings(
+      requestAlertPermission: true,
+      requestBadgePermission: true,
+      requestSoundPermission: true,
+    ); //DarwinInitializationSettings
+
+    // Combined setup for both platforms
+    final initializationSettings = InitializationSettings(
+      android: initializationSettingsAndroid,
+      iOS: initializationSettingsIOS,
+    ); //InitializationSettings
+
+    await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+
+    // Listen for Firebase messages and show notifications
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      log.info("Nhận thông báo: ${message.notification?.title}");
+      _showNotification(message);
+    });
+  }
+
+  Future<void> _showNotification(RemoteMessage message) async {
+    if (message.notification != null) {
+      //AndroidNotificationDetails
+      final androidPlatformChannelSpecifics = const AndroidNotificationDetails(
+        'logiw_notification_channel',
+        'LogiW Thông báo',
+        channelDescription: 'Thông báo từ LogiW',
+        importance: Importance.high,
+        priority: Priority.high,
+      );
+
+      //DarwinNotificationDetails
+      final iOSPlatformChannelSpecifics = const DarwinNotificationDetails();
+
+      //NotificationDetails
+      final platformChannelSpecifics = NotificationDetails(
+        android: androidPlatformChannelSpecifics,
+        iOS: iOSPlatformChannelSpecifics,
+      );
+
+      await flutterLocalNotificationsPlugin.show(
+        message.hashCode,
+        message.notification!.title,
+        message.notification!.body,
+        platformChannelSpecifics,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     //lấy ra instance localeProvider hiện tại
