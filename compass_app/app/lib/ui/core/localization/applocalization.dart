@@ -45,6 +45,7 @@ class AppLocalization {
     'chuxe': 'Chủ xe (phương tiện vận tải)',
     // Navigation bar items
     'navHome': 'Trang chủ',
+    'navChat': 'Chat',
     'navTrip': 'Trong chuyến',
     'navTransaction': 'Giao dịch',
     // Menu items
@@ -107,6 +108,7 @@ class AppLocalization {
     'chuxe': 'เจ้าของรถ (ยานพาหนะ)',
     // Navigation bar items
     'navHome': 'หน้าแรก',
+    'navChat': 'แชท',
     'navTrip': 'ระหว่างทาง',
     'navTransaction': 'ธุรกรรม',
     // Menu items
@@ -169,6 +171,7 @@ class AppLocalization {
     'chuxe': '车主（车辆）',
     // Navigation bar items
     'navHome': '首页',
+    'navChat': '聊天',
     'navTrip': '行程中',
     'navTransaction': '交易',
     // Menu items
@@ -235,6 +238,7 @@ class AppLocalization {
     'chuxe': 'Vehicle owner (vehicle)',
     // Navigation bar items
     'navHome': 'Home',
+    'navChat': 'Chat',
     'navTrip': 'Trip',
     'navTransaction': 'Transactions',
     // Menu items
@@ -345,6 +349,7 @@ class AppLocalization {
 
   // Navigation bar items
   String get navHome => _get('navHome', locale);
+  String get navChat => _get('navChat', locale);
   String get navTrip => _get('navTrip', locale);
   String get navTransaction => _get('navTransaction', locale);
 

@@ -59,6 +59,12 @@ class _NavigationBarsState extends State<NavigationBars> {
           ),
           NavigationDestination(
             tooltip: '',
+            icon: Icon(Icons.chat_outlined),
+            label: appLoc.navChat,
+            selectedIcon: Icon(Icons.chat),
+          ),
+          NavigationDestination(
+            tooltip: '',
             icon: Icon(Icons.location_on_outlined),
             label: appLoc.navTrip,
             selectedIcon: Icon(Icons.location_on),
